@@ -2,14 +2,14 @@ import { Fragment } from 'react';
 
 import RecipeList from '../components/recipes/RecipeList';
 
-const DUMMY_RECIPES = [
+export const DUMMY_RECIPES = [
   {
     id: 'r1',
     name: 'Pasta with cheese',
     photo:
       'https://img-global.cpcdn.com/001_recipes/c25d024c31c9e3c5/751x532cq70/my-nice-light-mozzarella-pasta-sprinkled-parmesan-cheese-grated-recipe-main-photo.jpg',
     process: 'Cook pasta. Add cheese.',
-    time_minutes: 20,
+    timeMinutes: 20,
     author: 'Thor',
     ingredients: [
       {
@@ -33,7 +33,7 @@ const DUMMY_RECIPES = [
     name: 'Fruit in a bowl',
     photo: 'https://www.valyastasteofhome.com/wp-content/uploads/2015/06/062-1.jpg',
     process: 'Cut fruit. Put in bowl. Eat.',
-    time_minutes: 10,
+    timeMinutes: 10,
     author: 'Jesus',
     ingredients: [
       {
@@ -57,7 +57,7 @@ const DUMMY_RECIPES = [
     name: 'Cup of tea',
     photo: 'https://www.toxel.com/wp-content/uploads/2013/03/largecup01.jpg',
     process: 'Boil water. Pour in mug with tea bag.',
-    time_minutes: 5,
+    timeMinutes: 5,
     author: 'Churchill',
     ingredients: [
       {
@@ -81,8 +81,8 @@ const DUMMY_RECIPES = [
     name: 'Beans on toast',
     photo:
       'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/beans-on-toast-1578934200.jpg',
-    process: 'Cook beans in page. Pour on toast.',
-    time_minutes: 10,
+    process: 'Cook beans in pan. Pour on toast.',
+    timeMinutes: 10,
     author: 'Jethro',
     ingredients: [
       {
@@ -103,13 +103,25 @@ const DUMMY_RECIPES = [
   },
 ];
 
-const HomePage = () => {
+const HomePage = props => {
   return (
     <Fragment>
       <h1>Home Page Banner Here</h1>
-      <RecipeList recipes={DUMMY_RECIPES} />
+      <RecipeList recipes={props.recipes} />
     </Fragment>
   );
+};
+
+export const getStaticProps = () => {
+  // fetching data from API...
+  const returnedRecipes = DUMMY_RECIPES;
+
+  return {
+    props: {
+      recipes: returnedRecipes,
+    },
+    revalidate: 60,
+  };
 };
 
 export default HomePage;

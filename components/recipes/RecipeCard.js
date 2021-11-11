@@ -1,11 +1,13 @@
-import { Fragment } from 'react';
+import Link from 'next/link';
 
 const RecipeCard = props => {
   return (
-    <Fragment>
-      <div>{props.recipe.name}</div>
-      <div>{props.recipe.photo}</div>
-    </Fragment>
+    <Link href={`/recipes/${props.recipe.id}`}>
+      <a>
+        <div>{props.recipe.name}</div>
+        <div>{props.recipe.photo}</div>
+      </a>
+    </Link>
   );
 };
 
