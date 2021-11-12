@@ -1,0 +1,19 @@
+.split-banner {
+  width: 100%;
+  flex-direction: column;
+}
+
+.photo-container,
+.title-container {
+  flex: 50% 0 0;
+}
+
+.photo-container > img {
+  width: 100%;
+}
+
+@media (min-width: 769px) {
+  .split-banner {
+    flex-direction: row;
+  }
+}

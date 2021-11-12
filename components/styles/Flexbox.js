@@ -1,4 +1,4 @@
-import classes from './Flexbox.module.scss';
+import classes from './Flexbox.module.css';
 
 const Flexbox = props => {
   console.log(props);
