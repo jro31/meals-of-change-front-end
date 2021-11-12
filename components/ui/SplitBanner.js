@@ -1,8 +1,8 @@
-import { Fragment } from 'react';
-import classes from './SplitBanner.module.css';
+import Flexbox from '../styles/Flexbox';
+import classes from './SplitBanner.module.scss';
 
 const SplitBanner = () => {
-  return <Fragment></Fragment>;
+  return <Flexbox className={classes['split-banner']}></Flexbox>;
 };
 
 export default SplitBanner;

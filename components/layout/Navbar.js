@@ -1,5 +1,5 @@
 import Flexbox from '../styles/Flexbox';
-import classes from './Navbar.module.css';
+import classes from './Navbar.module.scss';
 
 const Navbar = () => {
   return (
