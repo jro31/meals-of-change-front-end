@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 
 import SplitBanner from '../components/homepage/SplitBanner';
-import RecipeList from '../components/recipes/RecipeList';
+import HorizontalRecipeList from '../components/ui/HorizontalRecipeList';
 
 export const DUMMY_RECIPES = [
   {
@@ -108,7 +108,7 @@ const HomePage = props => {
   return (
     <Fragment>
       <SplitBanner />
-      <RecipeList recipes={props.recipes} />
+      <HorizontalRecipeList recipes={props.recipes} />
     </Fragment>
   );
 };

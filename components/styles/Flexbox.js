@@ -23,6 +23,8 @@ const Flexbox = props => {
         return classes['justify-center'];
       case props.justifyBetween:
         return classes['justify-between'];
+      case props.justifyAround:
+        return classes['justify-around'];
       case props.justifyEvenly:
         return classes['justify-evenly'];
       default:
@@ -45,11 +47,24 @@ const Flexbox = props => {
     }
   };
 
+  const widthClass = () => {
+    switch (true) {
+      case props.w100:
+        return classes.w100;
+      case props.w50:
+        return classes.w50;
+      default:
+        return '';
+    }
+  };
+
   return (
     <div
       className={`${
         classes.flex
-      } ${directionClass()} ${justifyContentClass()} ${alignItemsClass()} ${props.className}`}
+      } ${directionClass()} ${justifyContentClass()} ${alignItemsClass()} ${widthClass()} ${
+        props.className
+      }`}
     >
       {props.children}
     </div>

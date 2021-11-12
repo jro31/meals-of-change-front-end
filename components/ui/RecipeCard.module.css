@@ -1,0 +1,18 @@
+.recipe-card {
+  height: 350px;
+  width: 450px;
+}
+
+.photo-container {
+  height: 75%;
+}
+
+.photo-container > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.info-container {
+  height: 25%;
+}

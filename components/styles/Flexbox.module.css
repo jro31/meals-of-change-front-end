@@ -26,6 +26,10 @@
   justify-content: space-between !important;
 }
 
+.justify-around {
+  justify-content: space-around !important;
+}
+
 .justify-evenly {
   justify-content: space-evenly !important;
 }
@@ -44,4 +48,12 @@
 
 .align-baseline {
   align-items: baseline !important;
+}
+
+.w100 {
+  width: 100% !important;
+}
+
+.w50 {
+  width: 50% !important;
 }
