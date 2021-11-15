@@ -1,0 +1,10 @@
+.hamburger {
+  width: 25px;
+}
+
+.hamburger > span {
+  background-color: var(--text);
+  height: 2px;
+  width: 100%;
+  margin: 3px 0;
+}

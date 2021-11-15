@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none !important;
+  }
+}
+
+.navbar-menu > div {
+  font-family: Helvetica, sans-serif;
+}

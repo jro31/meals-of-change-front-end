@@ -3,14 +3,36 @@
   /* --desktop: 769px; */
 
   --primary: blue;
-  --secondary: gray;
+  --secondary: #e1ddd8;
   --success: green;
   --danger: red;
   --warning: orange;
   --info: navy;
-  --darkness: black;
+  --text: black;
+
+  --navbar-height: 50px;
+  --navbar-z-index: 1000;
+  --mobile-z-index: calc(var(--navbar-z-index) - 1);
 }
 
 body {
+  margin: 0;
+}
+
+h1 {
+  font-family: Georgia, Arial, serif;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+h2 {
+  font-family: Georgia, Arial, serif;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.5rem;
   margin: 0;
 }

@@ -1,0 +1,11 @@
+.navbar {
+  height: var(--navbar-height);
+  border-bottom: 1px solid var(--secondary);
+  z-index: var(--navbar-z-index);
+}
+
+@media (min-width: 769px) {
+  .hamburger {
+    display: none !important;
+  }
+}

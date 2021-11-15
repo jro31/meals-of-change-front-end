@@ -13,7 +13,7 @@ const SplitBanner = () => {
       <Flexbox justifyCenter alignCenter w100 className={classes['title-container']}>
         <Flexbox column alignCenter w50>
           <h1>Meals of Change</h1>
-          <h2>Plant-based recipes by you</h2>
+          <h3>Plant-based recipes by you</h3>
         </Flexbox>
       </Flexbox>
     </Flexbox>

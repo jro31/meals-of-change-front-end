@@ -9,8 +9,6 @@ const recipeDetails = props => {
 
   const recipeId = router.query.recipeId;
 
-  console.log(props);
-
   return (
     <Fragment>
       <Head>

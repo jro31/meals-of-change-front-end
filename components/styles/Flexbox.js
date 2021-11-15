@@ -1,7 +1,6 @@
 import classes from './Flexbox.module.css';
 
 const Flexbox = props => {
-  console.log(props);
   const directionClass = () => {
     switch (true) {
       case props.row:
@@ -60,10 +59,11 @@ const Flexbox = props => {
 
   return (
     <div
+      onClick={props.onClick || null}
       className={`${
         classes.flex
       } ${directionClass()} ${justifyContentClass()} ${alignItemsClass()} ${widthClass()} ${
-        props.className
+        props.className || ''
       }`}
     >
       {props.children}

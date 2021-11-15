@@ -1,0 +1,15 @@
+.mobile-menu {
+  width: 100vw;
+  height: calc(100vh - var(--navbar-height));
+  position: fixed;
+  left: 0;
+  top: var(--navbar-height);
+  background-color: blue;
+  z-index: var(--mobile-z-index);
+}
+
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
