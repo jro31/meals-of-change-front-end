@@ -1,6 +1,8 @@
 :root {
   /* --mobile: 768px; */
   /* --desktop: 769px; */
+  /* --tablet: 1439px; */
+  /* --desktop: 1440px; */
 
   --primary: blue;
   --secondary: #e1ddd8;
@@ -9,10 +11,18 @@
   --warning: orange;
   --info: navy;
   --text: black;
+  --white: white;
 
-  --navbar-height: 50px;
+  --base-sizing-unit: 3px;
+  --base-vertical-padding: calc(5 * var(--base-sizing-unit));
+  --base-horizontal-padding: calc(4 * var(--base-sizing-unit));
+  --navbar-height: calc(20 * var(--base-sizing-unit));
+  --base-border-size: 1px;
+
+  --base-border: var(--base-border-size) solid var(--secondary);
+
   --navbar-z-index: 1000;
-  --mobile-z-index: calc(var(--navbar-z-index) - 1);
+  --main-menu-z-index: calc(var(--navbar-z-index) + 1);
 }
 
 body {
