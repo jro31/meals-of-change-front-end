@@ -1,0 +1,39 @@
+.navbar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(var(--navbar-height) + var(--base-border-size));
+  z-index: calc(var(--navbar-z-index) + 1);
+  background-color: transparent;
+}
+
+.main-overlay {
+  width: 100vw;
+  height: calc(100vh - (var(--navbar-height) + var(--base-border-size)));
+  position: fixed;
+  left: 0;
+  top: calc(var(--navbar-height) + var(--base-border-size));
+  background-color: var(--overlay);
+  z-index: calc(var(--main-menu-z-index) - 1);
+}
+
+.show-overlay {
+  animation: showOverlay 0.4s linear forwards;
+}
+
+.hide-overlay {
+  animation: hideOverlay 0.4s linear forwards;
+}
+
+@keyframes showOverlay {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes hideOverlay {
+  100% {
+    opacity: 0;
+  }
+}

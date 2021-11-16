@@ -5,6 +5,7 @@ import Logo from '../../ui/Logo';
 import Hamburger from '../../ui/Hamburger';
 import classes from './Navbar.module.css';
 import MainMenu from '../MainMenu';
+import Overlay from '../../ui/Overlay';
 import { mainMenuActions } from '../../../store/index';
 
 const Navbar = props => {
@@ -32,6 +33,7 @@ const Navbar = props => {
         </Flexbox>
       </Flexbox>
       <MainMenu />
+      <Overlay onClick={showMainMenuHandler} />
     </Fragment>
   );
 };

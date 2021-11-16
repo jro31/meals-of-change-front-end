@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
-import Flexbox from '../styles/Flexbox';
-import classes from './MainMenu.module.css';
+import classes from './Overlay.module.css';
 
-const MainMenu = () => {
+const Overlay = props => {
   const mainMenuIsOpen = useSelector(state => state.mainMenu.mainMenuIsOpen);
 
   return (
@@ -15,16 +14,17 @@ const MainMenu = () => {
       timeout={400}
       classNames={{
         enter: '',
-        enterActive: classes['menu-open'],
+        enterActive: classes['show-overlay'],
         exit: '',
-        exitActive: classes['menu-close'],
+        exitActive: classes['hide-overlay'],
       }}
     >
-      <Flexbox className={classes['main-menu']}>
-        <div>Recipes</div>
-      </Flexbox>
+      <div onClick={props.onClick || null}>
+        <div className={classes['navbar-overlay']}></div>
+        <div className={classes['main-overlay']}></div>
+      </div>
     </CSSTransition>
   );
 };
 
-export default MainMenu;
+export default Overlay;
