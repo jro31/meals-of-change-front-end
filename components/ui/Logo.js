@@ -5,7 +5,7 @@ const Logo = props => {
     <span
       className={`${classes.logo} ${props.className || ''}`}
       style={{ fontSize: props.fontSize }}
-      onClick={props.clickHandler || null}
+      onClick={props.onClick || null}
     >
       Meals of Change
     </span>

@@ -5,7 +5,7 @@ const Hamburger = props => {
   return (
     <Flexbox
       column
-      onClick={props.clickHandler}
+      onClick={props.onClick || null}
       className={`${classes.hamburger} ${props.className || ''}`}
     >
       <span></span>
