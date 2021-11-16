@@ -4,11 +4,10 @@
   top: var(--navbar-height);
   left: 0;
   background-color: var(--white);
-  z-index: var(--main-menu-z-index);
+  z-index: calc(var(--navbar-z-index) - 1);
   padding: var(--base-horizontal-padding) var(--base-vertical-padding);
   height: calc(100vh - var(--navbar-height) - (var(--base-horizontal-padding) * 2));
   min-width: calc(75vw - (var(--base-vertical-padding) * 2));
-  transform: translateX(0) translateY(calc(0px - var(--base-border-size)));
 }
 
 .menu-open {
@@ -24,7 +23,6 @@
     height: auto;
     min-height: calc(50vh - var(--navbar-height) - (var(--base-horizontal-padding) * 2));
     width: calc(100vw - (var(--base-vertical-padding) * 2));
-    transform: translateY(calc(0px - var(--base-border-size)));
   }
 
   .menu-open {
@@ -38,44 +36,24 @@
 
 @keyframes openMenuMobile {
   0% {
-    opacity: 0;
-    transform: translateX(-100vw) translateY(calc(0px - var(--base-border-size)));
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) translateY(calc(0px - var(--base-border-size)));
+    transform: translateX(-100vw);
   }
 }
 
 @keyframes openMenuDesktop {
   0% {
-    opacity: 0;
     transform: translateY(-100vh);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(calc(0px - var(--base-border-size)));
   }
 }
 
 @keyframes closeMenuMobile {
-  0% {
-    opacity: 1;
-    transform: translateX(0) translateY(calc(0px - var(--base-border-size)));
-  }
   100% {
-    opacity: 0;
-    transform: translateX(-100vw) translateY(calc(0px - var(--base-border-size)));
+    transform: translateX(-100vw);
   }
 }
 
 @keyframes closeMenuDesktop {
-  0% {
-    opacity: 1;
-    transform: translateY(calc(0px - var(--base-border-size)));
-  }
   100% {
-    opacity: 0;
     transform: translateY(-100vh);
   }
 }
