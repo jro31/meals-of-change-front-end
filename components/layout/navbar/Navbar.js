@@ -24,7 +24,7 @@ const Navbar = props => {
           <div>Sign out</div>
         </Flexbox>
       </Flexbox>
-      {mainMenuIsOpen && <MainMenu />}
+      <MainMenu isOpen={mainMenuIsOpen} />
     </Fragment>
   );
 };
