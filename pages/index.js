@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 
 import SplitBanner from '../components/homepage/SplitBanner';
 import HorizontalRecipeList from '../components/ui/HorizontalRecipeList';
+import classes from './index.module.css';
 
 export const DUMMY_RECIPES = [
   {
@@ -108,6 +109,7 @@ const HomePage = props => {
   return (
     <Fragment>
       <SplitBanner />
+      <h2 className={classes['latest-recipes-heading']}>Latest recipes</h2>
       <HorizontalRecipeList recipes={props.recipes} />
     </Fragment>
   );

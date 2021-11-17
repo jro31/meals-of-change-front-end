@@ -3,18 +3,20 @@ import classes from './RecipeCard.module.css';
 
 const RecipeCard = props => {
   return (
-    <Flexbox column className={`${classes['recipe-card']} ${props.className}`}>
-      <div className={classes['photo-container']}>
-        <img src={props.recipe.photo} />
-      </div>
-      <Flexbox column justifyAround className={classes['info-container']}>
-        <div>{props.recipe.name}</div>
-        <Flexbox justifyBetween w100>
-          <div>{props.recipe.author}</div>
-          <div>{`${props.recipe.timeMinutes} minutes`}</div>
+    <div className={classes['recipe-card']}>
+      <Flexbox column className={`${classes['content-container']} ${props.className}`}>
+        <div className={classes['photo-container']}>
+          <img src={props.recipe.photo} />
+        </div>
+        <Flexbox column justifyAround className={classes['info-container']}>
+          <h3>{props.recipe.name}</h3>
+          <Flexbox justifyBetween w100>
+            <div>By {props.recipe.author}</div>
+            <div>{`${props.recipe.timeMinutes} minutes`}</div>
+          </Flexbox>
         </Flexbox>
       </Flexbox>
-    </Flexbox>
+    </div>
   );
 };
 

@@ -2,10 +2,10 @@
   height: var(--navbar-height);
   border-bottom: var(--base-border);
   z-index: var(--navbar-z-index);
-  padding: 0 var(--base-vertical-padding);
+  padding: 0 var(--base-y-axis-padding);
   position: fixed;
   top: 0;
-  width: calc(100vw - (var(--base-vertical-padding) * 2));
+  width: calc(100vw - (var(--base-y-axis-padding) * 2));
   background-color: var(--white);
 }
 

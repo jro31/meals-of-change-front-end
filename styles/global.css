@@ -15,8 +15,8 @@
   --overlay: rgba(0, 0, 0, 0.7);
 
   --base-sizing-unit: 3px;
-  --base-vertical-padding: calc(5 * var(--base-sizing-unit));
-  --base-horizontal-padding: calc(4 * var(--base-sizing-unit));
+  --base-x-axis-padding: calc(4 * var(--base-sizing-unit));
+  --base-y-axis-padding: calc(5 * var(--base-sizing-unit));
   --navbar-height: calc(20 * var(--base-sizing-unit));
   --base-border-size: 1px;
 
@@ -24,6 +24,12 @@
 
   --navbar-z-index: 1000;
   --main-menu-z-index: calc(var(--navbar-z-index) - 1);
+}
+
+@media (min-width: 769px) {
+  :root {
+    --base-y-axis-padding: calc(15 * var(--base-sizing-unit));
+  }
 }
 
 body {
