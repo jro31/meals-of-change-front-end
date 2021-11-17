@@ -1,43 +1,13 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
-const mainMenuSlice = createSlice({
-  name: 'main-menu',
-  initialState: {
-    mainMenuIsOpen: false,
-  },
-  reducers: {
-    openMenu(state) {
-      state.mainMenuIsOpen = true;
-    },
-    closeMenu(state) {
-      state.mainMenuIsOpen = false;
-    },
-  },
-});
-
-const profileMenuSlice = createSlice({
-  name: 'profile-menu',
-  initialState: {
-    profileMenuIsOpen: false,
-  },
-  reducers: {
-    openMenu(state) {
-      state.profileMenuIsOpen = true;
-    },
-    closeMenu(state) {
-      state.profileMenuIsOpen = false;
-    },
-  },
-});
+import mainMenuReducer from './main-menu';
+import profileMenuReducer from './profile-menu';
 
 const store = configureStore({
   reducer: {
-    mainMenu: mainMenuSlice.reducer,
-    profileMenu: profileMenuSlice.reducer,
+    mainMenu: mainMenuReducer,
+    profileMenu: profileMenuReducer,
   },
 });
-
-export const mainMenuActions = mainMenuSlice.actions;
-export const profileMenuActions = profileMenuSlice.actions;
 
 export default store;

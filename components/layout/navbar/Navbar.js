@@ -7,7 +7,8 @@ import Logo from '../../ui/Logo';
 import Hamburger from '../../ui/Hamburger';
 import MainMenu from './menu/MainMenu';
 import ProfileMenu from './ProfileMenu';
-import { mainMenuActions, profileMenuActions } from '../../../store/index';
+import { mainMenuActions } from '../../../store/main-menu';
+import { profileMenuActions } from '../../../store/profile-menu';
 
 import classes from './Navbar.module.css';
 import profileIcon from '../../../public/icons/profile.svg';

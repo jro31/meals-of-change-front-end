@@ -1,6 +1,7 @@
 .split-banner {
   flex-direction: column;
   height: 700px;
+  box-shadow: var(--box-shadow);
 }
 
 .photo-container,

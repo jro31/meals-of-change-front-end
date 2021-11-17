@@ -1,9 +1,6 @@
-import { Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import CSSTransition from 'react-transition-group/CSSTransition';
 import Flexbox from '../../styles/Flexbox';
 
-import Overlay from '../../ui/Overlay';
 import MenuContainer from './menu/MenuContainer';
 import classes from './ProfileMenu.module.css';
 

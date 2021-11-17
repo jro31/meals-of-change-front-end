@@ -7,7 +7,7 @@
   z-index: var(--main-menu-z-index);
   padding: var(--base-x-axis-padding) var(--base-y-axis-padding);
   height: calc(100vh - var(--navbar-height) - (var(--base-x-axis-padding) * 2));
-  min-width: calc(75vw - (var(--base-y-axis-padding) * 2));
+  min-width: calc(25vw - (var(--base-y-axis-padding) * 2));
 }
 
 .menu-open {
