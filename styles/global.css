@@ -18,9 +18,12 @@
   --base-x-axis-padding: calc(4 * var(--base-sizing-unit));
   --base-y-axis-padding: calc(5 * var(--base-sizing-unit));
   --navbar-height: calc(20 * var(--base-sizing-unit));
-  --base-border-size: 1px;
+  --page-bottom-padding: calc(10 * var(--base-sizing-unit));
 
+  --base-border-size: 1px;
   --base-border: var(--base-border-size) solid var(--secondary);
+
+  --box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 
   --navbar-z-index: 1000;
   --main-menu-z-index: calc(var(--navbar-z-index) - 1);

@@ -1,16 +1,13 @@
-import { useSelector } from 'react-redux';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
 import classes from './Overlay.module.css';
 
 const Overlay = props => {
-  const mainMenuIsOpen = useSelector(state => state.mainMenu.mainMenuIsOpen);
-
   return (
     <CSSTransition
       mountOnEnter
       unmountOnExit
-      in={mainMenuIsOpen}
+      in={props.in}
       timeout={400}
       classNames={{
         enter: '',

@@ -1,0 +1,31 @@
+.profile-menu {
+  float: right;
+  position: fixed;
+  top: var(--navbar-height);
+  right: 0;
+  background-color: var(--white);
+  z-index: var(--main-menu-z-index);
+  padding: var(--base-x-axis-padding) var(--base-y-axis-padding);
+  height: calc(100vh - var(--navbar-height) - (var(--base-x-axis-padding) * 2));
+  min-width: calc(75vw - (var(--base-y-axis-padding) * 2));
+}
+
+.menu-open {
+  animation: openMenu 0.4s ease-out forwards;
+}
+
+.menu-close {
+  animation: closeMenu 0.4s ease-in forwards;
+}
+
+@keyframes openMenu {
+  0% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes closeMenu {
+  100% {
+    transform: translateX(100vw);
+  }
+}
