@@ -1,0 +1,6 @@
+.pointer {
+  background-color: var(--translucent);
+  border-radius: 50%;
+  padding: calc(var(--base-sizing-unit) * 3);
+  position: relative;
+}
