@@ -10,7 +10,7 @@ const RecipeCard = props => {
         <a>
           <Flexbox
             column
-            className={`${classes['content-container']} ${props.className}`}
+            className={`${classes['content-container']} ${props.className || ''}`}
             refName={props.refName || null}
           >
             <div className={classes['photo-container']}>
