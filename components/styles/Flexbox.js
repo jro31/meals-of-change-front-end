@@ -65,6 +65,7 @@ const Flexbox = props => {
       } ${directionClass()} ${justifyContentClass()} ${alignItemsClass()} ${widthClass()} ${
         props.className || ''
       }`}
+      ref={props.refName || null}
     >
       {props.children}
     </div>
