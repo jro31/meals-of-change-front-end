@@ -21,7 +21,7 @@ const HorizontalRecipeListContainer = props => {
 
   const pointerTop = () => {
     // prettier-ignore
-    return (props.listHeight / 2) - (pointerSize / 2) - (9 / 2);
+    return (props.listHeight / 2) - (pointerSize / 2) - (9 / 2); // 9 == pointer padding
   };
 
   return (
