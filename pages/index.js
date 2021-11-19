@@ -404,7 +404,7 @@ const HomePage = props => {
     <Fragment>
       <SplitBanner />
       <h2 className={classes['latest-recipes-heading']}>Latest recipes</h2>
-      <HorizontalRecipeList recipes={props.recipes} tiers={1} />
+      <HorizontalRecipeList recipes={props.recipes} tiers={1} height='40vh' />
     </Fragment>
   );
 };
