@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import Flexbox from '../../styles/Flexbox';
 import Pointer from '../Pointer';
@@ -8,6 +8,20 @@ const pointerSize = 21;
 
 const HorizontalRecipeListContainer = props => {
   const listContainerRef = useRef();
+  const [listHeight, setListHeight] = useState(450);
+
+  const tiersClass = () => {
+    switch (props.tiers) {
+      case 1:
+        return classes['one-tier'];
+      case 2:
+        return classes['two-tier'];
+      case 3:
+        return classes['three-tier'];
+      default:
+        return classes['one-tier'];
+    }
+  };
 
   const scrollLeftHandler = () => {
     listContainerRef.current.scrollLeft =
@@ -21,8 +35,12 @@ const HorizontalRecipeListContainer = props => {
 
   const pointerTop = () => {
     // prettier-ignore
-    return (props.listHeight / 2) - (pointerSize / 2) - (9 / 2); // 9 == pointer padding
+    return (listHeight / 2) - (pointerSize / 2) - (9 / 2); // 9 == pointer padding
   };
+
+  useEffect(() => {
+    setListHeight(listContainerRef.current.offsetHeight);
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -40,7 +58,12 @@ const HorizontalRecipeListContainer = props => {
         className={classes['right-pointer']}
         style={{ top: `${pointerTop()}px` }}
       />
-      <Flexbox className={classes['horizontal-recipe-list']} refName={listContainerRef}>
+      <Flexbox
+        column
+        className={`${classes['horizontal-recipe-list']} ${tiersClass()}`}
+        refName={listContainerRef}
+        style={{ height: props.containerHeight || '50vh' }}
+      >
         {props.children}
       </Flexbox>
     </div>

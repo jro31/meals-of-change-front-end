@@ -1,7 +1,21 @@
 .card-container {
   scroll-snap-align: start;
+  padding: calc(var(--base-sizing-unit) * 4) 0;
+  box-sizing: border-box;
 }
 
-.card-container:first-child {
+.one-tier {
+  height: 100%;
+}
+
+.two-tier {
+  height: 50%;
+}
+
+.three-tier {
+  height: 33.3%;
+}
+
+.first-column-indent {
   padding-left: var(--base-y-axis-padding);
 }

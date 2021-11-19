@@ -8,11 +8,7 @@ const RecipeCard = props => {
     <div className={classes['recipe-card']}>
       <Link href={`/recipes/${props.recipe.id}`} passHref>
         <a>
-          <Flexbox
-            column
-            className={`${classes['content-container']} ${props.className || ''}`}
-            refName={props.refName || null}
-          >
+          <Flexbox column className={`${classes['content-container']} ${props.className || ''}`}>
             <div className={classes['photo-container']}>
               <img src={props.recipe.photo} />
             </div>

@@ -6,28 +6,41 @@ import HorizontalRecipeListContainer from './HorizontalRecipeListContainer';
 
 const HorizontalRecipeList = props => {
   const firstCardContainerRef = useRef();
-  const firstCardRef = useRef();
-  const [listHeight, setListHeight] = useState(350);
   const [cardContainerWidth, setCardContainerWidth] = useState(450);
 
+  const tiersClass = () => {
+    switch (props.tiers) {
+      case 1:
+        return classes['one-tier'];
+      case 2:
+        return classes['two-tier'];
+      case 3:
+        return classes['three-tier'];
+      default:
+        return classes['one-tier'];
+    }
+  };
+
   useEffect(() => {
-    setListHeight(firstCardRef.current.offsetHeight);
     setCardContainerWidth(firstCardContainerRef.current.offsetWidth);
   }, []);
 
   return (
-    <HorizontalRecipeListContainer listHeight={listHeight} cardContainerWidth={cardContainerWidth}>
-      {props.recipes.map(recipe => {
+    <HorizontalRecipeListContainer
+      containerHeight={props.height}
+      cardContainerWidth={cardContainerWidth}
+      tiers={props.tiers}
+    >
+      {props.recipes.map((recipe, index) => {
         return (
           <div
             key={recipe.id}
-            className={classes['card-container']}
+            className={`${classes['card-container']} ${tiersClass()} ${
+              index < props.tiers ? classes['first-column-indent'] : ''
+            }`}
             ref={recipe === props.recipes[0] ? firstCardContainerRef : null}
           >
-            <RecipeCard
-              recipe={recipe}
-              refName={recipe === props.recipes[0] ? firstCardRef : null}
-            />
+            <RecipeCard recipe={recipe} />
           </div>
         );
       })}

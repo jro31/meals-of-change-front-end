@@ -66,6 +66,7 @@ const Flexbox = props => {
         props.className || ''
       }`}
       ref={props.refName || null}
+      style={props.style || null}
     >
       {props.children}
     </div>

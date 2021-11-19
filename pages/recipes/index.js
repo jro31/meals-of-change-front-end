@@ -17,7 +17,7 @@ const RecipeIndex = props => {
     <Fragment>
       <h1>RECIPE INDEX PAGE</h1>
       <button onClick={addJapaneseParamsHandler}>Japanese</button>
-      <HorizontalRecipeList recipes={props.recipes} />
+      <HorizontalRecipeList height={'70vh'} recipes={props.recipes} tiers={2} />
     </Fragment>
   );
 };

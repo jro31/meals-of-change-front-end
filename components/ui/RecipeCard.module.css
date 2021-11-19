@@ -1,9 +1,9 @@
 .recipe-card {
-  padding: 0 calc(var(--base-sizing-unit) * 2) calc(var(--base-sizing-unit) * 13);
-  height: calc(var(--base-sizing-unit) * 117);
-  max-height: calc(100vh - (var(--navbar-height) + (var(--base-sizing-unit) * 13)));
+  padding: 0 calc(var(--base-sizing-unit) * 2) calc(var(--base-sizing-unit) * 3);
+  height: 100%;
   width: calc(var(--base-sizing-unit) * 150);
   max-width: calc(100vw - (var(--base-y-axis-padding) * 2));
+  box-sizing: border-box;
 }
 
 .content-container {
