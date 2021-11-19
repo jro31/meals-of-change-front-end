@@ -1,4 +1,4 @@
-import Flexbox from '../styles/Flexbox';
+import Flexbox from '../../styles/Flexbox';
 import classes from './SplitBanner.module.css';
 
 const SplitBanner = () => {

@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import SplitBanner from '../components/homepage/SplitBanner';
+import SplitBanner from '../components/pages/homepage/SplitBanner';
 import HorizontalRecipeList from '../components/ui/recipe-lists/HorizontalRecipeList';
 import classes from './index.module.css';
 
