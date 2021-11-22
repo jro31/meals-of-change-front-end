@@ -3,16 +3,17 @@ import useInput from '../../../../../hooks/use-input';
 import Input from '../../../../ui/form/Input';
 import InputContainer from '../../../../ui/form/InputContainer';
 
-const CookingTimeInput = () => {
+const CookingTimeInput = props => {
+  const { enteredCookingTime, setEnteredCookingTime } = props;
+
   const cookingTimeInputIsValid = value => value.trim().length > 0;
 
   const {
-    value,
     isValid: enteredCookingTimeIsValid,
     hasError,
     inputBlurHandler,
     valueChangeHandler,
-  } = useInput(cookingTimeInputIsValid);
+  } = useInput(enteredCookingTime, setEnteredCookingTime, cookingTimeInputIsValid);
 
   return (
     <InputContainer>
@@ -20,7 +21,7 @@ const CookingTimeInput = () => {
         type='number'
         required
         id='cooking_time'
-        value={value}
+        value={enteredCookingTime}
         onChange={valueChangeHandler}
         onBlur={inputBlurHandler}
         label='From start to finish, how many minutes does this recipe take?'

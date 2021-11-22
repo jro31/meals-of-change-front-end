@@ -4,7 +4,9 @@ import FoodInput from './FoodInput';
 import OptionalCheckbox from './OptionalCheckbox';
 import PreparationInput from './PreparationInput';
 
-const IngredientInputSection = () => {
+const IngredientInputSection = props => {
+  // const { ingredientItems, setIngredientItems } = props;
+
   const [ingredientItems, setIngredientItems] = useState([]);
 
   return (
