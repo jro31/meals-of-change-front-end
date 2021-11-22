@@ -16,7 +16,9 @@ const Input = props => {
         value={props.value}
         onChange={props.onChange || null}
         onBlur={props.onBlur || null}
-        className={classes.input}
+        className={`${classes.input} ${props.className || ''}`}
+        placeholder={props.placeholder || null}
+        checked={props.type === 'checkbox' ? props.checked : null}
       />
       {props.showError && <div className={classes['error-message']}>{props.errorMessage}</div>}
     </Fragment>

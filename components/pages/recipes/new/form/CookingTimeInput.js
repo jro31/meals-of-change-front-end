@@ -1,30 +1,33 @@
 import useInput from '../../../../../hooks/use-input';
 
 import Input from '../../../../ui/form/Input';
+import InputContainer from '../../../../ui/form/InputContainer';
 
 const CookingTimeInput = () => {
   const cookingTimeInputIsValid = value => value.trim().length > 0;
 
   const {
-    value: enteredCookingTime,
+    value,
     isValid: enteredCookingTimeIsValid,
-    hasError: cookingTimeInputHasError,
-    inputBlurHandler: cookingTimeBlurHandler,
-    valueChangeHandler: cookingTimeChangeHandler,
+    hasError,
+    inputBlurHandler,
+    valueChangeHandler,
   } = useInput(cookingTimeInputIsValid);
 
   return (
-    <Input
-      type='number'
-      required
-      id='cooking_time'
-      value={enteredCookingTime}
-      onChange={cookingTimeChangeHandler}
-      onBlur={cookingTimeBlurHandler}
-      label='From start to finish, how many minutes does this recipe take?'
-      showError={cookingTimeInputHasError}
-      errorMessage='Please enter the number of minutes this recipe takes to cook'
-    />
+    <InputContainer>
+      <Input
+        type='number'
+        required
+        id='cooking_time'
+        value={value}
+        onChange={valueChangeHandler}
+        onBlur={inputBlurHandler}
+        label='From start to finish, how many minutes does this recipe take?'
+        showError={hasError}
+        errorMessage='Please enter the number of minutes this recipe takes to cook'
+      />
+    </InputContainer>
   );
 };
 

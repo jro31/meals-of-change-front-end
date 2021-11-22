@@ -1,30 +1,32 @@
 import useInput from '../../../../../hooks/use-input';
 
 import Input from '../../../../ui/form/Input';
+import InputContainer from '../../../../ui/form/InputContainer';
 
 const NameInput = () => {
   const nameInputIsValid = value => value.trim().length > 0;
 
   const {
-    value: enteredName,
+    value,
     isValid: enteredNameIsValid,
-    hasError: nameInputHasError,
-    inputBlurHandler: nameBlurHandler,
-    valueChangeHandler: nameChangeHandler,
+    hasError,
+    inputBlurHandler,
+    valueChangeHandler,
   } = useInput(nameInputIsValid);
 
   return (
-    <Input
-      type='text'
-      required
-      id='name'
-      value={enteredName}
-      onChange={nameChangeHandler}
-      onBlur={nameBlurHandler}
-      label='What is the name of your recipe?'
-      showError={nameInputHasError}
-      errorMessage='Please enter a name for your recipe'
-    />
+    <InputContainer>
+      <Input
+        required
+        id='name'
+        value={value}
+        onChange={valueChangeHandler}
+        onBlur={inputBlurHandler}
+        label='What is the name of your recipe?'
+        showError={hasError}
+        errorMessage='Please enter a name for your recipe'
+      />
+    </InputContainer>
   );
 };
 
