@@ -1,5 +1,7 @@
 .container {
   position: relative;
+  /* This is what causes the photos not to be covered by the overlay while it's transitioning its opacity; unsure why */
+  /* Removing it fixes the issue, but moves the pointers */
 }
 
 .one-tier {
