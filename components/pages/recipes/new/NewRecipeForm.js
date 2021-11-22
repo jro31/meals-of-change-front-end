@@ -1,5 +1,6 @@
 import Form from '../../../ui/form/form';
 import FormSection from '../../../ui/form/FormSection';
+import CookingTimeInput from './form/CookingTimeInput';
 import NameInput from './form/NameInput';
 import classes from './NewRecipeForm.module.css';
 
@@ -13,6 +14,9 @@ const NewRecipeForm = () => {
       <Form onSubmit={submitHandler}>
         <FormSection>
           <NameInput />
+        </FormSection>
+        <FormSection>
+          <CookingTimeInput />
         </FormSection>
         {/* ADD PHOTO HERE */}
         <h3>Ingredients</h3>
