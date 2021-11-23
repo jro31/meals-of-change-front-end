@@ -6,6 +6,7 @@ import FoodInput from './FoodInput';
 import OptionalCheckbox from './OptionalCheckbox';
 import PreparationInput from './PreparationInput';
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
+import FormLine from '../../../../../ui/form/FormLine';
 
 let ingredientIterator = 0;
 
@@ -46,12 +47,21 @@ const IngredientInputSection = () => {
   return (
     <Fragment>
       {addedIngredients.map(ingredient => {
-        return <div key={ingredient.key}>{ingredient.food}</div>;
+        return (
+          <FormLine key={ingredient.key}>
+            <div>{ingredient.amount}</div>
+            <div>{ingredient.food}</div>
+            <div>{ingredient.preparation}</div>
+            <div>{ingredient.optional.toString()}</div>
+          </FormLine>
+        );
       })}
-      <AmountInput />
-      <FoodInput />
-      <PreparationInput />
-      <OptionalCheckbox />
+      <FormLine>
+        <AmountInput />
+        <FoodInput />
+        <PreparationInput />
+        <OptionalCheckbox />
+      </FormLine>
       <button onClick={addIngredientHandler}>Add ingredient</button>
     </Fragment>
   );
