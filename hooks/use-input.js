@@ -1,18 +1,20 @@
 import { useState } from 'react';
 
-const useInput = (enteredValue, setEnteredValue, valueValidator = null) => {
+const useInput = (setEnteredValue, valueValidator = null, setIsValid = null) => {
   const [isTouched, setIsTouched] = useState(false);
 
-  const isValid = () => {
+  const isValid = value => {
     if (valueValidator) {
-      return valueValidator(enteredValue);
+      return valueValidator(value);
     }
     return true;
   };
-  const hasError = !isValid && isTouched;
 
   const valueChangeHandler = event => {
     setEnteredValue(event.target.value);
+    if (setIsValid) {
+      setIsValid(isValid(event.target.value));
+    }
   };
 
   const inputBlurHandler = () => {
@@ -20,8 +22,7 @@ const useInput = (enteredValue, setEnteredValue, valueValidator = null) => {
   };
 
   return {
-    isValid: isValid(),
-    hasError,
+    isTouched,
     valueChangeHandler,
     inputBlurHandler,
   };

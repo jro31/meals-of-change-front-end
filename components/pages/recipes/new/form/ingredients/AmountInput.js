@@ -13,7 +13,7 @@ const AmountInput = () => {
     dispatch(newRecipeFormActions.setEnteredIngredientAmount(value));
   };
 
-  const { valueChangeHandler } = useInput(enteredAmount, amountChangeHandler);
+  const { valueChangeHandler } = useInput(amountChangeHandler);
 
   return (
     <InputContainer>

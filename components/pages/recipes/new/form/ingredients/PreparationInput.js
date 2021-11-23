@@ -13,7 +13,7 @@ const PreparationInput = () => {
     dispatch(newRecipeFormActions.setEnteredIngredientPreparation(value));
   };
 
-  const { valueChangeHandler } = useInput(enteredPreparation, preparationChangeHandler);
+  const { valueChangeHandler } = useInput(preparationChangeHandler);
 
   return (
     <InputContainer>

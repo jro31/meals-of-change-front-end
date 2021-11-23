@@ -8,19 +8,23 @@ import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
 const FoodInput = () => {
   const dispatch = useDispatch();
   const enteredFood = useSelector(state => state.newRecipeForm.enteredIngredientFood);
+  const enteredFoodIsValid = useSelector(state => state.newRecipeForm.enteredIngredientFoodIsValid);
 
   const foodChangeHandler = value => {
     dispatch(newRecipeFormActions.setEnteredIngredientFood(value));
   };
 
-  const foodInputIsValid = value => value.trim().length > 0;
+  const setFoodInputIsValid = value => {
+    dispatch(newRecipeFormActions.setEnteredIngredientFoodIsValid(value));
+  };
 
-  const {
-    isValid: enteredFoodIsValid,
-    hasError,
-    inputBlurHandler,
-    valueChangeHandler,
-  } = useInput(enteredFood, foodChangeHandler, foodInputIsValid);
+  const foodInputValidation = value => value.trim().length > 0;
+
+  const { isTouched, inputBlurHandler, valueChangeHandler } = useInput(
+    foodChangeHandler,
+    foodInputValidation,
+    setFoodInputIsValid
+  );
 
   return (
     <InputContainer>
@@ -30,7 +34,7 @@ const FoodInput = () => {
         value={enteredFood}
         onChange={valueChangeHandler}
         onBlur={inputBlurHandler}
-        showError={hasError}
+        showError={isTouched && !enteredFoodIsValid}
         errorMessage='Enter an ingredient'
         placeholder='Ingredient'
       />

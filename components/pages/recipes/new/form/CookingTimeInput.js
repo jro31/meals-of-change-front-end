@@ -5,9 +5,12 @@ import Input from '../../../../ui/form/Input';
 import InputContainer from '../../../../ui/form/InputContainer';
 import { newRecipeFormActions } from '../../../../../store/new-recipe-form';
 
-const CookingTimeInput = props => {
+const CookingTimeInput = () => {
   const dispatch = useDispatch();
   const enteredCookingTime = useSelector(state => state.newRecipeForm.enteredCookingTime);
+  const enteredCookingTimeIsValid = useSelector(
+    state => state.newRecipeForm.enteredCookingTimeIsValid
+  );
 
   const cookingTimeChangeHandler = value => {
     dispatch(newRecipeFormActions.setEnteredCookingTime(value));
@@ -15,12 +18,10 @@ const CookingTimeInput = props => {
 
   const cookingTimeInputIsValid = value => value.trim().length > 0;
 
-  const {
-    isValid: enteredCookingTimeIsValid,
-    hasError,
-    inputBlurHandler,
-    valueChangeHandler,
-  } = useInput(enteredCookingTime, cookingTimeChangeHandler, cookingTimeInputIsValid);
+  const { isTouched, inputBlurHandler, valueChangeHandler } = useInput(
+    cookingTimeChangeHandler,
+    cookingTimeInputIsValid
+  );
 
   return (
     <InputContainer>
@@ -32,7 +33,7 @@ const CookingTimeInput = props => {
         onChange={valueChangeHandler}
         onBlur={inputBlurHandler}
         label='From start to finish, how many minutes does this recipe take?'
-        showError={hasError}
+        showError={isTouched && !enteredCookingTimeIsValid}
         errorMessage='Please enter the number of minutes this recipe takes to cook'
       />
     </InputContainer>

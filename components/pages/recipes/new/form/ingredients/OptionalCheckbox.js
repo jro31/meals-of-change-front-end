@@ -13,7 +13,7 @@ const OptionalCheckbox = () => {
     dispatch(newRecipeFormActions.setIngredientIsOptional(value));
   };
 
-  const { valueChangeHandler } = useCheckbox(isOptional, isOptionalChangeHandler);
+  const { valueChangeHandler } = useCheckbox(isOptionalChangeHandler);
 
   return (
     <InputContainer>

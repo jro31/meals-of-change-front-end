@@ -1,4 +1,4 @@
-const useCheckbox = (isChecked, setIsChecked, mustBeChecked = false) => {
+const useCheckbox = (setIsChecked, mustBeChecked = false, setIsValid = null) => {
   const isValid = () => {
     if (mustBeChecked) {
       return isChecked;
@@ -8,10 +8,12 @@ const useCheckbox = (isChecked, setIsChecked, mustBeChecked = false) => {
 
   const valueChangeHandler = event => {
     setIsChecked(event.target.checked);
+    if (setIsValid) {
+      setIsValid(isValid(event.target.checked));
+    }
   };
 
   return {
-    isValid: isValid(),
     valueChangeHandler,
   };
 };
