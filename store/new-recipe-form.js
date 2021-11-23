@@ -72,6 +72,11 @@ const newRecipeFormSlice = createSlice({
       state.ingredientIsOptional = initialState.ingredientIsOptional;
       state.addIngredientButtonIsClicked = initialState.addIngredientButtonIsClicked;
     },
+    deleteAddedIngredient(state, action) {
+      state.addedIngredients = state.addedIngredients.filter(
+        ingredient => ingredient.tempId !== action.payload
+      );
+    },
   },
 });
 

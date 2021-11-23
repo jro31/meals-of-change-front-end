@@ -29,7 +29,7 @@ const IngredientInputSection = () => {
       ingredientIterator++;
 
       const newIngredient = {
-        key: `Ingredient ${ingredientIterator}`,
+        tempId: `Ingredient ${ingredientIterator}`,
         amount: enteredAmount,
         food: enteredFood,
         preparation: enteredPreparation,
@@ -41,15 +41,20 @@ const IngredientInputSection = () => {
     }
   };
 
+  const deleteIngredientHandler = tempId => {
+    dispatch(newRecipeFormActions.deleteAddedIngredient(tempId));
+  };
+
   return (
     <Fragment>
       {addedIngredients.map(ingredient => {
         return (
-          <FormLine key={ingredient.key}>
+          <FormLine key={ingredient.tempId}>
             <div>{ingredient.amount}</div>
             <div>{ingredient.food}</div>
             <div>{ingredient.preparation}</div>
             <div>{ingredient.optional.toString()}</div>
+            <div onClick={deleteIngredientHandler.bind(null, ingredient.tempId)}>DELETE</div>
           </FormLine>
         );
       })}
