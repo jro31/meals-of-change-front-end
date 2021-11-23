@@ -1,42 +1,36 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const useInput = (
-  setEnteredValue,
-  valueValidator = null,
-  setIsValid = null,
-  setIsTouched = null
+  setEnteredValueAction,
+  validation = null,
+  setIsValidAction = null,
+  setIsTouchedAction = null
 ) => {
-  // const [isTouched, setIsTouched] = useState(false);
+  const dispatch = useDispatch();
 
   const isValid = value => {
-    if (valueValidator) {
-      return valueValidator(value);
+    if (validation) {
+      return validation(value);
     }
     return true;
   };
 
   const valueChangeHandler = event => {
-    setEnteredValue(event.target.value);
-    if (setIsValid) {
-      setIsValid(isValid(event.target.value));
+    dispatch(setEnteredValueAction(event.target.value));
+    if (setIsValidAction) {
+      dispatch(setIsValidAction(isValid(event.target.value)));
     }
   };
 
   const inputBlurHandler = () => {
-    if (setIsTouched) {
-      setIsTouched(true);
+    if (setIsTouchedAction) {
+      dispatch(setIsTouchedAction());
     }
   };
 
-  // const reset = () => {
-  //   setIsTouched(false);
-  // };
-
   return {
-    // isTouched,
     valueChangeHandler,
     inputBlurHandler,
-    // reset,
   };
 };
 

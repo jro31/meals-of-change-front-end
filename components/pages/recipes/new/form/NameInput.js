@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import useInput from '../../../../../hooks/use-input';
 import Input from '../../../../ui/form/Input';
@@ -7,30 +7,17 @@ import { newRecipeFormActions } from '../../../../../store/new-recipe-form';
 import FormLine from '../../../../ui/form/FormLine';
 
 const NameInput = () => {
-  const dispatch = useDispatch();
   const enteredName = useSelector(state => state.newRecipeForm.enteredName);
   const enteredNameIsValid = useSelector(state => state.newRecipeForm.enteredNameIsValid);
   const inputIsTouched = useSelector(state => state.newRecipeForm.nameInputIsTouched);
 
-  const nameChangeHandler = value => {
-    dispatch(newRecipeFormActions.setEnteredName(value));
-  };
-
-  const setNameInputIsValid = value => {
-    dispatch(newRecipeFormActions.setEnteredNameIsValid(value));
-  };
-
-  const setNameInputIsTouched = () => {
-    dispatch(newRecipeFormActions.setNameInputIsTouched());
-  };
-
   const nameInputValidation = value => value.trim().length > 0;
 
-  const { inputBlurHandler, valueChangeHandler } = useInput(
-    nameChangeHandler,
+  const { valueChangeHandler, inputBlurHandler } = useInput(
+    newRecipeFormActions.setEnteredName,
     nameInputValidation,
-    setNameInputIsValid,
-    setNameInputIsTouched
+    newRecipeFormActions.setEnteredNameIsValid,
+    newRecipeFormActions.setNameInputIsTouched
   );
 
   return (

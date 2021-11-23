@@ -39,10 +39,7 @@ const IngredientInputSection = () => {
       dispatch(newRecipeFormActions.setAddedIngredients(newIngredient));
       dispatch(newRecipeFormActions.resetEnteredIngredient());
     }
-    // Reset ingredient inputs
   };
-
-  console.log(addedIngredients);
 
   return (
     <Fragment>
