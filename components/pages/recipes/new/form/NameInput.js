@@ -1,10 +1,17 @@
-import useInput from '../../../../../hooks/use-input';
+import { useDispatch, useSelector } from 'react-redux';
 
+import useInput from '../../../../../hooks/use-input';
 import Input from '../../../../ui/form/Input';
 import InputContainer from '../../../../ui/form/InputContainer';
+import { newRecipeFormActions } from '../../../../../store/new-recipe-form';
 
-const NameInput = props => {
-  const { enteredName, setEnteredName } = props;
+const NameInput = () => {
+  const dispatch = useDispatch();
+  const enteredName = useSelector(state => state.newRecipeForm.enteredName);
+
+  const nameChangeHandler = value => {
+    dispatch(newRecipeFormActions.setEnteredName(value));
+  };
 
   const nameInputIsValid = value => value.trim().length > 0;
 
@@ -13,7 +20,7 @@ const NameInput = props => {
     hasError,
     inputBlurHandler,
     valueChangeHandler,
-  } = useInput(enteredName, setEnteredName, nameInputIsValid);
+  } = useInput(enteredName, nameChangeHandler, nameInputIsValid);
 
   return (
     <InputContainer>

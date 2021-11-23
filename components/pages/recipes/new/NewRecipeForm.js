@@ -7,12 +7,7 @@ import NameInput from './form/NameInput';
 import classes from './NewRecipeForm.module.css';
 
 const NewRecipeForm = () => {
-  const [enteredName, setEnteredName] = useState('');
-  const [enteredCookingTime, setEnteredCookingTime] = useState('');
   // const [ingredientItems, setIngredientItems] = useState([]);
-
-  console.log(enteredName);
-  console.log(enteredCookingTime);
 
   const submitHandler = () => {
     console.log('🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮');
@@ -22,21 +17,18 @@ const NewRecipeForm = () => {
     <div className={classes['new-recipe-form']}>
       <Form onSubmit={submitHandler}>
         <FormSection>
-          <NameInput enteredName={enteredName} setEnteredName={setEnteredName} />
+          <NameInput />
         </FormSection>
         <FormSection>
-          <CookingTimeInput
-            enteredCookingTime={enteredCookingTime}
-            setEnteredCookingTime={setEnteredCookingTime}
-          />
+          <CookingTimeInput />
         </FormSection>
         {/* ADD PHOTO HERE */}
         <h3>Ingredients</h3>
         <FormSection>
-          <IngredientInputSection
+          {/* <IngredientInputSection
             ingredientItems={ingredientItems}
             setIngredientItems={setIngredientItems}
-          />
+          /> */}
         </FormSection>
         <div>
           <div>
