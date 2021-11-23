@@ -4,7 +4,8 @@ const useInput = (
   setEnteredValueAction,
   validation = null,
   setIsValidAction = null,
-  setIsTouchedAction = null
+  setIsTouchedAction = null,
+  inputType = 'text'
 ) => {
   const dispatch = useDispatch();
 
@@ -16,9 +17,11 @@ const useInput = (
   };
 
   const valueChangeHandler = event => {
-    dispatch(setEnteredValueAction(event.target.value));
+    const inputValue = inputType === 'checkbox' ? event.target.checked : event.target.value;
+
+    dispatch(setEnteredValueAction(inputValue));
     if (setIsValidAction) {
-      dispatch(setIsValidAction(isValid(event.target.value)));
+      dispatch(setIsValidAction(isValid(inputValue)));
     }
   };
 

@@ -1,19 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import useCheckbox from '../../../../../../hooks/use-checkbox';
+import useInput from '../../../../../../hooks/use-input';
 import Input from '../../../../../ui/form/Input';
 import InputContainer from '../../../../../ui/form/InputContainer';
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
 
 const OptionalCheckbox = () => {
-  const dispatch = useDispatch();
   const isOptional = useSelector(state => state.newRecipeForm.ingredientIsOptional);
 
-  const isOptionalChangeHandler = value => {
-    dispatch(newRecipeFormActions.setIngredientIsOptional(value));
-  };
-
-  const { valueChangeHandler } = useCheckbox(isOptionalChangeHandler);
+  const { valueChangeHandler } = useInput(
+    newRecipeFormActions.setIngredientIsOptional,
+    null,
+    null,
+    null,
+    'checkbox'
+  );
 
   return (
     <InputContainer>
