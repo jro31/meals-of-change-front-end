@@ -22,6 +22,7 @@ const IngredientInputSection = () => {
 
   const addIngredientHandler = event => {
     event.preventDefault();
+    dispatch(newRecipeFormActions.setAddIngredientButtonIsClicked());
 
     if (enteredIngredientFoodIsValid) {
       ingredientIterator++;

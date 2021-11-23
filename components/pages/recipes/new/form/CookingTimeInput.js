@@ -11,16 +11,27 @@ const CookingTimeInput = () => {
   const enteredCookingTimeIsValid = useSelector(
     state => state.newRecipeForm.enteredCookingTimeIsValid
   );
+  const inputIsTouched = useSelector(state => state.newRecipeForm.cookingTimeInputIsTouched);
 
   const cookingTimeChangeHandler = value => {
     dispatch(newRecipeFormActions.setEnteredCookingTime(value));
   };
 
-  const cookingTimeInputIsValid = value => value.trim().length > 0;
+  const setCookingTimeInputIsValid = value => {
+    dispatch(newRecipeFormActions.setEnteredCookingTimeIsValid(value));
+  };
 
-  const { isTouched, inputBlurHandler, valueChangeHandler } = useInput(
+  const setCookingTimeInputIsTouched = () => {
+    dispatch(newRecipeFormActions.setCookingTimeInputIsTouched());
+  };
+
+  const cookingTimeInputValidation = value => value.trim().length > 0;
+
+  const { inputBlurHandler, valueChangeHandler } = useInput(
     cookingTimeChangeHandler,
-    cookingTimeInputIsValid
+    cookingTimeInputValidation,
+    setCookingTimeInputIsValid,
+    setCookingTimeInputIsTouched
   );
 
   return (
@@ -33,7 +44,7 @@ const CookingTimeInput = () => {
         onChange={valueChangeHandler}
         onBlur={inputBlurHandler}
         label='From start to finish, how many minutes does this recipe take?'
-        showError={isTouched && !enteredCookingTimeIsValid}
+        showError={inputIsTouched && !enteredCookingTimeIsValid}
         errorMessage='Please enter the number of minutes this recipe takes to cook'
       />
     </InputContainer>

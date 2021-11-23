@@ -9,16 +9,27 @@ const NameInput = () => {
   const dispatch = useDispatch();
   const enteredName = useSelector(state => state.newRecipeForm.enteredName);
   const enteredNameIsValid = useSelector(state => state.newRecipeForm.enteredNameIsValid);
+  const inputIsTouched = useSelector(state => state.newRecipeForm.nameInputIsTouched);
 
   const nameChangeHandler = value => {
     dispatch(newRecipeFormActions.setEnteredName(value));
   };
 
-  const nameInputIsValid = value => value.trim().length > 0;
+  const setNameInputIsValid = value => {
+    dispatch(newRecipeFormActions.setEnteredNameIsValid(value));
+  };
 
-  const { isTouched, inputBlurHandler, valueChangeHandler } = useInput(
+  const setNameInputIsTouched = () => {
+    dispatch(newRecipeFormActions.setNameInputIsTouched());
+  };
+
+  const nameInputValidation = value => value.trim().length > 0;
+
+  const { inputBlurHandler, valueChangeHandler } = useInput(
     nameChangeHandler,
-    nameInputIsValid
+    nameInputValidation,
+    setNameInputIsValid,
+    setNameInputIsTouched
   );
 
   return (
@@ -30,7 +41,7 @@ const NameInput = () => {
         onChange={valueChangeHandler}
         onBlur={inputBlurHandler}
         label='What is the name of your recipe?'
-        showError={isTouched && !enteredNameIsValid}
+        showError={inputIsTouched && !enteredNameIsValid}
         errorMessage='Please enter a name for your recipe'
       />
     </InputContainer>

@@ -9,6 +9,10 @@ const FoodInput = () => {
   const dispatch = useDispatch();
   const enteredFood = useSelector(state => state.newRecipeForm.enteredIngredientFood);
   const enteredFoodIsValid = useSelector(state => state.newRecipeForm.enteredIngredientFoodIsValid);
+  const inputIsTouched = useSelector(state => state.newRecipeForm.ingredientFoodInputIsTouched);
+  const addIngredientButtonIsClicked = useSelector(
+    state => state.newRecipeForm.addIngredientButtonIsClicked
+  );
 
   const foodChangeHandler = value => {
     dispatch(newRecipeFormActions.setEnteredIngredientFood(value));
@@ -18,12 +22,17 @@ const FoodInput = () => {
     dispatch(newRecipeFormActions.setEnteredIngredientFoodIsValid(value));
   };
 
+  const setFoodInputIsTouched = () => {
+    dispatch(newRecipeFormActions.setIngredientFoodInputIsTouched());
+  };
+
   const foodInputValidation = value => value.trim().length > 0;
 
-  const { isTouched, inputBlurHandler, valueChangeHandler } = useInput(
+  const { inputBlurHandler, valueChangeHandler } = useInput(
     foodChangeHandler,
     foodInputValidation,
-    setFoodInputIsValid
+    setFoodInputIsValid,
+    setFoodInputIsTouched
   );
 
   return (
@@ -34,7 +43,7 @@ const FoodInput = () => {
         value={enteredFood}
         onChange={valueChangeHandler}
         onBlur={inputBlurHandler}
-        showError={isTouched && !enteredFoodIsValid}
+        showError={(inputIsTouched || addIngredientButtonIsClicked) && !enteredFoodIsValid}
         errorMessage='Enter an ingredient'
         placeholder='Ingredient'
       />

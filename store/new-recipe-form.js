@@ -3,13 +3,17 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   enteredName: '',
   enteredNameIsValid: false,
+  nameInputIsTouched: false,
   enteredCookingTime: '',
   enteredCookingTimeIsValid: false,
+  cookingTimeInputIsTouched: false,
   enteredIngredientAmount: '',
   enteredIngredientFood: '',
   enteredIngredientFoodIsValid: false,
+  ingredientFoodInputIsTouched: false,
   enteredIngredientPreparation: '',
   ingredientIsOptional: false,
+  addIngredientButtonIsClicked: false,
   addedIngredients: [],
 };
 
@@ -23,11 +27,17 @@ const newRecipeFormSlice = createSlice({
     setEnteredNameIsValid(state, action) {
       state.enteredNameIsValid = action.payload;
     },
+    setNameInputIsTouched(state) {
+      state.nameInputIsTouched = true;
+    },
     setEnteredCookingTime(state, action) {
       state.enteredCookingTime = action.payload;
     },
     setEnteredCookingTimeIsValid(state, action) {
       state.enteredCookingTimeIsValid = action.payload;
+    },
+    setCookingTimeInputIsTouched(state) {
+      state.cookingTimeInputIsTouched = true;
     },
     setEnteredIngredientAmount(state, action) {
       state.enteredIngredientAmount = action.payload;
@@ -38,11 +48,17 @@ const newRecipeFormSlice = createSlice({
     setEnteredIngredientFoodIsValid(state, action) {
       state.enteredIngredientFoodIsValid = action.payload;
     },
+    setIngredientFoodInputIsTouched(state) {
+      state.ingredientFoodInputIsTouched = true;
+    },
     setEnteredIngredientPreparation(state, action) {
       state.enteredIngredientPreparation = action.payload;
     },
     setIngredientIsOptional(state, action) {
       state.ingredientIsOptional = action.payload;
+    },
+    setAddIngredientButtonIsClicked(state) {
+      state.addIngredientButtonIsClicked = true;
     },
     setAddedIngredients(state, action) {
       state.addedIngredients = [...state.addedIngredients, action.payload];
@@ -51,8 +67,10 @@ const newRecipeFormSlice = createSlice({
       state.enteredIngredientAmount = initialState.enteredIngredientAmount;
       state.enteredIngredientFood = initialState.enteredIngredientFood;
       state.enteredIngredientFoodIsValid = initialState.enteredIngredientFoodIsValid;
+      state.ingredientFoodInputIsTouched = initialState.ingredientFoodInputIsTouched;
       state.enteredIngredientPreparation = initialState.enteredIngredientPreparation;
       state.ingredientIsOptional = initialState.ingredientIsOptional;
+      state.addIngredientButtonIsClicked = initialState.addIngredientButtonIsClicked;
     },
   },
 });
