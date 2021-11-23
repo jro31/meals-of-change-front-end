@@ -1,23 +1,31 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import AmountInput from './AmountInput';
 import FoodInput from './FoodInput';
 import OptionalCheckbox from './OptionalCheckbox';
 import PreparationInput from './PreparationInput';
 
 const IngredientInputSection = props => {
-  // const { ingredientItems, setIngredientItems } = props;
+  const dispatch = useDispatch();
+  const addedIngredients = useSelector(state => state.newRecipeForm.addedIngredients);
 
-  const [ingredientItems, setIngredientItems] = useState([]);
+  const addIngredientHandler = () => {
+    // Check inputs are valid
+    // Add input values to 'addedIngredients' as object (if valid)
+    // Reset ingredient inputs
+  };
 
   return (
     <Fragment>
-      {ingredientItems.map(ingredientItem => {
-        <div>{ingredientItem.ingredient}</div>;
+      {addedIngredients.map(ingredient => {
+        <div>{ingredient.food}</div>;
       })}
       <AmountInput />
       <FoodInput />
       <PreparationInput />
       <OptionalCheckbox />
+      <button onClick={addIngredientHandler}>Add ingredient</button>
     </Fragment>
   );
 };

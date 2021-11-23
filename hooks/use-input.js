@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const useInput = (enteredValue, setEnteredValue, valueValidator = null) => {
-  // const [enteredValue, setEnteredValue] = useState(initialValue);
   const [isTouched, setIsTouched] = useState(false);
 
   const isValid = () => {
@@ -21,7 +20,6 @@ const useInput = (enteredValue, setEnteredValue, valueValidator = null) => {
   };
 
   return {
-    // value: enteredValue,
     isValid: isValid(),
     hasError,
     valueChangeHandler,

@@ -7,9 +7,9 @@ import NameInput from './form/NameInput';
 import classes from './NewRecipeForm.module.css';
 
 const NewRecipeForm = () => {
-  // const [ingredientItems, setIngredientItems] = useState([]);
-
   const submitHandler = () => {
+    // Check inputs are valid
+    // Sumbit to backend
     console.log('🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮');
   };
 
@@ -25,10 +25,7 @@ const NewRecipeForm = () => {
         {/* ADD PHOTO HERE */}
         <h3>Ingredients</h3>
         <FormSection>
-          {/* <IngredientInputSection
-            ingredientItems={ingredientItems}
-            setIngredientItems={setIngredientItems}
-          /> */}
+          <IngredientInputSection />
         </FormSection>
         <div>
           <div>

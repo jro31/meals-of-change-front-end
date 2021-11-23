@@ -1,8 +1,4 @@
-import { useState } from 'react';
-
-const useCheckbox = (initialValue = false, mustBeChecked = false) => {
-  const [isChecked, setIsChecked] = useState(initialValue);
-
+const useCheckbox = (isChecked, setIsChecked, mustBeChecked = false) => {
   const isValid = () => {
     if (mustBeChecked) {
       return isChecked;
@@ -15,7 +11,6 @@ const useCheckbox = (initialValue = false, mustBeChecked = false) => {
   };
 
   return {
-    isChecked,
     isValid: isValid(),
     valueChangeHandler,
   };
