@@ -24,15 +24,26 @@ const TagsInput = props => {
     const key = event.key;
     const trimmedInput = enteredInput.trim();
 
-    if ((key === ',' || key === 'Enter') && trimmedInput.length && !tags.includes(trimmedInput)) {
+    if (key === ',' || key === 'Enter') {
       event.preventDefault();
-      dispatch(newRecipeFormActions.addTag({ type: camelCaseType, tag: trimmedInput }));
-      setEnteredInput('');
+      if (trimmedInput.length && !tags.includes(trimmedInput)) {
+        dispatch(newRecipeFormActions.addTag({ type: camelCaseType, tag: trimmedInput }));
+        setEnteredInput('');
+      }
+    }
+
+    if (key === 'Backspace' && !enteredInput.trim().length) {
+      event.preventDefault();
+      if (enteredInput.length) {
+        setEnteredInput('');
+      } else if (tags.length) {
+        dispatch(newRecipeFormActions.removeLastTag(camelCaseType));
+      }
     }
   };
 
-  console.log(allTags);
-  console.log(tags);
+  // console.log(allTags);
+  // console.log(tags);
 
   return (
     <div className={classes['input-container']}>
