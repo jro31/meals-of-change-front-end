@@ -15,6 +15,13 @@ const initialState = {
   ingredientIsOptional: false,
   addIngredientButtonIsClicked: false,
   addedIngredients: [],
+  steps: [
+    {
+      id: 1,
+      isEditing: true,
+      text: '',
+    },
+  ],
 };
 
 const newRecipeFormSlice = createSlice({
@@ -75,6 +82,24 @@ const newRecipeFormSlice = createSlice({
     deleteAddedIngredient(state, action) {
       state.addedIngredients = state.addedIngredients.filter(
         ingredient => ingredient.tempId !== action.payload
+      );
+    },
+    setSteps(state, action) {
+      state.steps = state.steps.map(step =>
+        step.id === action.payload.id ? { ...step, text: action.payload.text } : step
+      );
+    },
+    addNewStep(state) {
+      const notEditingSteps = state.steps.map(step => ({ ...step, isEditing: false }));
+      const newId = Math.max(...state.steps.map(step => step.id)) + 1;
+
+      state.steps = [...notEditingSteps, { id: newId, isEditing: true, text: '' }];
+    },
+    editStep(state, action) {
+      const notEditingSteps = state.steps.map(step => ({ ...step, isEditing: false }));
+
+      state.steps = notEditingSteps.map(step =>
+        step.id === action.payload ? { ...step, isEditing: true } : step
       );
     },
   },

@@ -4,12 +4,15 @@ import FormSection from '../../../ui/form/FormSection';
 import CookingTimeInput from './form/CookingTimeInput';
 import IngredientInputSection from './form/ingredients/IngredientInputSection';
 import NameInput from './form/NameInput';
+import StepsInput from './form/StepsInput';
 import classes from './NewRecipeForm.module.css';
 
 const NewRecipeForm = () => {
   const submitHandler = () => {
     // Check inputs are valid
-    // Sumbit to backend
+    // Take to preview page
+
+    // If approved, sumbit to backend
     console.log('🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮');
   };
 
@@ -27,7 +30,11 @@ const NewRecipeForm = () => {
         <FormSection>
           <IngredientInputSection />
         </FormSection>
-        <button>Add recipe</button>
+        <h3>Steps</h3>
+        <FormSection>
+          <StepsInput />
+        </FormSection>
+        <button>Preview</button>
       </Form>
     </div>
   );

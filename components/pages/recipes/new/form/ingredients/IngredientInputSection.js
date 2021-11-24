@@ -47,17 +47,15 @@ const IngredientInputSection = () => {
 
   return (
     <Fragment>
-      {addedIngredients.map(ingredient => {
-        return (
-          <FormLine key={ingredient.tempId}>
-            <div>{ingredient.amount}</div>
-            <div>{ingredient.food}</div>
-            <div>{ingredient.preparation}</div>
-            <div>{ingredient.optional.toString()}</div>
-            <div onClick={deleteIngredientHandler.bind(null, ingredient.tempId)}>DELETE</div>
-          </FormLine>
-        );
-      })}
+      {addedIngredients.map(ingredient => (
+        <FormLine key={ingredient.tempId}>
+          <div>{ingredient.amount}</div>
+          <div>{ingredient.food}</div>
+          <div>{ingredient.preparation}</div>
+          <div>{ingredient.optional.toString()}</div>
+          <div onClick={deleteIngredientHandler.bind(null, ingredient.tempId)}>DELETE</div>
+        </FormLine>
+      ))}
       <FormLine>
         <AmountInput />
         <FoodInput />
