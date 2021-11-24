@@ -7,6 +7,7 @@ import classes from './TagsInput.module.css';
 const TagsInput = props => {
   const dispatch = useDispatch();
   const [enteredInput, setEnteredInput] = useState('');
+  const [backspaceIsPressed, setBackspaceIsPressed] = useState(false);
 
   const camelCaseType = props.type
     .split('-')
@@ -32,13 +33,22 @@ const TagsInput = props => {
       }
     }
 
-    if (key === 'Backspace' && !enteredInput.trim().length) {
-      event.preventDefault();
-      if (enteredInput.length) {
-        setEnteredInput('');
-      } else if (tags.length) {
-        dispatch(newRecipeFormActions.removeLastTag(camelCaseType));
+    if (key === 'Backspace') {
+      if (!enteredInput.trim().length) {
+        event.preventDefault();
+        if (enteredInput.length) {
+          setEnteredInput('');
+        } else if (tags.length && !backspaceIsPressed) {
+          dispatch(newRecipeFormActions.removeLastTag(camelCaseType));
+        }
       }
+      setBackspaceIsPressed(true);
+    }
+  };
+
+  const keyReleaseHandler = event => {
+    if (event.key === 'Backspace') {
+      setBackspaceIsPressed(false);
     }
   };
 
@@ -50,7 +60,12 @@ const TagsInput = props => {
       {tags.map(tag => (
         <div key={tag}>{tag}</div>
       ))}
-      <input value={enteredInput} onChange={inputChangeHandler} onKeyDown={keyPressHandler} />
+      <input
+        value={enteredInput}
+        onChange={inputChangeHandler}
+        onKeyDown={keyPressHandler}
+        onKeyUp={keyReleaseHandler}
+      />
     </div>
   );
 };
