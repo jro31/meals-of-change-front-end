@@ -18,24 +18,42 @@ const StepsInput = () => {
     dispatch(newRecipeFormActions.addNewStep());
   };
 
-  const editStep = id => {
-    dispatch(newRecipeFormActions.editStep(id));
+  const editStepHandler = id => {
+    if (steps.find(step => step.id === id).isEditing === false) {
+      dispatch(newRecipeFormActions.editStep(id));
+    }
+  };
+
+  const finishEditingHandler = event => {
+    event.preventDefault();
+
+    dispatch(newRecipeFormActions.finishEditingSteps());
   };
 
   const displayStep = step => {
     if (step.isEditing) {
-      return <Input value={step.text} onChange={stepInputChangeHandler.bind(null, step.id)} />;
+      return (
+        <Fragment>
+          <Input value={step.text} onChange={stepInputChangeHandler.bind(null, step.id)} />
+        </Fragment>
+      );
     } else {
-      return <div onClick={editStep.bind(null, step.id)}>{step.text}</div>;
+      return <div>{step.text || '🤷‍♂️'}</div>;
     }
   };
 
   return (
     <Fragment>
-      {steps.map(step => {
-        return <div key={step.id}>{displayStep(step)}</div>;
+      {steps.map((step, index) => {
+        return (
+          <div key={step.id} onClick={editStepHandler.bind(null, step.id)}>
+            <h4>Step {index + 1}</h4>
+            <div>{displayStep(step)}</div>
+          </div>
+        );
       })}
       <button onClick={addNewStepHandler}>Add another step</button>
+      <button onClick={finishEditingHandler}>Finish</button>
     </Fragment>
   );
 };

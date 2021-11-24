@@ -24,6 +24,8 @@ const initialState = {
   ],
 };
 
+const notEditingSteps = steps => steps.map(step => ({ ...step, isEditing: false }));
+
 const newRecipeFormSlice = createSlice({
   name: 'new-recipe-form',
   initialState,
@@ -90,17 +92,18 @@ const newRecipeFormSlice = createSlice({
       );
     },
     addNewStep(state) {
-      const notEditingSteps = state.steps.map(step => ({ ...step, isEditing: false }));
-      const newId = Math.max(...state.steps.map(step => step.id)) + 1;
-
-      state.steps = [...notEditingSteps, { id: newId, isEditing: true, text: '' }];
+      state.steps = [
+        ...notEditingSteps(state.steps),
+        { id: Math.max(...state.steps.map(step => step.id)) + 1, isEditing: true, text: '' },
+      ];
     },
     editStep(state, action) {
-      const notEditingSteps = state.steps.map(step => ({ ...step, isEditing: false }));
-
-      state.steps = notEditingSteps.map(step =>
+      state.steps = notEditingSteps(state.steps).map(step =>
         step.id === action.payload ? { ...step, isEditing: true } : step
       );
+    },
+    finishEditingSteps(state) {
+      state.steps = notEditingSteps(state.steps);
     },
   },
 });
