@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Input from '../../../../ui/form/Input';
 import { newRecipeFormActions } from '../../../../../store/new-recipe-form';
+import FormLine from '../../../../ui/form/FormLine';
 
 const StepsInput = () => {
   const dispatch = useDispatch();
@@ -33,12 +34,12 @@ const StepsInput = () => {
   const displayStep = step => {
     if (step.isEditing) {
       return (
-        <Fragment>
+        <FormLine>
           <Input value={step.text} onChange={stepInputChangeHandler.bind(null, step.id)} />
-        </Fragment>
+        </FormLine>
       );
     } else {
-      return <div>{step.text || '🤷‍♂️'}</div>;
+      return <FormLine>{step.text || '🤷‍♂️'}</FormLine>;
     }
   };
 

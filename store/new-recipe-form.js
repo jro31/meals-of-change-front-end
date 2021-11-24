@@ -22,6 +22,11 @@ const initialState = {
       text: '',
     },
   ],
+  tags: {
+    dishType: ['Test tag 1', 'Test tag 2'],
+    cuisine: [],
+    other: [],
+  },
 };
 
 const notEditingSteps = steps => steps.map(step => ({ ...step, isEditing: false }));
@@ -105,6 +110,13 @@ const newRecipeFormSlice = createSlice({
     finishEditingSteps(state) {
       state.steps = notEditingSteps(state.steps);
     },
+    addTag(state, action) {
+      state.tags = {
+        ...state.tags,
+        [action.payload.type]: [...state.tags[action.payload.type], action.payload.tag],
+      };
+    },
+    removeTag(state) {},
   },
 });
 

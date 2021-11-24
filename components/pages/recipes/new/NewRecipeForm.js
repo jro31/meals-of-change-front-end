@@ -5,11 +5,14 @@ import CookingTimeInput from './form/CookingTimeInput';
 import IngredientInputSection from './form/ingredients/IngredientInputSection';
 import NameInput from './form/NameInput';
 import StepsInput from './form/StepsInput';
+import TagsInputSection from './form/tags/TagsInputSection';
 import classes from './NewRecipeForm.module.css';
 
 const NewRecipeForm = () => {
   const submitHandler = () => {
+    // Remember to '.trim()' inputs
     // Check inputs are valid
+    // With tags, remember to remove tags duplicated over the three inputs
     // Take to preview page
 
     // If approved, sumbit to backend
@@ -33,6 +36,11 @@ const NewRecipeForm = () => {
         <h3>Steps</h3>
         <FormSection>
           <StepsInput />
+        </FormSection>
+        <h3>Tags</h3>
+        <p>Help people find your recipe</p>
+        <FormSection>
+          <TagsInputSection />
         </FormSection>
         <button>Preview</button>
       </Form>
