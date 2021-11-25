@@ -35,7 +35,7 @@ const StepsInput = () => {
     if (step.isEditing) {
       return (
         <FormLine>
-          <Input value={step.text} onChange={stepInputChangeHandler.bind(null, step.id)} />
+          <Input value={step.text} onChange={event => stepInputChangeHandler(step.id, event)} />
         </FormLine>
       );
     } else {
@@ -47,7 +47,7 @@ const StepsInput = () => {
     <Fragment>
       {steps.map((step, index) => {
         return (
-          <div key={step.id} onClick={editStepHandler.bind(null, step.id)}>
+          <div key={step.id} onClick={() => editStepHandler(step.id)}>
             <h4>Step {index + 1}</h4>
             <div>{displayStep(step)}</div>
           </div>

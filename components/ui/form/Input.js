@@ -16,6 +16,8 @@ const Input = props => {
         value={props.value}
         onChange={props.onChange || null}
         onBlur={props.onBlur || null}
+        onKeyDown={props.onKeyDown || null}
+        onKeyUp={props.onKeyUp || null}
         className={`${classes.input} ${props.className || ''}`}
         placeholder={props.placeholder || null}
         checked={props.type === 'checkbox' ? props.checked : null}

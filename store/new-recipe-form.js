@@ -23,7 +23,7 @@ const initialState = {
     },
   ],
   tags: {
-    dishType: ['Test tag 1', 'Test tag 2'],
+    dishType: [],
     cuisine: [],
     other: [],
   },
