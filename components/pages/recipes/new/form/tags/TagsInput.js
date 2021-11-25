@@ -54,6 +54,7 @@ const TagsInput = props => {
         dispatch(newRecipeFormActions.addTag({ type: camelCaseType, tag: trimmedInput }));
         setEnteredInput('');
       }
+      return;
     }
 
     if (key === 'Backspace') {
@@ -66,6 +67,11 @@ const TagsInput = props => {
         }
       }
       setBackspaceIsPressed(true);
+      return;
+    }
+
+    if (tags.length >= 5) {
+      event.preventDefault();
     }
   };
 
@@ -83,12 +89,14 @@ const TagsInput = props => {
     <Fragment>
       <InputContainer>
         <label htmlFor={`${props.type}-tags`}>{humanizeType} tags - add up to 5</label>
-        <Flexbox className={classes['input-container']}>
+        <Flexbox alignCenter className={classes['tags-input-container']}>
           {tags.map((tag, index) => (
-            <div key={tag}>
-              {tag}
-              <span onClick={() => deleteTag(index)}>X</span>
-            </div>
+            <Flexbox alignCenter key={tag} className={classes.tag}>
+              <div>{tag}</div>
+              <div className={classes['delete-tag-cross']} onClick={() => deleteTag(index)}>
+                x
+              </div>
+            </Flexbox>
           ))}
           <Input
             value={enteredInput}
@@ -97,6 +105,7 @@ const TagsInput = props => {
             onKeyUp={keyReleaseHandler}
             id={`${props.type}-tags`}
             placeholder={tags.length ? '' : placeholder()}
+            className={classes['tags-input']}
           />
         </Flexbox>
       </InputContainer>
