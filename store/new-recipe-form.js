@@ -27,6 +27,7 @@ const initialState = {
     cuisine: [],
     other: [],
   },
+  enteredPreface: '',
 };
 
 const notEditingSteps = steps => steps.map(step => ({ ...step, isEditing: false }));
@@ -129,6 +130,9 @@ const newRecipeFormSlice = createSlice({
           ...state.tags[action.payload.type].filter((_, index) => index !== action.payload.index),
         ],
       };
+    },
+    setEnteredPreface(state, action) {
+      state.enteredPreface = action.payload;
     },
   },
 });

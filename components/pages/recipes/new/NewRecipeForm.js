@@ -4,6 +4,7 @@ import FormSection from '../../../ui/form/FormSection';
 import CookingTimeInput from './form/CookingTimeInput';
 import IngredientInputSection from './form/ingredients/IngredientInputSection';
 import NameInput from './form/NameInput';
+import PrefaceInput from './form/PrefaceInput';
 import StepsInput from './form/StepsInput';
 import TagsInputSection from './form/tags/TagsInputSection';
 import classes from './NewRecipeForm.module.css';
@@ -41,6 +42,10 @@ const NewRecipeForm = () => {
         <p>Help people find your recipe</p>
         <FormSection>
           <TagsInputSection />
+        </FormSection>
+        <h3>Preface</h3>
+        <FormSection>
+          <PrefaceInput />
         </FormSection>
         <button>Preview</button>
       </Form>

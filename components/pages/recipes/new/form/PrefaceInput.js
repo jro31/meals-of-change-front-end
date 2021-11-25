@@ -1,0 +1,25 @@
+import { useSelector } from 'react-redux';
+
+import useInput from '../../../../../hooks/use-input';
+import FormLine from '../../../../ui/form/FormLine';
+import InputContainer from '../../../../ui/form/InputContainer';
+import { newRecipeFormActions } from '../../../../../store/new-recipe-form';
+
+const PrefaceInput = () => {
+  const enteredPreface = useSelector(state => state.newRecipeForm.enteredPreface);
+
+  const { valueChangeHandler } = useInput(newRecipeFormActions.setEnteredPreface);
+
+  // console.log(JSON.stringify(enteredPreface));
+
+  return (
+    <FormLine>
+      <InputContainer>
+        <label htmlFor='preface'>What is the story of your recipe?</label>
+        <textarea id='preface' value={enteredPreface} onChange={valueChangeHandler} />
+      </InputContainer>
+    </FormLine>
+  );
+};
+
+export default PrefaceInput;
