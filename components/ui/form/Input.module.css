@@ -1,12 +1,5 @@
-.label {
-}
-
 .input {
   font-size: 1.5rem;
   padding: calc(var(--base-sizing-unit) * 3);
   border: var(--base-input-border);
-}
-
-.error-message {
-  color: red;
 }
