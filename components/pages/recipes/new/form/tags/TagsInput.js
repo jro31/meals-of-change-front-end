@@ -52,13 +52,20 @@ const TagsInput = props => {
     }
   };
 
+  const deleteTag = index => {
+    dispatch(newRecipeFormActions.removeTagAtIndex({ type: camelCaseType, index: index }));
+  };
+
   // console.log(allTags);
   // console.log(tags);
 
   return (
     <div className={classes['input-container']}>
-      {tags.map(tag => (
-        <div key={tag}>{tag}</div>
+      {tags.map((tag, index) => (
+        <div key={tag}>
+          {tag}
+          <span onClick={() => deleteTag(index)}>X</span>
+        </div>
       ))}
       <input
         value={enteredInput}

@@ -122,6 +122,14 @@ const newRecipeFormSlice = createSlice({
         [action.payload]: state.tags[action.payload].slice(0, -1),
       };
     },
+    removeTagAtIndex(state, action) {
+      state.tags = {
+        ...state.tags,
+        [action.payload.type]: [
+          ...state.tags[action.payload.type].filter((_, index) => index !== action.payload.index),
+        ],
+      };
+    },
   },
 });
 
