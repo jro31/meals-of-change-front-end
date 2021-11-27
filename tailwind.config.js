@@ -13,8 +13,13 @@ module.exports = {
         'slide-out-right': 'slideOutRight 0.4s ease-in forwards',
         'slide-out-up': 'slideOutUp 0.4s ease-in forwards',
       },
+      flex: {
+        'grow-only': '1 0 auto',
+      },
       height: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
+        '500px': '500px',
+        '700px': '700px',
       },
       keyframes: {
         fadeIn: {

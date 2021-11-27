@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 import InputError from './InputError';
 import Label from './Label';
-import classes from './TextArea.module.css';
 
 const TextArea = props => {
   return (
@@ -13,7 +12,7 @@ const TextArea = props => {
         value={props.value}
         onChange={props.onChange || null}
         onBlur={props.onBlur || null}
-        className={`${classes['text-area']} ${props.className || ''}`}
+        className={`${props.className || ''}`}
         placeholder={props.placeholder || null}
       />
       <InputError showError={props.showError}>{props.errorMessage}</InputError>

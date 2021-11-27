@@ -1,9 +1,8 @@
 import Flexbox from '../../styles/Flexbox';
-import classes from './InputContainer.module.css';
 
 const InputContainer = props => {
   return (
-    <Flexbox column w100 className={classes['input-container']}>
+    <Flexbox column w100>
       {props.children}
     </Flexbox>
   );

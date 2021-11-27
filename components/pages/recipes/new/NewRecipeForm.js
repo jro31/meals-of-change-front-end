@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Form from '../../../ui/form/form';
 import FormSection from '../../../ui/form/FormSection';
 import CookingTimeInput from './form/CookingTimeInput';
@@ -7,7 +6,6 @@ import NameInput from './form/NameInput';
 import PrefaceInput from './form/PrefaceInput';
 import StepsInput from './form/StepsInput';
 import TagsInputSection from './form/tags/TagsInputSection';
-import classes from './NewRecipeForm.module.css';
 
 const NewRecipeForm = () => {
   const submitHandler = () => {
@@ -21,7 +19,7 @@ const NewRecipeForm = () => {
   };
 
   return (
-    <div className={classes['new-recipe-form']}>
+    <div className='bg-white rounded-lg'>
       <Form onSubmit={submitHandler}>
         <FormSection>
           <NameInput />

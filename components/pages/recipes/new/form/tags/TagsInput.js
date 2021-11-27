@@ -2,10 +2,8 @@ import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
-import Flexbox from '../../../../../styles/Flexbox';
 import Input from '../../../../../ui/form/Input';
 import InputContainer from '../../../../../ui/form/InputContainer';
-import classes from './TagsInput.module.css';
 
 const TagsInput = props => {
   const dispatch = useDispatch();
@@ -89,14 +87,17 @@ const TagsInput = props => {
     <Fragment>
       <InputContainer>
         <label htmlFor={`${props.type}-tags`}>{humanizeType} tags - add up to 5</label>
-        <Flexbox alignCenter className={classes['tags-input-container']}>
+        <div alignCenter className='flex items-center border border-gray-200'>
           {tags.map((tag, index) => (
-            <Flexbox alignCenter key={tag} className={classes.tag}>
+            <div
+              key={tag}
+              className='flex items-center flex-initial h-3/4 bg-yellow-300 rounded mx-1.5 px-2'
+            >
               <div>{tag}</div>
-              <div className={classes['delete-tag-cross']} onClick={() => deleteTag(index)}>
+              <div className='cursor-pointer ml-2.5' onClick={() => deleteTag(index)}>
                 x
               </div>
-            </Flexbox>
+            </div>
           ))}
           <Input
             value={enteredInput}
@@ -105,9 +106,9 @@ const TagsInput = props => {
             onKeyUp={keyReleaseHandler}
             id={`${props.type}-tags`}
             placeholder={tags.length ? '' : placeholder()}
-            className={classes['tags-input']}
+            className='border-0 flex-grow-only'
           />
-        </Flexbox>
+        </div>
       </InputContainer>
     </Fragment>
   );
