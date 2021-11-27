@@ -10,7 +10,6 @@ import ProfileMenu from './ProfileMenu';
 import { mainMenuActions } from '../../../store/main-menu';
 import { profileMenuActions } from '../../../store/profile-menu';
 
-import classes from './Navbar.module.css';
 import profileIcon from '../../../public/icons/profile.svg';
 
 const Navbar = () => {
@@ -36,10 +35,14 @@ const Navbar = () => {
 
   return (
     <Fragment>
-      <Flexbox justifyBetween alignCenter className={classes.navbar}>
+      <Flexbox
+        justifyBetween
+        alignCenter
+        className={'h-14 border-b border-gray-200 z-40 px-10 fixed top-0 w-full bg-white'}
+      >
         <Flexbox alignCenter>
-          <Hamburger onClick={showMainMenuHandler} className={classes.hamburger} />
-          <Logo onClick={showMainMenuHandler} fontSize={'25px'} className={classes.logo} />
+          <Hamburger onClick={showMainMenuHandler} className='md:hidden' />
+          <Logo onClick={showMainMenuHandler} fontSize={'25px'} className='hidden md:block' />
         </Flexbox>
         <Flexbox alignCenter>
           <div>Search bar</div>
