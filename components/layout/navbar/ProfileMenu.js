@@ -2,16 +2,15 @@ import { useSelector } from 'react-redux';
 import Flexbox from '../../styles/Flexbox';
 
 import MenuContainer from './menu/MenuContainer';
-import classes from './ProfileMenu.module.css';
 
 const ProfileMenu = props => {
   const profileMenuIsOpen = useSelector(state => state.profileMenu.profileMenuIsOpen);
 
   const transitionClassNames = {
     enter: '',
-    enterActive: classes['menu-open'],
+    enterActive: 'animate-slide-in-left',
     exit: '',
-    exitActive: classes['menu-close'],
+    exitActive: 'animate-slide-out-right',
   };
 
   return (
