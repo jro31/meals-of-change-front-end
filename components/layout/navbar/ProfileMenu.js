@@ -20,7 +20,7 @@ const ProfileMenu = props => {
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
-      <Flexbox className={classes['profile-menu']}>
+      <Flexbox className='fixed top-14 right-0 bg-white z-30 p-10 h-screen-minus-nav min-w-33'>
         <div>Favourites</div>
       </Flexbox>
     </MenuContainer>
