@@ -2,7 +2,6 @@ import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 
-import Flexbox from '../../styles/Flexbox';
 import Logo from '../../ui/Logo';
 import Hamburger from '../../ui/Hamburger';
 import MainMenu from './menu/MainMenu';
@@ -35,16 +34,16 @@ const Navbar = () => {
 
   return (
     <Fragment>
-      <Flexbox
-        justifyBetween
-        alignCenter
-        className={'h-14 border-b border-gray-200 z-40 px-10 fixed top-0 w-full bg-white'}
+      <div
+        className={
+          'flex justify-between items-center h-14 border-b border-gray-200 z-40 px-10 fixed top-0 w-full bg-white'
+        }
       >
-        <Flexbox alignCenter>
+        <div className='flex items-center'>
           <Hamburger onClick={showMainMenuHandler} className='md:hidden' />
           <Logo onClick={showMainMenuHandler} fontSize={'25px'} className='hidden md:block' />
-        </Flexbox>
-        <Flexbox alignCenter>
+        </div>
+        <div className='flex items-center'>
           <div>Search bar</div>
           <Image
             onClick={showProfileMenuHandler}
@@ -53,8 +52,8 @@ const Navbar = () => {
             width={30}
             height={30}
           />
-        </Flexbox>
-      </Flexbox>
+        </div>
+      </div>
       <MainMenu showHandler={showMainMenuHandler} />
       <ProfileMenu showHandler={showProfileMenuHandler} />
     </Fragment>

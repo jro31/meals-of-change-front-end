@@ -1,11 +1,5 @@
-import Flexbox from '../../styles/Flexbox';
-
 const InputContainer = props => {
-  return (
-    <Flexbox column w100>
-      {props.children}
-    </Flexbox>
-  );
+  return <div className='flex flex-col w-full'>{props.children}</div>;
 };
 
 export default InputContainer;

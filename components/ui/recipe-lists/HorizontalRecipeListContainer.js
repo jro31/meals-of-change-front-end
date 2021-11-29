@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
 
-import Flexbox from '../../styles/Flexbox';
 import Pointer from '../Pointer';
 
 const pointerSize = 21;
@@ -59,14 +58,13 @@ const HorizontalRecipeListContainer = props => {
         className='absolute right-2'
         style={{ top: `${pointerTop()}px` }}
       />
-      <Flexbox
-        column
-        className={`flex-wrap overflow-x-scroll scroll-snap-x-mandatory scroll-smooth ${tiersClass()}`}
-        refName={listContainerRef}
+      <div
+        className={`flex flex-col flex-wrap overflow-x-scroll scroll-snap-x-mandatory scroll-smooth ${tiersClass()}`}
+        ref={listContainerRef}
         style={{ height: props.containerHeight || '50vh' }}
       >
         {props.children}
-      </Flexbox>
+      </div>
     </div>
   );
 };
