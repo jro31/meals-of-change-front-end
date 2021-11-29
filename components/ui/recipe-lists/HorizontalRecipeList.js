@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 
 import RecipeCard from '../RecipeCard';
-import classes from './HorizontalRecipeList.module.css';
 import HorizontalRecipeListContainer from './HorizontalRecipeListContainer';
 
 const HorizontalRecipeList = props => {
@@ -11,13 +10,13 @@ const HorizontalRecipeList = props => {
   const tiersClass = () => {
     switch (props.tiers) {
       case 1:
-        return classes['one-tier'];
+        return 'h-full';
       case 2:
-        return classes['two-tier'];
+        return 'h-1/2';
       case 3:
-        return classes['three-tier'];
+        return 'h-1/3';
       default:
-        return classes['one-tier'];
+        return 'h-full';
     }
   };
 
@@ -35,8 +34,8 @@ const HorizontalRecipeList = props => {
         return (
           <div
             key={recipe.id}
-            className={`${classes['card-container']} ${tiersClass()} ${
-              index < props.tiers ? classes['first-column-indent'] : ''
+            className={`py-4 scroll-snap-start ${tiersClass()} ${
+              index < props.tiers ? 'pl-10' : ''
             }`}
             ref={recipe === props.recipes[0] ? firstCardContainerRef : null}
           >

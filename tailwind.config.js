@@ -49,6 +49,9 @@ module.exports = {
       },
       minHeight: {
         33: '33%',
+        '300px': '300px',
+        '600px': '600px',
+        '900px': '900px',
       },
       minWidth: {
         33: '33%',
