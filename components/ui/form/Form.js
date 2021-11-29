@@ -1,8 +1,6 @@
-import classes from './Form.module.css';
-
 const Form = props => {
   return (
-    <form className={classes.form} onSubmit={props.onSubmit}>
+    <form className='bg-white rounded px-20 py-6' onSubmit={props.onSubmit}>
       {props.children}
     </form>
   );

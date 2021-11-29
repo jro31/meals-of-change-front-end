@@ -1,12 +1,9 @@
 import { Fragment } from 'react';
-import classes from './InputError.module.css';
 
 const InputError = props => {
   return (
     <Fragment>
-      {props.showError && props.children && (
-        <div className={classes['input-error']}>{props.children}</div>
-      )}
+      {props.showError && props.children && <div className='text-red-500'>{props.children}</div>}
     </Fragment>
   );
 };

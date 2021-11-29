@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import classes from './Input.module.css';
 import InputError from './InputError';
 import Label from './Label';
 
@@ -16,7 +15,7 @@ const Input = props => {
         onBlur={props.onBlur || null}
         onKeyDown={props.onKeyDown || null}
         onKeyUp={props.onKeyUp || null}
-        className={`${classes.input} ${props.className || ''}`}
+        className={`border border-gray-500 p-2 text-lg ${props.className || ''}`}
         placeholder={props.placeholder || null}
         checked={props.type === 'checkbox' ? props.checked : null}
       />
