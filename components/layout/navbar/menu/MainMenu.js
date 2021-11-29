@@ -1,7 +1,5 @@
 import { useSelector } from 'react-redux';
 
-import Flexbox from '../../../styles/Flexbox';
-import classes from './MainMenu.module.css';
 import MenuContainer from './MenuContainer';
 
 const MainMenu = props => {
@@ -9,9 +7,9 @@ const MainMenu = props => {
 
   const transitionClassNames = {
     enter: '',
-    enterActive: classes['menu-open'],
+    enterActive: 'animate-slide-in-right md:animate-slide-in-down',
     exit: '',
-    exitActive: classes['menu-close'],
+    exitActive: 'animate-slide-out-left md:animate-slide-out-up',
   };
 
   return (
@@ -20,9 +18,9 @@ const MainMenu = props => {
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
-      <Flexbox className={classes['main-menu']}>
+      <div className='flex fixed top-14 left-0 bg-white z-30 p-10 h-screen-minus-nav md:h-auto md:min-h-33 min-w-75 md:w-full'>
         <div>Recipes</div>
-      </Flexbox>
+      </div>
     </MenuContainer>
   );
 };

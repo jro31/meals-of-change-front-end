@@ -1,8 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 
-import Flexbox from '../../styles/Flexbox';
 import Pointer from '../Pointer';
-import classes from './HorizontalRecipeListContainer.module.css';
 
 const pointerSize = 21;
 
@@ -13,13 +11,13 @@ const HorizontalRecipeListContainer = props => {
   const tiersClass = () => {
     switch (props.tiers) {
       case 1:
-        return classes['one-tier'];
+        return 'min-h-300px';
       case 2:
-        return classes['two-tier'];
+        return 'min-h-600px';
       case 3:
-        return classes['three-tier'];
+        return 'min-h-900px';
       default:
-        return classes['one-tier'];
+        return 'min-h-300px';
     }
   };
 
@@ -35,7 +33,7 @@ const HorizontalRecipeListContainer = props => {
 
   const pointerTop = () => {
     // prettier-ignore
-    return (listHeight / 2) - (pointerSize / 2) - (9 / 2); // 9 == pointer padding
+    return (listHeight / 2) - (pointerSize / 2) - (8 / 2); // 8 == pointer padding
   };
 
   useEffect(() => {
@@ -43,29 +41,30 @@ const HorizontalRecipeListContainer = props => {
   }, []);
 
   return (
-    <div className={classes.container}>
+    // This 'relative' is what causes the photos not to be covered by the overlay while it's transitioning its opacity
+    // Removing it fixes the issue, but moves the pointers
+    <div className='relative'>
       <Pointer
         onClick={scrollLeftHandler}
         direction='left'
         size={pointerSize}
-        className={classes['left-pointer']}
+        className='absolute left-2'
         style={{ top: `${pointerTop()}px` }}
       />
       <Pointer
         onClick={scrollRightHandler}
         direction='right'
         size={pointerSize}
-        className={classes['right-pointer']}
+        className='absolute right-2'
         style={{ top: `${pointerTop()}px` }}
       />
-      <Flexbox
-        column
-        className={`${classes['horizontal-recipe-list']} ${tiersClass()}`}
-        refName={listContainerRef}
+      <div
+        className={`flex flex-col flex-wrap overflow-x-scroll scroll-snap-x-mandatory scroll-smooth ${tiersClass()}`}
+        ref={listContainerRef}
         style={{ height: props.containerHeight || '50vh' }}
       >
         {props.children}
-      </Flexbox>
+      </div>
     </div>
   );
 };

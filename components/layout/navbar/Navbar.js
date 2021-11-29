@@ -2,7 +2,6 @@ import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 
-import Flexbox from '../../styles/Flexbox';
 import Logo from '../../ui/Logo';
 import Hamburger from '../../ui/Hamburger';
 import MainMenu from './menu/MainMenu';
@@ -10,7 +9,6 @@ import ProfileMenu from './ProfileMenu';
 import { mainMenuActions } from '../../../store/main-menu';
 import { profileMenuActions } from '../../../store/profile-menu';
 
-import classes from './Navbar.module.css';
 import profileIcon from '../../../public/icons/profile.svg';
 
 const Navbar = () => {
@@ -36,12 +34,16 @@ const Navbar = () => {
 
   return (
     <Fragment>
-      <Flexbox justifyBetween alignCenter className={classes.navbar}>
-        <Flexbox alignCenter>
-          <Hamburger onClick={showMainMenuHandler} className={classes.hamburger} />
-          <Logo onClick={showMainMenuHandler} fontSize={'25px'} className={classes.logo} />
-        </Flexbox>
-        <Flexbox alignCenter>
+      <div
+        className={
+          'flex justify-between items-center h-14 border-b border-gray-200 z-40 px-10 fixed top-0 w-full bg-white'
+        }
+      >
+        <div className='flex items-center'>
+          <Hamburger onClick={showMainMenuHandler} className='md:hidden' />
+          <Logo onClick={showMainMenuHandler} fontSize={'25px'} className='hidden md:block' />
+        </div>
+        <div className='flex items-center'>
           <div>Search bar</div>
           <Image
             onClick={showProfileMenuHandler}
@@ -50,8 +52,8 @@ const Navbar = () => {
             width={30}
             height={30}
           />
-        </Flexbox>
-      </Flexbox>
+        </div>
+      </div>
       <MainMenu showHandler={showMainMenuHandler} />
       <ProfileMenu showHandler={showProfileMenuHandler} />
     </Fragment>

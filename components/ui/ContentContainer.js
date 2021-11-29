@@ -1,7 +1,9 @@
-import classes from './ContentContainer.module.css';
-
 const ContentContainer = props => {
-  return <div className={classes['content-container']}>{props.children}</div>;
+  return (
+    <div className='w-full h-full bg-gray-100 min-h-screen-minus-nav sm:px-14 xl:px-96'>
+      {props.children}
+    </div>
+  );
 };
 
 export default ContentContainer;

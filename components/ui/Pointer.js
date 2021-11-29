@@ -1,6 +1,5 @@
 import Image from 'next/image';
 
-import classes from './Pointer.module.css';
 import leftPointer from '../../public/icons/left-pointer.svg';
 import rightPointer from '../../public/icons/right-pointer.svg';
 
@@ -18,8 +17,10 @@ const Pointer = props => {
 
   return (
     <div
-      style={{ ...props.style, width: props.size, height: props.size }}
-      className={`${classes.pointer} ${props.className || ''}`}
+      style={{ ...props.style }}
+      className={`bg-white bg-opacity-50 flex items-center rounded-full p-2 ${
+        props.className || ''
+      }`}
     >
       <Image
         onClick={props.onClick}

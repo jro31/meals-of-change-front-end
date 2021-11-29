@@ -1,12 +1,5 @@
-import FlexBox from '../../styles/Flexbox';
-import classes from './FormSection.module.css';
-
 const FormSection = props => {
-  return (
-    <FlexBox column className={classes['form-section']}>
-      {props.children}
-    </FlexBox>
-  );
+  return <div className='flex flex-col'>{props.children}</div>;
 };
 
 export default FormSection;

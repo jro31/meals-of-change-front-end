@@ -1,17 +1,10 @@
-import Flexbox from '../styles/Flexbox';
-import classes from './Hamburger.module.css';
-
 const Hamburger = props => {
   return (
-    <Flexbox
-      column
-      onClick={props.onClick || null}
-      className={`${classes.hamburger} ${props.className || ''}`}
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </Flexbox>
+    <div onClick={props.onClick || null} className={`flex flex-col w-7 ${props.className || ''}`}>
+      <span className='bg-gray-900 h-0.5 w-full my-1'></span>
+      <span className='bg-gray-900 h-0.5 w-full my-1'></span>
+      <span className='bg-gray-900 h-0.5 w-full my-1'></span>
+    </div>
   );
 };
 
