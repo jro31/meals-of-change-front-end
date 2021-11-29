@@ -1,9 +1,7 @@
-import classes from './Logo.module.css';
-
 const Logo = props => {
   return (
     <span
-      className={`${classes.logo} ${props.className || ''}`}
+      className={`font-serif font-black ${props.className || ''}`}
       style={{ fontSize: props.fontSize }}
       onClick={props.onClick || null}
     >

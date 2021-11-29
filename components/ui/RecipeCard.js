@@ -1,25 +1,22 @@
 import Link from 'next/link';
 
-import Flexbox from '../styles/Flexbox';
-import classes from './RecipeCard.module.css';
-
 const RecipeCard = props => {
   return (
-    <div className={classes['recipe-card']}>
+    <div className={`h-full pt-0 px-3 pb-4 w-108 max-w-screen-minus-padding`}>
       <Link href={`/recipes/${props.recipe.id}`} passHref>
         <a>
-          <Flexbox column className={`${classes['content-container']} ${props.className || ''}`}>
-            <div className={classes['photo-container']}>
-              <img src={props.recipe.photo} />
+          <div className={`flex flex-col h-full shadow-md ${props.className || ''}`}>
+            <div className='h-4/5'>
+              <img src={props.recipe.photo} className='h-full w-full object-cover' />
             </div>
-            <Flexbox column justifyAround className={classes['info-container']}>
+            <div className='flex flex-col justify-around h-1/5 py-1 px-2'>
               <h3>{props.recipe.name}</h3>
-              <Flexbox justifyBetween w100>
+              <div className='flex w-full justify-between'>
                 <div>By {props.recipe.author}</div>
                 <div>{`${props.recipe.timeMinutes} minutes`}</div>
-              </Flexbox>
-            </Flexbox>
-          </Flexbox>
+              </div>
+            </div>
+          </div>
         </a>
       </Link>
     </div>

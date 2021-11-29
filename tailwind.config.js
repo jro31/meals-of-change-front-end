@@ -47,7 +47,11 @@ module.exports = {
           '100%': { transform: 'translateY(-100vh)' },
         },
       },
+      maxWidth: {
+        'screen-minus-padding': 'calc(100vw - 40px)',
+      },
       minHeight: {
+        'screen-minus-nav': 'calc(100vh - 3.5rem)',
         33: '33%',
         '300px': '300px',
         '600px': '600px',
@@ -56,6 +60,9 @@ module.exports = {
       minWidth: {
         33: '33%',
         75: '75%',
+      },
+      width: {
+        108: '27rem',
       },
     },
   },

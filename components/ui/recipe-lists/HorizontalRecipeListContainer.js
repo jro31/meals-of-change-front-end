@@ -34,7 +34,7 @@ const HorizontalRecipeListContainer = props => {
 
   const pointerTop = () => {
     // prettier-ignore
-    return (listHeight / 2) - (pointerSize / 2) - (9 / 2); // 9 == pointer padding
+    return (listHeight / 2) - (pointerSize / 2) - (8 / 2); // 8 == pointer padding
   };
 
   useEffect(() => {
