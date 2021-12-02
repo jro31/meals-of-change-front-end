@@ -87,7 +87,7 @@ const TagsInput = props => {
     <Fragment>
       <InputContainer>
         <label htmlFor={`${props.type}-tags`}>{humanizeType} tags - add up to 5</label>
-        <div alignCenter className='flex items-center border border-gray-200'>
+        <div className='flex items-center border border-gray-200'>
           {tags.map((tag, index) => (
             <div
               key={tag}
