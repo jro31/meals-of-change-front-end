@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import loginModalReducer from './login-modal';
+import loginFormReducer from './login-form';
 import mainMenuReducer from './main-menu';
 import newRecipeFormReducer from './new-recipe-form';
 import profileMenuReducer from './profile-menu';
+import registrationModalReducer from './registration-modal';
 
 const store = configureStore({
   reducer: {
-    loginModal: loginModalReducer,
+    loginForm: loginFormReducer,
+    registrationModal: registrationModalReducer,
     mainMenu: mainMenuReducer,
     newRecipeForm: newRecipeFormReducer,
     profileMenu: profileMenuReducer,

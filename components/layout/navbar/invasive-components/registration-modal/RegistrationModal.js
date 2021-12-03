@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux';
 
-import Container from './Container';
+import Container from '../Container';
+import LoginForm from './login-form/LoginForm';
 
-const LoginModal = props => {
-  const loginModalIsOpen = useSelector(state => state.loginModal.loginModalIsOpen);
+const RegistrationModal = props => {
+  const registrationModalIsOpen = useSelector(
+    state => state.registrationModal.registrationModalIsOpen
+  );
 
   const transitionClassNames = {
     // UPDATE THESE
@@ -15,15 +18,15 @@ const LoginModal = props => {
 
   return (
     <Container
-      in={loginModalIsOpen}
+      in={registrationModalIsOpen}
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
       <div className='flex fixed bg-white z-30 h-1/3 w-1/3 top-1/3 left-1/3'>
-        <div>LOGIN MODAL</div>
+        <LoginForm />
       </div>
     </Container>
   );
 };
 
-export default LoginModal;
+export default RegistrationModal;

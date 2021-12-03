@@ -4,11 +4,11 @@ import Image from 'next/image';
 
 import Logo from '../../ui/Logo';
 import Hamburger from '../../ui/Hamburger';
-import LoginModal from './invasive-components/LoginModal';
+import RegistrationModal from './invasive-components/registration-modal/RegistrationModal';
 import MainMenu from './invasive-components/MainMenu';
 import ProfileMenu from './invasive-components/ProfileMenu';
 
-import { loginModalActions } from '../../../store/login-modal';
+import { registrationModalActions } from '../../../store/registration-modal';
 import { mainMenuActions } from '../../../store/main-menu';
 import { profileMenuActions } from '../../../store/profile-menu';
 
@@ -16,7 +16,9 @@ import profileIcon from '../../../public/icons/profile.svg';
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const loginModalIsOpen = useSelector(state => state.loginModal.loginModalIsOpen);
+  const registrationModalIsOpen = useSelector(
+    state => state.registrationModal.registrationModalIsOpen
+  );
   const mainMenuIsOpen = useSelector(state => state.mainMenu.mainMenuIsOpen);
   const profileMenuIsOpen = useSelector(state => state.profileMenu.profileMenuIsOpen);
 
@@ -36,11 +38,11 @@ const Navbar = () => {
     }
   };
 
-  const showLoginModalHandler = () => {
-    if (loginModalIsOpen) {
-      dispatch(loginModalActions.closeModal());
+  const showRegistrationModalHandler = () => {
+    if (registrationModalIsOpen) {
+      dispatch(registrationModalActions.closeModal());
     } else {
-      dispatch(loginModalActions.openModal());
+      dispatch(registrationModalActions.openModal());
     }
   };
 
@@ -56,7 +58,7 @@ const Navbar = () => {
           <Logo onClick={showMainMenuHandler} fontSize={'25px'} className='hidden md:block' />
         </div>
         <div className='flex items-center'>
-          <div onClick={showLoginModalHandler}>Login</div>
+          <div onClick={showRegistrationModalHandler}>Login</div>
           <div>Search bar</div>
           <Image
             onClick={showProfileMenuHandler}
@@ -67,7 +69,7 @@ const Navbar = () => {
           />
         </div>
       </div>
-      <LoginModal showHandler={showLoginModalHandler} />
+      <RegistrationModal showHandler={showRegistrationModalHandler} />
       <MainMenu showHandler={showMainMenuHandler} />
       <ProfileMenu showHandler={showProfileMenuHandler} />
     </Fragment>
