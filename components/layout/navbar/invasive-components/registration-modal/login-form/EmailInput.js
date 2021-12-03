@@ -6,7 +6,7 @@ import Input from '../../../../../ui/form/Input';
 import InputContainer from '../../../../../ui/form/InputContainer';
 import { loginFormActions } from '../../../../../../store/login-form';
 
-const EmailInput = () => {
+const EmailInput = props => {
   const enteredEmail = useSelector(state => state.loginForm.enteredEmail);
   const enteredEmailIsValid = useSelector(state => state.loginForm.enteredEmailIsValid);
   const inputIsTouched = useSelector(state => state.loginForm.emailInputIsTouched);
@@ -24,6 +24,13 @@ const EmailInput = () => {
     'email'
   );
 
+  const inputChangeHandler = event => {
+    if (props.formError) {
+      props.setFormError(null);
+    }
+    valueChangeHandler(event);
+  };
+
   return (
     <FormLine>
       <InputContainer>
@@ -32,7 +39,7 @@ const EmailInput = () => {
           required
           id='email'
           value={enteredEmail}
-          onChange={valueChangeHandler}
+          onChange={inputChangeHandler}
           onBlur={inputBlurHandler}
           label='Email'
           showError={inputIsTouched && !enteredEmailIsValid}
