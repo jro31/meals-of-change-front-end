@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Form from '../../../../../ui/form/form';
 import FormSection from '../../../../../ui/form/FormSection';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
+import { loginFormActions } from '../../../../../../store/login-form';
+import { loginStatusActions } from '../../../../../../store/login-status';
+import { registrationModalActions } from '../../../../../../store/registration-modal';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const enteredEmail = useSelector(state => state.loginForm.enteredEmail);
   const enteredPassword = useSelector(state => state.loginForm.enteredPassword);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,8 +42,10 @@ const LoginForm = () => {
 
       const data = await response.json();
 
-      if (data.status === 'created') {
-        // Close modal and redirect
+      if (data.logged_in) {
+        dispatch(loginStatusActions.login());
+        dispatch(registrationModalActions.closeModal());
+        dispatch(loginFormActions.resetForm());
       } else {
         throw new Error('Username or Password not recognised');
       }
@@ -48,6 +54,7 @@ const LoginForm = () => {
     }
   };
 
+  // HANDLE FORM SUBMITTING
   return (
     <Form onSubmit={submitHandler}>
       <FormSection>

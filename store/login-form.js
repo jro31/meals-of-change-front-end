@@ -31,6 +31,14 @@ const loginFormSlice = createSlice({
     setPasswordInputIsTouched(state) {
       state.passwordInputIsTouched = true;
     },
+    resetForm(state) {
+      state.enteredEmail = initialState.enteredEmail;
+      state.enteredEmailIsValid = initialState.enteredEmailIsValid;
+      state.emailInputIsTouched = initialState.emailInputIsTouched;
+      state.enteredPassword = initialState.enteredPassword;
+      state.enteredPasswordIsValid = initialState.enteredPasswordIsValid;
+      state.passwordInputIsTouched = initialState.passwordInputIsTouched;
+    },
   },
 });
 

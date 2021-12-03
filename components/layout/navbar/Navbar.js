@@ -21,6 +21,7 @@ const Navbar = () => {
   );
   const mainMenuIsOpen = useSelector(state => state.mainMenu.mainMenuIsOpen);
   const profileMenuIsOpen = useSelector(state => state.profileMenu.profileMenuIsOpen);
+  const isLoggedIn = useSelector(state => state.loginStatus.loggedInStatus === 'LOGGED_IN');
 
   const showMainMenuHandler = () => {
     if (mainMenuIsOpen) {
@@ -58,15 +59,17 @@ const Navbar = () => {
           <Logo onClick={showMainMenuHandler} fontSize={'25px'} className='hidden md:block' />
         </div>
         <div className='flex items-center'>
-          <div onClick={showRegistrationModalHandler}>Login</div>
           <div>Search bar</div>
-          <Image
-            onClick={showProfileMenuHandler}
-            src={profileIcon}
-            alt='Profile icon'
-            width={30}
-            height={30}
-          />
+          {!isLoggedIn && <div onClick={showRegistrationModalHandler}>Login</div>}
+          {isLoggedIn && (
+            <Image
+              onClick={showProfileMenuHandler}
+              src={profileIcon}
+              alt='Profile icon'
+              width={30}
+              height={30}
+            />
+          )}
         </div>
       </div>
       <RegistrationModal showHandler={showRegistrationModalHandler} />

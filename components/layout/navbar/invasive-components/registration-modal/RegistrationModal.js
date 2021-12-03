@@ -23,6 +23,7 @@ const RegistrationModal = props => {
       transitionClassNames={transitionClassNames}
     >
       <div className='flex fixed bg-white z-30 h-1/3 w-1/3 top-1/3 left-1/3'>
+        {/* HAVE SIGN-UP FORM HERE, AND CONDITIONALLY DISPLAY IT OR THE LOGIN FORM */}
         <LoginForm />
       </div>
     </Container>
