@@ -9,11 +9,10 @@ const RegistrationModal = props => {
   );
 
   const transitionClassNames = {
-    // UPDATE THESE
     enter: '',
-    enterActive: '',
+    enterActive: 'animate-fade-in',
     exit: '',
-    exitActive: '',
+    exitActive: 'animate-fade-out',
   };
 
   return (

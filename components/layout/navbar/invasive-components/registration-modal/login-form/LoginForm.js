@@ -54,7 +54,7 @@ const LoginForm = () => {
     }
   };
 
-  // HANDLE FORM SUBMITTING
+  // HANDLE 'isSubmitting' being true
   return (
     <Form onSubmit={submitHandler}>
       <FormSection>
