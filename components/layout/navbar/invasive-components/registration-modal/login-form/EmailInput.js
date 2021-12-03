@@ -28,6 +28,7 @@ const EmailInput = () => {
     <FormLine>
       <InputContainer>
         <Input
+          type='email'
           required
           id='email'
           value={enteredEmail}
