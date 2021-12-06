@@ -10,7 +10,7 @@ const ProfileMenu = props => {
 
   const logoutHandler = async () => {
     try {
-      const response = await fetch('http://localhost:3001/logout', {
+      const response = await fetch('http://localhost:3001/api/v1/logout', {
         method: 'DELETE',
         credentials: 'include',
       });

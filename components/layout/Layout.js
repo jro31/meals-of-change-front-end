@@ -8,7 +8,7 @@ const Layout = props => {
   const dispatch = useDispatch();
 
   const checkLoginStatus = async () => {
-    const response = await fetch('http://localhost:3001/logged_in', {
+    const response = await fetch('http://localhost:3001/api/v1/logged_in', {
       credentials: 'include',
     });
 
