@@ -8,6 +8,7 @@ import PasswordInput from '../PasswordInput';
 import { loginStatusActions } from '../../../../../../store/login-status';
 import { registrationModalActions } from '../../../../../../store/registration-modal';
 import { signUpFormActions } from '../../../../../../store/sign-up-form';
+import Button from '../../../../../ui/Button';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -65,6 +66,9 @@ const SignUpForm = () => {
     }
   };
 
+  const formIsValid = () =>
+    enteredEmailIsValid && enteredPasswordIsValid && enteredPasswordConfirmationIsValid;
+
   // HANDLE 'isSubmitting' being true
   return (
     <Form onSubmit={submitHandler}>
@@ -102,8 +106,7 @@ const SignUpForm = () => {
           initialPasswordInputValue={enteredPassword}
         />
         {error && <p className='text-red-500'>{error}</p>}
-        {/* Disable button if form not valid */}
-        <button>Submit</button>
+        <Button disabled={!formIsValid()}>Submit</Button>
       </FormSection>
     </Form>
   );

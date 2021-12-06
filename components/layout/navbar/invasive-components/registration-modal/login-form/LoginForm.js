@@ -8,6 +8,7 @@ import PasswordInput from '../PasswordInput';
 import { loginFormActions } from '../../../../../../store/login-form';
 import { loginStatusActions } from '../../../../../../store/login-status';
 import { registrationModalActions } from '../../../../../../store/registration-modal';
+import Button from '../../../../../ui/Button';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,8 @@ const LoginForm = () => {
     }
   };
 
+  const formIsValid = () => enteredEmailIsValid && enteredPasswordIsValid;
+
   // HANDLE 'isSubmitting' being true
   return (
     <Form onSubmit={submitHandler}>
@@ -81,8 +84,7 @@ const LoginForm = () => {
           setFormError={setError}
         />
         {error && <p className='text-red-500'>{error}</p>}
-        {/* Disable button if form not valid */}
-        <button>Submit</button>
+        <Button disabled={!formIsValid()}>Login</Button>
       </FormSection>
     </Form>
   );

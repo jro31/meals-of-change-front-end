@@ -7,6 +7,8 @@ const PasswordInput = props => {
   const passwordInputValidation = value => {
     if (props.confirmationInput) {
       return value.trim() === props.initialPasswordInputValue.trim();
+    } else if (props.loginForm) {
+      return value.trim().length > 0;
     } else {
       return value.trim().length >= 8;
     }
@@ -31,6 +33,9 @@ const PasswordInput = props => {
   const inputChangeHandler = event => {
     if (props.formError) {
       props.setFormError(null);
+    }
+    if (props.confirmationInput && !props.inputIsTouched) {
+      inputBlurHandler();
     }
     valueChangeHandler(event);
   };
