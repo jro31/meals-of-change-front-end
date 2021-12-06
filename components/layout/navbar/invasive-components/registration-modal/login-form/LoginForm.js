@@ -22,7 +22,7 @@ const LoginForm = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:3001/sessions', {
+      const response = await fetch('http://localhost:3001/api/v1/sessions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
