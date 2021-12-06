@@ -6,15 +6,17 @@ import mainMenuReducer from './main-menu';
 import newRecipeFormReducer from './new-recipe-form';
 import profileMenuReducer from './profile-menu';
 import registrationModalReducer from './registration-modal';
+import signUpFormReducer from './sign-up-form';
 
 const store = configureStore({
   reducer: {
     loginForm: loginFormReducer,
     loginStatus: loginStatusReducer,
-    registrationModal: registrationModalReducer,
     mainMenu: mainMenuReducer,
     newRecipeForm: newRecipeFormReducer,
     profileMenu: profileMenuReducer,
+    registrationModal: registrationModalReducer,
+    signUpForm: signUpFormReducer,
   },
 });
 

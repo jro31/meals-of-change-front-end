@@ -4,6 +4,7 @@ const registrationModalSlice = createSlice({
   name: 'registration-modal',
   initialState: {
     registrationModalIsOpen: false,
+    activeForm: 'login',
   },
   reducers: {
     openModal(state) {
@@ -11,6 +12,12 @@ const registrationModalSlice = createSlice({
     },
     closeModal(state) {
       state.registrationModalIsOpen = false;
+    },
+    showLoginForm(state) {
+      state.activeForm = 'login';
+    },
+    showSignUpForm(state) {
+      state.activeForm = 'sign-up';
     },
   },
 });
