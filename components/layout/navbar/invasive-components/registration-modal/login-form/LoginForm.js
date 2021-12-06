@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Form from '../../../../../ui/form/form';
 import FormSection from '../../../../../ui/form/FormSection';
-import EmailInput from './EmailInput';
+import EmailInput from '../EmailInput';
 import PasswordInput from './PasswordInput';
 import { loginFormActions } from '../../../../../../store/login-form';
 import { loginStatusActions } from '../../../../../../store/login-status';
@@ -12,6 +12,9 @@ import { registrationModalActions } from '../../../../../../store/registration-m
 const LoginForm = () => {
   const dispatch = useDispatch();
   const enteredEmail = useSelector(state => state.loginForm.enteredEmail);
+  const enteredEmailIsValid = useSelector(state => state.loginForm.enteredEmailIsValid);
+  const inputIsTouched = useSelector(state => state.loginForm.emailInputIsTouched);
+
   const enteredPassword = useSelector(state => state.loginForm.enteredPassword);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -58,7 +61,16 @@ const LoginForm = () => {
   return (
     <Form onSubmit={submitHandler}>
       <FormSection>
-        <EmailInput formError={error} setFormError={setError} />
+        <EmailInput
+          enteredEmail={enteredEmail}
+          setEnteredEmailAction={loginFormActions.setEnteredEmail}
+          setEnteredEmailIsValidAction={loginFormActions.setEnteredEmailIsValid}
+          setEmailInputIsTouchedAction={loginFormActions.setEmailInputIsTouched}
+          enteredEmailIsValid={enteredEmailIsValid}
+          inputIsTouched={inputIsTouched}
+          formError={error}
+          setFormError={setError}
+        />
         <PasswordInput formError={error} setFormError={setError} />
         {error && <p className='text-red-500'>{error}</p>}
         <button>Submit</button>
