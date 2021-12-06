@@ -34,8 +34,8 @@ const LoginForm = () => {
         },
         body: JSON.stringify({
           user: {
-            email: enteredEmail,
-            password: enteredPassword,
+            email: enteredEmail.trim(),
+            password: enteredPassword.trim(),
           },
         }),
         credentials: 'include',

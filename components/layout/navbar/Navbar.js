@@ -8,9 +8,11 @@ import RegistrationModal from './invasive-components/registration-modal/Registra
 import MainMenu from './invasive-components/MainMenu';
 import ProfileMenu from './invasive-components/ProfileMenu';
 
-import { registrationModalActions } from '../../../store/registration-modal';
+import { loginFormActions } from '../../../store/login-form';
 import { mainMenuActions } from '../../../store/main-menu';
 import { profileMenuActions } from '../../../store/profile-menu';
+import { registrationModalActions } from '../../../store/registration-modal';
+import { signUpFormActions } from '../../../store/sign-up-form';
 
 import profileIcon from '../../../public/icons/profile.svg';
 
@@ -42,6 +44,8 @@ const Navbar = () => {
   const showRegistrationModalHandler = () => {
     if (registrationModalIsOpen) {
       dispatch(registrationModalActions.closeModal());
+      dispatch(loginFormActions.resetForm());
+      dispatch(signUpFormActions.resetForm());
     } else {
       dispatch(registrationModalActions.openModal());
     }

@@ -12,6 +12,7 @@ const registrationModalSlice = createSlice({
     },
     closeModal(state) {
       state.registrationModalIsOpen = false;
+      state.activeForm = 'login';
     },
     showLoginForm(state) {
       state.activeForm = 'login';

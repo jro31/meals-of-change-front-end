@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Container from '../Container';
 import LoginForm from './login-form/LoginForm';
 import SignUpForm from './sign-up-form/SignUpForm';
+
+import { loginFormActions } from '../../../../../store/login-form';
 import { registrationModalActions } from '../../../../../store/registration-modal';
+import { signUpFormActions } from '../../../../../store/sign-up-form';
 
 const RegistrationModal = props => {
   const dispatch = useDispatch();
@@ -15,10 +18,12 @@ const RegistrationModal = props => {
 
   const showLoginFormHandler = () => {
     dispatch(registrationModalActions.showLoginForm());
+    dispatch(signUpFormActions.resetForm());
   };
 
   const showSignUpFormHandler = () => {
     dispatch(registrationModalActions.showSignUpForm());
+    dispatch(loginFormActions.resetForm());
   };
 
   const transitionClassNames = {
