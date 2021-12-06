@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import MenuContainer from './MenuContainer';
+import Container from './Container';
 
 const MainMenu = props => {
   const mainMenuIsOpen = useSelector(state => state.mainMenu.mainMenuIsOpen);
@@ -13,7 +13,7 @@ const MainMenu = props => {
   };
 
   return (
-    <MenuContainer
+    <Container
       in={mainMenuIsOpen}
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
@@ -21,7 +21,7 @@ const MainMenu = props => {
       <div className='flex fixed top-14 left-0 bg-white z-30 p-10 h-screen-minus-nav md:h-auto md:min-h-33 min-w-75 md:w-full'>
         <div>Recipes</div>
       </div>
-    </MenuContainer>
+    </Container>
   );
 };
 

@@ -4,17 +4,26 @@ import Image from 'next/image';
 
 import Logo from '../../ui/Logo';
 import Hamburger from '../../ui/Hamburger';
-import MainMenu from './menu/MainMenu';
-import ProfileMenu from './ProfileMenu';
+import RegistrationModal from './invasive-components/registration-modal/RegistrationModal';
+import MainMenu from './invasive-components/MainMenu';
+import ProfileMenu from './invasive-components/ProfileMenu';
+
+import { loginFormActions } from '../../../store/login-form';
 import { mainMenuActions } from '../../../store/main-menu';
 import { profileMenuActions } from '../../../store/profile-menu';
+import { registrationModalActions } from '../../../store/registration-modal';
+import { signUpFormActions } from '../../../store/sign-up-form';
 
 import profileIcon from '../../../public/icons/profile.svg';
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const registrationModalIsOpen = useSelector(
+    state => state.registrationModal.registrationModalIsOpen
+  );
   const mainMenuIsOpen = useSelector(state => state.mainMenu.mainMenuIsOpen);
   const profileMenuIsOpen = useSelector(state => state.profileMenu.profileMenuIsOpen);
+  const isLoggedIn = useSelector(state => state.loginStatus.loggedInStatus === 'LOGGED_IN');
 
   const showMainMenuHandler = () => {
     if (mainMenuIsOpen) {
@@ -32,6 +41,16 @@ const Navbar = () => {
     }
   };
 
+  const showRegistrationModalHandler = () => {
+    if (registrationModalIsOpen) {
+      dispatch(registrationModalActions.closeModal());
+      dispatch(loginFormActions.resetForm());
+      dispatch(signUpFormActions.resetForm());
+    } else {
+      dispatch(registrationModalActions.openModal());
+    }
+  };
+
   return (
     <Fragment>
       <div
@@ -45,15 +64,19 @@ const Navbar = () => {
         </div>
         <div className='flex items-center'>
           <div>Search bar</div>
-          <Image
-            onClick={showProfileMenuHandler}
-            src={profileIcon}
-            alt='Profile icon'
-            width={30}
-            height={30}
-          />
+          {!isLoggedIn && <div onClick={showRegistrationModalHandler}>Login</div>}
+          {isLoggedIn && (
+            <Image
+              onClick={showProfileMenuHandler}
+              src={profileIcon}
+              alt='Profile icon'
+              width={30}
+              height={30}
+            />
+          )}
         </div>
       </div>
+      <RegistrationModal showHandler={showRegistrationModalHandler} />
       <MainMenu showHandler={showMainMenuHandler} />
       <ProfileMenu showHandler={showProfileMenuHandler} />
     </Fragment>
