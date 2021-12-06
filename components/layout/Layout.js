@@ -11,7 +11,6 @@ const Layout = props => {
     const response = await fetch('http://localhost:3001/api/v1/logged_in', {
       credentials: 'include',
     });
-
     const data = await response.json();
 
     if (data.logged_in) {

@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Form from '../../../../../ui/form/form';
 import FormSection from '../../../../../ui/form/FormSection';
 import EmailInput from '../EmailInput';
 import PasswordInput from '../PasswordInput';
+import { loginStatusActions } from '../../../../../../store/login-status';
+import { registrationModalActions } from '../../../../../../store/registration-modal';
 import { signUpFormActions } from '../../../../../../store/sign-up-form';
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
   const enteredEmail = useSelector(state => state.signUpForm.enteredEmail);
   const enteredEmailIsValid = useSelector(state => state.signUpForm.enteredEmailIsValid);
   const emailInputIsTouched = useSelector(state => state.signUpForm.emailInputIsTouched);
@@ -27,9 +30,44 @@ const SignUpForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
+  const submitHandler = async event => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('http://localhost:3001/api/v1/registrations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: {
+            email: enteredEmail.trim(),
+            password: enteredPassword.trim(),
+            password_confirmation: enteredPasswordConfirmation.trim(),
+          },
+        }),
+        credentials: 'include',
+      });
+      const data = await response.json();
+
+      if (data && data.logged_in) {
+        setIsSubmitting(false);
+        dispatch(loginStatusActions.login());
+        dispatch(signUpFormActions.resetForm());
+        dispatch(registrationModalActions.closeModal());
+      } else {
+        throw new Error(data.error_message || 'Something went wrong');
+      }
+    } catch (error) {
+      setError(error.message);
+      setIsSubmitting(false);
+    }
+  };
+
   // HANDLE 'isSubmitting' being true
   return (
-    <Form>
+    <Form onSubmit={submitHandler}>
       <FormSection>
         <EmailInput
           enteredEmail={enteredEmail}
@@ -64,6 +102,7 @@ const SignUpForm = () => {
           initialPasswordInputValue={enteredPassword}
         />
         {error && <p className='text-red-500'>{error}</p>}
+        {/* Disable button if form not valid */}
         <button>Submit</button>
       </FormSection>
     </Form>

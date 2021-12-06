@@ -15,7 +15,7 @@ const PasswordInput = props => {
   const errorMessage = () => {
     if (props.confirmationInput) {
       return "Passwords don't match";
-    } else {
+    } else if (!props.loginForm) {
       return 'Password must be at least 8 characters';
     }
   };

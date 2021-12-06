@@ -24,7 +24,6 @@ const LoginForm = () => {
   const submitHandler = async event => {
     event.preventDefault();
     setIsSubmitting(true);
-    setError(null);
 
     try {
       const response = await fetch('http://localhost:3001/api/v1/sessions', {
@@ -40,22 +39,19 @@ const LoginForm = () => {
         }),
         credentials: 'include',
       });
-
-      if (!response.ok) {
-        throw new Error('Something went wrong');
-      }
-
       const data = await response.json();
 
-      if (data.logged_in) {
+      if (data && data.logged_in) {
+        setIsSubmitting(false);
         dispatch(loginStatusActions.login());
-        dispatch(registrationModalActions.closeModal());
         dispatch(loginFormActions.resetForm());
+        dispatch(registrationModalActions.closeModal());
       } else {
-        throw new Error('Username or Password not recognised');
+        throw new Error(data.error_message || 'Something went wrong');
       }
     } catch (error) {
       setError(error.message);
+      setIsSubmitting(false);
     }
   };
 
@@ -74,6 +70,7 @@ const LoginForm = () => {
           setFormError={setError}
         />
         <PasswordInput
+          loginForm={true}
           enteredPassword={enteredPassword}
           setEnteredPasswordAction={loginFormActions.setEnteredPassword}
           setEnteredPasswordIsValidAction={loginFormActions.setEnteredPasswordIsValid}
@@ -84,6 +81,7 @@ const LoginForm = () => {
           setFormError={setError}
         />
         {error && <p className='text-red-500'>{error}</p>}
+        {/* Disable button if form not valid */}
         <button>Submit</button>
       </FormSection>
     </Form>
