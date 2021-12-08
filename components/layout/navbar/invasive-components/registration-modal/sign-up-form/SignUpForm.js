@@ -9,6 +9,7 @@ import { loginStatusActions } from '../../../../../../store/login-status';
 import { registrationModalActions } from '../../../../../../store/registration-modal';
 import { signUpFormActions } from '../../../../../../store/sign-up-form';
 import Button from '../../../../../ui/Button';
+import DisplayNameInput from './DisplayNameInput';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,10 @@ const SignUpForm = () => {
   const passwordConfirmationInputIsTouched = useSelector(
     state => state.signUpForm.passwordConfirmationInputIsTouched
   );
+  const enteredDisplayName = useSelector(state => state.signUpForm.enteredDisplayName);
+  const enteredDisplayNameIsValid = useSelector(
+    state => state.signUpForm.enteredDisplayNameIsValid
+  );
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -36,29 +41,34 @@ const SignUpForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/v1/registrations', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user: {
-            email: enteredEmail.trim(),
-            password: enteredPassword.trim(),
-            password_confirmation: enteredPasswordConfirmation.trim(),
+      if (formIsValid) {
+        const response = await fetch('http://localhost:3001/api/v1/registrations', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-        }),
-        credentials: 'include',
-      });
-      const data = await response.json();
+          body: JSON.stringify({
+            user: {
+              email: enteredEmail.trim(),
+              password: enteredPassword.trim(),
+              password_confirmation: enteredPasswordConfirmation.trim(),
+              display_name: enteredDisplayName.trim(),
+            },
+          }),
+          credentials: 'include',
+        });
+        const data = await response.json();
 
-      if (data && data.logged_in) {
-        setIsSubmitting(false);
-        dispatch(loginStatusActions.login());
-        dispatch(signUpFormActions.resetForm());
-        dispatch(registrationModalActions.closeModal());
+        if (data && data.logged_in) {
+          setIsSubmitting(false);
+          dispatch(loginStatusActions.login());
+          dispatch(signUpFormActions.resetForm());
+          dispatch(registrationModalActions.closeModal());
+        } else {
+          throw new Error(data.error_message || 'Something went wrong');
+        }
       } else {
-        throw new Error(data.error_message || 'Something went wrong');
+        throw new Error('Something went wrong');
       }
     } catch (error) {
       setError(error.message);
@@ -67,7 +77,10 @@ const SignUpForm = () => {
   };
 
   const formIsValid = () =>
-    enteredEmailIsValid && enteredPasswordIsValid && enteredPasswordConfirmationIsValid;
+    enteredEmailIsValid &&
+    enteredPasswordIsValid &&
+    enteredPasswordConfirmationIsValid &&
+    enteredDisplayNameIsValid;
 
   // HANDLE 'isSubmitting' being true
   return (
@@ -105,6 +118,7 @@ const SignUpForm = () => {
           setFormError={setError}
           initialPasswordInputValue={enteredPassword}
         />
+        <DisplayNameInput formError={error} setFormError={setError} />
         {error && <p className='text-red-500'>{error}</p>}
         <Button disabled={!formIsValid()}>Submit</Button>
       </FormSection>
