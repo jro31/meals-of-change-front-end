@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   enteredEmail: '',
-  enteredEmailIsTouched: false,
+  enteredEmailIsValid: false,
   emailInputIsTouched: false,
   enteredPassword: '',
   enteredPasswordIsValid: false,
@@ -10,6 +10,9 @@ const initialState = {
   enteredPasswordConfirmation: '',
   enteredPasswordConfirmationIsValid: false,
   passwordConfirmationInputIsTouched: false,
+  enteredDisplayName: '',
+  enteredDisplayNameIsValid: false,
+  displayNameInputIsTouched: false,
 };
 
 const signUpFormSlice = createSlice({
@@ -43,6 +46,15 @@ const signUpFormSlice = createSlice({
     setPasswordConfirmationInputIsTouched(state) {
       state.passwordConfirmationInputIsTouched = true;
     },
+    setEnteredDisplayName(state, action) {
+      state.enteredDisplayName = action.payload;
+    },
+    setEnteredDisplayNameIsValid(state, action) {
+      state.enteredDisplayNameIsValid = action.payload;
+    },
+    setDisplayNameInputIsTouched(state) {
+      state.displayNameInputIsTouched = true;
+    },
     resetForm(state) {
       state.enteredEmail = initialState.enteredEmail;
       state.enteredEmailIsValid = initialState.enteredEmailIsValid;
@@ -53,6 +65,9 @@ const signUpFormSlice = createSlice({
       state.enteredPasswordConfirmation = initialState.enteredPasswordConfirmation;
       state.enteredPasswordConfirmationIsValid = initialState.enteredPasswordConfirmationIsValid;
       state.passwordConfirmationInputIsTouched = initialState.passwordConfirmationInputIsTouched;
+      state.enteredDisplayName = initialState.enteredDisplayName;
+      state.enteredDisplayNameIsValid = initialState.enteredDisplayNameIsValid;
+      state.displayNameInputIsTouched = initialState.displayNameInputIsTouched;
     },
   },
 });
