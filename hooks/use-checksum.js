@@ -1,7 +1,7 @@
 import CryptoJS from 'crypto-js';
 
-const useChecksum = async file => {
-  const md5FromFile = () => {
+const useChecksum = () => {
+  const md5FromFile = file => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
 
@@ -17,8 +17,10 @@ const useChecksum = async file => {
     });
   };
 
-  const md5 = await md5FromFile();
-  const checksum = md5.toString(CryptoJS.enc.Base64);
+  const checksum = async file => {
+    const md5 = await md5FromFile(file);
+    return md5.toString(CryptoJS.enc.Base64);
+  };
   return checksum;
 };
 
