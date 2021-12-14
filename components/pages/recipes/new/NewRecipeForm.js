@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import useChecksum from '../../../../hooks/use-checksum';
+import usePresignedUrl from '../../../../hooks/use-presigned-url';
 import Form from '../../../ui/form/form';
 import FormSection from '../../../ui/form/FormSection';
 import CookingTimeInput from './form/CookingTimeInput';
@@ -12,32 +13,6 @@ import PrefaceInput from './form/PrefaceInput';
 import StepsInput from './form/StepsInput';
 import TagsInputSection from './form/tags/TagsInputSection';
 
-const createPresignedUrl = async (file, byte_size, checksum) => {
-  let options = {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      file: {
-        filename: file.name,
-        byte_size: byte_size,
-        checksum: checksum,
-        content_type: file.type,
-        metadata: {
-          message: 'resume for parsing',
-        },
-      },
-    }),
-    credentials: 'include',
-  };
-
-  let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/presigned_url`, options);
-  if (res.status !== 200) return res;
-  return await res.json();
-};
-
 const NewRecipeForm = () => {
   const enteredName = useSelector(state => state.newRecipeForm.enteredName);
   const enteredCookingTime = useSelector(state => state.newRecipeForm.enteredCookingTime);
@@ -47,6 +22,7 @@ const NewRecipeForm = () => {
 
   const [chosenPhoto, setChosenPhoto] = useState();
   const calculateChecksum = useChecksum();
+  const getPresignedUrl = usePresignedUrl();
 
   const submitHandler = async event => {
     event.preventDefault();
@@ -60,7 +36,7 @@ const NewRecipeForm = () => {
 
     if (chosenPhoto) {
       const checksum = await calculateChecksum(chosenPhoto);
-      presignedUrl = await createPresignedUrl(chosenPhoto, chosenPhoto.size, checksum);
+      presignedUrl = await getPresignedUrl(chosenPhoto, chosenPhoto.size, checksum);
 
       const s3Options = {
         method: 'PUT',
