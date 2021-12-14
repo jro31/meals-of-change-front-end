@@ -32,7 +32,8 @@ const createPresignedUrl = async (file, byte_size, checksum) => {
     }),
     credentials: 'include',
   };
-  let res = await fetch('http://localhost:3001/api/v1/presigned_url', options);
+
+  let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/presigned_url`, options);
   if (res.status !== 200) return res;
   return await res.json();
 };
@@ -67,8 +68,6 @@ const NewRecipeForm = () => {
         body: chosenPhoto,
       };
       const s3Response = await fetch(presignedUrl.direct_upload.url, s3Options);
-      console.log('🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕🍕');
-      console.log(s3Response);
       if (!s3Response.ok) {
         // TODO - Throw error
       }
@@ -99,13 +98,16 @@ const NewRecipeForm = () => {
       }),
       credentials: 'include',
     };
-    const response = await fetch('http://localhost:3001/api/v1/recipes', recipeOptions);
-    console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀');
-    console.log(response);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/recipes`,
+      recipeOptions
+    );
 
     if (!response.ok) {
       // TODO- Handle error
     }
+
+    // TODO - Redirect to the recipe
   };
 
   return (
