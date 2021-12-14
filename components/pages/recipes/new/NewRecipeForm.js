@@ -1,8 +1,5 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import useChecksum from '../../../../hooks/use-checksum';
-import usePresignedUrl from '../../../../hooks/use-presigned-url';
 import Form from '../../../ui/form/form';
 import FormSection from '../../../ui/form/FormSection';
 import CookingTimeInput from './form/CookingTimeInput';
@@ -12,83 +9,31 @@ import PhotoInput from './form/PhotoInput';
 import PrefaceInput from './form/PrefaceInput';
 import StepsInput from './form/StepsInput';
 import TagsInputSection from './form/tags/TagsInputSection';
+import { newRecipePageActions } from '../../../../store/new-recipe-page';
 
-const NewRecipeForm = () => {
-  const enteredName = useSelector(state => state.newRecipeForm.enteredName);
-  const enteredCookingTime = useSelector(state => state.newRecipeForm.enteredCookingTime);
-  const enteredPreface = useSelector(state => state.newRecipeForm.enteredPreface);
-  const addedIngredients = useSelector(state => state.newRecipeForm.addedIngredients);
-  const steps = useSelector(state => state.newRecipeForm.steps);
+const NewRecipeForm = props => {
+  const dispatch = useDispatch();
+  const enteredNameIsValid = useSelector(state => state.newRecipeForm.enteredNameIsValid);
+  const enteredCookingTimeIsValid = useSelector(
+    state => state.newRecipeForm.enteredCookingTimeIsValid
+  );
 
-  const [chosenPhoto, setChosenPhoto] = useState();
-  const calculateChecksum = useChecksum();
-  const getPresignedUrl = usePresignedUrl();
+  const formIsValid = () => enteredNameIsValid && enteredCookingTimeIsValid; // TODO - Complete this
 
-  const submitHandler = async event => {
+  const previewHandler = event => {
     event.preventDefault();
-    // Remember to '.trim()' inputs
-    // Check inputs are valid
-    // With tags, remember to remove tags duplicated over the three inputs
-    // Take to preview page
+    // If ingredient food input .trim() is populated, add to ingredients array and clear the inputs
+    // If not, do nothing
+    // If steps input .trim() is populated, add to the steps array and clear the input
+    // Check the form is valid
 
-    // If approved, sumbit to backend
-    let presignedUrl = null;
-
-    if (chosenPhoto) {
-      const checksum = await calculateChecksum(chosenPhoto);
-      presignedUrl = await getPresignedUrl(chosenPhoto, chosenPhoto.size, checksum);
-
-      const s3Options = {
-        method: 'PUT',
-        headers: presignedUrl.direct_upload.headers,
-        body: chosenPhoto,
-      };
-      const s3Response = await fetch(presignedUrl.direct_upload.url, s3Options);
-      if (!s3Response.ok) {
-        // TODO - Throw error
-      }
-    }
-
-    const recipeOptions = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        recipe: {
-          name: enteredName,
-          time_minutes: enteredCookingTime,
-          preface: enteredPreface,
-          ingredients_attributes: addedIngredients,
-          steps_attributes: [
-            // TODO - Update this
-            {
-              position: 1,
-              instructions: 'My first step',
-            },
-          ],
-          tags: ['test-tag'], // TODO - Compress the 'tags' state into one array
-          photo_blob_signed_id: presignedUrl ? presignedUrl.blob_signed_id : '',
-        },
-      }),
-      credentials: 'include',
-    };
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/recipes`,
-      recipeOptions
-    );
-
-    if (!response.ok) {
-      // TODO- Handle error
-    }
-
-    // TODO - Redirect to the recipe
+    // If the form is valid...
+    dispatch(newRecipePageActions.showPreview());
   };
 
   return (
     <div className='bg-white rounded-lg'>
-      <Form onSubmit={submitHandler}>
+      <Form onSubmit={previewHandler}>
         <FormSection>
           <NameInput />
         </FormSection>
@@ -96,7 +41,12 @@ const NewRecipeForm = () => {
           <CookingTimeInput />
         </FormSection>
         <FormSection>
-          <PhotoInput setChosenPhoto={setChosenPhoto} />
+          <PhotoInput
+            setChosenPhoto={props.setChosenPhoto}
+            setChosenPhotoPreviewUrl={props.setChosenPhotoPreviewUrl}
+          />
+          {/* TODO - Update to use next/image */}
+          {props.chosenPhotoPreviewUrl && <img src={props.chosenPhotoPreviewUrl} />}
         </FormSection>
         <h3>Ingredients</h3>
         <FormSection>

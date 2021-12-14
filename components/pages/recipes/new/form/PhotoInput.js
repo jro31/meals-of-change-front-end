@@ -5,6 +5,7 @@ import InputContainer from '../../../../ui/form/InputContainer';
 const PhotoInput = props => {
   const inputChangeHandler = event => {
     props.setChosenPhoto(event.target.files[0]);
+    props.setChosenPhotoPreviewUrl(URL.createObjectURL(event.target.files[0]));
   };
 
   return (

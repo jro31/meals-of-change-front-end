@@ -4,6 +4,7 @@ import loginFormReducer from './login-form';
 import loginStatusReducer from './login-status';
 import mainMenuReducer from './main-menu';
 import newRecipeFormReducer from './new-recipe-form';
+import newRecipePageReducer from './new-recipe-page';
 import profileMenuReducer from './profile-menu';
 import registrationModalReducer from './registration-modal';
 import signUpFormReducer from './sign-up-form';
@@ -14,6 +15,7 @@ const store = configureStore({
     loginStatus: loginStatusReducer,
     mainMenu: mainMenuReducer,
     newRecipeForm: newRecipeFormReducer,
+    newRecipePage: newRecipePageReducer,
     profileMenu: profileMenuReducer,
     registrationModal: registrationModalReducer,
     signUpForm: signUpFormReducer,

@@ -11,8 +11,6 @@ const PrefaceInput = () => {
 
   const { valueChangeHandler } = useInput(newRecipeFormActions.setEnteredPreface);
 
-  // console.log(JSON.stringify(enteredPreface));
-
   return (
     <FormLine>
       <InputContainer>
