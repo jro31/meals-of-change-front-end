@@ -9,6 +9,8 @@ const StepsInput = () => {
   const dispatch = useDispatch();
   const steps = useSelector(state => state.newRecipeForm.steps);
 
+  const canAddNewStep = () => steps.at(-1).text.trim().length;
+
   const stepInputChangeHandler = (id, event) => {
     dispatch(newRecipeFormActions.setSteps({ id, text: event.target.value }));
   };
@@ -16,7 +18,9 @@ const StepsInput = () => {
   const addNewStepHandler = event => {
     event.preventDefault();
 
-    dispatch(newRecipeFormActions.addNewStep());
+    if (canAddNewStep()) {
+      dispatch(newRecipeFormActions.addNewStep());
+    }
   };
 
   const editStepHandler = id => {
@@ -39,7 +43,7 @@ const StepsInput = () => {
         </FormLine>
       );
     } else {
-      return <FormLine>{step.text || '🤷‍♂️'}</FormLine>;
+      return <FormLine>{step.text || 'Add instructions'}</FormLine>;
     }
   };
 
@@ -53,7 +57,9 @@ const StepsInput = () => {
           </div>
         );
       })}
-      <button onClick={addNewStepHandler}>Add another step</button>
+      <button disabled={!canAddNewStep()} onClick={addNewStepHandler}>
+        Add another step
+      </button>
       <button onClick={finishEditingHandler}>Finish</button>
     </Fragment>
   );

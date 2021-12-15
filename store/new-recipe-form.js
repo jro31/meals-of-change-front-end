@@ -10,10 +10,8 @@ const initialState = {
   enteredIngredientAmount: '',
   enteredIngredientFood: '',
   enteredIngredientFoodIsValid: false,
-  ingredientFoodInputIsTouched: false,
   enteredIngredientPreparation: '',
   ingredientIsOptional: false,
-  addIngredientButtonIsClicked: false,
   addedIngredients: [],
   steps: [
     {
@@ -63,17 +61,11 @@ const newRecipeFormSlice = createSlice({
     setEnteredIngredientFoodIsValid(state, action) {
       state.enteredIngredientFoodIsValid = action.payload;
     },
-    setIngredientFoodInputIsTouched(state) {
-      state.ingredientFoodInputIsTouched = true;
-    },
     setEnteredIngredientPreparation(state, action) {
       state.enteredIngredientPreparation = action.payload;
     },
     setIngredientIsOptional(state, action) {
       state.ingredientIsOptional = action.payload;
-    },
-    setAddIngredientButtonIsClicked(state) {
-      state.addIngredientButtonIsClicked = true;
     },
     setAddedIngredients(state, action) {
       state.addedIngredients = [...state.addedIngredients, action.payload];
@@ -82,10 +74,8 @@ const newRecipeFormSlice = createSlice({
       state.enteredIngredientAmount = initialState.enteredIngredientAmount;
       state.enteredIngredientFood = initialState.enteredIngredientFood;
       state.enteredIngredientFoodIsValid = initialState.enteredIngredientFoodIsValid;
-      state.ingredientFoodInputIsTouched = initialState.ingredientFoodInputIsTouched;
       state.enteredIngredientPreparation = initialState.enteredIngredientPreparation;
       state.ingredientIsOptional = initialState.ingredientIsOptional;
-      state.addIngredientButtonIsClicked = initialState.addIngredientButtonIsClicked;
     },
     deleteAddedIngredient(state, action) {
       state.addedIngredients = state.addedIngredients.filter(

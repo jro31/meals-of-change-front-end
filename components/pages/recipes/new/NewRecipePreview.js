@@ -84,7 +84,12 @@ const NewRecipePreview = props => {
 
   return (
     <Fragment>
-      <h1>Preview Component</h1>
+      <h1>{enteredName}</h1>
+      <p>Time: {enteredCookingTime}</p>
+      <p>Preface: {enteredPreface}</p>
+      <p>Ingredients: [INGREDIENTS HERE]</p>
+      <p>Steps: [STEPS HERE]</p>
+      <p>Tags: [TAGS HERE]</p>
       <button onClick={editRecipeHandler}>Edit recipe</button>
       <button onClick={submitHandler}>Submit recipe</button>;
     </Fragment>
