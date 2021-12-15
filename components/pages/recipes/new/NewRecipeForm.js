@@ -11,6 +11,7 @@ import StepsInput from './form/StepsInput';
 import TagsInputSection from './form/tags/TagsInputSection';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
+import Button from '../../../ui/Button';
 
 let ingredientIterator = 0;
 
@@ -101,7 +102,7 @@ const NewRecipeForm = props => {
           <PrefaceInput />
         </FormSection>
         {/* TODO - Add checkbox that says something like 'This recipe contains no animal products', and add the checkbox state to the formIsValid() function */}
-        <button disabled={!formIsValid()}>Preview</button>
+        <Button disabled={!formIsValid()}>Preview</Button>
       </Form>
     </div>
   );

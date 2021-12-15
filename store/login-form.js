@@ -32,6 +32,7 @@ const loginFormSlice = createSlice({
       state.passwordInputIsTouched = true;
     },
     resetForm(state) {
+      // TODO - Refactor this (see 'new-recipe-form' 'resetForm' action)
       state.enteredEmail = initialState.enteredEmail;
       state.enteredEmailIsValid = initialState.enteredEmailIsValid;
       state.emailInputIsTouched = initialState.emailInputIsTouched;

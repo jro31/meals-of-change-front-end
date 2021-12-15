@@ -11,6 +11,7 @@ const PhotoInput = props => {
   return (
     <FormLine>
       <InputContainer>
+        {/* TODO - Can this be updated to only accept photos? */}
         <Input id='photo' type='file' label='Photo' onChange={inputChangeHandler} />
       </InputContainer>
     </FormLine>

@@ -19,7 +19,6 @@ const FoodInput = () => {
   return (
     <InputContainer>
       <Input
-        required
         id='food'
         value={enteredFood}
         onChange={valueChangeHandler}

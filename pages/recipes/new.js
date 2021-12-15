@@ -8,8 +8,8 @@ import ContentContainer from '../../components/ui/ContentContainer';
 const NewRecipe = () => {
   const activeComponent = useSelector(state => state.newRecipePage.activeComponent);
 
-  const [chosenPhoto, setChosenPhoto] = useState();
-  const [chosenPhotoPreviewUrl, setChosenPhotoPreviewUrl] = useState();
+  const [chosenPhoto, setChosenPhoto] = useState(null);
+  const [chosenPhotoPreviewUrl, setChosenPhotoPreviewUrl] = useState('');
 
   return (
     <ContentContainer>
@@ -22,7 +22,12 @@ const NewRecipe = () => {
         />
       )}
       {activeComponent === 'preview' && (
-        <NewRecipePreview chosenPhoto={chosenPhoto} chosenPhotoPreviewUrl={chosenPhotoPreviewUrl} />
+        <NewRecipePreview
+          chosenPhoto={chosenPhoto}
+          setChosenPhoto={setChosenPhoto}
+          chosenPhotoPreviewUrl={chosenPhotoPreviewUrl}
+          setChosenPhotoPreviewUrl={setChosenPhotoPreviewUrl}
+        />
       )}
     </ContentContainer>
   );

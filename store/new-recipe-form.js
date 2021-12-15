@@ -124,6 +124,7 @@ const newRecipeFormSlice = createSlice({
     setEnteredPreface(state, action) {
       state.enteredPreface = action.payload;
     },
+    resetForm: () => initialState,
   },
 });
 
