@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { DUMMY_RECIPES } from '../../index';
 
-const recipeDetails = props => {
+const RecipeDetails = props => {
   const router = useRouter();
 
   const recipeId = router.query.recipeId;
@@ -55,4 +55,4 @@ export const getStaticProps = context => {
   };
 };
 
-export default recipeDetails;
+export default RecipeDetails;

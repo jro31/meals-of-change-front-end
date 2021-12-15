@@ -1,8 +1,5 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import useChecksum from '../../../../hooks/use-checksum';
-import usePresignedUrl from '../../../../hooks/use-presigned-url';
 import Form from '../../../ui/form/form';
 import FormSection from '../../../ui/form/FormSection';
 import CookingTimeInput from './form/CookingTimeInput';
@@ -12,83 +9,67 @@ import PhotoInput from './form/PhotoInput';
 import PrefaceInput from './form/PrefaceInput';
 import StepsInput from './form/StepsInput';
 import TagsInputSection from './form/tags/TagsInputSection';
+import { newRecipeFormActions } from '../../../../store/new-recipe-form';
+import { newRecipePageActions } from '../../../../store/new-recipe-page';
+import Button from '../../../ui/Button';
 
-const NewRecipeForm = () => {
-  const enteredName = useSelector(state => state.newRecipeForm.enteredName);
-  const enteredCookingTime = useSelector(state => state.newRecipeForm.enteredCookingTime);
-  const enteredPreface = useSelector(state => state.newRecipeForm.enteredPreface);
+let ingredientIterator = 0;
+
+const NewRecipeForm = props => {
+  const dispatch = useDispatch();
+  const enteredNameIsValid = useSelector(state => state.newRecipeForm.enteredNameIsValid);
+  const enteredCookingTimeIsValid = useSelector(
+    state => state.newRecipeForm.enteredCookingTimeIsValid
+  );
+  const enteredIngredientAmount = useSelector(state => state.newRecipeForm.enteredIngredientAmount);
+  const enteredIngredientFood = useSelector(state => state.newRecipeForm.enteredIngredientFood);
+  const enteredIngredientFoodIsValid = useSelector(
+    state => state.newRecipeForm.enteredIngredientFoodIsValid
+  );
+  const enteredIngredientPreparation = useSelector(
+    state => state.newRecipeForm.enteredIngredientPreparation
+  );
+  const ingredientIsOptional = useSelector(state => state.newRecipeForm.ingredientIsOptional);
   const addedIngredients = useSelector(state => state.newRecipeForm.addedIngredients);
   const steps = useSelector(state => state.newRecipeForm.steps);
 
-  const [chosenPhoto, setChosenPhoto] = useState();
-  const calculateChecksum = useChecksum();
-  const getPresignedUrl = usePresignedUrl();
+  const formIsValid = () =>
+    enteredNameIsValid &&
+    enteredCookingTimeIsValid &&
+    (enteredIngredientFoodIsValid || addedIngredients.length) &&
+    steps.find(step => step.text.length);
 
-  const submitHandler = async event => {
-    event.preventDefault();
-    // Remember to '.trim()' inputs
-    // Check inputs are valid
-    // With tags, remember to remove tags duplicated over the three inputs
-    // Take to preview page
+  const addIngredientHandler = () => {
+    if (enteredIngredientFoodIsValid) {
+      ingredientIterator++;
 
-    // If approved, sumbit to backend
-    let presignedUrl = null;
-
-    if (chosenPhoto) {
-      const checksum = await calculateChecksum(chosenPhoto);
-      presignedUrl = await getPresignedUrl(chosenPhoto, chosenPhoto.size, checksum);
-
-      const s3Options = {
-        method: 'PUT',
-        headers: presignedUrl.direct_upload.headers,
-        body: chosenPhoto,
+      const newIngredient = {
+        tempId: `Ingredient ${ingredientIterator}`,
+        amount: enteredIngredientAmount.trim(),
+        food: enteredIngredientFood.trim(),
+        preparation: enteredIngredientPreparation.trim(),
+        optional: ingredientIsOptional,
       };
-      const s3Response = await fetch(presignedUrl.direct_upload.url, s3Options);
-      if (!s3Response.ok) {
-        // TODO - Throw error
-      }
+
+      dispatch(newRecipeFormActions.setAddedIngredients(newIngredient));
     }
+  };
 
-    const recipeOptions = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        recipe: {
-          name: enteredName,
-          time_minutes: enteredCookingTime,
-          preface: enteredPreface,
-          ingredients_attributes: addedIngredients,
-          steps_attributes: [
-            // TODO - Update this
-            {
-              position: 1,
-              instructions: 'My first step',
-            },
-          ],
-          tags: ['test-tag'], // TODO - Compress the 'tags' state into one array
-          photo_blob_signed_id: presignedUrl ? presignedUrl.blob_signed_id : '',
-        },
-      }),
-      credentials: 'include',
-    };
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/recipes`,
-      recipeOptions
-    );
+  const previewHandler = event => {
+    event.preventDefault();
 
-    if (!response.ok) {
-      // TODO- Handle error
+    if (formIsValid()) {
+      addIngredientHandler();
+
+      dispatch(newRecipeFormActions.resetEnteredIngredient());
+      dispatch(newRecipeFormActions.finishEditingSteps());
+      dispatch(newRecipePageActions.showPreview());
     }
-
-    // TODO - Redirect to the recipe
   };
 
   return (
     <div className='bg-white rounded-lg'>
-      <Form onSubmit={submitHandler}>
+      <Form onSubmit={previewHandler}>
         <FormSection>
           <NameInput />
         </FormSection>
@@ -96,11 +77,16 @@ const NewRecipeForm = () => {
           <CookingTimeInput />
         </FormSection>
         <FormSection>
-          <PhotoInput setChosenPhoto={setChosenPhoto} />
+          <PhotoInput
+            setChosenPhoto={props.setChosenPhoto}
+            setChosenPhotoPreviewUrl={props.setChosenPhotoPreviewUrl}
+          />
+          {/* TODO - Update to use next/image */}
+          {props.chosenPhotoPreviewUrl && <img src={props.chosenPhotoPreviewUrl} />}
         </FormSection>
         <h3>Ingredients</h3>
         <FormSection>
-          <IngredientInputSection />
+          <IngredientInputSection addIngredientHandler={addIngredientHandler} />
         </FormSection>
         <h3>Steps</h3>
         <FormSection>
@@ -115,7 +101,8 @@ const NewRecipeForm = () => {
         <FormSection>
           <PrefaceInput />
         </FormSection>
-        <button>Preview</button>
+        {/* TODO - Add checkbox that says something like 'This recipe contains no animal products', and add the checkbox state to the formIsValid() function */}
+        <Button disabled={!formIsValid()}>Preview</Button>
       </Form>
     </div>
   );

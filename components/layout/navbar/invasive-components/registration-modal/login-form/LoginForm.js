@@ -58,7 +58,7 @@ const LoginForm = () => {
 
   const formIsValid = () => enteredEmailIsValid && enteredPasswordIsValid;
 
-  // HANDLE 'isSubmitting' being true
+  // TODO - Handle 'isSubmitting' being true
   return (
     <Form onSubmit={submitHandler}>
       <FormSection>

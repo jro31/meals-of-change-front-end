@@ -43,6 +43,7 @@ const TagsInput = props => {
     const trimmedInput = enteredInput.trim();
 
     if (key === ',' || key === 'Enter') {
+      // TODO - Update this to also accept 'tab' (and perhaps any mouse click?)
       event.preventDefault();
       if (
         trimmedInput.length &&
@@ -56,7 +57,7 @@ const TagsInput = props => {
     }
 
     if (key === 'Backspace') {
-      if (!enteredInput.trim().length) {
+      if (!trimmedInput.length) {
         event.preventDefault();
         if (enteredInput.length) {
           setEnteredInput('');

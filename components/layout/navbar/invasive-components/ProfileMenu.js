@@ -28,7 +28,7 @@ const ProfileMenu = props => {
         throw new Error('Something went wrong');
       }
     } catch (error) {
-      // HANDLE THIS ERROR
+      // TODO - Handle this error
     }
   };
 
