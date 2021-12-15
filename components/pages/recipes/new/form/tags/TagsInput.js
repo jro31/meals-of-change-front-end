@@ -56,7 +56,7 @@ const TagsInput = props => {
     }
 
     if (key === 'Backspace') {
-      if (!enteredInput.trim().length) {
+      if (!trimmedInput.length) {
         event.preventDefault();
         if (enteredInput.length) {
           setEnteredInput('');

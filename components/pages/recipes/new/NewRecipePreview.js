@@ -12,6 +12,7 @@ const NewRecipePreview = props => {
   const enteredPreface = useSelector(state => state.newRecipeForm.enteredPreface);
   const addedIngredients = useSelector(state => state.newRecipeForm.addedIngredients);
   const steps = useSelector(state => state.newRecipeForm.steps);
+  const tagsObject = useSelector(state => state.newRecipeForm.tags);
 
   const calculateChecksum = useChecksum();
   const getPresignedUrl = usePresignedUrl();
@@ -20,11 +21,17 @@ const NewRecipePreview = props => {
     dispatch(newRecipePageActions.showForm());
   };
 
-  const submitHandler = async () => {
-    // Remember to '.trim()' inputs
-    // Check inputs are valid
-    // With tags, remember to remove tags duplicated over the three inputs
+  const stepsAttributes = () => {
+    return steps
+      .filter(step => step.text.trim().length)
+      .map((step, index) => {
+        return { position: index + 1, instructions: step.text.trim() };
+      });
+  };
 
+  const tagsArray = () => [...new Set(Object.values(tagsObject).flat())];
+
+  const submitHandler = async () => {
     let presignedUrl = null;
 
     if (props.chosenPhoto) {
@@ -50,18 +57,12 @@ const NewRecipePreview = props => {
       },
       body: JSON.stringify({
         recipe: {
-          name: enteredName,
+          name: enteredName.trim(),
           time_minutes: enteredCookingTime,
-          preface: enteredPreface,
+          preface: enteredPreface.trim(),
           ingredients_attributes: addedIngredients,
-          steps_attributes: [
-            // TODO - Update this
-            {
-              position: 1,
-              instructions: 'My first step',
-            },
-          ],
-          tags: ['test-tag'], // TODO - Compress the 'tags' state into one array
+          steps_attributes: stepsAttributes(),
+          tags: tagsArray(),
           photo_blob_signed_id: presignedUrl ? presignedUrl.blob_signed_id : '',
         },
       }),

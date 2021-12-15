@@ -44,9 +44,9 @@ const NewRecipeForm = props => {
 
       const newIngredient = {
         tempId: `Ingredient ${ingredientIterator}`,
-        amount: enteredIngredientAmount,
-        food: enteredIngredientFood,
-        preparation: enteredIngredientPreparation,
+        amount: enteredIngredientAmount.trim(),
+        food: enteredIngredientFood.trim(),
+        preparation: enteredIngredientPreparation.trim(),
         optional: ingredientIsOptional,
       };
 
@@ -100,6 +100,7 @@ const NewRecipeForm = props => {
         <FormSection>
           <PrefaceInput />
         </FormSection>
+        {/* TODO - Add checkbox that says something like 'This recipe contains no animal products', and add the checkbox state to the formIsValid() function */}
         <button disabled={!formIsValid()}>Preview</button>
       </Form>
     </div>
