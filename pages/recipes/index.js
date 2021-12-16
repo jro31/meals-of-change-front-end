@@ -48,7 +48,7 @@ export const getStaticProps = async () => {
     props: {
       recipes: data.recipes,
     },
-    revalidate: false, // TODO - Update this to a time (in seconds, e.g 300) if the data ever needs to be reloaded, for example if it's possible to add comments to a recipe
+    revalidate: 60,
   };
 };
 

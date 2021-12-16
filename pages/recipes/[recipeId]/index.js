@@ -58,6 +58,7 @@ export const getStaticProps = async context => {
       steps: recipe.steps,
       tags: recipe.tags,
     },
+    revalidate: false, // TODO - Update this to a time (in seconds, e.g 60) if the data ever needs to be reloaded, for example if it's possible to add comments to a recipe
   };
 };
 
