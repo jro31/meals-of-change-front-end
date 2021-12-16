@@ -2,7 +2,6 @@ import { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import HorizontalRecipeList from '../../components/ui/recipe-lists/HorizontalRecipeList';
-import { DUMMY_RECIPES } from '../index';
 
 const RecipeIndex = props => {
   const router = useRouter();
@@ -39,15 +38,17 @@ const RecipeIndex = props => {
   );
 };
 
-export const getStaticProps = () => {
-  // fetching data from API...
-  const returnedRecipes = DUMMY_RECIPES;
+export const getStaticProps = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/recipes`, {
+    credentials: 'include',
+  });
+  const data = await response.json();
 
   return {
     props: {
-      recipes: returnedRecipes,
+      recipes: data.recipes,
     },
-    revalidate: 60,
+    revalidate: false, // TODO - Update this to a time (in seconds, e.g 300) if the data ever needs to be reloaded, for example if it's possible to add comments to a recipe
   };
 };
 
