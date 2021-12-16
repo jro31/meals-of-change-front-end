@@ -30,6 +30,7 @@ const HorizontalRecipeList = props => {
       cardContainerWidth={cardContainerWidth}
       tiers={props.tiers}
     >
+      {/* TODO - Only load recipes as a user scrolls (save loading too many unnecessary photos) */}
       {props.recipes.map((recipe, index) => {
         return (
           <div

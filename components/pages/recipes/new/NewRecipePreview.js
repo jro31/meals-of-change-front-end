@@ -36,6 +36,7 @@ const NewRecipePreview = props => {
   const tagsArray = () => [...new Set(Object.values(tagsObject).flat())];
 
   const submitHandler = async () => {
+    // TODO - Add an 'isSubmitting' state and display that somehow
     try {
       let presignedUrl = null;
 

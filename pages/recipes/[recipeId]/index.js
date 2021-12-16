@@ -2,8 +2,6 @@ import { Fragment } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { DUMMY_RECIPES } from '../../index';
-
 const RecipeDetails = props => {
   const router = useRouter();
 
@@ -13,7 +11,7 @@ const RecipeDetails = props => {
     <Fragment>
       <Head>
         <title>{props.name}</title>
-        {/* ADD META DATA HERE */}
+        {/* TODO - ADD META DATA HERE */}
       </Head>
       <h1>{props.name}</h1>
       <img src={props.photo} alt={props.name} />
@@ -21,11 +19,16 @@ const RecipeDetails = props => {
   );
 };
 
-export const getStaticPaths = () => {
-  const paths = DUMMY_RECIPES.map(recipe => {
+export const getStaticPaths = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/recipes?ids_array=true`, {
+    credentials: 'include',
+  });
+  const data = await response.json();
+
+  const paths = data.recipe_ids.map(recipe_id => {
     return {
       params: {
-        recipeId: recipe.id,
+        recipeId: recipe_id.toString(),
       },
     };
   });
@@ -36,22 +39,26 @@ export const getStaticPaths = () => {
   };
 };
 
-export const getStaticProps = context => {
+export const getStaticProps = async context => {
   const recipeId = context.params.recipeId;
 
-  // Fetching data for a single recipe from the API...
-  const returnedRecipe = DUMMY_RECIPES.filter(recipe => recipe.id === recipeId)[0];
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/recipes/${recipeId}`, {
+    credentials: 'include',
+  });
+  const data = await response.json();
+  const recipe = data.recipe;
 
   return {
     props: {
-      id: returnedRecipe.id,
-      name: returnedRecipe.name,
-      photo: returnedRecipe.photo,
-      process: returnedRecipe.process,
-      timeMinutes: returnedRecipe.timeMinutes,
-      author: returnedRecipe.author,
-      ingredients: returnedRecipe.ingredients,
+      name: recipe.name,
+      author: recipe.user,
+      timeMinutes: recipe.time_minutes,
+      photo: recipe.photo,
+      ingredients: recipe.ingredients,
+      steps: recipe.steps,
+      tags: recipe.tags,
     },
+    revalidate: false, // TODO - Update this to a time (in seconds, e.g 60) if the data ever needs to be reloaded, for example if it's possible to add comments to a recipe
   };
 };
 
