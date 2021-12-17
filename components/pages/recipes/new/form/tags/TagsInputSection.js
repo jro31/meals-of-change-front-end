@@ -2,18 +2,16 @@ import { Fragment } from 'react';
 import FormLine from '../../../../../ui/form/FormLine';
 import TagsInput from './TagsInput';
 
+const tagTypes = ['dish-type', 'cuisine', 'other'];
+
 const TagsInputSection = () => {
   return (
     <Fragment>
-      <FormLine>
-        <TagsInput type='dish-type' />
-      </FormLine>
-      <FormLine>
-        <TagsInput type='cuisine' />
-      </FormLine>
-      <FormLine>
-        <TagsInput type='other' />
-      </FormLine>
+      {tagTypes.map(type => (
+        <FormLine key={type}>
+          <TagsInput type={type} />
+        </FormLine>
+      ))}
     </Fragment>
   );
 };

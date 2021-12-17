@@ -5,7 +5,7 @@ import useInput from '../../../../../hooks/use-input';
 
 const EmailInput = props => {
   const emailInputValidation = value => {
-    // COMPLETE THIS - Should use the same regex being used in the API
+    // TODO - Should use the same regex being used in the API
     return value.trim().length > 0;
   };
 

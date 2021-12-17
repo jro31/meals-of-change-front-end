@@ -11,11 +11,10 @@ const PrefaceInput = () => {
 
   const { valueChangeHandler } = useInput(newRecipeFormActions.setEnteredPreface);
 
-  // console.log(JSON.stringify(enteredPreface));
-
   return (
     <FormLine>
       <InputContainer>
+        {/* TODO - Add a limit of 1000(?) characters to this input (it should match the validation on the backend) */}
         <TextArea
           id='preface'
           value={enteredPreface}

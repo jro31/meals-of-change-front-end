@@ -8,7 +8,7 @@ const Layout = props => {
   const dispatch = useDispatch();
 
   const checkLoginStatus = async () => {
-    const response = await fetch('http://localhost:3001/api/v1/logged_in', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/logged_in`, {
       credentials: 'include',
     });
     const data = await response.json();

@@ -27,7 +27,7 @@ const LoginForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/v1/sessions', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/sessions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const LoginForm = () => {
 
   const formIsValid = () => enteredEmailIsValid && enteredPasswordIsValid;
 
-  // HANDLE 'isSubmitting' being true
+  // TODO - Handle 'isSubmitting' being true
   return (
     <Form onSubmit={submitHandler}>
       <FormSection>

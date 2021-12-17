@@ -42,7 +42,7 @@ const SignUpForm = () => {
 
     try {
       if (formIsValid) {
-        const response = await fetch('http://localhost:3001/api/v1/registrations', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/registrations`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ const SignUpForm = () => {
     enteredPasswordConfirmationIsValid &&
     enteredDisplayNameIsValid;
 
-  // HANDLE 'isSubmitting' being true
+  // TODO - Handle 'isSubmitting' being true
   return (
     <Form onSubmit={submitHandler}>
       <FormSection>

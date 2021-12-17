@@ -8,41 +8,23 @@ import PreparationInput from './PreparationInput';
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
 import FormLine from '../../../../../ui/form/FormLine';
 
-let ingredientIterator = 0;
-
-const IngredientInputSection = () => {
+const IngredientInputSection = props => {
   const dispatch = useDispatch();
   const addedIngredients = useSelector(state => state.newRecipeForm.addedIngredients);
   const enteredIngredientFoodIsValid = useSelector(
     state => state.newRecipeForm.enteredIngredientFoodIsValid
   );
-  const enteredAmount = useSelector(state => state.newRecipeForm.enteredIngredientAmount);
-  const enteredFood = useSelector(state => state.newRecipeForm.enteredIngredientFood);
-  const enteredPreparation = useSelector(state => state.newRecipeForm.enteredIngredientPreparation);
-  const isOptional = useSelector(state => state.newRecipeForm.ingredientIsOptional);
 
-  const addIngredientHandler = event => {
+  const addIngredientButtonClicked = event => {
     event.preventDefault();
-    dispatch(newRecipeFormActions.setAddIngredientButtonIsClicked());
-
+    props.addIngredientHandler();
     if (enteredIngredientFoodIsValid) {
-      ingredientIterator++;
-
-      const newIngredient = {
-        tempId: `Ingredient ${ingredientIterator}`,
-        amount: enteredAmount,
-        food: enteredFood,
-        preparation: enteredPreparation,
-        optional: isOptional,
-      };
-
-      dispatch(newRecipeFormActions.setAddedIngredients(newIngredient));
       dispatch(newRecipeFormActions.resetEnteredIngredient());
     }
   };
 
   const deleteIngredientHandler = tempId => {
-    dispatch(newRecipeFormActions.deleteAddedIngredient(tempId));
+    dispatch(newRecipeFormActions.deleteAddedIngredient(tempId)); // TODO - Use the array index, rather than tempId
   };
 
   return (
@@ -62,7 +44,9 @@ const IngredientInputSection = () => {
         <PreparationInput />
         <OptionalCheckbox />
       </FormLine>
-      <button onClick={addIngredientHandler}>Add ingredient</button>
+      <button disabled={!enteredIngredientFoodIsValid} onClick={addIngredientButtonClicked}>
+        Add ingredient
+      </button>
     </Fragment>
   );
 };
