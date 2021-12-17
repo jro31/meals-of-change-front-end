@@ -11,7 +11,7 @@ const RecipeDetails = props => {
     <Fragment>
       <Head>
         <title>{props.name}</title>
-        {/* TODO - ADD META DATA HERE */}
+        {/* TODO - Add Meta data here */}
       </Head>
       <h1>{props.name}</h1>
       <img src={props.thumbnail_photo} alt={props.name} />

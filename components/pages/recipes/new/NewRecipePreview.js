@@ -36,7 +36,6 @@ const NewRecipePreview = props => {
   const submitHandler = async () => {
     // TODO - Add an 'isSubmitting' state and display that somehow
     try {
-      // TODO - Test that this works with no photo
       const blobSignedIdArray = await photoUploader(props.chosenPhoto);
 
       if (props.chosen_photo && blobSignedIdArray.length !== 4) {
