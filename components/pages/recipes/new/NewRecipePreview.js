@@ -1,14 +1,14 @@
 import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+// import Resizer from 'react-image-file-resizer';
 
 import useChecksum from '../../../../hooks/use-checksum';
 import usePresignedUrl from '../../../../hooks/use-presigned-url';
+import useResizeImage from '../../../../hooks/use-resize-image';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
-
-import Resizer from 'react-image-file-resizer';
 
 const NewRecipePreview = props => {
   const router = useRouter();
@@ -19,10 +19,15 @@ const NewRecipePreview = props => {
   const addedIngredients = useSelector(state => state.newRecipeForm.addedIngredients);
   const steps = useSelector(state => state.newRecipeForm.steps);
   const tagsObject = useSelector(state => state.newRecipeForm.tags);
-  const [resizedImage, setResizedImage] = useState(null); // TODO - Delete this state
+
+  const [thumbnail, setThumbnail] = useState(null); // TODO - Delete this state
+  const [small, setSmall] = useState(null); // TODO - Delete this state
+  const [large, setLarge] = useState(null); // TODO - Delete this state
+  const [full, setFull] = useState(null); // TODO - Delete this state
 
   const calculateChecksum = useChecksum();
   const getPresignedUrl = usePresignedUrl();
+  const resizeImage = useResizeImage();
 
   const editRecipeHandler = () => {
     dispatch(newRecipePageActions.showForm());
@@ -38,32 +43,15 @@ const NewRecipePreview = props => {
 
   const tagsArray = () => [...new Set(Object.values(tagsObject).flat())];
 
-  const resizeFile = file =>
-    new Promise(resolve => {
-      Resizer.imageFileResizer(
-        file,
-        300, // maxWidth of the new image
-        300, // maxHeight of the new image
-        'JPEG', // Format of the new image
-        100, // Quality of the new image
-        0, // Rotation
-        uri => {
-          resolve(uri);
-        },
-        'base64' // Output type
-      );
-    });
-
-  const resizeImage = async () => {
-    try {
-      const file = props.chosenPhoto;
-      const image = await resizeFile(file);
-      console.log(image);
-      setResizedImage(image);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const resizeImageFn = async () => {
+  //   const [thumbnailImage, smallImage, largeImage, fullSizeImage] = await resizeImage(
+  //     props.chosenPhoto
+  //   );
+  //   setThumbnail(thumbnailImage);
+  //   setSmall(smallImage);
+  //   setLarge(largeImage);
+  //   setFull(fullSizeImage);
+  // };
 
   const submitHandler = async () => {
     // TODO - Add an 'isSubmitting' state and display that somehow
@@ -72,6 +60,10 @@ const NewRecipePreview = props => {
 
       if (props.chosenPhoto) {
         // TODO - Add check that 'chosenPhoto' is a photo - If not throw an error
+
+        // const [thumbnailImage, smallImage, largeImage, fullSizeImage] = await resizeImage(
+        //   props.chosenPhoto
+        // );
 
         const checksum = await calculateChecksum(props.chosenPhoto);
         presignedUrl = await getPresignedUrl(props.chosenPhoto, props.chosenPhoto.size, checksum);
@@ -144,11 +136,14 @@ const NewRecipePreview = props => {
       <p>
         {/* TODO - Delete this paragraph */}
         Resized image:
-        {resizeImage && <img src={resizedImage} />}
+        {thumbnail && <img src={thumbnail} />}
+        {small && <img src={small} />}
+        {large && <img src={large} />}
+        {full && <img src={full} />}
       </p>
       <Button onClick={editRecipeHandler}>Edit recipe</Button>
       <Button onClick={submitHandler}>Submit recipe</Button>
-      <Button onClick={resizeImage}>Temporary Image Resize Button</Button>{' '}
+      {/* <Button onClick={resizeImageFn}>Temporary Image Resize Button</Button> */}
       {/* TODO - Delete this button */}
     </Fragment>
   );

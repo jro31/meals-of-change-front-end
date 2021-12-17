@@ -14,6 +14,7 @@ const PrefaceInput = () => {
   return (
     <FormLine>
       <InputContainer>
+        {/* TODO - Add a limit of 1000(?) characters to this input (it should match the validation on the backend) */}
         <TextArea
           id='preface'
           value={enteredPreface}

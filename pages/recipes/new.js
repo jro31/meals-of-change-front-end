@@ -6,6 +6,8 @@ import NewRecipePreview from '../../components/pages/recipes/new/NewRecipePrevie
 import ContentContainer from '../../components/ui/ContentContainer';
 
 const NewRecipe = () => {
+  // TODO - Add a warning when refreshing/navigating away from this page that unsaved data will be lost
+
   const activeComponent = useSelector(state => state.newRecipePage.activeComponent);
 
   const [chosenPhoto, setChosenPhoto] = useState(null);
