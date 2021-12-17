@@ -13,17 +13,17 @@ const useResizeImage = () => {
         uri => {
           resolve(uri);
         },
-        'base64' // Output type
+        'file' // Output type
       );
     });
 
   const resizeImage = async photo => {
     try {
-      const thumbnailImage = await resizePhoto(photo, 250);
-      const smallImage = await resizePhoto(photo, 450);
-      const largeImage = await resizePhoto(photo, 1000);
-      const fullSizeImage = await resizePhoto(photo, 2400);
-      return [thumbnailImage, smallImage, largeImage, fullSizeImage];
+      const thumbnailPhoto = await resizePhoto(photo, 250);
+      const smallPhoto = await resizePhoto(photo, 450);
+      const largePhoto = await resizePhoto(photo, 1000);
+      const fullSizePhoto = await resizePhoto(photo, 2400);
+      return [thumbnailPhoto, smallPhoto, largePhoto, fullSizePhoto];
     } catch (error) {
       // TODO - Handle this error
       console.log(error);

@@ -1,7 +1,6 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-// import Resizer from 'react-image-file-resizer';
 
 import useChecksum from '../../../../hooks/use-checksum';
 import usePresignedUrl from '../../../../hooks/use-presigned-url';
@@ -19,11 +18,6 @@ const NewRecipePreview = props => {
   const addedIngredients = useSelector(state => state.newRecipeForm.addedIngredients);
   const steps = useSelector(state => state.newRecipeForm.steps);
   const tagsObject = useSelector(state => state.newRecipeForm.tags);
-
-  const [thumbnail, setThumbnail] = useState(null); // TODO - Delete this state
-  const [small, setSmall] = useState(null); // TODO - Delete this state
-  const [large, setLarge] = useState(null); // TODO - Delete this state
-  const [full, setFull] = useState(null); // TODO - Delete this state
 
   const calculateChecksum = useChecksum();
   const getPresignedUrl = usePresignedUrl();
@@ -43,37 +37,32 @@ const NewRecipePreview = props => {
 
   const tagsArray = () => [...new Set(Object.values(tagsObject).flat())];
 
-  // const resizeImageFn = async () => {
-  //   const [thumbnailImage, smallImage, largeImage, fullSizeImage] = await resizeImage(
-  //     props.chosenPhoto
-  //   );
-  //   setThumbnail(thumbnailImage);
-  //   setSmall(smallImage);
-  //   setLarge(largeImage);
-  //   setFull(fullSizeImage);
-  // };
-
   const submitHandler = async () => {
     // TODO - Add an 'isSubmitting' state and display that somehow
     try {
-      let presignedUrl = null;
+      let thumbnailPresignedUrl = null;
 
       if (props.chosenPhoto) {
         // TODO - Add check that 'chosenPhoto' is a photo - If not throw an error
 
-        // const [thumbnailImage, smallImage, largeImage, fullSizeImage] = await resizeImage(
-        //   props.chosenPhoto
-        // );
+        const [thumbnailPhoto, smallPhoto, largePhoto, fullSizePhoto] = await resizeImage(
+          props.chosenPhoto
+        );
 
-        const checksum = await calculateChecksum(props.chosenPhoto);
-        presignedUrl = await getPresignedUrl(props.chosenPhoto, props.chosenPhoto.size, checksum);
+        const thumbnailChecksum = await calculateChecksum(thumbnailPhoto);
+        thumbnailPresignedUrl = await getPresignedUrl(
+          thumbnailPhoto,
+          thumbnailPhoto.size,
+          thumbnailChecksum,
+          'thumbnail'
+        );
 
         const s3Options = {
           method: 'PUT',
-          headers: presignedUrl.direct_upload.headers,
-          body: props.chosenPhoto,
+          headers: thumbnailPresignedUrl.direct_upload.headers,
+          body: thumbnailPhoto,
         };
-        const s3Response = await fetch(presignedUrl.direct_upload.url, s3Options);
+        const s3Response = await fetch(thumbnailPresignedUrl.direct_upload.url, s3Options);
         if (!s3Response.ok) {
           // TODO - Throw error
         }
@@ -93,7 +82,9 @@ const NewRecipePreview = props => {
             ingredients_attributes: addedIngredients,
             steps_attributes: stepsAttributes(),
             tags: tagsArray(),
-            photo_blob_signed_id: presignedUrl ? presignedUrl.blob_signed_id : '',
+            thumbnail_photo_blob_signed_id: thumbnailPresignedUrl
+              ? thumbnailPresignedUrl.blob_signed_id
+              : '',
           },
         }),
         credentials: 'include',
@@ -133,18 +124,8 @@ const NewRecipePreview = props => {
       <p>Ingredients: [INGREDIENTS HERE]</p>
       <p>Steps: [STEPS HERE]</p>
       <p>Tags: [TAGS HERE]</p>
-      <p>
-        {/* TODO - Delete this paragraph */}
-        Resized image:
-        {thumbnail && <img src={thumbnail} />}
-        {small && <img src={small} />}
-        {large && <img src={large} />}
-        {full && <img src={full} />}
-      </p>
       <Button onClick={editRecipeHandler}>Edit recipe</Button>
       <Button onClick={submitHandler}>Submit recipe</Button>
-      {/* <Button onClick={resizeImageFn}>Temporary Image Resize Button</Button> */}
-      {/* TODO - Delete this button */}
     </Fragment>
   );
 };

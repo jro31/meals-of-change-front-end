@@ -14,7 +14,7 @@ const RecipeDetails = props => {
         {/* TODO - ADD META DATA HERE */}
       </Head>
       <h1>{props.name}</h1>
-      <img src={props.photo} alt={props.name} />
+      <img src={props.thumbnail_photo} alt={props.name} />
     </Fragment>
   );
 };
@@ -53,7 +53,7 @@ export const getStaticProps = async context => {
       name: recipe.name,
       author: recipe.user,
       timeMinutes: recipe.time_minutes,
-      photo: recipe.photo,
+      thumbnail_photo: recipe.thumbnail_photo,
       ingredients: recipe.ingredients,
       steps: recipe.steps,
       tags: recipe.tags,
