@@ -2,8 +2,7 @@ import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import useChecksum from '../../../../hooks/use-checksum';
-import usePresignedUrl from '../../../../hooks/use-presigned-url';
+import usePhotoUploader from '../../../../hooks/use-photo-uploader';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
@@ -18,8 +17,7 @@ const NewRecipePreview = props => {
   const steps = useSelector(state => state.newRecipeForm.steps);
   const tagsObject = useSelector(state => state.newRecipeForm.tags);
 
-  const calculateChecksum = useChecksum();
-  const getPresignedUrl = usePresignedUrl();
+  const photoUploader = usePhotoUploader();
 
   const editRecipeHandler = () => {
     dispatch(newRecipePageActions.showForm());
@@ -38,23 +36,11 @@ const NewRecipePreview = props => {
   const submitHandler = async () => {
     // TODO - Add an 'isSubmitting' state and display that somehow
     try {
-      let presignedUrl = null;
+      // TODO - Test that this works with no photo
+      const blobSignedIdArray = await photoUploader(props.chosenPhoto);
 
-      if (props.chosenPhoto) {
-        // TODO - Add check that 'chosenPhoto' is a photo - If not throw an error
-
-        const checksum = await calculateChecksum(props.chosenPhoto);
-        presignedUrl = await getPresignedUrl(props.chosenPhoto, props.chosenPhoto.size, checksum);
-
-        const s3Options = {
-          method: 'PUT',
-          headers: presignedUrl.direct_upload.headers,
-          body: props.chosenPhoto,
-        };
-        const s3Response = await fetch(presignedUrl.direct_upload.url, s3Options);
-        if (!s3Response.ok) {
-          // TODO - Throw error
-        }
+      if (props.chosen_photo && blobSignedIdArray.length !== 4) {
+        throw new Error('Unable to save photo');
       }
 
       const recipeOptions = {
@@ -71,11 +57,15 @@ const NewRecipePreview = props => {
             ingredients_attributes: addedIngredients,
             steps_attributes: stepsAttributes(),
             tags: tagsArray(),
-            photo_blob_signed_id: presignedUrl ? presignedUrl.blob_signed_id : '',
+            thumbnail_photo_blob_signed_id: blobSignedIdArray[0],
+            small_photo_blob_signed_id: blobSignedIdArray[1],
+            large_photo_blob_signed_id: blobSignedIdArray[2],
+            full_size_photo_blob_signed_id: blobSignedIdArray[3],
           },
         }),
         credentials: 'include',
       };
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/recipes`,
         recipeOptions
@@ -87,16 +77,16 @@ const NewRecipePreview = props => {
 
       const data = await response.json();
 
+      router.replace(`/recipes/${data.recipe.id}`);
+
       dispatch(newRecipeFormActions.resetForm());
       props.setChosenPhoto(null);
       props.setChosenPhotoPreviewUrl('');
-
-      router.replace(`/recipes/${data.recipe.id}`);
       dispatch(newRecipePageActions.showForm());
     } catch (error) {
       // TODO - Display error to user
-      console.log('🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉🙉');
-      console.log(error.message);
+      console.log('💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀');
+      console.log(error);
       dispatch(newRecipePageActions.showForm());
     }
   };
