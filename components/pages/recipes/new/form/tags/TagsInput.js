@@ -92,7 +92,7 @@ const TagsInput = props => {
           {tags.map((tag, index) => (
             <div
               key={tag}
-              className='flex items-center flex-initial h-3/4 bg-yellow-300 rounded mx-1.5 px-2'
+              className='flex items-center flex-initial h-3/4 bg-amber-300 rounded mx-1.5 px-2'
             >
               <div>{tag}</div>
               <div className='cursor-pointer ml-2.5' onClick={() => deleteTag(index)}>

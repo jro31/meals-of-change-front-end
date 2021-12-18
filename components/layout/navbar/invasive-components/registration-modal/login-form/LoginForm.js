@@ -59,6 +59,7 @@ const LoginForm = () => {
   const formIsValid = () => enteredEmailIsValid && enteredPasswordIsValid;
 
   // TODO - Handle 'isSubmitting' being true
+  // See https://tailwindcss.com/docs/animation for some animations
   return (
     <Form onSubmit={submitHandler}>
       <FormSection>

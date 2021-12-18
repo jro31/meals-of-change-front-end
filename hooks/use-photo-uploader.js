@@ -36,6 +36,7 @@ const usePhotoUploader = () => {
         blobSignedIdArray.push(presignedUrl.blob_signed_id);
       };
 
+      // This part is quite slow. Could it conceivably be done in the background after the photo is chosen, with the resized images saved to state?
       const [thumnailPhoto, smallPhoto, largePhoto, fullSizePhoto] = await resizeImage(photo);
       await uploadPhoto(thumnailPhoto, 'thumbnail');
       await uploadPhoto(smallPhoto, 'small');
