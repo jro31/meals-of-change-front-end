@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 const RecipeCard = props => {
@@ -6,10 +7,17 @@ const RecipeCard = props => {
       <Link href={`/recipes/${props.recipe.id}`} passHref>
         <a>
           <div className={`flex flex-col h-full shadow-md ${props.className || ''}`}>
-            <div className='h-4/5'>
+            <div className='h-4/5 relative'>
               {/* TODO - Update this to use 'image' */}
               {/* TODO - Handle no photo existing */}
-              <img src={props.recipe.photo} className='h-full w-full object-cover' />
+              {props.recipe.small_photo && (
+                <Image
+                  src={props.recipe.small_photo}
+                  alt={props.recipe.name}
+                  layout='fill'
+                  className='object-cover -z-10'
+                />
+              )}
             </div>
             <div className='flex flex-col justify-around h-1/5 py-1 px-2'>
               <h3>{props.recipe.name}</h3>

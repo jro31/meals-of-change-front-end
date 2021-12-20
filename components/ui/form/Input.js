@@ -15,7 +15,7 @@ const Input = props => {
         onBlur={props.onBlur || null}
         onKeyDown={props.onKeyDown || null}
         onKeyUp={props.onKeyUp || null}
-        className={`border border-gray-500 p-2 text-lg ${props.className || ''}`} // Note that the placeholder can be styled with Tailwind BUT it's different in V3, so upgrade first
+        className={`border border-gray-500 p-2 text-lg ${props.className || ''}`} // Note that the placeholder can be styled with Tailwind
         placeholder={props.placeholder || null}
         checked={props.type === 'checkbox' ? props.checked : null}
       />

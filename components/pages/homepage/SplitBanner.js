@@ -1,12 +1,11 @@
+import Image from 'next/image';
+import foodImage from '../../../public/images/temp-homepage-image.jpeg';
+
 const SplitBanner = () => {
   return (
     <div className='flex flex-col md:flex-row w-full h-700px md:h-500px shadow-md'>
-      <div className='flex-1'>
-        <img
-          src='https://cdn-images-1.medium.com/max/2000/1*35SqaAxnm1XnfeqmJJFgzg.jpeg'
-          alt='Vegan food'
-          className='object-cover h-full w-full'
-        />
+      <div className='flex-1 relative'>
+        <Image src={foodImage} alt='Vegan food' layout='fill' className='object-cover -z-10' />
       </div>
       <div className='flex justify-center items-center flex-1 w-full'>
         <div className='flex flex-col items-center w-1/2'>

@@ -2,11 +2,9 @@ import { useRef, useState, useEffect } from 'react';
 
 import Pointer from '../Pointer';
 
-const pointerSize = 21;
-
 const HorizontalRecipeListContainer = props => {
   const listContainerRef = useRef();
-  const [listHeight, setListHeight] = useState(450);
+  const [isHovering, setIsHovering] = useState(false);
 
   const tiersClass = () => {
     switch (props.tiers) {
@@ -21,6 +19,7 @@ const HorizontalRecipeListContainer = props => {
     }
   };
 
+  // TODO - These should scroll through all displaying recipes, not just one recipe at a time
   const scrollLeftHandler = () => {
     listContainerRef.current.scrollLeft =
       listContainerRef.current.scrollLeft - props.cardContainerWidth;
@@ -31,32 +30,25 @@ const HorizontalRecipeListContainer = props => {
       listContainerRef.current.scrollLeft + props.cardContainerWidth;
   };
 
-  const pointerTop = () => {
-    // prettier-ignore
-    return (listHeight / 2) - (pointerSize / 2) - (8 / 2); // 8 == pointer padding
+  const onHover = () => {
+    setIsHovering(true);
   };
 
-  useEffect(() => {
-    setListHeight(listContainerRef.current.offsetHeight);
-  }, []);
+  const onLeaveHover = () => {
+    setIsHovering(false);
+  };
 
   return (
-    // This 'relative' is what causes the photos not to be covered by the overlay while it's transitioning its opacity
-    // Removing it fixes the issue, but moves the pointers
-    <div className='relative'>
+    <div onMouseEnter={onHover} onMouseLeave={onLeaveHover} className='relative'>
       <Pointer
         onClick={scrollLeftHandler}
         direction='left'
-        size={pointerSize}
-        className='absolute left-2'
-        style={{ top: `${pointerTop()}px` }}
+        className={`left-0 ${isHovering ? 'block' : 'hidden'}`}
       />
       <Pointer
         onClick={scrollRightHandler}
         direction='right'
-        size={pointerSize}
-        className='absolute right-2'
-        style={{ top: `${pointerTop()}px` }}
+        className={`right-0 ${isHovering ? 'block' : 'hidden'}`}
       />
       <div
         className={`flex flex-col flex-wrap overflow-x-scroll scroll-snap-x-mandatory scroll-smooth ${tiersClass()}`}
