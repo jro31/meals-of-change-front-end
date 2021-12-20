@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Title from '../../../components/ui/Title';
 
 const RecipeDetails = props => {
   const router = useRouter();
@@ -13,7 +14,7 @@ const RecipeDetails = props => {
         <title>{props.name}</title>
         {/* TODO - Add Meta data here */}
       </Head>
-      <h1>{props.name}</h1>
+      <Title>{props.name}</Title>
       {/* TODO - Handle no image existing */}
       {/* TODO - Update to use Image */}
       <img src={props.thumbnail_photo} alt={props.name} />

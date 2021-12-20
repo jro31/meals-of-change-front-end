@@ -1,7 +1,9 @@
 import { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import HorizontalRecipeList from '../../components/ui/recipe-lists/HorizontalRecipeList';
+import Title from '../../components/ui/Title';
 
 const RecipeIndex = props => {
   const router = useRouter();
@@ -31,7 +33,11 @@ const RecipeIndex = props => {
 
   return (
     <Fragment>
-      <h1>RECIPE INDEX PAGE</h1>
+      <Head>
+        <title>TEST TITLE</title>
+        {/* TODO - Add Meta data here */}
+      </Head>
+      <Title>RECIPE INDEX PAGE</Title>
       <button onClick={addJapaneseParamsHandler}>Japanese</button>
       <HorizontalRecipeList height='70vh' recipes={props.recipes} tiers={tiers} />
     </Fragment>

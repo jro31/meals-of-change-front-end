@@ -1,13 +1,19 @@
 import { Fragment } from 'react';
+import Head from 'next/head';
 
 import SplitBanner from '../components/pages/homepage/SplitBanner';
+import Heading from '../components/ui/Heading';
 import HorizontalRecipeList from '../components/ui/recipe-lists/HorizontalRecipeList';
 
 const HomePage = props => {
   return (
     <Fragment>
+      <Head>
+        <title>TEST TITLE</title>
+        {/* TODO - Add Meta data here */}
+      </Head>
       <SplitBanner />
-      <h2 className='ml-10'>Latest recipes</h2>
+      <Heading className='ml-10'>Latest recipes</Heading>
       <HorizontalRecipeList recipes={props.recipes} tiers={1} height='40vh' />
     </Fragment>
   );

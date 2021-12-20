@@ -23,10 +23,11 @@ const Layout = props => {
   }, []);
 
   return (
-    <Fragment>
+    // Put any app-wide styling in this div
+    <div className='text-gray-700'>
       <Navbar />
       <main className='mt-14'>{props.children}</main>
-    </Fragment>
+    </div>
   );
 };
 

@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import foodImage from '../../../public/images/temp-homepage-image.jpeg';
+import Subheading from '../../ui/Subheading';
+import Title from '../../ui/Title';
 
 const SplitBanner = () => {
   return (
@@ -9,8 +11,8 @@ const SplitBanner = () => {
       </div>
       <div className='flex justify-center items-center flex-1 w-full'>
         <div className='flex flex-col items-center w-1/2'>
-          <h1>Meals of Change</h1>
-          <h3>Plant-based recipes by you</h3>
+          <Title>Meals of Change</Title>
+          <Subheading>Plant-based recipes by you</Subheading>
         </div>
       </div>
     </div>

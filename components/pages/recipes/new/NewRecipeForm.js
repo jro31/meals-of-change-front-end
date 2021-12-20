@@ -12,6 +12,7 @@ import TagsInputSection from './form/tags/TagsInputSection';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
+import Subheading from '../../../ui/Subheading';
 
 let ingredientIterator = 0;
 
@@ -84,20 +85,20 @@ const NewRecipeForm = props => {
           {/* TODO - Update to use next/image */}
           {props.chosenPhotoPreviewUrl && <img src={props.chosenPhotoPreviewUrl} />}
         </FormSection>
-        <h3>Ingredients</h3>
+        <Subheading>Ingredients</Subheading>
         <FormSection>
           <IngredientInputSection addIngredientHandler={addIngredientHandler} />
         </FormSection>
-        <h3>Steps</h3>
+        <Subheading>Steps</Subheading>
         <FormSection>
           <StepsInput />
         </FormSection>
-        <h3>Tags</h3>
+        <Subheading>Tags</Subheading>
         <p>Help people find your recipe</p>
         <FormSection>
           <TagsInputSection />
         </FormSection>
-        <h3>Preface</h3>
+        <Subheading>Preface</Subheading>
         <FormSection>
           <PrefaceInput />
         </FormSection>

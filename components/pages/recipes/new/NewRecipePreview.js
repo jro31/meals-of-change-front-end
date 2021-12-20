@@ -6,6 +6,7 @@ import usePhotoUploader from '../../../../hooks/use-photo-uploader';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
+import Title from '../../../ui/Title';
 
 const NewRecipePreview = props => {
   const router = useRouter();
@@ -93,7 +94,7 @@ const NewRecipePreview = props => {
 
   return (
     <Fragment>
-      <h1>{enteredName}</h1>
+      <Title>{enteredName}</Title>
       <p>Time: {enteredCookingTime}</p>
       <p>Preface: {enteredPreface}</p>
       <p>

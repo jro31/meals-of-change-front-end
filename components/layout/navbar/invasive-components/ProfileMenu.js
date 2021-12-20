@@ -22,6 +22,8 @@ const ProfileMenu = props => {
       const data = await response.json();
 
       if (data.logged_out) {
+        // TODO - If on a protected page (for example, the recipes new page or the account page (when it exists), should also redirect to the homepage
+        // (Could also do that for all logouts if only doing it for specific pages is a pain)
         dispatch(loginStatusActions.logout());
         dispatch(profileMenuActions.closeMenu());
       } else {
