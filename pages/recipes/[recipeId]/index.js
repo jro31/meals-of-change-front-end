@@ -14,6 +14,8 @@ const RecipeDetails = props => {
         {/* TODO - Add Meta data here */}
       </Head>
       <h1>{props.name}</h1>
+      {/* TODO - Handle no image existing */}
+      {/* TODO - Update to use Image */}
       <img src={props.thumbnail_photo} alt={props.name} />
     </Fragment>
   );

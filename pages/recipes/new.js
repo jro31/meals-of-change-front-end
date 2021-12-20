@@ -6,6 +6,7 @@ import NewRecipePreview from '../../components/pages/recipes/new/NewRecipePrevie
 import ContentContainer from '../../components/ui/ContentContainer';
 
 const NewRecipe = () => {
+  // TODO - Handle someone who's not logged-in navigating to this page (probably redirect them to the homepage)
   // TODO - Add a warning when refreshing/navigating away from this page that unsaved data will be lost
 
   const activeComponent = useSelector(state => state.newRecipePage.activeComponent);

@@ -78,6 +78,7 @@ const NewRecipePreview = props => {
 
       router.replace(`/recipes/${data.recipe.id}`);
 
+      // TODO - This stuff shouldn't happen until the recipe is created
       dispatch(newRecipeFormActions.resetForm());
       props.setChosenPhoto(null);
       props.setChosenPhotoPreviewUrl('');

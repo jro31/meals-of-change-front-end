@@ -16,23 +16,18 @@ const Pointer = props => {
   };
 
   return (
-    <div
-      style={{ ...props.style }}
-      className={`bg-white bg-opacity-50 flex items-center rounded-full p-2 ${
-        props.className || ''
-      }`}
-    >
-      <Image
-        onClick={props.onClick}
-        src={source()}
-        alt={
-          props.direction
-            ? `${props.direction[0].toUpperCase()}${props.direction.substring(1)} pointer`
-            : 'Pointer'
-        }
-        width={props.size}
-        height={props.size}
-      />
+    <div className={`w-10 h-full absolute pt-4 pb-8 ${props.className || ''}`}>
+      <div onClick={props.onClick} className='h-full w-full bg-black opacity-40 relative z-10'>
+        <Image
+          src={source()}
+          alt={
+            props.direction
+              ? `${props.direction[0].toUpperCase()}${props.direction.substring(1)} pointer`
+              : 'Pointer'
+          }
+          layout='fill'
+        />
+      </div>
     </div>
   );
 };
