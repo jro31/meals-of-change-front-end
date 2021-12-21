@@ -12,7 +12,7 @@ import TagsInputSection from './form/tags/TagsInputSection';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
-import Subheading from '../../../ui/Subheading';
+import Subheading from '../../../ui/text/Subheading';
 
 let ingredientIterator = 0;
 
