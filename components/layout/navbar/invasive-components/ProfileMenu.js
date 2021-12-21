@@ -48,6 +48,9 @@ const ProfileMenu = props => {
       transitionClassNames={transitionClassNames}
     >
       <div className='flex fixed top-14 right-0 bg-white z-30 p-10 h-screen-minus-nav min-w-33'>
+        {/* TODO - Account */}
+        {/* TODO - Your Recipes */}
+        {/* TODO - Favourite Recipes */}
         <div onClick={logoutHandler}>Logout</div>
       </div>
     </Container>

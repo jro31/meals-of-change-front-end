@@ -27,16 +27,17 @@ const RecipeIndex = props => {
         }
 
         setRecipes(data.recipes);
-        if (data.filter_title) {
-          setTitle(data.filter_title);
-        }
+        setTitle(data.filter_title || '');
       } catch (error) {
-        // TODO - Handle this
+        // TODO - Display this error somehow
         console.log('😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇');
         console.log(error.message);
+        setRecipes(props.recipes);
+        setTitle('');
       }
     } else {
       setRecipes(props.recipes);
+      setTitle('');
     }
   }, [router.query, props.recipes, router.asPath]);
 
