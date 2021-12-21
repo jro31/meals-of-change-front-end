@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Title from '../../../components/ui/Title';
+import Title from '../../../components/ui/text/Title';
 
 const RecipeDetails = props => {
   const router = useRouter();

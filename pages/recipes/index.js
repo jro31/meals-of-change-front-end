@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import HorizontalRecipeList from '../../components/ui/recipe-lists/HorizontalRecipeList';
-import Title from '../../components/ui/Title';
+import Title from '../../components/ui/text/Title';
 
 const RecipeIndex = props => {
   const router = useRouter();

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 import Form from '../../../../../ui/form/form';
 import FormSection from '../../../../../ui/form/FormSection';
@@ -12,6 +13,7 @@ import Button from '../../../../../ui/Button';
 import DisplayNameInput from './DisplayNameInput';
 
 const SignUpForm = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const enteredEmail = useSelector(state => state.signUpForm.enteredEmail);
   const enteredEmailIsValid = useSelector(state => state.signUpForm.enteredEmailIsValid);
@@ -32,6 +34,7 @@ const SignUpForm = () => {
   const enteredDisplayNameIsValid = useSelector(
     state => state.signUpForm.enteredDisplayNameIsValid
   );
+  const redirectPath = useSelector(state => state.registrationModal.loginRedirectPath);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -62,8 +65,9 @@ const SignUpForm = () => {
         if (data && data.logged_in) {
           setIsSubmitting(false);
           dispatch(loginStatusActions.login());
-          dispatch(signUpFormActions.resetForm());
           dispatch(registrationModalActions.closeModal());
+          if (redirectPath) router.push(redirectPath);
+          dispatch(signUpFormActions.resetForm());
         } else {
           throw new Error(data.error_message || 'Something went wrong');
         }
