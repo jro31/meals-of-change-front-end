@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import foodImage from '../../../public/images/temp-homepage-image.jpeg';
-import Subheading from '../../ui/Subheading';
-import Title from '../../ui/Title';
+import Subheading from '../../ui/text/Subheading';
+import Title from '../../ui/text/Title';
 
 const SplitBanner = () => {
   return (

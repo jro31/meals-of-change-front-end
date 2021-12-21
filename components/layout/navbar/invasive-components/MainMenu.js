@@ -1,15 +1,38 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 import Container from './Container';
+import { mainMenuActions } from '../../../../store/main-menu';
+import { registrationModalActions } from '../../../../store/registration-modal';
 
 const MainMenu = props => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.loginStatus.loggedInStatus === 'LOGGED_IN');
   const mainMenuIsOpen = useSelector(state => state.mainMenu.mainMenuIsOpen);
+  const tags = useSelector(state => state.mainMenu.tags);
 
   const transitionClassNames = {
     enter: '',
     enterActive: 'animate-slide-in-right md:animate-slide-in-down',
     exit: '',
     exitActive: 'animate-slide-out-left md:animate-slide-out-up',
+  };
+
+  const navigateTo = path => {
+    router.push(path);
+    dispatch(mainMenuActions.closeMenu());
+  };
+
+  const addRecipeClickHandler = () => {
+    if (isLoggedIn) {
+      navigateTo('/recipes/new');
+    } else {
+      dispatch(mainMenuActions.closeMenu());
+      dispatch(registrationModalActions.setModalTitle('You must login to add a recipe'));
+      dispatch(registrationModalActions.setLoginRedirectPath('/recipes/new'));
+      dispatch(registrationModalActions.openModal());
+    }
   };
 
   return (

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import NewRecipeForm from '../../components/pages/recipes/new/NewRecipeForm';
 import NewRecipePreview from '../../components/pages/recipes/new/NewRecipePreview';
 import ContentContainer from '../../components/ui/ContentContainer';
-import Title from '../../components/ui/Title';
+import Title from '../../components/ui/text/Title';
 
 const NewRecipe = () => {
   // TODO - Handle someone who's not logged-in navigating to this page (probably redirect them to the homepage)

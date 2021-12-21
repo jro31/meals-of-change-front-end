@@ -5,6 +5,8 @@ const registrationModalSlice = createSlice({
   initialState: {
     registrationModalIsOpen: false,
     activeForm: 'login',
+    modalTitle: '',
+    loginRedirectPath: '',
   },
   reducers: {
     openModal(state) {
@@ -19,6 +21,12 @@ const registrationModalSlice = createSlice({
     },
     showSignUpForm(state) {
       state.activeForm = 'sign-up';
+    },
+    setModalTitle(state, action) {
+      state.modalTitle = action.payload;
+    },
+    setLoginRedirectPath(state, action) {
+      state.loginRedirectPath = action.payload;
     },
   },
 });

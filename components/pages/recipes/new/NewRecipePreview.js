@@ -6,7 +6,7 @@ import usePhotoUploader from '../../../../hooks/use-photo-uploader';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
-import Title from '../../../ui/Title';
+import Title from '../../../ui/text/Title';
 
 const NewRecipePreview = props => {
   const router = useRouter();

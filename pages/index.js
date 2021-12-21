@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import Head from 'next/head';
 
 import SplitBanner from '../components/pages/homepage/SplitBanner';
-import Heading from '../components/ui/Heading';
+import Heading from '../components/ui/text/Heading';
 import HorizontalRecipeList from '../components/ui/recipe-lists/HorizontalRecipeList';
 
 const HomePage = props => {

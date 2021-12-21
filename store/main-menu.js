@@ -4,6 +4,7 @@ const mainMenuSlice = createSlice({
   name: 'main-menu',
   initialState: {
     mainMenuIsOpen: false,
+    tags: [], // TODO - Set some default tags (in case they can't be loaded from the API)
   },
   reducers: {
     openMenu(state) {
@@ -11,6 +12,9 @@ const mainMenuSlice = createSlice({
     },
     closeMenu(state) {
       state.mainMenuIsOpen = false;
+    },
+    setTags(state, action) {
+      state.tags = action.payload;
     },
   },
 });
