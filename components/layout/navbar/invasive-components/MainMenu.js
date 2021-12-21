@@ -10,6 +10,7 @@ const MainMenu = props => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.loginStatus.loggedInStatus === 'LOGGED_IN');
   const mainMenuIsOpen = useSelector(state => state.mainMenu.mainMenuIsOpen);
+  const tags = useSelector(state => state.mainMenu.tags);
 
   const transitionClassNames = {
     enter: '',
@@ -54,25 +55,17 @@ const MainMenu = props => {
             Recipes
           </div>
           <div className='flex-grow-only columns-2xs pt-2'>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
-            <div>Tag</div>
+            {tags.map(tag => {
+              return (
+                <div
+                  key={tag}
+                  onClick={() => navigateTo(`/recipes?tag_name=${tag.toLowerCase()}`)}
+                  className='cursor-pointer'
+                >
+                  {tag}
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className='flex-initial pr-16'>
