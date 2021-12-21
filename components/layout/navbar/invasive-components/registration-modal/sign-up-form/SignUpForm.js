@@ -82,6 +82,8 @@ const SignUpForm = () => {
     enteredPasswordConfirmationIsValid &&
     enteredDisplayNameIsValid;
 
+  const disableButton = () => !formIsValid() || isSubmitting;
+
   // TODO - Handle 'isSubmitting' being true
   return (
     <Form onSubmit={submitHandler}>
@@ -120,7 +122,7 @@ const SignUpForm = () => {
         />
         <DisplayNameInput formError={error} setFormError={setError} />
         {error && <p className='text-red-500'>{error}</p>}
-        <Button disabled={!formIsValid()}>Submit</Button>
+        <Button disabled={disableButton()}>Submit</Button>
       </FormSection>
     </Form>
   );

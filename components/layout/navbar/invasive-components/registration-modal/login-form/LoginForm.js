@@ -58,6 +58,8 @@ const LoginForm = () => {
 
   const formIsValid = () => enteredEmailIsValid && enteredPasswordIsValid;
 
+  const disableButton = () => !formIsValid() || isSubmitting;
+
   // TODO - Handle 'isSubmitting' being true
   // See https://tailwindcss.com/docs/animation for some animations
   return (
@@ -85,7 +87,7 @@ const LoginForm = () => {
           setFormError={setError}
         />
         {error && <p className='text-red-500'>{error}</p>}
-        <Button disabled={!formIsValid()}>Login</Button>
+        <Button disabled={disableButton()}>Login</Button>
       </FormSection>
     </Form>
   );

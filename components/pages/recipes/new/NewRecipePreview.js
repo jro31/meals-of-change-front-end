@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -17,6 +17,7 @@ const NewRecipePreview = props => {
   const addedIngredients = useSelector(state => state.newRecipeForm.addedIngredients);
   const steps = useSelector(state => state.newRecipeForm.steps);
   const tagsObject = useSelector(state => state.newRecipeForm.tags);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const photoUploader = usePhotoUploader();
 
@@ -34,8 +35,9 @@ const NewRecipePreview = props => {
 
   const tagsArray = () => [...new Set(Object.values(tagsObject).flat())];
 
+  // TODO - Handle 'isSubmitting' being true
   const submitHandler = async () => {
-    // TODO - Add an 'isSubmitting' state and display that somehow
+    setIsSubmitting(true);
     try {
       const blobSignedIdArray = await photoUploader(props.chosenPhoto);
 
@@ -84,11 +86,13 @@ const NewRecipePreview = props => {
       props.setChosenPhoto(null);
       props.setChosenPhotoPreviewUrl('');
       dispatch(newRecipePageActions.showForm());
+      setIsSubmitting(false);
     } catch (error) {
       // TODO - Display error to user
       console.log('💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀');
       console.log(error);
       dispatch(newRecipePageActions.showForm());
+      setIsSubmitting(false);
     }
   };
 
@@ -105,7 +109,9 @@ const NewRecipePreview = props => {
       <p>Steps: [STEPS HERE]</p>
       <p>Tags: [TAGS HERE]</p>
       <Button onClick={editRecipeHandler}>Edit recipe</Button>
-      <Button onClick={submitHandler}>Submit recipe</Button>
+      <Button disabled={isSubmitting} onClick={submitHandler}>
+        Submit recipe
+      </Button>
     </Fragment>
   );
 };
