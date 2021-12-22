@@ -51,7 +51,7 @@ const HorizontalRecipeListContainer = props => {
         className={`right-0 ${isHovering ? 'block' : 'hidden'}`}
       />
       <div
-        className={`flex flex-col flex-wrap overflow-x-scroll scroll-snap-x-mandatory scroll-smooth ${tiersClass()}`}
+        className={`flex flex-col flex-wrap overflow-x-scroll snap-mandatory snap-x scroll-smooth ${tiersClass()}`}
         ref={listContainerRef}
         style={{ height: props.containerHeight || '50vh' }}
       >

@@ -35,9 +35,7 @@ const HorizontalRecipeList = props => {
         return (
           <div
             key={recipe.id}
-            className={`py-4 scroll-snap-start ${tiersClass()} ${
-              index < props.tiers ? 'pl-10' : ''
-            }`}
+            className={`py-4 snap-start ${tiersClass()} ${index < props.tiers ? 'pl-10' : ''}`}
             ref={recipe === props.recipes[0] ? firstCardContainerRef : null}
           >
             <RecipeCard recipe={recipe} />
