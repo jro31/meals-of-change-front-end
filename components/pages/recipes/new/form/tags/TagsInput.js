@@ -43,7 +43,7 @@ const TagsInput = props => {
     const trimmedInput = enteredInput.trim();
 
     if (key === ',' || key === 'Enter') {
-      // TODO - Update this to also accept 'tab' (and perhaps any mouse click?)
+      // TODO - Update this to also accept 'tab', and also 'onBlur' of the input
       event.preventDefault();
       if (
         trimmedInput.length &&

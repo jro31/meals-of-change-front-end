@@ -56,10 +56,14 @@ export const getStaticProps = async context => {
       name: recipe.name,
       author: recipe.user,
       timeMinutes: recipe.time_minutes,
-      thumbnail_photo: recipe.thumbnail_photo,
+      preface: recipe.preface,
       ingredients: recipe.ingredients,
       steps: recipe.steps,
       tags: recipe.tags,
+      thumbnail_photo: recipe.thumbnail_photo,
+      small_photo: recipe.small_photo,
+      large_photo: recipe.large_photo,
+      full_size_photo: recipe.full_size_photo,
     },
     revalidate: false, // TODO - Update this to a time (in seconds, e.g 60) if the data ever needs to be reloaded, for example if it's possible to add comments to a recipe
   };
