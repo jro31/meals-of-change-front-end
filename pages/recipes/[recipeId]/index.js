@@ -32,14 +32,18 @@ const RecipeDetails = props => {
             <div className='py-4 px-2 bg-white rounded-t-2xl mb-2'>
               <Title className='font-bold'>{props.name}</Title>
             </div>
-            <div className='py-4 px-2 bg-white rounded-b-2xl mt-2'>
-              <div>
+            <div className='py-4 bg-white rounded-b-2xl mt-2'>
+              <div className='px-2'>
                 <Heading className='font-bold'>Ingredients</Heading>
               </div>
               <div>
-                {props.ingredients.map(ingredient => (
-                  // TODO - Alternate the background colours of each ingredient div
-                  <div key={ingredient.food} className='flex items-center px-2'>
+                {props.ingredients.map((ingredient, index) => (
+                  <div
+                    key={ingredient.food}
+                    className={`flex items-center px-2 ${
+                      index % 2 === 0 ? 'bg-gray-200' : 'bg-white'
+                    }`}
+                  >
                     <div className='basis-1/3 grow-0 shrink-0'>{ingredient.amount}</div>
                     <div>
                       <div>
@@ -54,9 +58,11 @@ const RecipeDetails = props => {
                 ))}
               </div>
               <div>
-                {props.steps.map(step => (
-                  // TODO - Alternate the background colours of each step div
-                  <div key={step.position} className='flex'>
+                {props.steps.map((step, index) => (
+                  <div
+                    key={step.position}
+                    className={`flex px-2 ${index % 2 === 0 ? 'bg-gray-200' : 'bg-white'}`}
+                  >
                     <div className='basis-1/12 grow-0 shrink-0'>{step.position}</div>
                     <div>{step.instructions}</div>
                   </div>
