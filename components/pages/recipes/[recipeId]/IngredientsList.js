@@ -2,15 +2,15 @@ import Heading from '../../../ui/text/Heading';
 
 const IngredientsList = props => {
   return (
-    <div>
-      <div className='px-2'>
+    <div className={`${props.className || ''} bg-white`}>
+      <div className='px-2 pb-4'>
         <Heading className='font-bold'>Ingredients</Heading>
       </div>
-      <div className='pb-2'>
+      <div className='pb-2 lg:min-h-screen-minus-nav'>
         {props.ingredients.map((ingredient, index) => (
           <div
             key={ingredient.food}
-            className={`flex items-center px-2 py-2 ${
+            className={`flex items-center px-2 py-3 ${
               index % 2 === 0 ? 'bg-gray-200' : 'bg-white'
             }`}
           >

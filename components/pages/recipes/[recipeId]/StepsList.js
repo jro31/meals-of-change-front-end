@@ -1,13 +1,37 @@
 const StepsList = props => {
+  const oddBackgroundColorClass = () => {
+    switch (props.mode) {
+      case 'light':
+        return 'bg-gray-200';
+      case 'dark':
+        return 'bg-slate-800';
+      default:
+        return 'bg-gray-200';
+    }
+  };
+
+  const evenBackgroundColorClass = () => {
+    switch (props.mode) {
+      case 'light':
+        return 'bg-white';
+      case 'dark':
+        return 'bg-slate-500';
+      default:
+        return 'bg-white';
+    }
+  };
+
   return (
-    <div className='pt-2'>
+    <div className={`pt-2 ${props.className || ''}`}>
       {props.steps.map((step, index) => (
         <div
           key={step.position}
-          className={`flex px-2 py-4 ${index % 2 === 0 ? 'bg-gray-200' : 'bg-white'}`}
+          className={`flex px-2 py-4 lg:pr-8 ${
+            index % 2 === 0 ? oddBackgroundColorClass() : evenBackgroundColorClass()
+          }`}
         >
           <div className='basis-1/12 grow-0 shrink-0'>
-            <div>{step.position}</div>
+            <div className='text-center'>{step.position}</div>
           </div>
           <div>{step.instructions}</div>
         </div>

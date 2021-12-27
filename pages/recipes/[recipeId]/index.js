@@ -6,6 +6,7 @@ import Title from '../../../components/ui/text/Title';
 import IngredientsList from '../../../components/pages/recipes/[recipeId]/IngredientsList';
 import Preface from '../../../components/pages/recipes/[recipeId]/Preface';
 import StepsList from '../../../components/pages/recipes/[recipeId]/StepsList';
+import RecipePhoto from '../../../components/pages/recipes/[recipeId]/RecipePhoto';
 
 const RecipeDetails = props => {
   const router = useRouter();
@@ -19,48 +20,52 @@ const RecipeDetails = props => {
         {/* TODO - Add Meta data here */}
       </Head>
 
-      <div className='block lg:hidden fixed overflow-scroll top-14 inset-x-0 bottom-0 bg-gray-800'>
-        <div className='h-1/3 sticky top-0 -z-50'>
+      <div className='flex flex-col lg:flex-row fixed overflow-scroll lg:overflow-auto top-14 inset-x-0 bottom-0 -z-10'>
+        {/* Small screen */}
+        <div className='lg:hidden basis-1/3 grow-0 shrink-0 sticky top-0 -z-50'>
           {/* TODO - Handle there being no photo (probably use a stock photo of the Meals of Change logo) */}
-          <Image
-            src={props.small_photo}
-            alt={`${props.name} photo`}
-            layout='fill'
-            objectFit='cover'
-            objectPosition='50% 50%'
-            className='rounded-2xl'
-          />
+          <RecipePhoto recipeName={props.name} photo={props.small_photo} />
         </div>
-        <div className='h-2/3'>
+        <div className='lg:hidden basis-2/3 grow shrink text-gray-300'>
           <div className='bg-gray-200 rounded-2xl'>
-            <div className='py-4 px-2 bg-white rounded-t-2xl mb-2'>
-              <div>
-                <Title className='font-bold'>{props.name}</Title>
+            <div className='py-4 px-2 bg-slate-800 rounded-t-2xl mb-2'>
+              <div className='text-white'>
+                <Title className='font-serif'>{props.name}</Title>
               </div>
               <Preface preface={props.preface} />
             </div>
             <div className='py-4 bg-white rounded-b-2xl mt-2'>
-              <IngredientsList ingredients={props.ingredients} />
-              <StepsList steps={props.steps} />
+              <IngredientsList className='text-gray-700' ingredients={props.ingredients} />
+              <StepsList mode='dark' steps={props.steps} />
             </div>
           </div>
         </div>
-      </div>
 
-      <div className='hidden lg:flex fixed -z-40 top-14 inset-x-0 bottom-0 bg-gray-800'>
-        {/* TODO - Handle no image existing */}
-        {/* <Image
-          src={props.full_size_photo}
-          alt={`${props.name} photo`}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='50% 50%'
-        /> */}
-        <div className='basis-3/4'></div>
-        <div className='basis-1/4'></div>
+        {/* Large screen */}
+        <div className='hidden lg:flex flex-col basis-2/3 grow shrink overflow-scroll text-gray-300'>
+          <div className='basis-2/3 grow-0 shrink-0 sticky top-0 -z-50'>
+            <RecipePhoto recipeName={props.name} photo={props.large_photo} />
+          </div>
+          <div className='basis-1/3 grow shrink'>
+            <div className='rounded-2xl'>
+              <div className='py-4 px-2 bg-slate-800 rounded-t-2xl'>
+                <div className='text-white'>
+                  <Title className='font-serif'>{props.name}</Title>
+                </div>
+                <Preface preface={props.preface} />
+              </div>
+              <div className='py-4 bg-slate-800 rounded-b-2xl min-h-screen-minus-nav'>
+                <StepsList steps={props.steps} mode='dark' />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='hidden lg:block basis-1/3 grow-0 shrink-0 overflow-scroll'>
+          <div className='py-4 bg-white rounded-2xl'>
+            <IngredientsList ingredients={props.ingredients} />
+          </div>
+        </div>
       </div>
-
-      <Title>{props.name}</Title>
     </Fragment>
   );
 };

@@ -22,13 +22,12 @@ const Preface = props => {
   return (
     <Fragment>
       {props.preface && (
-        <div className='pt-2 flex'>
+        <div className='pt-2 flex' onClick={prefaceClick}>
           <div
             className={`${
               prefaceOverflowIsOpen ? '' : 'h-6 overflow-hidden'
             } basis-11/12 grow shrink-0`}
             ref={prefaceRef}
-            onClick={prefaceClick}
           >
             {props.preface}
           </div>
