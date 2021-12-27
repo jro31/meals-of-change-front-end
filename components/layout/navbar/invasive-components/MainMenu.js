@@ -36,6 +36,7 @@ const MainMenu = props => {
   };
 
   return (
+    // TODO - Fix main menu text going over (rather than under) navbar during transition
     <Container
       in={mainMenuIsOpen}
       showHandler={props.showHandler}

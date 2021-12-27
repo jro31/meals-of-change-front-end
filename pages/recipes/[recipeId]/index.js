@@ -7,6 +7,8 @@ import IngredientsList from '../../../components/pages/recipes/[recipeId]/Ingred
 import Preface from '../../../components/pages/recipes/[recipeId]/Preface';
 import StepsList from '../../../components/pages/recipes/[recipeId]/StepsList';
 import RecipePhoto from '../../../components/pages/recipes/[recipeId]/RecipePhoto';
+import RecipeTitle from '../../../components/pages/recipes/[recipeId]/RecipeTitle';
+import TitleAndPreface from '../../../components/pages/recipes/[recipeId]/TitleAndPreface';
 
 const RecipeDetails = props => {
   const router = useRouter();
@@ -28,12 +30,7 @@ const RecipeDetails = props => {
         </div>
         <div className='lg:hidden basis-2/3 grow shrink text-gray-300'>
           <div className='bg-slate-800 rounded-2xl'>
-            <div className='py-4 px-2 bg-slate-800 rounded-t-2xl'>
-              <div className='text-white'>
-                <Title className='font-serif'>{props.name}</Title>
-              </div>
-              <Preface preface={props.preface} />
-            </div>
+            <TitleAndPreface title={props.name} preface={props.preface} />
             <div className='pb-4 rounded-b-2xl'>
               <IngredientsList className='text-gray-700' ingredients={props.ingredients} />
               <StepsList mode='dark' steps={props.steps} className='pt-2' />
@@ -48,12 +45,7 @@ const RecipeDetails = props => {
           </div>
           <div className='basis-1/3 grow shrink'>
             <div className='rounded-2xl'>
-              <div className='py-4 pr-8 pl-1/12 bg-slate-800 rounded-t-2xl'>
-                <div className='text-white'>
-                  <Title className='font-serif'>{props.name}</Title>
-                </div>
-                <Preface preface={props.preface} />
-              </div>
+              <TitleAndPreface title={props.name} preface={props.preface} />
               <div className='bg-slate-800 rounded-b-2xl min-h-screen-minus-nav'>
                 <StepsList steps={props.steps} mode='dark' />
               </div>
@@ -73,12 +65,7 @@ const RecipeDetails = props => {
           </div>
           <div className='flex justify-center min-h-75'>
             <div className='basis-2/3 -translate-y-20 rounded-2xl'>
-              <div className='py-4 pr-8 pl-1/12 bg-slate-800 rounded-t-2xl'>
-                <div className='text-white'>
-                  <Title className='font-serif'>{props.name}</Title>
-                </div>
-                <Preface preface={props.preface} />
-              </div>
+              <TitleAndPreface title={props.name} preface={props.preface} />
               <div className='bg-slate-800 rounded-b-2xl pb-4'>
                 <StepsList steps={props.steps} mode='dark' />
               </div>
