@@ -1,10 +1,11 @@
-import Heading from '../../../ui/text/Heading';
+import Subheading from '../../../ui/text/Subheading';
 
 const IngredientsList = props => {
   return (
-    <div className={`${props.className || ''} bg-white`}>
-      <div className='px-2 pb-4'>
-        <Heading className='font-bold'>Ingredients</Heading>
+    <div className={`${props.className || ''} bg-white rounded-2xl py-4`}>
+      <div className='flex justify-between items-center px-4 pb-4'>
+        <Subheading className='font-bold'>Ingredients</Subheading>
+        <div>10 minutes</div>
       </div>
       <div className='pb-2 lg:min-h-screen-minus-nav'>
         {props.ingredients.map((ingredient, index) => (
