@@ -36,12 +36,14 @@ const RecipeDetails = props => {
 
       <div className='block xl:hidden fixed overflow-scroll top-14 inset-x-0 bottom-0 bg-gray-800'>
         <div className='h-1/3 sticky top-0 -z-50'>
+          {/* TODO - Handle there being no photo (probably use a stock photo of the Meals of Change logo) */}
           <Image
             src={props.small_photo}
             alt={`${props.name} photo`}
             layout='fill'
             objectFit='cover'
             objectPosition='50% 50%'
+            className='rounded-2xl'
           />
         </div>
         <div className='h-2/3'>
@@ -71,15 +73,17 @@ const RecipeDetails = props => {
               <div className='px-2'>
                 <Heading className='font-bold'>Ingredients</Heading>
               </div>
-              <div>
+              <div className='pb-2'>
                 {props.ingredients.map((ingredient, index) => (
                   <div
                     key={ingredient.food}
-                    className={`flex items-center px-2 ${
+                    className={`flex items-center px-2 py-2 ${
                       index % 2 === 0 ? 'bg-gray-200' : 'bg-white'
                     }`}
                   >
-                    <div className='basis-1/3 grow-0 shrink-0'>{ingredient.amount}</div>
+                    <div className='basis-1/3 grow-0 shrink-0 text-center text-sm font-light'>
+                      {ingredient.amount}
+                    </div>
                     <div>
                       <div>
                         {ingredient.food}
@@ -92,13 +96,15 @@ const RecipeDetails = props => {
                   </div>
                 ))}
               </div>
-              <div>
+              <div className='pt-2'>
                 {props.steps.map((step, index) => (
                   <div
                     key={step.position}
-                    className={`flex px-2 ${index % 2 === 0 ? 'bg-gray-200' : 'bg-white'}`}
+                    className={`flex px-2 py-4 ${index % 2 === 0 ? 'bg-gray-200' : 'bg-white'}`}
                   >
-                    <div className='basis-1/12 grow-0 shrink-0'>{step.position}</div>
+                    <div className='basis-1/12 grow-0 shrink-0'>
+                      <div>{step.position}</div>
+                    </div>
                     <div>{step.instructions}</div>
                   </div>
                 ))}
