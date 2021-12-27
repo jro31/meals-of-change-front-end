@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -7,8 +7,25 @@ import Title from '../../../components/ui/text/Title';
 
 const RecipeDetails = props => {
   const router = useRouter();
+  const prefaceRef = useRef();
+  const [prefaceOverflows, setPrefaceOverflows] = useState(false);
+  const [prefaceOverflowIsOpen, setPrefaceOverflowIsOpen] = useState(false);
 
   const recipeId = router.query.recipeId;
+
+  const prefaceClick = () => {
+    if (!prefaceOverflows) return;
+
+    setPrefaceOverflowIsOpen(!prefaceOverflowIsOpen);
+  };
+
+  useEffect(() => {
+    if (!props.preface) return;
+
+    if (prefaceRef.current.scrollHeight > prefaceRef.current.offsetHeight) {
+      setPrefaceOverflows(true);
+    }
+  }, []);
 
   return (
     <Fragment>
@@ -30,7 +47,25 @@ const RecipeDetails = props => {
         <div className='h-2/3'>
           <div className='bg-gray-200 rounded-2xl'>
             <div className='py-4 px-2 bg-white rounded-t-2xl mb-2'>
-              <Title className='font-bold'>{props.name}</Title>
+              <div>
+                <Title className='font-bold'>{props.name}</Title>
+              </div>
+              {props.preface && (
+                <div className='pt-2 flex'>
+                  <div
+                    className={`${
+                      prefaceOverflowIsOpen ? '' : 'h-6 overflow-hidden'
+                    } basis-11/12 grow shrink-0`}
+                    ref={prefaceRef}
+                    onClick={prefaceClick}
+                  >
+                    {props.preface}
+                  </div>
+                  {prefaceOverflows && !prefaceOverflowIsOpen && (
+                    <div className='basis-1/12 grow-0 shrink'>...</div>
+                  )}
+                </div>
+              )}
             </div>
             <div className='py-4 bg-white rounded-b-2xl mt-2'>
               <div className='px-2'>
