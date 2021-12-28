@@ -41,25 +41,25 @@ const RegistrationModal = props => {
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
-      <div className='flex flex-col justify-center fixed z-30 h-full w-screen'>
-        <div className='flex h-fit justify-center'>
-          <div className='basis-11/12 grow-0 shrink-0 bg-white px-4 py-4 rounded-2xl'>
-            {modalTitle && <Subheading className='flex-initial'>{modalTitle}</Subheading>}
-            <div className='flex flex-col'>
-              {activeForm === 'login' && (
-                <Fragment>
-                  <LoginForm />
-                  <button onClick={showSignUpFormHandler}>Sign up</button>
-                </Fragment>
-              )}
-              {activeForm === 'sign-up' && (
-                <Fragment>
-                  <SignUpForm />
-                  <button onClick={showLoginFormHandler}>Login</button>
-                </Fragment>
-              )}
-            </div>
-          </div>
+      <div
+        className={`flex flex-col fixed inset-x-1/24 sm:inset-x-1/12 md:inset-x-1/6 lg:inset-x-1/4 xl:inset-x-1/3 ${
+          activeForm === 'sign-up' ? 'top-1/6' : 'top-1/4'
+        } h-fit w-11/12 sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-white z-30 rounded-2xl p-4 overflow-scroll`}
+      >
+        {modalTitle && <Subheading className='flex-initial'>{modalTitle}</Subheading>}
+        <div className='flex flex-col'>
+          {activeForm === 'login' && (
+            <Fragment>
+              <LoginForm />
+              <button onClick={showSignUpFormHandler}>Sign up</button>
+            </Fragment>
+          )}
+          {activeForm === 'sign-up' && (
+            <Fragment>
+              <SignUpForm />
+              <button onClick={showLoginFormHandler}>Login</button>
+            </Fragment>
+          )}
         </div>
       </div>
     </Container>

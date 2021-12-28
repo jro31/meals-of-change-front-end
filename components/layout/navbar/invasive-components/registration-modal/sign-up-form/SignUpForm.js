@@ -126,8 +126,10 @@ const SignUpForm = () => {
         />
         <DisplayNameInput formError={error} setFormError={setError} />
         {error && <p className='text-red-500'>{error}</p>}
-        <Button disabled={disableButton()}>Submit</Button>
       </FormSection>
+      <Button className='w-full' disabled={disableButton()}>
+        Sign-up
+      </Button>
     </Form>
   );
 };
