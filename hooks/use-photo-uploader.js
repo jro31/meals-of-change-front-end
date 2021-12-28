@@ -37,6 +37,10 @@ const usePhotoUploader = () => {
       };
 
       // This part is quite slow. Could it conceivably be done in the background after the photo is chosen, with the resized images saved to state?
+      // TODO - Update sizes of photos which get uploaded. Perhaps just:
+      // large - 1200
+      // small - whatever the card size is
+      // (and get rid of thumbnail/full-size)
       const [thumnailPhoto, smallPhoto, largePhoto, fullSizePhoto] = await resizeImage(photo);
       await uploadPhoto(thumnailPhoto, 'thumbnail');
       await uploadPhoto(smallPhoto, 'small');

@@ -55,7 +55,7 @@ const Navbar = () => {
     <Fragment>
       <div
         className={
-          'flex justify-between items-center h-14 border-b border-gray-200 z-40 px-10 fixed top-0 w-full'
+          'flex justify-between items-center h-14 border-b border-gray-200 z-40 px-4 fixed top-0 w-full'
         }
       >
         <div className='flex items-center'>
