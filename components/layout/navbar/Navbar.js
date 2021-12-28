@@ -60,7 +60,7 @@ const Navbar = () => {
       >
         <div className='flex items-center'>
           <Hamburger onClick={showMainMenuHandler} className='md:hidden' />
-          <Logo onClick={showMainMenuHandler} fontSize={'25px'} className='hidden md:block' />
+          <Logo onClick={showMainMenuHandler} size='50' className='hidden md:block' />
         </div>
         <div className='flex items-center'>
           <div>Search bar</div>
