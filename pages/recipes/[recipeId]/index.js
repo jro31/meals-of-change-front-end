@@ -1,13 +1,9 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Title from '../../../components/ui/text/Title';
 import IngredientsList from '../../../components/pages/recipes/[recipeId]/IngredientsList';
-import Preface from '../../../components/pages/recipes/[recipeId]/Preface';
 import StepsList from '../../../components/pages/recipes/[recipeId]/StepsList';
 import RecipePhoto from '../../../components/pages/recipes/[recipeId]/RecipePhoto';
-import RecipeTitle from '../../../components/pages/recipes/[recipeId]/RecipeTitle';
 import TitleAndPreface from '../../../components/pages/recipes/[recipeId]/TitleAndPreface';
 
 const RecipeDetails = props => {
