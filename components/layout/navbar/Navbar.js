@@ -55,12 +55,12 @@ const Navbar = () => {
     <Fragment>
       <div
         className={
-          'flex justify-between items-center h-14 border-b border-gray-200 z-40 px-10 fixed top-0 w-full bg-white'
+          'flex justify-between items-center h-14 border-b border-gray-200 z-40 px-4 fixed top-0 w-full'
         }
       >
         <div className='flex items-center'>
           <Hamburger onClick={showMainMenuHandler} className='md:hidden' />
-          <Logo onClick={showMainMenuHandler} fontSize={'25px'} className='hidden md:block' />
+          <Logo onClick={showMainMenuHandler} size='50' className='hidden md:block' />
         </div>
         <div className='flex items-center'>
           <div>Search bar</div>

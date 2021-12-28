@@ -17,6 +17,7 @@ module.exports = {
       },
       height: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
+        'full-minus-5rem': 'calc(100% - 5rem)',
         '500px': '500px',
         '700px': '700px',
       },
@@ -52,6 +53,7 @@ module.exports = {
       minHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
         33: '33%',
+        75: '75%',
         '300px': '300px',
         '600px': '600px',
         '900px': '900px',
@@ -59,6 +61,9 @@ module.exports = {
       minWidth: {
         33: '33%',
         75: '75%',
+      },
+      padding: {
+        '1/12': '8.333333%',
       },
       width: {
         108: '27rem',

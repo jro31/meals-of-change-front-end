@@ -57,9 +57,11 @@ const StepsInput = () => {
           </div>
         );
       })}
+      {/* TODO - Pressing enter should also add a new step */}
       <button disabled={!canAddNewStep()} onClick={addNewStepHandler}>
         Add another step
       </button>
+      {/* TODO - If finish is clicked and the input is empty, it should be removed */}
       <button onClick={finishEditingHandler}>Finish</button>
     </Fragment>
   );
