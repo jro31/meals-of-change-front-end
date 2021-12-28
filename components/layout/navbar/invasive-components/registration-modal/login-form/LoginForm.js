@@ -10,6 +10,7 @@ import { loginFormActions } from '../../../../../../store/login-form';
 import { loginStatusActions } from '../../../../../../store/login-status';
 import { registrationModalActions } from '../../../../../../store/registration-modal';
 import Button from '../../../../../ui/Button';
+import TextFreeLogo from '../../../../../ui/TextFreeLogo';
 
 const LoginForm = () => {
   const router = useRouter();
@@ -65,8 +66,6 @@ const LoginForm = () => {
 
   const disableButton = () => !formIsValid() || isSubmitting;
 
-  // TODO - Handle 'isSubmitting' being true
-  // See https://tailwindcss.com/docs/animation for some animations
   return (
     <Form onSubmit={submitHandler}>
       <FormSection>
@@ -92,8 +91,16 @@ const LoginForm = () => {
           setFormError={setError}
         />
         {error && <p className='text-red-500'>{error}</p>}
-        <Button disabled={disableButton()}>Login</Button>
       </FormSection>
+      <Button className='w-full' disabled={disableButton()}>
+        {isSubmitting ? (
+          <div className='flex justify-center'>
+            <TextFreeLogo className='animate-spin' size='30' />
+          </div>
+        ) : (
+          'Login'
+        )}
+      </Button>
     </Form>
   );
 };
