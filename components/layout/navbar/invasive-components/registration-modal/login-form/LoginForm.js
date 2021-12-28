@@ -92,7 +92,7 @@ const LoginForm = () => {
         />
         {error && <p className='text-red-500'>{error}</p>}
       </FormSection>
-      <Button className='w-full' disabled={disableButton()}>
+      <Button className='w-full' theme='submit' disabled={disableButton()}>
         {isSubmitting ? (
           <div className='flex justify-center'>
             <TextFreeLogo className='animate-spin' size='30' />

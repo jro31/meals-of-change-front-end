@@ -51,13 +51,27 @@ const RegistrationModal = props => {
           {activeForm === 'login' && (
             <Fragment>
               <LoginForm />
-              <button onClick={showSignUpFormHandler}>Sign up</button>
+              <div className='flex justify-center mt-4'>
+                <div
+                  className='cursor-pointer text-blue-500 hover:text-blue-600'
+                  onClick={showSignUpFormHandler}
+                >
+                  Not yet registered?
+                </div>
+              </div>
             </Fragment>
           )}
           {activeForm === 'sign-up' && (
             <Fragment>
               <SignUpForm />
-              <button onClick={showLoginFormHandler}>Login</button>
+              <div className='flex justify-center mt-4'>
+                <div
+                  className='cursor-pointer text-blue-500 hover:text-blue-600'
+                  onClick={showLoginFormHandler}
+                >
+                  Already have an account?
+                </div>
+              </div>
             </Fragment>
           )}
         </div>

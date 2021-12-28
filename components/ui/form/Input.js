@@ -5,7 +5,7 @@ import Label from './Label';
 const Input = props => {
   return (
     <Fragment>
-      <Label htmlFor={props.id}>{props.label}</Label>
+      {props.label && <Label htmlFor={props.id}>{props.label}</Label>}
       <input
         type={props.type || 'text'}
         required={props.required || false}
@@ -15,7 +15,9 @@ const Input = props => {
         onBlur={props.onBlur || null}
         onKeyDown={props.onKeyDown || null}
         onKeyUp={props.onKeyUp || null}
-        className={`border border-gray-500 p-2 text-lg ${props.className || ''}`} // Note that the placeholder can be styled with Tailwind
+        className={`border border-slate-300 bg-slate-100 p-2 text-lg rounded-lg placeholder:text-slate-300 focus:outline-1 focus:outline-slate-400 ${
+          props.className || ''
+        }`}
         placeholder={props.placeholder || null}
         checked={props.type === 'checkbox' ? props.checked : null}
       />

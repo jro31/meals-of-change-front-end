@@ -36,9 +36,9 @@ const DisplayNameInput = props => {
           value={enteredValue}
           onChange={inputChangeHandler}
           onBlur={inputBlurHandler}
-          label='Display name'
           showError={inputIsTouched && !enteredValueIsValid}
           errorMessage='Must be between 4 and 20 characters'
+          placeholder='Display name'
         />
       </InputContainer>
     </FormLine>
