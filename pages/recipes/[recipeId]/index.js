@@ -24,10 +24,11 @@ const RecipeDetails = props => {
 
       <div className='flex flex-col lg:flex-row 2xl:justify-center fixed overflow-scroll lg:overflow-auto top-14 inset-x-0 bottom-0 -z-10 bg-slate-600'>
         {/* Small screen */}
-        <div className='lg:hidden basis-1/3 grow-0 shrink-0 sticky top-0 -z-50'>
-          {/* TODO - Handle there being no photo (probably use a stock photo of the Meals of Change logo) */}
-          <RecipePhoto recipeName={props.name} photo={props.large_photo} />
-        </div>
+        {props.large_photo && (
+          <div className='lg:hidden basis-1/3 grow-0 shrink-0 sticky top-0 -z-50'>
+            <RecipePhoto recipeName={props.name} photo={props.large_photo} />
+          </div>
+        )}
         <div className='lg:hidden basis-2/3 grow shrink text-gray-300'>
           <div className='bg-slate-800 rounded-2xl'>
             <TitleAndPreface title={props.name} preface={props.preface} />
@@ -40,9 +41,11 @@ const RecipeDetails = props => {
 
         {/* Large screen */}
         <div className='hidden lg:flex 2xl:hidden flex-col basis-2/3 grow shrink overflow-scroll text-gray-300'>
-          <div className='basis-2/3 grow-0 shrink-0 sticky top-0 -z-50'>
-            <RecipePhoto recipeName={props.name} photo={props.large_photo} />
-          </div>
+          {props.large_photo && (
+            <div className='basis-2/3 grow-0 shrink-0 sticky top-0 -z-50'>
+              <RecipePhoto recipeName={props.name} photo={props.large_photo} />
+            </div>
+          )}
           <div className='basis-1/3 grow shrink'>
             <div className='rounded-2xl'>
               <TitleAndPreface title={props.name} preface={props.preface} />
@@ -59,12 +62,14 @@ const RecipeDetails = props => {
         </div>
 
         {/* 2xl screen */}
-        <div className='hidden 2xl:block basis-3/5 overflow-scroll text-gray-300'>
-          <div className='h-full-minus-5rem sticky top-0 -z-50'>
-            <RecipePhoto recipeName={props.name} photo={props.large_photo} />
-          </div>
+        <div className='hidden 2xl:block basis-3/5 grow-0 shrink-0 overflow-scroll text-gray-300'>
+          {props.large_photo && (
+            <div className='h-full-minus-5rem sticky top-0 -z-50'>
+              <RecipePhoto recipeName={props.name} photo={props.large_photo} />
+            </div>
+          )}
           <div className='flex justify-center min-h-screen-minus-nav'>
-            <div className='rounded-2xl'>
+            <div className='rounded-2xl w-full'>
               <TitleAndPreface title={props.name} preface={props.preface} />
               <div className='bg-slate-800 rounded-b-2xl h-full'>
                 <StepsList steps={props.steps} />
