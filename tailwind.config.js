@@ -52,6 +52,9 @@ module.exports = {
           '100%': { transform: 'translateY(-100vh)' },
         },
       },
+      margin: {
+        'half-screen-minus-nav': 'calc((100vh - 3.5rem) / 2)',
+      },
       maxHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
       },
@@ -60,6 +63,7 @@ module.exports = {
       },
       minHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
+        'half-screen-minus-nav': 'calc((100vh - 3.5rem) / 2)',
         33: '33%',
         75: '75%',
         '300px': '300px',

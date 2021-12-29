@@ -4,7 +4,7 @@ import Subheading from './text/Subheading';
 
 const RecipeCard = props => {
   return (
-    <div className={`h-full pt-0 px-3 pb-4 w-108 max-w-screen-minus-padding`}>
+    <div className={`h-full pt-0 pr-6 pb-4 w-108 max-w-screen-minus-padding`}>
       <Link href={`/recipes/${props.recipe.id}`} passHref>
         <a>
           <div className={`flex flex-col h-full shadow-md ${props.className || ''}`}>
@@ -14,7 +14,7 @@ const RecipeCard = props => {
                   src={props.recipe.small_photo}
                   alt={`${props.recipe.name} photo`}
                   layout='fill'
-                  className='object-cover -z-10'
+                  className='object-cover'
                 />
               )}
             </div>
