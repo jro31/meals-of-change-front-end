@@ -48,7 +48,7 @@ const LoginForm = () => {
 
       if (data && data.logged_in) {
         setIsSubmitting(false);
-        dispatch(loginStatusActions.login());
+        dispatch(loginStatusActions.login(data.user));
         dispatch(registrationModalActions.closeModal());
         if (redirectPath) router.push(redirectPath);
         dispatch(loginFormActions.resetForm());

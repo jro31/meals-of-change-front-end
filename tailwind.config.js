@@ -52,6 +52,9 @@ module.exports = {
           '100%': { transform: 'translateY(-100vh)' },
         },
       },
+      maxHeight: {
+        'screen-minus-nav': 'calc(100vh - 3.5rem)',
+      },
       maxWidth: {
         'screen-minus-padding': 'calc(100vw - 40px)',
       },

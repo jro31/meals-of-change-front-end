@@ -14,9 +14,9 @@ const MainMenu = props => {
 
   const transitionClassNames = {
     enter: '',
-    enterActive: 'animate-slide-in-right md:animate-slide-in-down',
+    enterActive: 'animate-slide-in-right lg:animate-slide-in-down',
     exit: '',
-    exitActive: 'animate-slide-out-left md:animate-slide-out-up',
+    exitActive: 'animate-slide-out-left lg:animate-slide-out-up',
   };
 
   const navigateTo = path => {
@@ -36,32 +36,31 @@ const MainMenu = props => {
   };
 
   return (
-    // TODO - Fix main menu text going over (rather than under) navbar during transition
     <Container
       in={mainMenuIsOpen}
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
-      <div className='flex fixed top-14 left-0 bg-white z-30 p-10 h-screen-minus-nav md:h-auto md:min-h-33 min-w-75 md:w-full'>
+      <div className='flex flex-col lg:flex-row fixed top-14 left-0 bg-white z-30 p-10 h-screen-minus-nav lg:h-auto lg:min-h-33 lg:max-h-screen-minus-nav w-3/4 lg:w-full max-w-full'>
         <div className='flex-initial pr-16'>
           <div onClick={() => navigateTo('/')} className='font-bold cursor-pointer'>
             Home
           </div>
         </div>
-        <div className='flex flex-col flex-grow-only px-16'>
+        <div className='flex flex-col flex-grow-only my-8 lg:my-0 lg:px-16'>
           <div
             onClick={() => navigateTo('/recipes')}
-            className='flex-initial pb-2 font-bold cursor-pointer'
+            className='flex-initial mb-4 font-bold cursor-pointer'
           >
             Recipes
           </div>
-          <div className='flex-grow-only columns-2xs pt-2'>
+          <div className='flex-grow-only columns-2 lg:columns-3 xl:columns-2xs'>
             {tags.map(tag => {
               return (
                 <div
                   key={tag}
                   onClick={() => navigateTo(`/recipes?tag_name=${tag.toLowerCase()}`)}
-                  className='cursor-pointer'
+                  className='cursor-pointer leading-10'
                 >
                   {tag}
                 </div>
