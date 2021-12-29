@@ -21,6 +21,11 @@ module.exports = {
         '500px': '500px',
         '700px': '700px',
       },
+      inset: {
+        '1/6': '16.666667%',
+        '1/12': '8.333333%',
+        '1/24': '4.166667%',
+      },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
@@ -46,6 +51,9 @@ module.exports = {
         slideOutUp: {
           '100%': { transform: 'translateY(-100vh)' },
         },
+      },
+      maxHeight: {
+        'screen-minus-nav': 'calc(100vh - 3.5rem)',
       },
       maxWidth: {
         'screen-minus-padding': 'calc(100vw - 40px)',

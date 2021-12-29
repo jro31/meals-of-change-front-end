@@ -1,16 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  loggedInStatus: 'NOT_LOGGED_IN',
+  user: {},
+};
+
 const loginStatusSlice = createSlice({
   name: 'login-status',
-  initialState: {
-    loggedInStatus: 'NOT_LOGGED_IN',
-  },
+  initialState,
   reducers: {
-    login(state) {
+    login(state, action) {
       state.loggedInStatus = 'LOGGED_IN';
+      state.user = action.payload;
     },
     logout(state) {
       state.loggedInStatus = 'NOT_LOGGED_IN';
+      state.user = initialState.user;
     },
   },
 });

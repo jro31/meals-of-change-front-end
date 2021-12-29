@@ -41,19 +41,37 @@ const RegistrationModal = props => {
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
-      <div className='flex flex-col fixed bg-white z-30 h-1/3 w-1/3 top-1/3 left-1/3'>
+      <div
+        className={`flex flex-col fixed inset-x-1/24 sm:inset-x-1/12 md:inset-x-1/6 lg:inset-x-1/4 xl:inset-x-1/3 ${
+          activeForm === 'sign-up' ? 'top-1/6' : 'top-1/4'
+        } h-fit w-11/12 sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-white z-30 rounded-2xl p-4 lg:p-6 overflow-scroll`}
+      >
         {modalTitle && <Subheading className='flex-initial'>{modalTitle}</Subheading>}
-        <div className='flex'>
+        <div className='flex flex-col'>
           {activeForm === 'login' && (
             <Fragment>
               <LoginForm />
-              <button onClick={showSignUpFormHandler}>Sign up</button>
+              <div className='flex justify-center mt-4'>
+                <div
+                  className='cursor-pointer text-blue-500 hover:text-blue-600'
+                  onClick={showSignUpFormHandler}
+                >
+                  Not yet registered?
+                </div>
+              </div>
             </Fragment>
           )}
           {activeForm === 'sign-up' && (
             <Fragment>
               <SignUpForm />
-              <button onClick={showLoginFormHandler}>Login</button>
+              <div className='flex justify-center mt-4'>
+                <div
+                  className='cursor-pointer text-blue-500 hover:text-blue-600'
+                  onClick={showLoginFormHandler}
+                >
+                  Already have an account?
+                </div>
+              </div>
             </Fragment>
           )}
         </div>

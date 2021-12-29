@@ -50,9 +50,9 @@ const PasswordInput = props => {
           value={props.enteredPassword}
           onChange={inputChangeHandler}
           onBlur={inputBlurHandler}
-          label={props.confirmationInput ? 'Confirm password' : 'Password'}
           showError={props.inputIsTouched && !props.enteredPasswordIsValid}
           errorMessage={errorMessage()}
+          placeholder={props.confirmationInput ? 'Confirm password' : 'Password'}
         />
       </InputContainer>
     </FormLine>

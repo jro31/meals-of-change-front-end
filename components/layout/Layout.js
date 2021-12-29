@@ -15,7 +15,7 @@ const Layout = props => {
     const data = await response.json();
 
     if (data.logged_in) {
-      dispatch(loginStatusActions.login());
+      dispatch(loginStatusActions.login(data.user));
     }
   }, [dispatch]);
 

@@ -34,9 +34,9 @@ const EmailInput = props => {
           value={props.enteredEmail}
           onChange={inputChangeHandler}
           onBlur={inputBlurHandler}
-          label='Email'
           showError={props.inputIsTouched && !props.enteredEmailIsValid}
-          errorMessage='Entered a valid email address'
+          errorMessage='Enter a valid email address'
+          placeholder='Email'
         />
       </InputContainer>
     </FormLine>
