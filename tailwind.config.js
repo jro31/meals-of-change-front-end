@@ -52,14 +52,18 @@ module.exports = {
           '100%': { transform: 'translateY(-100vh)' },
         },
       },
+      margin: {
+        'half-screen-minus-nav': 'calc((100vh - 3.5rem) / 2)',
+      },
       maxHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
       },
       maxWidth: {
-        'screen-minus-padding': 'calc(100vw - 40px)',
+        'screen-minus-40px': 'calc(100vw - 40px)',
       },
       minHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
+        'half-screen-minus-nav': 'calc((100vh - 3.5rem) / 2)',
         33: '33%',
         75: '75%',
         '300px': '300px',
@@ -72,6 +76,9 @@ module.exports = {
       },
       padding: {
         '1/12': '8.333333%',
+      },
+      scrollMargin: {
+        '1/12-screen': '8.333333vw',
       },
       width: {
         108: '27rem',

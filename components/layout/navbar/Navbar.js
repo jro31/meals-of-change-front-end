@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 
 import Logo from '../../ui/Logo';
-import Hamburger from '../../ui/Hamburger';
 import RegistrationModal from './invasive-components/registration-modal/RegistrationModal';
 import MainMenu from './invasive-components/MainMenu';
 import ProfileMenu from './invasive-components/ProfileMenu';
@@ -15,6 +14,7 @@ import { registrationModalActions } from '../../../store/registration-modal';
 import { signUpFormActions } from '../../../store/sign-up-form';
 
 import profileIcon from '../../../public/icons/profile.svg';
+import Button from '../../ui/Button';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -59,12 +59,11 @@ const Navbar = () => {
         }
       >
         <div className='flex items-center'>
-          <Hamburger onClick={showMainMenuHandler} className='md:hidden' />
-          <Logo onClick={showMainMenuHandler} size='50' className='hidden md:block' />
+          <Logo onClick={showMainMenuHandler} size='50' />
         </div>
         <div className='flex items-center'>
           <div>Search bar</div>
-          {!isLoggedIn && <div onClick={showRegistrationModalHandler}>Login</div>}
+          {!isLoggedIn && <Button onClick={showRegistrationModalHandler}>Login</Button>}
           {isLoggedIn && (
             <Image
               onClick={showProfileMenuHandler}

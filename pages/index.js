@@ -1,20 +1,39 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 
-import SplitBanner from '../components/pages/homepage/SplitBanner';
-import Heading from '../components/ui/text/Heading';
 import HorizontalRecipeList from '../components/ui/recipe-lists/HorizontalRecipeList';
 
 const HomePage = props => {
   return (
     <Fragment>
       <Head>
-        <title>TEST TITLE</title>
+        <title>Meals of Change</title>
         {/* TODO - Add Meta data here */}
       </Head>
-      <SplitBanner />
-      <Heading className='ml-10'>Latest recipes</Heading>
-      <HorizontalRecipeList recipes={props.recipes} tiers={1} height='40vh' />
+      <div className='flex flex-col fixed overflow-scroll top-14 inset-x-0 bottom-0 bg-slate-600 text-gray-300 -z-10'>
+        <div className='w-full h-screen-minus-nav fixed -z-20'>
+          {/* TODO - Resize this image */}
+          <Image
+            src='/../public/images/homepage-buddah-bowl.jpg'
+            alt='Vegan Buddah bowl'
+            layout='fill'
+            objectFit='cover'
+            objectPosition='right 50%'
+          />
+        </div>
+        <div className='mt-half-screen-minus-nav min-h-half-screen-minus-nav -z-10'>
+          <div className='bg-gradient-to-b from-transparent to-black pb-1'>
+            <div className='flex flex-col px-1/12 gap-3'>
+              <div className='text-6xl font-serif font-extralight text-white'>Meals of Change</div>
+              <div className='text-3xl font-thin text-gray-300'>Plant-based recipes by you</div>
+            </div>
+          </div>
+          <div className='bg-black -mt-1 pt-10'>
+            <HorizontalRecipeList recipes={props.recipes} tiers={1} height='40vh' />
+          </div>
+        </div>
+      </div>
     </Fragment>
   );
 };
