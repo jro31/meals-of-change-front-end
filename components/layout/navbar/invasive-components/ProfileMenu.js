@@ -61,12 +61,19 @@ const ProfileMenu = props => {
         <div className='flex flex-col gap-6'>
           {/* TODO - <div>Account</div> */}
           {user && user.id && (
-            <div onClick={() => navigateTo(`/recipes?user_id=${user.id}`)}>My recipes</div>
+            <div
+              className='cursor-pointer'
+              onClick={() => navigateTo(`/recipes?user_id=${user.id}`)}
+            >
+              My recipes
+            </div>
           )}
           {/* TODO - <div>Bookmarked recipes</div> */}
         </div>
         <div>
-          <div onClick={logoutHandler}>Logout</div>
+          <div className='cursor-pointer' onClick={logoutHandler}>
+            Logout
+          </div>
         </div>
       </div>
     </Container>

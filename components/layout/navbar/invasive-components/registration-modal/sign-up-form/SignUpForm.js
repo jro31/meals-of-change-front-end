@@ -11,6 +11,7 @@ import { registrationModalActions } from '../../../../../../store/registration-m
 import { signUpFormActions } from '../../../../../../store/sign-up-form';
 import Button from '../../../../../ui/Button';
 import DisplayNameInput from './DisplayNameInput';
+import TextFreeLogo from '../../../../../ui/TextFreeLogo';
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -88,7 +89,6 @@ const SignUpForm = () => {
 
   const disableButton = () => !formIsValid() || isSubmitting;
 
-  // TODO - Handle 'isSubmitting' being true
   return (
     <Form onSubmit={submitHandler}>
       <FormSection>
@@ -127,8 +127,14 @@ const SignUpForm = () => {
         <DisplayNameInput formError={error} setFormError={setError} />
         {error && <p className='text-red-500'>{error}</p>}
       </FormSection>
-      <Button className='w-full' disabled={disableButton()}>
-        Sign-up
+      <Button className='w-full' theme='submit' disabled={disableButton()}>
+        {isSubmitting ? (
+          <div className='flex justify-center'>
+            <TextFreeLogo className='animate-spin' size='30' />
+          </div>
+        ) : (
+          'Sign-up'
+        )}
       </Button>
     </Form>
   );
