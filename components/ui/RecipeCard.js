@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const RecipeCard = props => {
   return (
-    <div className={`h-full pt-0 pr-6 pb-4 w-108 max-w-screen-minus-padding`}>
+    <div className={`h-full pt-0 pr-6 pb-4 w-96 xl:w-108 max-w-screen-minus-40px`}>
       <Link href={`/recipes/${props.recipe.id}`} passHref>
         <a>
           <div className={`flex flex-col h-full ${props.className || ''}`}>

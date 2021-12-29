@@ -35,7 +35,7 @@ const HorizontalRecipeList = props => {
         return (
           <div
             key={recipe.id}
-            className={`py-4 snap-start scroll-ml-3 ${tiersClass()} ${
+            className={`py-4 snap-start scroll-ml-1/12-screen ${tiersClass()} ${
               index < props.tiers ? 'pl-1/12' : ''
             }`}
             ref={recipe === props.recipes[0] ? firstCardContainerRef : null}

@@ -59,7 +59,7 @@ module.exports = {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
       },
       maxWidth: {
-        'screen-minus-padding': 'calc(100vw - 40px)',
+        'screen-minus-40px': 'calc(100vw - 40px)',
       },
       minHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
@@ -76,6 +76,9 @@ module.exports = {
       },
       padding: {
         '1/12': '8.333333%',
+      },
+      scrollMargin: {
+        '1/12-screen': '8.333333vw',
       },
       width: {
         108: '27rem',
