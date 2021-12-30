@@ -17,10 +17,8 @@ const RecipeCard = props => {
                 />
               )}
             </div>
-            <div className='flex flex-col justify-between h-1/4 pt-2'>
-              <div className='text-lg font-light text-white overflow-scroll'>
-                {props.recipe.name}
-              </div>
+            <div className='flex flex-col h-1/4 pt-2'>
+              <div className='text-lg font-light text-white'>{props.recipe.name}</div>
               <div className='flex w-full justify-between font-light'>
                 <div>By {props.recipe.author}</div>
                 <div>{`${props.recipe.time_minutes} minutes`}</div>

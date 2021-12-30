@@ -19,7 +19,7 @@ const IngredientsList = props => {
               index % 2 === 0 ? 'bg-slate-500' : 'bg-slate-800'
             }`}
           >
-            <div className='basis-1/3 grow-0 shrink-0 text-center text-sm font-light'>
+            <div className='basis-1/3 md:basis-1/4 lg:basis-1/3 grow-0 shrink-0 text-center text-sm font-light'>
               {ingredient.amount}
             </div>
             <div>

@@ -18,14 +18,14 @@ const RecipeDetails = props => {
         {/* TODO - Add Meta data here */}
       </Head>
 
-      <div className='flex flex-col lg:flex-row 2xl:justify-center fixed overflow-scroll lg:overflow-auto top-14 inset-x-0 bottom-0 -z-10 bg-black'>
-        <div className='flex 2xl:block flex-col basis-full lg:basis-2/3 2xl:basis-3/5 grow 2xl:grow-0 shrink 2xl:shrink-0 overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
+      <div className='flex flex-col lg:flex-row 2xl:justify-center fixed top-14 inset-x-0 bottom-0 -z-10 bg-black'>
+        <div className='flex 2xl:block flex-col basis-full lg:basis-2/3 xl:basis-3/4 2xl:basis-3/5 grow 2xl:grow-0 shrink 2xl:shrink-0 overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
           {props.large_photo && (
-            <div className='basis-1/2 lg:basis-2/3 grow-0 shrink-0 sticky top-0 -z-50 2xl:h-screen-minus-nav'>
+            <div className='basis-2/3 sm:basis-3/4 md:basis-5/6 lg:basis-2/3 xl:basis-4/5 grow-0 shrink-0 sticky top-0 -z-50 2xl:h-screen-minus-nav'>
               <RecipePhoto recipeName={props.name} photo={props.large_photo} />
             </div>
           )}
-          <div className='basis-1/2 lg:basis-1/3 grow shrink -mt-36 2xl:flex 2xl:justify-center 2xl:min-h-screen-minus-nav-minus-13rem 2xl:mx-px'>
+          <div className='basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/3 xl:basis-1/5 grow shrink -mt-36 2xl:flex 2xl:justify-center 2xl:min-h-screen-minus-nav-minus-13rem 2xl:mx-px'>
             <div className='rounded-2xl'>
               <TitleAndPreface title={props.name} preface={props.preface} />
               <div className='bg-slate-800 rounded-b-2xl min-h-screen-minus-nav 2xl:min-h-0 2xl:h-full'>
@@ -35,7 +35,7 @@ const RecipeDetails = props => {
             </div>
           </div>
         </div>
-        <div className='hidden lg:block basis-1/3 2xl:basis-1/5 grow-0 shrink-0 overflow-scroll'>
+        <div className='hidden lg:block basis-1/3 xl:basis-1/4 2xl:basis-1/5 grow-0 shrink-0 overflow-scroll'>
           <IngredientsList ingredients={props.ingredients} />
         </div>
       </div>
