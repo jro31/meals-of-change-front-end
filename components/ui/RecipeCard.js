@@ -7,7 +7,7 @@ const RecipeCard = props => {
       <Link href={`/recipes/${props.recipe.id}`} passHref>
         <a>
           <div className={`flex flex-col h-full ${props.className || ''}`}>
-            <div className='h-4/5 relative border border-gray-300 rounded-2xl shadow-sm shadow-gray-300'>
+            <div className='h-4/5 relative border border-slate-200 rounded-2xl shadow-sm shadow-slate-200'>
               {props.recipe.small_photo && (
                 <Image
                   src={props.recipe.small_photo}

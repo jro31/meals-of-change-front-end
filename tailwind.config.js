@@ -18,8 +18,8 @@ module.exports = {
       height: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
         'full-minus-5rem': 'calc(100% - 5rem)',
-        '500px': '500px',
-        '700px': '700px',
+        '40px': '40px',
+        '50px': '50px',
       },
       inset: {
         '1/6': '16.666667%',
@@ -64,6 +64,7 @@ module.exports = {
       minHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
         'half-screen-minus-nav': 'calc((100vh - 3.5rem) / 2)',
+        'screen-minus-nav-minus-8rem': 'calc(100vh - 3.5rem - 8rem)',
         33: '33%',
         75: '75%',
         '300px': '300px',
@@ -73,6 +74,7 @@ module.exports = {
       minWidth: {
         33: '33%',
         75: '75%',
+        screen: '100vw',
       },
       padding: {
         '1/12': '8.333333%',
@@ -80,8 +82,13 @@ module.exports = {
       scrollMargin: {
         '1/12-screen': '8.333333vw',
       },
+      transitionDuration: {
+        400: '400ms',
+      },
       width: {
         108: '27rem',
+        '40px': '40px',
+        '50px': '50px',
       },
     },
   },

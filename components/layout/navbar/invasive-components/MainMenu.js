@@ -41,7 +41,7 @@ const MainMenu = props => {
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
-      <div className='flex flex-col lg:flex-row fixed top-14 left-0 bg-white z-30 p-10 h-screen-minus-nav lg:h-auto lg:min-h-33 lg:max-h-screen-minus-nav w-3/4 lg:w-full max-w-full'>
+      <div className='flex flex-col lg:flex-row fixed top-14 left-0 bg-slate-800 z-30 p-10 h-screen-minus-nav lg:h-auto lg:min-h-33 lg:max-h-screen-minus-nav w-3/4 lg:w-full max-w-full text-white'>
         <div className='flex-initial pr-16'>
           <div onClick={() => navigateTo('/')} className='font-bold cursor-pointer'>
             Home
