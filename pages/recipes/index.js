@@ -46,13 +46,13 @@ const RecipeIndex = props => {
     const recipeListHeight = recipeListContainerRef.current.offsetHeight;
 
     switch (true) {
-      case recipeListHeight <= 750:
+      case recipeListHeight <= 750: // Translates to screen height of less than 915px
         setTiers(1);
         return;
-      case recipeListHeight < 1125:
+      case recipeListHeight < 1125: // Translates to screen height of 915px - 1288px
         setTiers(2);
         return;
-      case recipeListHeight >= 1125:
+      case recipeListHeight >= 1125: // Translates to screen height of more than 1288px
         setTiers(3);
         return;
       default:
@@ -74,7 +74,7 @@ const RecipeIndex = props => {
         {/* TODO - Add Meta data here */}
       </Head>
 
-      <div className='flex flex-col fixed top-14 inset-x-0 bottom-0 bg-black min-h-screen-minus-nav'>
+      <div className='flex flex-col fixed top-14 inset-x-0 bottom-0 bg-black min-h-screen-minus-nav -z-10'>
         <div className='pl-1/12 my-6 grow-0 shrink'>
           <Title>{title || 'Recipes'}</Title>
         </div>
