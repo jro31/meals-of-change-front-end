@@ -67,9 +67,6 @@ module.exports = {
         'screen-minus-nav-minus-13rem': 'calc(100vh - 3.5rem - 13rem)',
         33: '33%',
         75: '75%',
-        '300px': '300px',
-        '600px': '600px',
-        '900px': '900px',
       },
       minWidth: {
         33: '33%',

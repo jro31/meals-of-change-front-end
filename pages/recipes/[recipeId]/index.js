@@ -26,9 +26,9 @@ const RecipeDetails = props => {
             </div>
           )}
           <div className='basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/4 grow shrink -mt-36 xl:flex xl:justify-center xl:min-h-screen-minus-nav-minus-13rem xl:mx-px'>
-            <div className='rounded-2xl'>
+            <div className='rounded-2xl basis-full'>
               <TitleAndPreface title={props.name} preface={props.preface} />
-              <div className='bg-slate-800 rounded-b-2xl min-h-screen-minus-nav xl:min-h-0 xl:h-full'>
+              <div className='bg-slate-800 min-h-screen-minus-nav xl:min-h-0 xl:h-full'>
                 <IngredientsList className='lg:hidden' ingredients={props.ingredients} />
                 <StepsList steps={props.steps} />
               </div>

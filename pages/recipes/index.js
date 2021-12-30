@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
@@ -7,6 +7,7 @@ import Title from '../../components/ui/text/Title';
 
 const RecipeIndex = props => {
   const router = useRouter();
+  const recipeListContainerRef = useRef();
   const [tiers, setTiers] = useState(1);
   const [recipes, setRecipes] = useState(props.recipes);
   const [title, setTitle] = useState('');
@@ -42,14 +43,16 @@ const RecipeIndex = props => {
   }, [router.query, props.recipes, router.asPath]);
 
   const setListTiers = () => {
+    const recipeListHeight = recipeListContainerRef.current.offsetHeight;
+
     switch (true) {
-      case window.innerHeight <= 600:
+      case recipeListHeight <= 750:
         setTiers(1);
         return;
-      case window.innerHeight < 1000:
+      case recipeListHeight < 1125:
         setTiers(2);
         return;
-      case window.innerHeight >= 1000:
+      case recipeListHeight >= 1125:
         setTiers(3);
         return;
       default:
@@ -62,14 +65,27 @@ const RecipeIndex = props => {
     setListTiers();
   }, [fetchRecipes]);
 
+  // TODO - Handle no recipes being returned
+  // TODO - Handle user scrolling to the last recipe
   return (
     <Fragment>
       <Head>
-        <title>TEST TITLE</title>
+        <title>{title || 'Recipes'}</title>
         {/* TODO - Add Meta data here */}
       </Head>
-      <Title>{title || 'Recipes'}</Title>
-      <HorizontalRecipeList height='70vh' recipes={recipes} tiers={tiers} />
+
+      <div className='flex flex-col fixed top-14 inset-x-0 bottom-0 bg-black min-h-screen-minus-nav'>
+        <div className='pl-1/12 my-6 grow-0 shrink'>
+          <Title>{title || 'Recipes'}</Title>
+        </div>
+        <div className='grow shrink-0' ref={recipeListContainerRef}>
+          <HorizontalRecipeList
+            height='calc(100vh - 3.5rem - 108px)'
+            recipes={recipes}
+            tiers={tiers}
+          />
+        </div>
+      </div>
     </Fragment>
   );
 };
