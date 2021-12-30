@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  registrationModalIsOpen: false,
+  activeForm: 'login',
+  modalTitle: '',
+  loginRedirectPath: '',
+};
+
 const registrationModalSlice = createSlice({
   name: 'registration-modal',
-  initialState: {
-    registrationModalIsOpen: false,
-    activeForm: 'login',
-    modalTitle: '',
-    loginRedirectPath: '',
-  },
+  initialState,
   reducers: {
     openModal(state) {
       state.registrationModalIsOpen = true;
@@ -15,6 +17,8 @@ const registrationModalSlice = createSlice({
     closeModal(state) {
       state.registrationModalIsOpen = false;
       state.activeForm = 'login';
+      state.modalTitle = initialState.modalTitle;
+      state.loginRedirectPath = initialState.loginRedirectPath;
     },
     showLoginForm(state) {
       state.activeForm = 'login';
