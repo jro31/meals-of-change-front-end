@@ -1,7 +1,7 @@
 const Title = props => {
   return (
     <h1
-      className={`text-2xl leading-6 sm:text-3xl lg:text-4xl 2xl:text-6xl font-serif ${
+      className={`text-5xl lg:text-6xl font-serif font-extralight text-white ${
         props.className || ''
       }`}
     >

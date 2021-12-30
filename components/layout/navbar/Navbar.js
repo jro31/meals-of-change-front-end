@@ -54,24 +54,32 @@ const Navbar = () => {
   return (
     <Fragment>
       <div
-        className={
-          'flex justify-between items-center h-14 border-b border-gray-200 z-40 px-4 fixed top-0 w-full bg-white'
-        }
+        className={`flex justify-between items-center h-14 px-4 fixed top-0 w-full transition-colors duration-400 ${
+          mainMenuIsOpen || profileMenuIsOpen ? 'bg-slate-800' : 'bg-transparent'
+        }`}
       >
         <div className='flex items-center'>
-          <Logo onClick={showMainMenuHandler} size='50' />
+          <Logo className='cursor-pointer' onClick={showMainMenuHandler} size='50' />
         </div>
         <div className='flex items-center'>
           <div>Search bar</div>
-          {!isLoggedIn && <Button onClick={showRegistrationModalHandler}>Login</Button>}
+          {!isLoggedIn && (
+            <Button theme='cancel' onClick={showRegistrationModalHandler}>
+              Login
+            </Button>
+          )}
           {isLoggedIn && (
-            <Image
-              onClick={showProfileMenuHandler}
-              src={profileIcon}
-              alt='Profile icon'
-              width={30}
-              height={30}
-            />
+            <div className='flex justify-center items-center rounded-full w-50px h-50px bg-white/40 '>
+              <div className='relative w-40px h-40px'>
+                <Image
+                  onClick={showProfileMenuHandler}
+                  src={profileIcon}
+                  alt='Profile icon'
+                  layout='fill'
+                  className=''
+                />
+              </div>
+            </div>
           )}
         </div>
       </div>

@@ -8,7 +8,7 @@ const RecipePhoto = props => {
       layout='fill'
       objectFit='cover'
       objectPosition='50% 50%'
-      className='rounded-2xl'
+      className='rounded-t-2xl'
     />
   );
 };

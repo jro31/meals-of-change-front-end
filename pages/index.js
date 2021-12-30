@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 import HorizontalRecipeList from '../components/ui/recipe-lists/HorizontalRecipeList';
+import Title from '../components/ui/text/Title';
+import Subheading from '../components/ui/text/Subheading';
 
 const HomePage = props => {
   return (
@@ -11,7 +13,7 @@ const HomePage = props => {
         <title>Meals of Change</title>
         {/* TODO - Add Meta data here */}
       </Head>
-      <div className='flex flex-col fixed overflow-scroll top-14 inset-x-0 bottom-0 bg-slate-600 text-gray-300 -z-10'>
+      <div className='flex flex-col fixed overflow-scroll top-0 inset-x-0 bottom-0 bg-slate-600 text-gray-300 -z-10'>
         <div className='w-full h-screen-minus-nav fixed -z-20'>
           {/* TODO - Resize this image */}
           <Image
@@ -25,12 +27,12 @@ const HomePage = props => {
         <div className='mt-half-screen-minus-nav min-h-half-screen-minus-nav -z-10'>
           <div className='bg-gradient-to-b from-transparent to-black pb-1'>
             <div className='flex flex-col px-1/12 gap-3'>
-              <div className='text-6xl font-serif font-extralight text-white'>Meals of Change</div>
-              <div className='text-3xl font-thin text-gray-300'>Plant-based recipes by you</div>
+              <Title>Meals of Change</Title>
+              <Subheading>Plant-based recipes by you</Subheading>
             </div>
           </div>
-          <div className='bg-black -mt-1 pt-10'>
-            <HorizontalRecipeList recipes={props.recipes} tiers={1} height='40vh' />
+          <div className='bg-black -mt-1 pt-10 pb-10'>
+            <HorizontalRecipeList recipes={props.recipes} tiers={1} height='50vh' />
           </div>
         </div>
       </div>

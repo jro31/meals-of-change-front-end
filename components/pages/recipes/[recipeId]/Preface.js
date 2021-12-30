@@ -1,4 +1,5 @@
 import { Fragment, useRef, useState, useEffect } from 'react';
+import Subheading from '../../../ui/text/Subheading';
 
 const Preface = props => {
   const prefaceRef = useRef();
@@ -22,14 +23,17 @@ const Preface = props => {
   return (
     <Fragment>
       {props.preface && (
-        <div className='pt-2 flex' onClick={prefaceClick}>
+        <div
+          className={`pt-2 flex items-end ${prefaceOverflows ? 'cursor-pointer' : ''}`}
+          onClick={prefaceClick}
+        >
           <div
             className={`${
-              prefaceOverflowIsOpen ? '' : 'h-6 overflow-hidden'
+              prefaceOverflowIsOpen ? '' : 'h-9 overflow-hidden'
             } basis-11/12 grow shrink-0`}
             ref={prefaceRef}
           >
-            {props.preface}
+            <Subheading className='h-full'>{props.preface}</Subheading>
           </div>
           {prefaceOverflows && !prefaceOverflowIsOpen && (
             <div className='basis-1/12 grow-0 shrink'>...</div>

@@ -57,7 +57,7 @@ const ProfileMenu = props => {
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
-      <div className='flex flex-col justify-between fixed top-14 right-0 bg-white z-30 p-10 h-screen-minus-nav w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4'>
+      <div className='flex flex-col justify-between fixed top-14 right-0 bg-slate-800 z-30 p-10 h-screen-minus-nav w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4'>
         <div className='flex flex-col gap-6'>
           {/* TODO - <div>Account</div> */}
           {user && user.id && (

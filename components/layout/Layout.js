@@ -42,7 +42,7 @@ const Layout = props => {
 
   return (
     // Put any app-wide styling in this div
-    <div className='text-gray-700'>
+    <div className='text-slate-200 bg-slate-800 min-h-screen min-w-screen -z-50 fixed top-0'>
       <Navbar />
       <main className='mt-14'>{props.children}</main>
     </div>
