@@ -36,42 +36,22 @@ const RecipeDetails = props => {
         </div>
 
         {/* Large screen */}
-        <div className='hidden lg:flex 2xl:hidden flex-col basis-2/3 grow shrink overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
+        <div className='hidden lg:flex 2xl:block flex-col basis-2/3 2xl:basis-3/5 grow 2xl:grow-0 shrink 2xl:shrink-0 overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
           {props.large_photo && (
-            <div className='basis-2/3 grow-0 shrink-0 sticky top-0 -z-50 rounded-t-2xl'>
+            <div className='basis-2/3 grow-0 shrink-0 sticky top-0 -z-50 2xl:h-screen-minus-nav'>
               <RecipePhoto recipeName={props.name} photo={props.large_photo} />
             </div>
           )}
-          <div className='basis-1/3 grow shrink -mt-28'>
+          <div className='basis-1/3 grow shrink -mt-28 2xl:flex 2xl:justify-center 2xl:min-h-screen-minus-nav-minus-8rem 2xl:mx-px'>
             <div className='rounded-2xl'>
               <TitleAndPreface title={props.name} preface={props.preface} />
-              <div className='bg-slate-800 rounded-b-2xl min-h-screen-minus-nav'>
+              <div className='bg-slate-800 rounded-b-2xl min-h-screen-minus-nav 2xl:min-h-0 2xl:h-full'>
                 <StepsList steps={props.steps} />
               </div>
             </div>
           </div>
         </div>
-        <div className='hidden lg:block 2xl:hidden basis-1/3 grow-0 shrink-0 overflow-scroll'>
-          <IngredientsList ingredients={props.ingredients} />
-        </div>
-
-        {/* 2xl screen */}
-        <div className='hidden 2xl:block basis-3/5 grow-0 shrink-0 overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
-          {props.large_photo && (
-            <div className='h-screen-minus-nav sticky top-0 -z-50'>
-              <RecipePhoto recipeName={props.name} photo={props.large_photo} />
-            </div>
-          )}
-          <div className='flex justify-center min-h-screen-minus-nav-minus-8rem -mt-28 mx-px'>
-            <div className='rounded-2xl w-full'>
-              <TitleAndPreface title={props.name} preface={props.preface} />
-              <div className='bg-slate-800 rounded-b-2xl h-full'>
-                <StepsList steps={props.steps} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='hidden 2xl:block basis-1/5 grow-0 shrink-0 overflow-scroll'>
+        <div className='hidden lg:block basis-1/3 2xl:basis-1/5 grow-0 shrink-0 overflow-scroll'>
           <IngredientsList ingredients={props.ingredients} />
         </div>
       </div>
