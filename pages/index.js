@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import HorizontalRecipeList from '../components/ui/recipe-lists/HorizontalRecipeList';
 import Title from '../components/ui/text/Title';
+import Subheading from '../components/ui/text/Subheading';
 
 const HomePage = props => {
   return (
@@ -27,11 +28,11 @@ const HomePage = props => {
           <div className='bg-gradient-to-b from-transparent to-black pb-1'>
             <div className='flex flex-col px-1/12 gap-3'>
               <Title>Meals of Change</Title>
-              <div className='text-3xl font-thin text-gray-300'>Plant-based recipes by you</div>
+              <Subheading>Plant-based recipes by you</Subheading>
             </div>
           </div>
-          <div className='bg-black -mt-1 pt-10'>
-            <HorizontalRecipeList recipes={props.recipes} tiers={1} height='40vh' />
+          <div className='bg-black -mt-1 pt-10 pb-10'>
+            <HorizontalRecipeList recipes={props.recipes} tiers={1} height='50vh' />
           </div>
         </div>
       </div>

@@ -64,7 +64,7 @@ module.exports = {
       minHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
         'half-screen-minus-nav': 'calc((100vh - 3.5rem) / 2)',
-        'screen-minus-nav-minus-8rem': 'calc(100vh - 3.5rem - 8rem)',
+        'screen-minus-nav-minus-13rem': 'calc(100vh - 3.5rem - 13rem)',
         33: '33%',
         75: '75%',
         '300px': '300px',

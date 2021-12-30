@@ -59,7 +59,7 @@ const Navbar = () => {
         }`}
       >
         <div className='flex items-center'>
-          <Logo onClick={showMainMenuHandler} size='50' />
+          <Logo className='cursor-pointer' onClick={showMainMenuHandler} size='50' />
         </div>
         <div className='flex items-center'>
           <div>Search bar</div>
