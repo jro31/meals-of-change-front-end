@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import Form from '../../../../../ui/form/form';
-import FormSection from '../../../../../ui/form/FormSection';
 import EmailInput from '../EmailInput';
 import PasswordInput from '../PasswordInput';
 import { loginFormActions } from '../../../../../../store/login-form';
@@ -68,30 +67,28 @@ const LoginForm = () => {
 
   return (
     <Form onSubmit={submitHandler}>
-      <FormSection>
-        <EmailInput
-          enteredEmail={enteredEmail}
-          setEnteredEmailAction={loginFormActions.setEnteredEmail}
-          setEnteredEmailIsValidAction={loginFormActions.setEnteredEmailIsValid}
-          setEmailInputIsTouchedAction={loginFormActions.setEmailInputIsTouched}
-          enteredEmailIsValid={enteredEmailIsValid}
-          inputIsTouched={emailInputIsTouched}
-          formError={error}
-          setFormError={setError}
-        />
-        <PasswordInput
-          loginForm={true}
-          enteredPassword={enteredPassword}
-          setEnteredPasswordAction={loginFormActions.setEnteredPassword}
-          setEnteredPasswordIsValidAction={loginFormActions.setEnteredPasswordIsValid}
-          setPasswordInputIsTouchedAction={loginFormActions.setPasswordInputIsTouched}
-          enteredPasswordIsValid={enteredPasswordIsValid}
-          inputIsTouched={passwordInputIsTouched}
-          formError={error}
-          setFormError={setError}
-        />
-        {error && <p className='text-red-500'>{error}</p>}
-      </FormSection>
+      <EmailInput
+        enteredEmail={enteredEmail}
+        setEnteredEmailAction={loginFormActions.setEnteredEmail}
+        setEnteredEmailIsValidAction={loginFormActions.setEnteredEmailIsValid}
+        setEmailInputIsTouchedAction={loginFormActions.setEmailInputIsTouched}
+        enteredEmailIsValid={enteredEmailIsValid}
+        inputIsTouched={emailInputIsTouched}
+        formError={error}
+        setFormError={setError}
+      />
+      <PasswordInput
+        loginForm={true}
+        enteredPassword={enteredPassword}
+        setEnteredPasswordAction={loginFormActions.setEnteredPassword}
+        setEnteredPasswordIsValidAction={loginFormActions.setEnteredPasswordIsValid}
+        setPasswordInputIsTouchedAction={loginFormActions.setPasswordInputIsTouched}
+        enteredPasswordIsValid={enteredPasswordIsValid}
+        inputIsTouched={passwordInputIsTouched}
+        formError={error}
+        setFormError={setError}
+      />
+      {error && <p className='text-red-500'>{error}</p>}
       <Button className='w-full' theme='submit' disabled={disableButton()}>
         {isSubmitting ? (
           <div className='flex justify-center'>

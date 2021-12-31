@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import Form from '../../../ui/form/form';
-import FormSection from '../../../ui/form/FormSection';
 import CookingTimeInput from './form/CookingTimeInput';
 import IngredientInputSection from './form/ingredients/IngredientInputSection';
 import NameInput from './form/NameInput';
@@ -70,37 +69,23 @@ const NewRecipeForm = props => {
 
   return (
     <Form onSubmit={previewHandler}>
-      <FormSection>
-        <NameInput />
-      </FormSection>
-      <FormSection>
-        <CookingTimeInput />
-      </FormSection>
-      <FormSection>
-        <PhotoInput
-          setChosenPhoto={props.setChosenPhoto}
-          setChosenPhotoPreviewUrl={props.setChosenPhotoPreviewUrl}
-        />
-        {/* TODO - Update to use next/image */}
-        {props.chosenPhotoPreviewUrl && <img src={props.chosenPhotoPreviewUrl} />}
-      </FormSection>
+      <NameInput />
+      <CookingTimeInput />
+      <PhotoInput
+        setChosenPhoto={props.setChosenPhoto}
+        setChosenPhotoPreviewUrl={props.setChosenPhotoPreviewUrl}
+      />
+      {/* TODO - Update to use next/image */}
+      {props.chosenPhotoPreviewUrl && <img src={props.chosenPhotoPreviewUrl} />}
       <Subheading>Ingredients</Subheading>
-      <FormSection>
-        <IngredientInputSection addIngredientHandler={addIngredientHandler} />
-      </FormSection>
+      <IngredientInputSection addIngredientHandler={addIngredientHandler} />
       <Subheading>Steps</Subheading>
-      <FormSection>
-        <StepsInput />
-      </FormSection>
+      <StepsInput />
       <Subheading>Tags</Subheading>
       <p>Help people find your recipe</p>
-      <FormSection>
-        <TagsInputSection />
-      </FormSection>
+      <TagsInputSection />
       <Subheading>Preface</Subheading>
-      <FormSection>
-        <PrefaceInput />
-      </FormSection>
+      <PrefaceInput />
       {/* TODO - Add checkbox that says something like 'This recipe contains no animal products', and add the checkbox state to the formIsValid() function */}
       <Button disabled={!formIsValid()}>Preview</Button>
     </Form>
