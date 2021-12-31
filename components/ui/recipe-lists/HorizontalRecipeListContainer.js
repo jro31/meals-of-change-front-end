@@ -9,13 +9,13 @@ const HorizontalRecipeListContainer = props => {
   const tiersClass = () => {
     switch (props.tiers) {
       case 1:
-        return 'min-h-300px';
+        return 'min-h-[375px]';
       case 2:
-        return 'min-h-600px';
+        return 'min-h-[750px]';
       case 3:
-        return 'min-h-900px';
+        return 'min-h-[1125px]';
       default:
-        return 'min-h-300px';
+        return 'min-h-[375px]';
     }
   };
 
