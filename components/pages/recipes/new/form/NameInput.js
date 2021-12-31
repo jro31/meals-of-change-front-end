@@ -4,7 +4,7 @@ import useInput from '../../../../../hooks/use-input';
 import Input from '../../../../ui/form/Input';
 import { newRecipeFormActions } from '../../../../../store/new-recipe-form';
 
-const NameInput = () => {
+const NameInput = props => {
   const enteredName = useSelector(state => state.newRecipeForm.enteredName);
   const enteredNameIsValid = useSelector(state => state.newRecipeForm.enteredNameIsValid);
   const inputIsTouched = useSelector(state => state.newRecipeForm.nameInputIsTouched);
@@ -28,6 +28,7 @@ const NameInput = () => {
       label='What is the name of your recipe?'
       showError={inputIsTouched && !enteredNameIsValid}
       errorMessage='Please enter a name for your recipe'
+      className={props.className || ''}
     />
   );
 };

@@ -18,6 +18,7 @@ const RecipeDetails = props => {
         {/* TODO - Add Meta data here */}
       </Head>
 
+      {/* TODO - Display recipe tags somewhere */}
       <div className='flex flex-col lg:flex-row xl:justify-center fixed top-14 inset-x-0 bottom-0 -z-10 bg-black'>
         <div className='flex xl:block flex-col basis-full lg:basis-2/3 xl:basis-8/12 2xl:basis-3/5 grow xl:grow-0 shrink xl:shrink-0 overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
           {props.large_photo && (

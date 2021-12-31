@@ -4,7 +4,7 @@ import useInput from '../../../../../hooks/use-input';
 import Input from '../../../../ui/form/Input';
 import { newRecipeFormActions } from '../../../../../store/new-recipe-form';
 
-const CookingTimeInput = () => {
+const CookingTimeInput = props => {
   const enteredCookingTime = useSelector(state => state.newRecipeForm.enteredCookingTime);
   const enteredCookingTimeIsValid = useSelector(
     state => state.newRecipeForm.enteredCookingTimeIsValid
@@ -24,13 +24,14 @@ const CookingTimeInput = () => {
     <Input
       type='number'
       required
-      id='cooking_time'
+      id='cooking-time'
       value={enteredCookingTime}
       onChange={valueChangeHandler}
       onBlur={inputBlurHandler}
-      label='From start to finish, how many minutes does this recipe take?'
+      label='Cooking time (minutes)'
       showError={inputIsTouched && !enteredCookingTimeIsValid}
       errorMessage='This field is required'
+      className={props.className || ''}
     />
   );
 };

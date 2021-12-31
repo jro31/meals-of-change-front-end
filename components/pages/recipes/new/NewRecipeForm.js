@@ -69,8 +69,10 @@ const NewRecipeForm = props => {
 
   return (
     <Form onSubmit={previewHandler}>
-      <NameInput />
-      <CookingTimeInput />
+      <div className='flex justify-between'>
+        <NameInput className='basis-1/2' />
+        <CookingTimeInput className='basis-1/3' />
+      </div>
       <PhotoInput
         setChosenPhoto={props.setChosenPhoto}
         setChosenPhotoPreviewUrl={props.setChosenPhotoPreviewUrl}
@@ -82,7 +84,6 @@ const NewRecipeForm = props => {
       <Subheading>Steps</Subheading>
       <StepsInput />
       <Subheading>Tags</Subheading>
-      <p>Help people find your recipe</p>
       <TagsInputSection />
       <Subheading>Preface</Subheading>
       <PrefaceInput />
