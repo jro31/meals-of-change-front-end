@@ -1,4 +1,3 @@
-import FormLine from '../../../../ui/form/FormLine';
 import Input from '../../../../ui/form/Input';
 import InputContainer from '../../../../ui/form/InputContainer';
 import useInput from '../../../../../hooks/use-input';
@@ -41,21 +40,19 @@ const PasswordInput = props => {
   };
 
   return (
-    <FormLine>
-      <InputContainer>
-        <Input
-          type='password'
-          required
-          id={props.confirmationInput ? 'password-confirmation' : 'password'}
-          value={props.enteredPassword}
-          onChange={inputChangeHandler}
-          onBlur={inputBlurHandler}
-          showError={props.inputIsTouched && !props.enteredPasswordIsValid}
-          errorMessage={errorMessage()}
-          placeholder={props.confirmationInput ? 'Confirm password' : 'Password'}
-        />
-      </InputContainer>
-    </FormLine>
+    <InputContainer>
+      <Input
+        type='password'
+        required
+        id={props.confirmationInput ? 'password-confirmation' : 'password'}
+        value={props.enteredPassword}
+        onChange={inputChangeHandler}
+        onBlur={inputBlurHandler}
+        showError={props.inputIsTouched && !props.enteredPasswordIsValid}
+        errorMessage={errorMessage()}
+        placeholder={props.confirmationInput ? 'Confirm password' : 'Password'}
+      />
+    </InputContainer>
   );
 };
 

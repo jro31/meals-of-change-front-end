@@ -69,43 +69,41 @@ const NewRecipeForm = props => {
   };
 
   return (
-    <div className='bg-white rounded-lg'>
-      <Form onSubmit={previewHandler}>
-        <FormSection>
-          <NameInput />
-        </FormSection>
-        <FormSection>
-          <CookingTimeInput />
-        </FormSection>
-        <FormSection>
-          <PhotoInput
-            setChosenPhoto={props.setChosenPhoto}
-            setChosenPhotoPreviewUrl={props.setChosenPhotoPreviewUrl}
-          />
-          {/* TODO - Update to use next/image */}
-          {props.chosenPhotoPreviewUrl && <img src={props.chosenPhotoPreviewUrl} />}
-        </FormSection>
-        <Subheading>Ingredients</Subheading>
-        <FormSection>
-          <IngredientInputSection addIngredientHandler={addIngredientHandler} />
-        </FormSection>
-        <Subheading>Steps</Subheading>
-        <FormSection>
-          <StepsInput />
-        </FormSection>
-        <Subheading>Tags</Subheading>
-        <p>Help people find your recipe</p>
-        <FormSection>
-          <TagsInputSection />
-        </FormSection>
-        <Subheading>Preface</Subheading>
-        <FormSection>
-          <PrefaceInput />
-        </FormSection>
-        {/* TODO - Add checkbox that says something like 'This recipe contains no animal products', and add the checkbox state to the formIsValid() function */}
-        <Button disabled={!formIsValid()}>Preview</Button>
-      </Form>
-    </div>
+    <Form onSubmit={previewHandler}>
+      <FormSection>
+        <NameInput />
+      </FormSection>
+      <FormSection>
+        <CookingTimeInput />
+      </FormSection>
+      <FormSection>
+        <PhotoInput
+          setChosenPhoto={props.setChosenPhoto}
+          setChosenPhotoPreviewUrl={props.setChosenPhotoPreviewUrl}
+        />
+        {/* TODO - Update to use next/image */}
+        {props.chosenPhotoPreviewUrl && <img src={props.chosenPhotoPreviewUrl} />}
+      </FormSection>
+      <Subheading>Ingredients</Subheading>
+      <FormSection>
+        <IngredientInputSection addIngredientHandler={addIngredientHandler} />
+      </FormSection>
+      <Subheading>Steps</Subheading>
+      <FormSection>
+        <StepsInput />
+      </FormSection>
+      <Subheading>Tags</Subheading>
+      <p>Help people find your recipe</p>
+      <FormSection>
+        <TagsInputSection />
+      </FormSection>
+      <Subheading>Preface</Subheading>
+      <FormSection>
+        <PrefaceInput />
+      </FormSection>
+      {/* TODO - Add checkbox that says something like 'This recipe contains no animal products', and add the checkbox state to the formIsValid() function */}
+      <Button disabled={!formIsValid()}>Preview</Button>
+    </Form>
   );
 };
 

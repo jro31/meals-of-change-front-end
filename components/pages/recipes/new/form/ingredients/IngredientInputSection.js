@@ -6,7 +6,6 @@ import FoodInput from './FoodInput';
 import OptionalCheckbox from './OptionalCheckbox';
 import PreparationInput from './PreparationInput';
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
-import FormLine from '../../../../../ui/form/FormLine';
 
 const IngredientInputSection = props => {
   const dispatch = useDispatch();
@@ -30,20 +29,20 @@ const IngredientInputSection = props => {
   return (
     <Fragment>
       {addedIngredients.map(ingredient => (
-        <FormLine key={ingredient.tempId}>
+        <div key={ingredient.tempId} className='flex'>
           <div>{ingredient.amount}</div>
           <div>{ingredient.food}</div>
           <div>{ingredient.preparation}</div>
           <div>{ingredient.optional.toString()}</div>
           <div onClick={deleteIngredientHandler.bind(null, ingredient.tempId)}>DELETE</div>
-        </FormLine>
+        </div>
       ))}
-      <FormLine>
+      <div className='flex'>
         <AmountInput />
         <FoodInput />
         <PreparationInput />
         <OptionalCheckbox />
-      </FormLine>
+      </div>
       <button disabled={!enteredIngredientFoodIsValid} onClick={addIngredientButtonClicked}>
         Add ingredient
       </button>

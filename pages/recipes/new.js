@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 import NewRecipeForm from '../../components/pages/recipes/new/NewRecipeForm';
 import NewRecipePreview from '../../components/pages/recipes/new/NewRecipePreview';
-import ContentContainer from '../../components/ui/ContentContainer';
 import Title from '../../components/ui/text/Title';
 
 const NewRecipe = () => {
@@ -19,27 +18,28 @@ const NewRecipe = () => {
   return (
     <Fragment>
       <Head>
-        <title>TEST TITLE</title>
+        <title>Add your recipe</title>
         {/* TODO - Add Meta data here */}
       </Head>
-      <ContentContainer>
-        <Title>NEW RECIPE PAGE</Title>
-        {activeComponent === 'form' && (
-          <NewRecipeForm
-            setChosenPhoto={setChosenPhoto}
-            chosenPhotoPreviewUrl={chosenPhotoPreviewUrl}
-            setChosenPhotoPreviewUrl={setChosenPhotoPreviewUrl}
-          />
-        )}
-        {activeComponent === 'preview' && (
-          <NewRecipePreview
-            chosenPhoto={chosenPhoto}
-            setChosenPhoto={setChosenPhoto}
-            chosenPhotoPreviewUrl={chosenPhotoPreviewUrl}
-            setChosenPhotoPreviewUrl={setChosenPhotoPreviewUrl}
-          />
-        )}
-      </ContentContainer>
+      <div className='flex justify-center fixed top-14 inset-x-0 bottom-0 -z-10 bg-black'>
+        <div className='basis-4/5 bg-slate-800 rounded-2xl overflow-scroll px-10'>
+          {activeComponent === 'form' && (
+            <NewRecipeForm
+              setChosenPhoto={setChosenPhoto}
+              chosenPhotoPreviewUrl={chosenPhotoPreviewUrl}
+              setChosenPhotoPreviewUrl={setChosenPhotoPreviewUrl}
+            />
+          )}
+          {activeComponent === 'preview' && (
+            <NewRecipePreview
+              chosenPhoto={chosenPhoto}
+              setChosenPhoto={setChosenPhoto}
+              chosenPhotoPreviewUrl={chosenPhotoPreviewUrl}
+              setChosenPhotoPreviewUrl={setChosenPhotoPreviewUrl}
+            />
+          )}
+        </div>
+      </div>
     </Fragment>
   );
 };
