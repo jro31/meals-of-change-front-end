@@ -30,7 +30,7 @@ const CookingTimeInput = () => {
       onBlur={inputBlurHandler}
       label='From start to finish, how many minutes does this recipe take?'
       showError={inputIsTouched && !enteredCookingTimeIsValid}
-      errorMessage='Please enter the number of minutes this recipe takes to cook'
+      errorMessage='This field is required'
     />
   );
 };

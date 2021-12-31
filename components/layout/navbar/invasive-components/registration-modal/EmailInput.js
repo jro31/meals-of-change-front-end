@@ -32,7 +32,7 @@ const EmailInput = props => {
       onBlur={inputBlurHandler}
       showError={props.inputIsTouched && !props.enteredEmailIsValid}
       errorMessage='Enter a valid email address'
-      placeholder='Email'
+      label='Email address'
     />
   );
 };

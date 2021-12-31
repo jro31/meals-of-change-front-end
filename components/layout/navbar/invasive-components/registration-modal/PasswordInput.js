@@ -48,7 +48,7 @@ const PasswordInput = props => {
       onBlur={inputBlurHandler}
       showError={props.inputIsTouched && !props.enteredPasswordIsValid}
       errorMessage={errorMessage()}
-      placeholder={props.confirmationInput ? 'Confirm password' : 'Password'}
+      label={props.confirmationInput ? 'Confirm password' : 'Password'}
     />
   );
 };

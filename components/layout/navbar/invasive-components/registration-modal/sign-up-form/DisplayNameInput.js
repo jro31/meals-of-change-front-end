@@ -34,7 +34,7 @@ const DisplayNameInput = props => {
       onBlur={inputBlurHandler}
       showError={inputIsTouched && !enteredValueIsValid}
       errorMessage='Must be between 4 and 20 characters'
-      placeholder='Display name'
+      label='Display name'
     />
   );
 };
