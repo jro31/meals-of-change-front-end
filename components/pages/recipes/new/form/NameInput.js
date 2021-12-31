@@ -27,7 +27,7 @@ const NameInput = props => {
       onBlur={inputBlurHandler}
       label='What is the name of your recipe?'
       showError={inputIsTouched && !enteredNameIsValid}
-      errorMessage='Please enter a name for your recipe'
+      errorMessage='Enter a name for your recipe'
       className={props.className || ''}
     />
   );
