@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 
 import useInput from '../../../../../../hooks/use-input';
 import Input from '../../../../../ui/form/Input';
-import InputContainer from '../../../../../ui/form/InputContainer';
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
 
 const PreparationInput = () => {
@@ -11,14 +10,12 @@ const PreparationInput = () => {
   const { valueChangeHandler } = useInput(newRecipeFormActions.setEnteredIngredientPreparation);
 
   return (
-    <InputContainer>
-      <Input
-        id='preparation'
-        value={enteredPreparation}
-        onChange={valueChangeHandler}
-        placeholder='Preparation (optional)'
-      />
-    </InputContainer>
+    <Input
+      id='preparation'
+      value={enteredPreparation}
+      onChange={valueChangeHandler}
+      placeholder='Preparation (optional)'
+    />
   );
 };
 

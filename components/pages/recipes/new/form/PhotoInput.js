@@ -1,5 +1,4 @@
 import Input from '../../../../ui/form/Input';
-import InputContainer from '../../../../ui/form/InputContainer';
 
 const PhotoInput = props => {
   const inputChangeHandler = event => {
@@ -7,13 +6,9 @@ const PhotoInput = props => {
     props.setChosenPhotoPreviewUrl(URL.createObjectURL(event.target.files[0]));
   };
 
-  return (
-    <InputContainer>
-      {/* TODO - Can this be updated to only accept photos? */}
-      {/* See https://tailwindcss.com/docs/hover-focus-and-other-states#file-input-buttons for styling the file input */}
-      <Input id='photo' type='file' label='Photo' onChange={inputChangeHandler} />
-    </InputContainer>
-  );
+  // TODO - Can this be updated to only accept photos?
+  // See https://tailwindcss.com/docs/hover-focus-and-other-states#file-input-buttons for styling the file input
+  return <Input id='photo' type='file' label='Photo' onChange={inputChangeHandler} />;
 };
 
 export default PhotoInput;

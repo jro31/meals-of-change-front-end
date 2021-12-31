@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
 import Input from '../../../../../ui/form/Input';
-import InputContainer from '../../../../../ui/form/InputContainer';
 
 const TagsInput = props => {
   const dispatch = useDispatch();
@@ -86,31 +85,29 @@ const TagsInput = props => {
 
   return (
     <Fragment>
-      <InputContainer>
-        <label htmlFor={`${props.type}-tags`}>{humanizeType} tags - add up to 5</label>
-        <div className='flex items-center border border-gray-200'>
-          {tags.map((tag, index) => (
-            <div
-              key={tag}
-              className='flex items-center flex-initial h-3/4 bg-amber-300 rounded mx-1.5 px-2'
-            >
-              <div>{tag}</div>
-              <div className='cursor-pointer ml-2.5' onClick={() => deleteTag(index)}>
-                x
-              </div>
+      <label htmlFor={`${props.type}-tags`}>{humanizeType} tags - add up to 5</label>
+      <div className='flex items-center border border-gray-200'>
+        {tags.map((tag, index) => (
+          <div
+            key={tag}
+            className='flex items-center flex-initial h-3/4 bg-amber-300 rounded mx-1.5 px-2'
+          >
+            <div>{tag}</div>
+            <div className='cursor-pointer ml-2.5' onClick={() => deleteTag(index)}>
+              x
             </div>
-          ))}
-          <Input
-            value={enteredInput}
-            onChange={inputChangeHandler}
-            onKeyDown={keyPressHandler}
-            onKeyUp={keyReleaseHandler}
-            id={`${props.type}-tags`}
-            placeholder={tags.length ? '' : placeholder()}
-            className='border-0 flex-grow-only'
-          />
-        </div>
-      </InputContainer>
+          </div>
+        ))}
+        <Input
+          value={enteredInput}
+          onChange={inputChangeHandler}
+          onKeyDown={keyPressHandler}
+          onKeyUp={keyReleaseHandler}
+          id={`${props.type}-tags`}
+          placeholder={tags.length ? '' : placeholder()}
+          className='border-0 flex-grow-only'
+        />
+      </div>
     </Fragment>
   );
 };

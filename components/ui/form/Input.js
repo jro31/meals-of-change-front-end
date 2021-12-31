@@ -4,7 +4,7 @@ import Label from './Label';
 
 const Input = props => {
   return (
-    <Fragment>
+    <div className='flex flex-col w-full my-2'>
       {props.label && <Label htmlFor={props.id}>{props.label}</Label>}
       <input
         type={props.type || 'text'}
@@ -22,7 +22,7 @@ const Input = props => {
         checked={props.type === 'checkbox' ? props.checked : null}
       />
       <InputError showError={props.showError}>{props.errorMessage}</InputError>
-    </Fragment>
+    </div>
   );
 };
 

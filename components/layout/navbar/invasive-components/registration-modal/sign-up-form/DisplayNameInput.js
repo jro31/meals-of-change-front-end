@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 
 import useInput from '../../../../../../hooks/use-input';
 import Input from '../../../../../ui/form/Input';
-import InputContainer from '../../../../../ui/form/InputContainer';
 import { signUpFormActions } from '../../../../../../store/sign-up-form';
 
 const DisplayNameInput = props => {
@@ -27,18 +26,16 @@ const DisplayNameInput = props => {
   };
 
   return (
-    <InputContainer>
-      <Input
-        required
-        id='display-name'
-        value={enteredValue}
-        onChange={inputChangeHandler}
-        onBlur={inputBlurHandler}
-        showError={inputIsTouched && !enteredValueIsValid}
-        errorMessage='Must be between 4 and 20 characters'
-        placeholder='Display name'
-      />
-    </InputContainer>
+    <Input
+      required
+      id='display-name'
+      value={enteredValue}
+      onChange={inputChangeHandler}
+      onBlur={inputBlurHandler}
+      showError={inputIsTouched && !enteredValueIsValid}
+      errorMessage='Must be between 4 and 20 characters'
+      placeholder='Display name'
+    />
   );
 };
 
