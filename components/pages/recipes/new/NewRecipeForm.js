@@ -77,7 +77,7 @@ const NewRecipeForm = props => {
   return (
     <Fragment>
       <div className='flex justify-between gap-4'>
-        <div className='basis-1/2'>
+        <div className='basis-1/2 overflow-scroll h-screen-minus-nav'>
           <Title>Add your recipe</Title>
           <Form onSubmit={previewHandler}>
             <div className='mt-4 mb-10'>
@@ -106,7 +106,7 @@ const NewRecipeForm = props => {
             <Button disabled={!formIsValid()}>Preview</Button>
           </Form>
         </div>
-        <div className='basis-1/2 border border-slate-300 rounded-2xl p-4'>
+        <div className='basis-1/2 border border-slate-300 rounded-2xl p-4 overflow-scroll h-screen-minus-nav'>
           {props.chosenPhotoPreviewUrl && (
             <div className='flex justify-center w-full h-1/3'>
               <div className='relative h-full basis-1/2'>

@@ -22,7 +22,7 @@ const NewRecipe = () => {
         {/* TODO - Add Meta data here */}
       </Head>
       <div className='flex justify-center fixed top-14 inset-x-0 bottom-0 -z-10 bg-black'>
-        <div className='basis-4/5 bg-slate-800 rounded-2xl overflow-scroll px-10'>
+        <div className='basis-4/5 bg-slate-800 rounded-2xl px-10'>
           {activeComponent === 'form' && (
             <NewRecipeForm
               setChosenPhoto={setChosenPhoto}
