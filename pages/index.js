@@ -5,6 +5,7 @@ import Image from 'next/image';
 import HorizontalRecipeList from '../components/ui/recipe-lists/HorizontalRecipeList';
 import Title from '../components/ui/text/Title';
 import Subheading from '../components/ui/text/Subheading';
+import buddahBowl from '../public/images/homepage-buddah-bowl.jpg';
 
 const HomePage = props => {
   return (
@@ -17,7 +18,7 @@ const HomePage = props => {
         <div className='w-full h-screen-minus-nav fixed -z-20'>
           {/* TODO - Resize this image */}
           <Image
-            src='/../public/images/homepage-buddah-bowl.jpg'
+            src={buddahBowl}
             alt='Vegan Buddah bowl'
             layout='fill'
             objectFit='cover'

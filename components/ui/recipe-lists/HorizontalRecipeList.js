@@ -25,6 +25,9 @@ const HorizontalRecipeList = props => {
   }, []);
 
   return (
+    // TODO - Is it possible to update this component to generate tiers dynamically, without a page refresh?
+    // Currently if, for example, someone is on an iPad and the change the orientation, the number of tiers displayed will be incorrect
+
     <HorizontalRecipeListContainer
       containerHeight={props.height}
       cardContainerWidth={cardContainerWidth}
