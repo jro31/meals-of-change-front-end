@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import IngredientsList from '../../../components/pages/recipes/[recipeId]/IngredientsList';
 import StepsList from '../../../components/pages/recipes/[recipeId]/StepsList';
 import RecipePhoto from '../../../components/pages/recipes/[recipeId]/RecipePhoto';
-import TitleAndPreface from '../../../components/pages/recipes/[recipeId]/TitleAndPreface';
+import Title from '../../../components/ui/text/Title';
+import Preface from '../../../components/pages/recipes/[recipeId]/Preface';
 
 const RecipeDetails = props => {
   const router = useRouter();
@@ -28,7 +29,12 @@ const RecipeDetails = props => {
           )}
           <div className='basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/4 grow shrink -mt-36 xl:flex xl:justify-center xl:min-h-screen-minus-nav-minus-13rem xl:mx-px'>
             <div className='rounded-2xl basis-full'>
-              <TitleAndPreface title={props.name} preface={props.preface} />
+              <div className='pt-4 pb-2 px-2 lg:pl-1/12 bg-gradient-to-b from-transparent to-slate-800 rounded-t-2xl'>
+                <Title>{props.name}</Title>
+              </div>
+              <div className='pt-2 pb-4 px-2 lg:pl-1/12 bg-slate-800 -my-px'>
+                <Preface preface={props.preface} tags={props.tags} />
+              </div>
               <div className='bg-slate-800 min-h-screen-minus-nav xl:min-h-0 xl:h-full'>
                 <IngredientsList className='lg:hidden' ingredients={props.ingredients} />
                 <StepsList steps={props.steps} />

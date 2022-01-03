@@ -83,6 +83,7 @@ const TagsInput = props => {
     dispatch(newRecipeFormActions.removeTagAtIndex({ type: camelCaseType, index: index }));
   };
 
+  // TODO - Add a max-length to tags (and match this with a validation on the backend)
   return (
     <div className='relative'>
       <div

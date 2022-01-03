@@ -116,7 +116,7 @@ const NewRecipeForm = props => {
                   layout='fill'
                   objectFit='cover'
                   objectPosition='50% 50%'
-                  className='rounded-t-2xl'
+                  className='rounded-2xl'
                 />
               </div>
             </div>
