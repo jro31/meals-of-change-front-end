@@ -29,9 +29,9 @@ const NewRecipePreview = props => {
 
   const stepsAttributes = () => {
     return steps
-      .filter(step => step.text.trim().length)
+      .filter(step => step.instructions.trim().length)
       .map((step, index) => {
-        return { position: index + 1, instructions: step.text.trim() };
+        return { position: index + 1, instructions: step.instructions.trim() };
       });
   };
 

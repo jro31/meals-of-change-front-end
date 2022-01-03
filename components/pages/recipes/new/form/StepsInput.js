@@ -8,13 +8,14 @@ const StepsInput = () => {
   const dispatch = useDispatch();
   const steps = useSelector(state => state.newRecipeForm.steps);
 
-  const canAddNewStep = () => steps.at(-1).text.trim().length;
+  const canAddNewStep = () => steps.at(-1).instructions.trim().length;
 
   const stepInputChangeHandler = (id, event) => {
-    dispatch(newRecipeFormActions.setSteps({ id, text: event.target.value }));
+    dispatch(newRecipeFormActions.setSteps({ id, instructions: event.target.value }));
   };
 
   const addNewStepHandler = event => {
+    // TODO - This function should also be called when pressing enter while setting a step
     event.preventDefault();
 
     if (canAddNewStep()) {
@@ -36,9 +37,14 @@ const StepsInput = () => {
 
   const displayStep = step => {
     if (step.isEditing) {
-      return <Input value={step.text} onChange={event => stepInputChangeHandler(step.id, event)} />;
+      return (
+        <Input
+          value={step.instructions}
+          onChange={event => stepInputChangeHandler(step.id, event)}
+        />
+      );
     } else {
-      return step.text || 'Add instructions';
+      return step.instructions || 'Add instructions';
     }
   };
 

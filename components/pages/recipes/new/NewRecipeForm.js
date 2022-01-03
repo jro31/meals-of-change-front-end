@@ -15,8 +15,10 @@ import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
 import Title from '../../../ui/text/Title';
 import Subheading from '../../../ui/text/Subheading';
+import StepsList from '../[recipeId]/StepsList';
 import TagsList from '../[recipeId]/TagsList';
 import useTagsParser from '../../../../hooks/use-tags-parser';
+import IngredientsList from '../[recipeId]/IngredientsList';
 
 let ingredientIterator = 0;
 
@@ -25,6 +27,7 @@ const NewRecipeForm = props => {
   const enteredName = useSelector(state => state.newRecipeForm.enteredName);
   const enteredNameIsValid = useSelector(state => state.newRecipeForm.enteredNameIsValid);
   const enteredPreface = useSelector(state => state.newRecipeForm.enteredPreface);
+  const enteredCookingTime = useSelector(state => state.newRecipeForm.enteredCookingTime);
   const enteredCookingTimeIsValid = useSelector(
     state => state.newRecipeForm.enteredCookingTimeIsValid
   );
@@ -46,7 +49,7 @@ const NewRecipeForm = props => {
     enteredNameIsValid &&
     enteredCookingTimeIsValid &&
     (enteredIngredientFoodIsValid || addedIngredients.length) &&
-    steps.find(step => step.text.length);
+    steps.find(step => step.instructions.length);
 
   const addIngredientHandler = () => {
     if (enteredIngredientFoodIsValid) {
@@ -110,7 +113,7 @@ const NewRecipeForm = props => {
         </div>
         <div className='basis-1/2 border border-slate-300 rounded-2xl p-4 overflow-scroll h-screen-minus-nav'>
           {props.chosenPhotoPreviewUrl && (
-            <div className='flex justify-center w-full h-1/3'>
+            <div className='flex justify-center w-full h-1/3 min-h-[275px]'>
               <div className='relative h-full basis-1/2'>
                 <Image
                   src={props.chosenPhotoPreviewUrl}
@@ -123,9 +126,22 @@ const NewRecipeForm = props => {
               </div>
             </div>
           )}
-          <Title>{enteredName}</Title>
-          <Subheading>{enteredPreface}</Subheading>
-          {tagsParser(tagsObject) && <TagsList tagsArray={tagsParser(tagsObject)} />}
+          {enteredName && <Title>{enteredName}</Title>}
+          {enteredPreface && <Subheading>{enteredPreface}</Subheading>}
+          {tagsParser(tagsObject)[0] && <TagsList tagsArray={tagsParser(tagsObject)} />}
+          {((enteredCookingTime && enteredCookingTimeIsValid) || addedIngredients[0]) && (
+            <div className='flex justify-center'>
+              <IngredientsList
+                ingredients={addedIngredients}
+                cookingTime={enteredCookingTime}
+                className='basis-1/2 shadow shadow-slate-700 rounded-b-2xl mt-2'
+                newRecipeFormPreview={true}
+              />
+            </div>
+          )}
+          {steps.some(step => step.instructions.length) && (
+            <StepsList steps={steps} className='mt-2' />
+          )}
         </div>
       </div>
     </Fragment>

@@ -32,6 +32,7 @@ const CookingTimeInput = props => {
       showError={inputIsTouched && !enteredCookingTimeIsValid}
       errorMessage='This field is required'
       className={props.className || ''}
+      min={1}
     />
   );
 };
