@@ -15,6 +15,8 @@ import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
 import Title from '../../../ui/text/Title';
 import Subheading from '../../../ui/text/Subheading';
+import TagsList from '../[recipeId]/TagsList';
+import useTagsParser from '../../../../hooks/use-tags-parser';
 
 let ingredientIterator = 0;
 
@@ -37,6 +39,8 @@ const NewRecipeForm = props => {
   const ingredientIsOptional = useSelector(state => state.newRecipeForm.ingredientIsOptional);
   const addedIngredients = useSelector(state => state.newRecipeForm.addedIngredients);
   const steps = useSelector(state => state.newRecipeForm.steps);
+  const tagsObject = useSelector(state => state.newRecipeForm.tags);
+  const tagsParser = useTagsParser();
 
   const formIsValid = () =>
     enteredNameIsValid &&
@@ -71,8 +75,6 @@ const NewRecipeForm = props => {
       dispatch(newRecipePageActions.showPreview());
     }
   };
-
-  console.log(props.chosenPhotoPreviewUrl);
 
   return (
     <Fragment>
@@ -123,6 +125,7 @@ const NewRecipeForm = props => {
           )}
           <Title>{enteredName}</Title>
           <Subheading>{enteredPreface}</Subheading>
+          {tagsParser(tagsObject) && <TagsList tagsArray={tagsParser(tagsObject)} />}
         </div>
       </div>
     </Fragment>

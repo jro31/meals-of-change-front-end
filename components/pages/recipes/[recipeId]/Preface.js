@@ -1,5 +1,7 @@
 import { Fragment, useRef, useState, useEffect } from 'react';
 import Subheading from '../../../ui/text/Subheading';
+import Tag from './Tag';
+import TagsList from './TagsList';
 
 const Preface = props => {
   const prefaceRef = useRef();
@@ -10,6 +12,10 @@ const Preface = props => {
     if (!prefaceOverflows) return;
 
     setPrefaceOverflowIsOpen(!prefaceOverflowIsOpen);
+  };
+
+  const tagsArray = () => {
+    return props.tags.map(tag => tag.name);
   };
 
   useEffect(() => {
@@ -34,18 +40,7 @@ const Preface = props => {
             ref={prefaceRef}
           >
             <Subheading className='h-full'>{props.preface}</Subheading>
-            {props.tags.length && (
-              <div className='flex flex-wrap gap-3 mt-2'>
-                {props.tags.map(tag => (
-                  <div key={tag.id} className='bg-slate-500 px-3 py-2 rounded-2xl'>
-                    <span className='capitalize'>{tag.name.split(' ')[0]}</span>
-                    {tag.name.split(' ').slice(1)[0] && (
-                      <span>&#160;{tag.name.split(' ').slice(1).join(' ')}</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
+            {tagsArray() && <TagsList tagsArray={tagsArray()} />}
           </div>
           {prefaceOverflows && !prefaceOverflowIsOpen && (
             <div className='basis-1/12 grow-0 shrink'>...</div>

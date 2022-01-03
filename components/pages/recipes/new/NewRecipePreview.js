@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import usePhotoUploader from '../../../../hooks/use-photo-uploader';
+import useTagsParser from '../../../../hooks/use-tags-parser';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
@@ -18,6 +19,7 @@ const NewRecipePreview = props => {
   const steps = useSelector(state => state.newRecipeForm.steps);
   const tagsObject = useSelector(state => state.newRecipeForm.tags);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const tagsParser = useTagsParser();
 
   const photoUploader = usePhotoUploader();
 
@@ -33,10 +35,10 @@ const NewRecipePreview = props => {
       });
   };
 
-  const tagsArray = () => [...new Set(Object.values(tagsObject).flat())];
-
   // TODO - Handle 'isSubmitting' being true
   const submitHandler = async () => {
+    // TODO - Add check that user is logged-in. If they're not, display login modal
+
     setIsSubmitting(true);
     try {
       const blobSignedIdArray = await photoUploader(props.chosenPhoto);
@@ -58,7 +60,7 @@ const NewRecipePreview = props => {
             preface: enteredPreface.trim(),
             ingredients_attributes: addedIngredients,
             steps_attributes: stepsAttributes(),
-            tags: tagsArray(),
+            tags: tagsParser(tagsObject),
             thumbnail_photo_blob_signed_id: blobSignedIdArray[0],
             small_photo_blob_signed_id: blobSignedIdArray[1],
             large_photo_blob_signed_id: blobSignedIdArray[2],
