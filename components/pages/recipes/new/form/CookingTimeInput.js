@@ -28,7 +28,7 @@ const CookingTimeInput = props => {
       value={enteredCookingTime}
       onChange={valueChangeHandler}
       onBlur={inputBlurHandler}
-      label='Cooking time (minutes)'
+      label='Cooking time (minutes)*'
       showError={inputIsTouched && !enteredCookingTimeIsValid}
       errorMessage='This field is required'
       className={props.className || ''}

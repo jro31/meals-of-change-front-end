@@ -1,6 +1,38 @@
+import { useSelector } from 'react-redux';
+
 import Subheading from '../../../ui/text/Subheading';
 
 const IngredientsList = props => {
+  const enteredIngredientAmount = useSelector(state => state.newRecipeForm.enteredIngredientAmount);
+  const enteredIngredientFood = useSelector(state => state.newRecipeForm.enteredIngredientFood);
+  const enteredIngredientFoodIsValid = useSelector(
+    state => state.newRecipeForm.enteredIngredientFoodIsValid
+  );
+  const enteredIngredientPreparation = useSelector(
+    state => state.newRecipeForm.enteredIngredientPreparation
+  );
+  const ingredientIsOptional = useSelector(state => state.newRecipeForm.ingredientIsOptional);
+
+  const ingredients = () => {
+    if (
+      props.newRecipeFormPreview &&
+      (enteredIngredientAmount ||
+        (enteredIngredientFood && enteredIngredientFoodIsValid) ||
+        enteredIngredientPreparation)
+    ) {
+      const newIngredient = {
+        amount: enteredIngredientAmount.trim(),
+        food: enteredIngredientFood.trim(),
+        preparation: enteredIngredientPreparation.trim(),
+        optional: ingredientIsOptional,
+      };
+
+      return [...props.ingredients, newIngredient];
+    }
+
+    return props.ingredients;
+  };
+
   return (
     <div
       className={`${props.className || ''} bg-slate-800 rounded-t-2xl py-4 ${
@@ -11,9 +43,9 @@ const IngredientsList = props => {
         <Subheading className='font-bold'>Ingredients</Subheading>
         {props.cookingTime && <div>{props.cookingTime} minutes</div>}
       </div>
-      {props.ingredients && (
+      {ingredients() && (
         <div className='pb-2'>
-          {props.ingredients.map((ingredient, index) => (
+          {ingredients().map((ingredient, index) => (
             <div
               key={ingredient.food}
               className={`flex items-center px-2 py-3 ${

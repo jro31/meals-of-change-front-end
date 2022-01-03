@@ -53,7 +53,10 @@ const StepsInput = () => {
       {steps.map((step, index) => {
         return (
           <div key={step.id} onClick={() => editStepHandler(step.id)}>
-            <h4>Step {index + 1}</h4>
+            <h4>
+              Step {index + 1}
+              {index === 0 && '*'}
+            </h4>
             <div>{displayStep(step)}</div>
           </div>
         );

@@ -21,7 +21,8 @@ const FoodInput = () => {
       value={enteredFood}
       onChange={valueChangeHandler}
       onBlur={inputBlurHandler}
-      placeholder='Ingredient'
+      label='Ingredient*'
+      className='basis-1/2'
     />
   );
 };

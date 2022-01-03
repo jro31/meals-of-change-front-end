@@ -129,7 +129,11 @@ const NewRecipeForm = props => {
           {enteredName && <Title>{enteredName}</Title>}
           {enteredPreface && <Subheading>{enteredPreface}</Subheading>}
           {tagsParser(tagsObject)[0] && <TagsList tagsArray={tagsParser(tagsObject)} />}
-          {((enteredCookingTime && enteredCookingTimeIsValid) || addedIngredients[0]) && (
+          {((enteredCookingTime && enteredCookingTimeIsValid) ||
+            addedIngredients[0] ||
+            enteredIngredientAmount ||
+            (enteredIngredientFood && enteredIngredientFoodIsValid) ||
+            enteredIngredientPreparation) && (
             <div className='flex justify-center'>
               <IngredientsList
                 ingredients={addedIngredients}

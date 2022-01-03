@@ -14,7 +14,8 @@ const PreparationInput = () => {
       id='preparation'
       value={enteredPreparation}
       onChange={valueChangeHandler}
-      placeholder='Preparation (optional)'
+      label='Preparation'
+      className='basis-1/4'
     />
   );
 };

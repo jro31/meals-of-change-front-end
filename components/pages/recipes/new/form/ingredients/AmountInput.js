@@ -14,7 +14,8 @@ const AmountInput = () => {
       id='amount'
       value={enteredAmount}
       onChange={valueChangeHandler}
-      placeholder='Amount (optional)'
+      label='Amount'
+      className='basis-1/4'
     />
   );
 };
