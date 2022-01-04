@@ -51,7 +51,7 @@ const StepsInput = () => {
             value={step.instructions}
             onChange={event => stepInputChangeHandler(step.id, event)}
             onKeyDown={keyPressHandler}
-            className='w-full text-slate-400 border border-slate-300 bg-slate-100 p-2 text-lg rounded-lg focus:ring-0 focus:border-slate-400 focus:bg-slate-200'
+            className='w-full text-slate-400 border border-slate-300 bg-slate-100 p-1.5 sm:p-2 text-lg rounded-lg focus:ring-0 focus:border-slate-400 focus:bg-slate-200'
           />
         </div>
       );

@@ -16,7 +16,7 @@ const PreparationInput = props => {
       onChange={valueChangeHandler}
       onKeyDown={props.keyPressHandler}
       label='Preparation'
-      className='basis-1/4'
+      className='lg:basis-1/4'
     />
   );
 };

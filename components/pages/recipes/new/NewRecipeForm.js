@@ -89,9 +89,23 @@ const NewRecipeForm = props => {
   return (
     <Fragment>
       <div className='flex justify-between gap-4'>
-        <div className='basis-1/2 overflow-scroll h-screen-minus-nav pr-6'>
+        <div className='basis-full lg:basis-3/5 xl:basis-1/2 overflow-scroll h-screen-minus-nav pt-2 lg:pr-6'>
           <Title>Add your recipe</Title>
           <Form onSubmit={previewHandler}>
+            {props.chosenPhotoPreviewUrl && (
+              <div className='flex lg:hidden justify-center w-full h-[275px] mt-4'>
+                <div className='relative w-full'>
+                  <Image
+                    src={props.chosenPhotoPreviewUrl}
+                    alt='Preview photo'
+                    layout='fill'
+                    objectFit='cover'
+                    objectPosition='50% 50%'
+                    className='rounded-2xl'
+                  />
+                </div>
+              </div>
+            )}
             <div className='mt-4 mb-10'>
               <Subheading>Choose a photo</Subheading>
               <PhotoInput
@@ -105,7 +119,7 @@ const NewRecipeForm = props => {
               <NameInput className='' />
               <PrefaceInput />
               <div className='flex'>
-                <CookingTimeInput className='basis-1/2' />
+                <CookingTimeInput className='basis-full sm:basis-1/2' />
               </div>
             </div>
             <Subheading>Ingredients</Subheading>
@@ -123,11 +137,16 @@ const NewRecipeForm = props => {
                   label='I confirm this recipe contains no animal products'
                 />
               </div>
-              <Button disabled={!formIsValid()}>Preview recipe</Button>
+              <Button className='sm:hidden' disabled={!formIsValid()}>
+                Preview
+              </Button>
+              <Button className='hidden sm:block' disabled={!formIsValid()}>
+                Preview recipe
+              </Button>
             </div>
           </Form>
         </div>
-        <div className='basis-1/2 border border-slate-300 rounded-2xl p-4 overflow-scroll h-screen-minus-nav'>
+        <div className='hidden lg:block basis-2/5 xl:basis-1/2 border border-slate-300 rounded-2xl p-4 overflow-scroll h-screen-minus-nav'>
           {props.chosenPhotoPreviewUrl && (
             <div className='flex justify-center w-full h-1/3 min-h-[275px]'>
               <div className='relative h-full basis-1/2'>
@@ -154,7 +173,7 @@ const NewRecipeForm = props => {
               <IngredientsList
                 ingredients={addedIngredients}
                 cookingTime={enteredCookingTime}
-                className='basis-1/2 shadow shadow-slate-700 rounded-b-2xl mt-2'
+                className='basis-5/6 xl:basis-2/3 2xl:basis-1/2 shadow shadow-slate-700 rounded-b-2xl mt-2'
                 newRecipeFormPreview={true}
               />
             </div>

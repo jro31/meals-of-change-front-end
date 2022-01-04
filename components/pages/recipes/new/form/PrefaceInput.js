@@ -16,7 +16,7 @@ const PrefaceInput = () => {
           id='preface'
           value={enteredPreface}
           onChange={valueChangeHandler}
-          className='peer text-slate-400 border border-slate-300 bg-slate-100 p-2 text-lg rounded-lg focus:outline-none placeholder-transparent focus:ring-0 focus:border-slate-400 focus:bg-slate-200'
+          className='peer text-slate-400 border border-slate-300 bg-slate-100 p-1.5 sm:p-2 text-lg rounded-lg focus:outline-none placeholder-transparent focus:ring-0 focus:border-slate-400 focus:bg-slate-200'
           placeholder='What is the story of your recipe?'
         />
         <label

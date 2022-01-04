@@ -16,7 +16,7 @@ const AmountInput = props => {
       onChange={valueChangeHandler}
       onKeyDown={props.keyPressHandler}
       label='Amount'
-      className='basis-1/4'
+      className='lg:basis-1/4'
     />
   );
 };

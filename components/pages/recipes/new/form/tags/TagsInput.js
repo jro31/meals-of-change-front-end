@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
@@ -23,11 +23,26 @@ const TagsInput = props => {
   const examplesText = () => {
     switch (props.type) {
       case 'dish-type':
-        return 'e.g. Starter, Snack, Breakfast';
+        return (
+          <Fragment>
+            <span className='sm:hidden'>e.g. Breakfast</span>
+            <span className='hidden sm:block'>e.g. Starter, Snack, Breakfast</span>
+          </Fragment>
+        );
       case 'cuisine':
-        return 'e.g. Thai, Asian, Noodles';
+        return (
+          <Fragment>
+            <span className='sm:hidden'>e.g. Thai</span>
+            <span className='hidden sm:block'>e.g. Thai, Asian, Noodles</span>
+          </Fragment>
+        );
       case 'other':
-        return 'e.g. Spicy, Healthy, Gluten-free';
+        return (
+          <Fragment>
+            <span className='sm:hidden'>e.g. Gluten-free</span>
+            <span className='hidden sm:block'>e.g. Spicy, Healthy, Gluten-free</span>
+          </Fragment>
+        );
       default:
         return '';
     }
@@ -123,14 +138,14 @@ const TagsInput = props => {
           onBlur={inputBlurHandler}
           id={`${props.type}-tags`}
           placeholder={labelText()}
-          className='border-0 flex-grow-only text-slate-400 peer border-slate-300 bg-slate-100 p-2 text-lg rounded-lg focus:outline-none placeholder-transparent focus:ring-0 focus:border-slate-400 focus:bg-slate-200'
+          className='border-0 flex-grow-only text-slate-400 peer border-slate-300 bg-slate-100 p-1.5 sm:p-2 text-lg rounded-lg focus:outline-none placeholder-transparent focus:ring-0 focus:border-slate-400 focus:bg-slate-200'
         />
         <label
           htmlFor={`${props.type}-tags`}
           className={`absolute transition-all left-0 -top-6 text-slate-200 text-base peer-focus:left-0 peer-focus:-top-6 peer-focus:text-slate-200 peer-focus:text-base ${
             tags.length
               ? ''
-              : 'peer-placeholder-shown:text-lg peer-placeholder-shown:text-slate-300 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2.5'
+              : 'peer-placeholder-shown:text-lg peer-placeholder-shown:text-slate-300 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2 peer-placeholder-shown:sm:top-2.5'
           }`}
         >
           {labelText()}

@@ -42,33 +42,49 @@ const IngredientInputSection = props => {
 
   return (
     <Fragment>
-      <div className='flex justify-center'>
-        <div className='flex flex-col items-end basis-2/3'>
-          {addedIngredients.map((ingredient, index) => (
-            <div key={ingredient.tempId} className={`flex justify-end py-1 items-center w-full`}>
-              <div
-                className={`flex justify-end items-center basis-3/4 h-full pr-2 py-2 rounded-xl ${
-                  index % 2 === 0 ? 'bg-slate-500' : 'bg-slate-800'
-                }`}
-              >
-                {ingredient.amount && <div>{ingredient.amount}&#160;&#160;</div>}
-                <div className='font-bold'>{ingredient.food}</div>
-                {ingredient.preparation && <div>&#160;&#160;{ingredient.preparation}</div>}
-                {ingredient.optional && <div>&#160;&#160;(optional)</div>}
+      {addedIngredients[0] && (
+        <div className='flex justify-center'>
+          <div className='flex flex-col items-end basis-5/6'>
+            {addedIngredients.map((ingredient, index) => (
+              <div key={ingredient.tempId} className={`flex justify-end py-1 items-center w-full`}>
+                <div
+                  className={`flex flex-col sm:flex-row justify-end items-center basis-5/6 xl:basis-3/4 grow shrink sm:shrink-0 h-full pr-2 py-2 rounded-xl ${
+                    index % 2 === 0 ? 'bg-slate-500' : 'bg-slate-800'
+                  }`}
+                >
+                  {ingredient.amount && (
+                    <div>
+                      {ingredient.amount}
+                      <span className='hidden sm:inline-block'>&#160;&#160;</span>
+                    </div>
+                  )}
+                  <div className='font-bold'>{ingredient.food}</div>
+                  {ingredient.preparation && (
+                    <div>
+                      <span className='hidden sm:inline-block'>&#160;&#160;</span>
+                      {ingredient.preparation}
+                    </div>
+                  )}
+                  {ingredient.optional && (
+                    <div>
+                      <span className='hidden sm:inline-block'>&#160;&#160;</span>(optional)
+                    </div>
+                  )}
+                </div>
+                <Button
+                  theme='cancel'
+                  size='small'
+                  onClick={deleteIngredientHandler.bind(null, ingredient.tempId)}
+                  className='ml-1'
+                >
+                  Delete
+                </Button>
               </div>
-              <Button
-                theme='cancel'
-                size='small'
-                onClick={deleteIngredientHandler.bind(null, ingredient.tempId)}
-                className='ml-1'
-              >
-                Delete
-              </Button>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-      <div className='flex gap-1'>
+      )}
+      <div className='flex flex-col lg:flex-row gap-1'>
         <AmountInput keyPressHandler={keyPressHandler} />
         <FoodInput keyPressHandler={keyPressHandler} />
         <PreparationInput keyPressHandler={keyPressHandler} />

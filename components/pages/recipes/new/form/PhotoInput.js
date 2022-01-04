@@ -13,7 +13,7 @@ const PhotoInput = props => {
       id='photo'
       type='file'
       onChange={inputChangeHandler}
-      className='file:bg-gradient-to-r file:from-slate-400 file:to-slate-700 file:text-slate-200 file:rounded-full file:px-4 file:py-2 file:border-0 file:mr-4 file:font-semibold file:cursor-pointer hover:file:bg-slate-300'
+      className='w-full file:bg-gradient-to-r file:from-slate-400 file:to-slate-700 file:text-slate-200 file:rounded-full file:px-4 file:py-2 file:border-0 file:mr-4 file:font-semibold file:cursor-pointer hover:file:bg-slate-300'
     />
   );
 };

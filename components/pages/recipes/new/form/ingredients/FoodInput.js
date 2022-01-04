@@ -23,7 +23,7 @@ const FoodInput = props => {
       onBlur={inputBlurHandler}
       onKeyDown={props.keyPressHandler}
       label='Ingredient*'
-      className='basis-1/2'
+      className='lg:basis-1/2'
     />
   );
 };

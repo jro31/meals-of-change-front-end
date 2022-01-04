@@ -13,7 +13,7 @@ const Button = props => {
     }
   };
 
-  const standardClasses = 'p-3';
+  const standardClasses = 'p-2 sm:p-3';
 
   const sizeClasses = () => {
     switch (props.size) {
@@ -29,7 +29,7 @@ const Button = props => {
   return (
     <button
       disabled={props.disabled || false}
-      className={`${themeClasses()}  ${sizeClasses()} rounded-lg ${props.className || ''}`}
+      className={`${themeClasses()} ${sizeClasses()} rounded-lg ${props.className || ''}`}
       onClick={props.onClick || null}
     >
       {props.children}
