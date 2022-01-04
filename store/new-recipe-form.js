@@ -105,7 +105,7 @@ const newRecipeFormSlice = createSlice({
       );
     },
     finishEditingSteps(state) {
-      state.steps = notEditingSteps(state.steps);
+      state.steps = notEditingSteps(state.steps.filter(step => step.instructions || step.id === 1));
     },
     addTag(state, action) {
       state.tags = {
