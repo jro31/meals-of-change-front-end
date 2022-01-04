@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 
@@ -19,6 +19,7 @@ import StepsList from '../[recipeId]/StepsList';
 import TagsList from '../[recipeId]/TagsList';
 import useTagsParser from '../../../../hooks/use-tags-parser';
 import IngredientsList from '../[recipeId]/IngredientsList';
+import Checkbox from '../../../ui/form/Checkbox';
 
 let ingredientIterator = 0;
 
@@ -44,12 +45,14 @@ const NewRecipeForm = props => {
   const steps = useSelector(state => state.newRecipeForm.steps);
   const tagsObject = useSelector(state => state.newRecipeForm.tags);
   const tagsParser = useTagsParser();
+  const [confirmedIsPlantBased, setConfirmedIsPlantBased] = useState(false);
 
   const formIsValid = () =>
     enteredNameIsValid &&
     enteredCookingTimeIsValid &&
     (enteredIngredientFoodIsValid || addedIngredients.length) &&
-    steps.find(step => step.instructions.length);
+    steps.find(step => step.instructions.length) &&
+    confirmedIsPlantBased;
 
   const addIngredientHandler = () => {
     if (enteredIngredientFoodIsValid) {
@@ -65,6 +68,10 @@ const NewRecipeForm = props => {
 
       dispatch(newRecipeFormActions.setAddedIngredients(newIngredient));
     }
+  };
+
+  const confirmIsPlantBasedHandler = event => {
+    setConfirmedIsPlantBased(event.target.checked);
   };
 
   const previewHandler = event => {
@@ -107,8 +114,19 @@ const NewRecipeForm = props => {
             <StepsInput />
             <Subheading>Tags</Subheading>
             <TagsInputSection />
-            {/* TODO - Add checkbox that says something like 'This recipe contains no animal products', and add the checkbox state to the formIsValid() function */}
-            <Button disabled={!formIsValid()}>Preview</Button>
+            <div className='flex justify-between my-3'>
+              <div className='flex items-center'>
+                <Checkbox
+                  id='is-plant-based-confirm'
+                  checked={confirmedIsPlantBased}
+                  onChange={confirmIsPlantBasedHandler}
+                  label='I confirm this recipe contains no animal products'
+                />
+              </div>
+              <Button size='small' disabled={!formIsValid()}>
+                Preview recipe
+              </Button>
+            </div>
           </Form>
         </div>
         <div className='basis-1/2 border border-slate-300 rounded-2xl p-4 overflow-scroll h-screen-minus-nav'>

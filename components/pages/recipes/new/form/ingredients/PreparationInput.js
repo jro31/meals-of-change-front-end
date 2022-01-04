@@ -4,7 +4,7 @@ import useInput from '../../../../../../hooks/use-input';
 import Input from '../../../../../ui/form/Input';
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
 
-const PreparationInput = () => {
+const PreparationInput = props => {
   const enteredPreparation = useSelector(state => state.newRecipeForm.enteredIngredientPreparation);
 
   const { valueChangeHandler } = useInput(newRecipeFormActions.setEnteredIngredientPreparation);
@@ -14,6 +14,7 @@ const PreparationInput = () => {
       id='preparation'
       value={enteredPreparation}
       onChange={valueChangeHandler}
+      onKeyDown={props.keyPressHandler}
       label='Preparation'
       className='basis-1/4'
     />

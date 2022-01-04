@@ -17,6 +17,19 @@ const IngredientInputSection = props => {
 
   const addIngredientButtonClicked = event => {
     event.preventDefault();
+    addIngredient();
+  };
+
+  const keyPressHandler = event => {
+    const key = event.key;
+
+    if (key === 'Enter') {
+      event.preventDefault();
+      addIngredient();
+    }
+  };
+
+  const addIngredient = () => {
     props.addIngredientHandler();
     if (enteredIngredientFoodIsValid) {
       dispatch(newRecipeFormActions.resetEnteredIngredient());
@@ -56,9 +69,9 @@ const IngredientInputSection = props => {
         </div>
       </div>
       <div className='flex gap-1'>
-        <AmountInput />
-        <FoodInput />
-        <PreparationInput />
+        <AmountInput keyPressHandler={keyPressHandler} />
+        <FoodInput keyPressHandler={keyPressHandler} />
+        <PreparationInput keyPressHandler={keyPressHandler} />
       </div>
       <div className='flex justify-between mt-2'>
         <OptionalCheckbox />
