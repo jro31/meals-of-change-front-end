@@ -49,7 +49,7 @@ const IngredientInputSection = props => {
                 onClick={deleteIngredientHandler.bind(null, ingredient.tempId)}
                 className='ml-1'
               >
-                DELETE
+                Delete
               </Button>
             </div>
           ))}

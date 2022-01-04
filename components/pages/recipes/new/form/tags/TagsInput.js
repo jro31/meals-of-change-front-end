@@ -39,21 +39,18 @@ const TagsInput = props => {
     setEnteredInput(event.target.value);
   };
 
+  const inputBlurHandler = () => {
+    setInputIsFocussed(false);
+    addTag(enteredInput.trim());
+  };
+
   const keyPressHandler = event => {
     const key = event.key;
     const trimmedInput = enteredInput.trim();
 
-    if (key === ',' || key === 'Enter') {
-      // TODO - Update this to also accept 'tab', 'enter', and also 'onBlur' of the input
+    if (key === ',' || key === 'Enter' || key === 'Tab') {
       event.preventDefault();
-      if (
-        trimmedInput.length &&
-        !tags.map(tag => tag.toLowerCase()).includes(trimmedInput.toLowerCase()) &&
-        tags.length < 5
-      ) {
-        dispatch(newRecipeFormActions.addTag({ type: camelCaseType, tag: trimmedInput }));
-        setEnteredInput('');
-      }
+      addTag(trimmedInput);
       return;
     }
 
@@ -72,6 +69,17 @@ const TagsInput = props => {
 
     if (tags.length >= 5) {
       event.preventDefault();
+    }
+  };
+
+  const addTag = trimmedInput => {
+    if (
+      trimmedInput.length &&
+      !tags.map(tag => tag.toLowerCase()).includes(trimmedInput.toLowerCase()) &&
+      tags.length < 5
+    ) {
+      dispatch(newRecipeFormActions.addTag({ type: camelCaseType, tag: trimmedInput }));
+      setEnteredInput('');
     }
   };
 
@@ -112,7 +120,7 @@ const TagsInput = props => {
           onKeyDown={keyPressHandler}
           onKeyUp={keyReleaseHandler}
           onFocus={() => setInputIsFocussed(true)}
-          onBlur={() => setInputIsFocussed(false)}
+          onBlur={inputBlurHandler}
           id={`${props.type}-tags`}
           placeholder={labelText()}
           className='border-0 flex-grow-only text-slate-400 peer border-slate-300 bg-slate-100 p-2 text-lg rounded-lg focus:outline-none placeholder-transparent focus:ring-0 focus:border-slate-400 focus:bg-slate-200'
