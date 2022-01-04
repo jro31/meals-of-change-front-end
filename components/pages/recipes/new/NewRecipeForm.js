@@ -89,7 +89,7 @@ const NewRecipeForm = props => {
   return (
     <Fragment>
       <div className='flex justify-between gap-4'>
-        <div className='basis-1/2 overflow-scroll h-screen-minus-nav'>
+        <div className='basis-1/2 overflow-scroll h-screen-minus-nav pr-6'>
           <Title>Add your recipe</Title>
           <Form onSubmit={previewHandler}>
             <div className='mt-4 mb-10'>
@@ -123,9 +123,7 @@ const NewRecipeForm = props => {
                   label='I confirm this recipe contains no animal products'
                 />
               </div>
-              <Button size='small' disabled={!formIsValid()}>
-                Preview recipe
-              </Button>
+              <Button disabled={!formIsValid()}>Preview recipe</Button>
             </div>
           </Form>
         </div>

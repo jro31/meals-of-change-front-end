@@ -1,6 +1,6 @@
 const Button = props => {
   const submitClases =
-    'text-white bg-gradient-to-r from-slate-800 to-slate-500 disabled:from-slate-200 disabled:to-slate-100 hover:from-slate-900 hover:to-slate-600';
+    'text-white bg-gradient-to-r from-slate-400 to-slate-700 disabled:from-slate-200 disabled:to-slate-100 hover:from-slate-500 hover:to-slate-800';
 
   const themeClasses = () => {
     switch (props.theme) {
