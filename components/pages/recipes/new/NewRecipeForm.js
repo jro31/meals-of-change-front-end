@@ -134,7 +134,7 @@ const NewRecipeForm = props => {
                   id='is-plant-based-confirm'
                   checked={confirmedIsPlantBased}
                   onChange={confirmIsPlantBasedHandler}
-                  label='I confirm this recipe contains no animal products'
+                  label='This recipe contains no animal products'
                 />
               </div>
               <Button className='sm:hidden' disabled={!formIsValid()}>
