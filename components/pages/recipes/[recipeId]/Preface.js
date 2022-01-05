@@ -14,18 +14,18 @@ const Preface = props => {
   };
 
   useEffect(() => {
-    if (!props.preface) return;
+    if (!props.preface && !props.tags) return;
 
     if (prefaceRef.current.scrollHeight > prefaceRef.current.offsetHeight) {
       setPrefaceOverflows(true);
     }
-  }, [props.preface]);
+  }, [props.preface, props.tags]);
 
   return (
     <Fragment>
       {(props.preface || props.tags) && (
         <div
-          className={`pt-2 flex items-end ${prefaceOverflows ? 'cursor-pointer' : ''}`}
+          className={`flex items-end ${prefaceOverflows ? 'cursor-pointer' : ''}`}
           onClick={prefaceClick}
         >
           <div
@@ -35,7 +35,7 @@ const Preface = props => {
             ref={prefaceRef}
           >
             {props.preface && <Subheading className='h-full'>{props.preface}</Subheading>}
-            {props.tags && <TagsList tagsArray={props.tags} />}
+            {props.tags[0] && <TagsList tagsArray={props.tags} />}
           </div>
           {prefaceOverflows && !prefaceOverflowIsOpen && (
             <div className='basis-1/12 grow-0 shrink'>...</div>

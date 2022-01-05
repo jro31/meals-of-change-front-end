@@ -12,7 +12,11 @@ const RecipeDisplay = props => {
       } -z-10 bg-black`}
     >
       <div className='flex xl:block flex-col basis-full lg:basis-2/3 xl:basis-8/12 2xl:basis-3/5 grow xl:grow-0 shrink xl:shrink-0 overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
-        <div className='basis-2/3 sm:basis-3/4 md:basis-5/6 lg:basis-3/4 grow-0 shrink-0 sticky top-0 -z-50 xl:h-screen-minus-nav'>
+        <div
+          className={`basis-2/3 sm:basis-3/4 md:basis-5/6 lg:basis-3/4 grow-0 shrink-0 sticky top-0 -z-50 ${
+            props.isPreview ? 'xl:h-screen-minus-nav-minus-4rem' : 'xl:h-screen-minus-nav'
+          }`}
+        >
           <RecipePhoto recipeName={props.name} photo={props.photo} />
         </div>
         <div className='basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/4 grow shrink -mt-36 xl:flex xl:justify-center xl:min-h-screen-minus-nav-minus-13rem xl:mx-px'>

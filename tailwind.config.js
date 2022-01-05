@@ -17,6 +17,7 @@ module.exports = {
       },
       height: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
+        'screen-minus-nav-minus-4rem': 'calc(100vh - 3.5rem - 4rem)',
         'full-minus-5rem': 'calc(100% - 5rem)',
         '40px': '40px',
         '50px': '50px',
