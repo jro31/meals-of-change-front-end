@@ -7,7 +7,7 @@ import useTagsParser from '../../../../hooks/use-tags-parser';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
-import Title from '../../../ui/text/Title';
+import RecipeDisplay from '../[recipeId]/RecipeDisplay';
 
 const NewRecipePreview = props => {
   const router = useRouter();
@@ -100,16 +100,16 @@ const NewRecipePreview = props => {
 
   return (
     <Fragment>
-      <Title>{enteredName}</Title>
-      <p>Time: {enteredCookingTime}</p>
-      <p>Preface: {enteredPreface}</p>
-      <p>
-        Photo:
-        <img src={props.chosenPhotoPreviewUrl} /> {/* TODO - Update to use 'image' */}
-      </p>
-      <p>Ingredients: [INGREDIENTS HERE]</p>
-      <p>Steps: [STEPS HERE]</p>
-      <p>Tags: [TAGS HERE]</p>
+      <RecipeDisplay
+        photo={props.chosenPhotoPreviewUrl}
+        name={enteredName}
+        preface={enteredPreface}
+        tags={[]} // TODO - UPDATE THIS
+        ingredients={addedIngredients}
+        cookingTime={enteredCookingTime}
+        steps={steps}
+      />
+
       <Button onClick={editRecipeHandler}>Edit recipe</Button>
       <Button disabled={isSubmitting} onClick={submitHandler}>
         Submit recipe

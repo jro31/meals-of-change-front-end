@@ -1,4 +1,4 @@
-import Input from '../../../../ui/form/Input';
+import { Fragment } from 'react';
 
 const PhotoInput = props => {
   const inputChangeHandler = event => {
@@ -9,12 +9,15 @@ const PhotoInput = props => {
   // TODO - Can this be updated to only accept photos?
   // See https://tailwindcss.com/docs/hover-focus-and-other-states#file-input-buttons for styling the file input
   return (
-    <input
-      id='photo'
-      type='file'
-      onChange={inputChangeHandler}
-      className='w-full file:bg-gradient-to-r file:from-slate-400 file:to-slate-700 file:text-slate-200 file:rounded-full file:px-4 file:py-2 file:border-0 file:mr-4 file:font-semibold file:cursor-pointer hover:file:bg-slate-300'
-    />
+    <Fragment>
+      <input id='photo' type='file' onChange={inputChangeHandler} className='hidden' />
+      <label
+        htmlFor='photo'
+        className='bg-gradient-to-r from-slate-400 to-slate-700 text-slate-200 rounded-full px-4 py-3 border-0 font-semibold hover:bg-slate-300 cursor-pointer'
+      >
+        {props.chosenPhoto ? 'Change photo' : 'Choose photo'}
+      </label>
+    </Fragment>
   );
 };
 

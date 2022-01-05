@@ -26,6 +26,7 @@ const initialState = {
     other: [],
   },
   enteredPreface: '',
+  confirmedIsPlantBased: false,
 };
 
 const notEditingSteps = steps => steps.map(step => ({ ...step, isEditing: false }));
@@ -129,6 +130,9 @@ const newRecipeFormSlice = createSlice({
     },
     setEnteredPreface(state, action) {
       state.enteredPreface = action.payload;
+    },
+    setConfirmedIsPlantBased(state, action) {
+      state.confirmedIsPlantBased = action.payload;
     },
     resetForm: () => initialState,
   },

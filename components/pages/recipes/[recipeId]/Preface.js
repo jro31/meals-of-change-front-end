@@ -1,6 +1,5 @@
 import { Fragment, useRef, useState, useEffect } from 'react';
 import Subheading from '../../../ui/text/Subheading';
-import Tag from './Tag';
 import TagsList from './TagsList';
 
 const Preface = props => {

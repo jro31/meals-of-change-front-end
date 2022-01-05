@@ -21,7 +21,7 @@ const PrefaceInput = () => {
         />
         <label
           htmlFor='preface'
-          className='absolute transition-all left-0 -top-6 text-slate-200 text-base peer-placeholder-shown:text-lg peer-placeholder-shown:text-slate-300 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-0 peer-focus:left-0 peer-focus:-top-6 peer-focus:text-slate-200 peer-focus:text-base'
+          className='absolute transition-all left-0 -top-6 text-slate-200 text-base peer-placeholder-shown:text-lg peer-placeholder-shown:text-slate-300 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-1 peer-focus:left-0 peer-focus:-top-6 peer-focus:text-slate-200 peer-focus:text-base'
         >
           What is the story of your recipe?
         </label>
