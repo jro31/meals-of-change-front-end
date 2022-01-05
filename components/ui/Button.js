@@ -8,6 +8,8 @@ const Button = props => {
         return submitClases;
       case 'cancel':
         return 'bg-transparent border-2 border-slate-500';
+      case 'plain':
+        return 'bg-slate-800 hover:bg-slate-900';
       default:
         return submitClases;
     }

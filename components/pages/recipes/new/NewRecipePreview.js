@@ -8,6 +8,7 @@ import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import Button from '../../../ui/Button';
 import RecipeDisplay from '../[recipeId]/RecipeDisplay';
+import TextFreeLogo from '../../../ui/TextFreeLogo';
 
 const NewRecipePreview = props => {
   const router = useRouter();
@@ -115,8 +116,14 @@ const NewRecipePreview = props => {
           <div onClick={editRecipeHandler} className='cursor-pointer'>
             ← Go back
           </div>
-          <Button disabled={isSubmitting} onClick={submitHandler}>
-            Submit recipe
+          <Button theme='plain' disabled={isSubmitting} onClick={submitHandler}>
+            {isSubmitting ? (
+              <div className='flex justify-center'>
+                <TextFreeLogo className='animate-spin' size='30' />
+              </div>
+            ) : (
+              'Submit recipe'
+            )}
           </Button>
         </div>
       </div>
