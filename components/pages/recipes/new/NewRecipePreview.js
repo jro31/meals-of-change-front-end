@@ -108,12 +108,18 @@ const NewRecipePreview = props => {
         ingredients={addedIngredients}
         cookingTime={enteredCookingTime}
         steps={steps}
+        isPreview={true}
       />
-
-      <Button onClick={editRecipeHandler}>Edit recipe</Button>
-      <Button disabled={isSubmitting} onClick={submitHandler}>
-        Submit recipe
-      </Button>
+      <div className='flex justify-center items-center fixed bottom-0 w-screen bg-slate-500 h-14 sm:h-16'>
+        <div className='flex justify-between items-center basis-full xl:basis-11/12 2xl:basis-4/5 h-3/4 px-2 sm:px-4'>
+          <div onClick={editRecipeHandler} className='cursor-pointer'>
+            ← Go back
+          </div>
+          <Button disabled={isSubmitting} onClick={submitHandler}>
+            Submit recipe
+          </Button>
+        </div>
+      </div>
     </Fragment>
   );
 };

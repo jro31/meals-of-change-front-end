@@ -6,7 +6,11 @@ import StepsList from './StepsList';
 
 const RecipeDisplay = props => {
   return (
-    <div className='flex flex-col lg:flex-row xl:justify-center fixed top-14 inset-x-0 bottom-0 -z-10 bg-black'>
+    <div
+      className={`flex flex-col lg:flex-row xl:justify-center fixed top-14 inset-x-0 ${
+        props.isPreview ? 'bottom-14 sm:bottom-16' : 'bottom-0'
+      } -z-10 bg-black`}
+    >
       <div className='flex xl:block flex-col basis-full lg:basis-2/3 xl:basis-8/12 2xl:basis-3/5 grow xl:grow-0 shrink xl:shrink-0 overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
         {props.photo && (
           <div className='basis-2/3 sm:basis-3/4 md:basis-5/6 lg:basis-3/4 grow-0 shrink-0 sticky top-0 -z-50 xl:h-screen-minus-nav'>
