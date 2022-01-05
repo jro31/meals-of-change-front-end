@@ -13,10 +13,6 @@ const Preface = props => {
     setPrefaceOverflowIsOpen(!prefaceOverflowIsOpen);
   };
 
-  const tagsArray = () => {
-    return props.tags.map(tag => tag.name);
-  };
-
   useEffect(() => {
     if (!props.preface) return;
 
@@ -34,12 +30,12 @@ const Preface = props => {
         >
           <div
             className={`${
-              prefaceOverflowIsOpen ? '' : 'h-10 overflow-hidden'
+              prefaceOverflowIsOpen ? '' : `${props.preface ? 'h-10' : 'h-12'} overflow-hidden`
             } basis-11/12 grow shrink-0`}
             ref={prefaceRef}
           >
             {props.preface && <Subheading className='h-full'>{props.preface}</Subheading>}
-            {tagsArray() && <TagsList tagsArray={tagsArray()} />}
+            {props.tags && <TagsList tagsArray={props.tags} />}
           </div>
           {prefaceOverflows && !prefaceOverflowIsOpen && (
             <div className='basis-1/12 grow-0 shrink'>...</div>

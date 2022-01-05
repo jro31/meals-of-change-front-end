@@ -8,7 +8,9 @@ const RecipeDetails = props => {
 
   const recipeId = router.query.recipeId;
 
-  console.log(props.timeMinutes);
+  const tagsArray = () => {
+    return props.tags.map(tag => tag.name);
+  };
 
   return (
     <Fragment>
@@ -21,7 +23,7 @@ const RecipeDetails = props => {
         photo={props.large_photo}
         name={props.name}
         preface={props.preface}
-        tags={props.tags}
+        tags={tagsArray()}
         ingredients={props.ingredients}
         cookingTime={props.timeMinutes}
         steps={props.steps}

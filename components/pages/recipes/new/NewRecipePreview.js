@@ -104,7 +104,7 @@ const NewRecipePreview = props => {
         photo={props.chosenPhotoPreviewUrl}
         name={enteredName}
         preface={enteredPreface}
-        tags={tagsParser(tagsObject).map(tag => ({ name: tag }))} // TODO - Simplify this if possible - currently changing too many times
+        tags={tagsParser(tagsObject)}
         ingredients={addedIngredients}
         cookingTime={enteredCookingTime}
         steps={steps}
