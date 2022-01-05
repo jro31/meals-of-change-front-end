@@ -12,11 +12,9 @@ const RecipeDisplay = props => {
       } -z-10 bg-black`}
     >
       <div className='flex xl:block flex-col basis-full lg:basis-2/3 xl:basis-8/12 2xl:basis-3/5 grow xl:grow-0 shrink xl:shrink-0 overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
-        {props.photo && (
-          <div className='basis-2/3 sm:basis-3/4 md:basis-5/6 lg:basis-3/4 grow-0 shrink-0 sticky top-0 -z-50 xl:h-screen-minus-nav'>
-            <RecipePhoto recipeName={props.name} photo={props.photo} />
-          </div>
-        )}
+        <div className='basis-2/3 sm:basis-3/4 md:basis-5/6 lg:basis-3/4 grow-0 shrink-0 sticky top-0 -z-50 xl:h-screen-minus-nav'>
+          <RecipePhoto recipeName={props.name} photo={props.photo} />
+        </div>
         <div className='basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/4 grow shrink -mt-36 xl:flex xl:justify-center xl:min-h-screen-minus-nav-minus-13rem xl:mx-px'>
           <div className='rounded-2xl basis-full'>
             <div className='pt-4 pb-2 px-2 lg:pl-1/12 bg-gradient-to-b from-transparent to-slate-800 rounded-t-2xl'>

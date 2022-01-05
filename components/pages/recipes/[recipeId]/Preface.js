@@ -27,18 +27,18 @@ const Preface = props => {
 
   return (
     <Fragment>
-      {props.preface && (
+      {(props.preface || props.tags) && (
         <div
           className={`pt-2 flex items-end ${prefaceOverflows ? 'cursor-pointer' : ''}`}
           onClick={prefaceClick}
         >
           <div
             className={`${
-              prefaceOverflowIsOpen ? '' : 'h-9 overflow-hidden'
+              prefaceOverflowIsOpen ? '' : 'h-10 overflow-hidden'
             } basis-11/12 grow shrink-0`}
             ref={prefaceRef}
           >
-            <Subheading className='h-full'>{props.preface}</Subheading>
+            {props.preface && <Subheading className='h-full'>{props.preface}</Subheading>}
             {tagsArray() && <TagsList tagsArray={tagsArray()} />}
           </div>
           {prefaceOverflows && !prefaceOverflowIsOpen && (
