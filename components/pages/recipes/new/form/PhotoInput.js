@@ -7,7 +7,6 @@ const PhotoInput = props => {
   };
 
   // TODO - Can this be updated to only accept photos?
-  // See https://tailwindcss.com/docs/hover-focus-and-other-states#file-input-buttons for styling the file input
   return (
     <Fragment>
       <input id='photo' type='file' onChange={inputChangeHandler} className='hidden' />

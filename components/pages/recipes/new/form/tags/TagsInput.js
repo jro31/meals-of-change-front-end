@@ -134,9 +134,6 @@ const TagsInput = props => {
             tags.length >= maxTags ? 'sm:py-1' : ''
           } ${inputIsFocussed ? 'bg-slate-200 border-slate-400' : 'bg-slate-100 border-slate-300'}`}
         >
-          {/* <div className={`sm:hidden ml-1 ${tags.length ? '' : 'hidden'} text-slate-300`}>
-            {tags.length}
-          </div> */}
           {tags.map((tag, index) => (
             <div
               key={tag}
