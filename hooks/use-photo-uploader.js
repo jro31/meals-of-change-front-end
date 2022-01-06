@@ -8,9 +8,6 @@ const usePhotoUploader = () => {
   const getPresignedUrl = usePresignedUrl();
 
   const photoUploader = async photo => {
-    // TODO - Add check that 'photo' is a photo - If not throw an error
-    // TODO - Test that it works with non-jpg photos (at least test with png)
-
     if (photo) {
       let checksum = null;
       let presignedUrl = null;
@@ -25,18 +22,16 @@ const usePhotoUploader = () => {
           headers: presignedUrl.direct_upload.headers,
           body: photo,
         };
+        // TODO - Add policies on S3 to limit file-type to jpeg, and file size
 
         const s3Response = await fetch(presignedUrl.direct_upload.url, s3Options);
 
         if (!s3Response.ok) {
-          console.log('🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮🤮');
-          console.log(response);
-          // TODO - Throw error
+          throw new Error('unable to upload photo');
         }
         blobSignedIdArray.push(presignedUrl.blob_signed_id);
       };
 
-      // TODO - This part is quite slow. Could it conceivably be done in the background after the photo is chosen, with the resized images saved to state?
       const [smallPhoto, largePhoto] = await resizeImage(photo);
       await uploadPhoto(smallPhoto, 'small');
       await uploadPhoto(largePhoto, 'large');

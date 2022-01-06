@@ -23,8 +23,7 @@ const useResizeImage = () => {
       const largePhoto = await resizePhoto(photo, 1200);
       return [smallPhoto, largePhoto];
     } catch (error) {
-      // TODO - Handle this error
-      console.log(error);
+      throw new Error(`unable to resize photo - ${error}`);
     }
   };
 

@@ -78,12 +78,13 @@ const NewRecipePreview = props => {
         );
 
         if (!response.status === 201) {
-          throw new Error('Recipe not created');
+          throw new Error('response status not :created');
         }
 
         const data = await response.json();
 
         await router.replace(`/recipes/${data.recipe.id}`).then(() => {
+          // TODO - Because the recipe show page is so similar to the recipe preview page, need some kind of notification that the recipe was created - otherwise not very obvious
           dispatch(newRecipeFormActions.resetForm());
           props.setChosenPhoto(null);
           props.setChosenPhotoPreviewUrl('');
