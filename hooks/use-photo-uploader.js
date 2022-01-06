@@ -36,16 +36,10 @@ const usePhotoUploader = () => {
         blobSignedIdArray.push(presignedUrl.blob_signed_id);
       };
 
-      // This part is quite slow. Could it conceivably be done in the background after the photo is chosen, with the resized images saved to state?
-      // TODO - Update sizes of photos which get uploaded. Perhaps just:
-      // large - 1200
-      // small - whatever the card size is
-      // (and get rid of thumbnail/full-size)
-      const [thumnailPhoto, smallPhoto, largePhoto, fullSizePhoto] = await resizeImage(photo);
-      await uploadPhoto(thumnailPhoto, 'thumbnail');
+      // TODO - This part is quite slow. Could it conceivably be done in the background after the photo is chosen, with the resized images saved to state?
+      const [smallPhoto, largePhoto] = await resizeImage(photo);
       await uploadPhoto(smallPhoto, 'small');
       await uploadPhoto(largePhoto, 'large');
-      await uploadPhoto(fullSizePhoto, 'full_size');
 
       return blobSignedIdArray;
     }

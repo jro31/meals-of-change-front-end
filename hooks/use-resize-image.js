@@ -19,11 +19,9 @@ const useResizeImage = () => {
 
   const resizeImage = async photo => {
     try {
-      const thumbnailPhoto = await resizePhoto(photo, 200);
       const smallPhoto = await resizePhoto(photo, 450);
       const largePhoto = await resizePhoto(photo, 1200);
-      const fullSizePhoto = await resizePhoto(photo, 2400);
-      return [thumbnailPhoto, smallPhoto, largePhoto, fullSizePhoto];
+      return [smallPhoto, largePhoto];
     } catch (error) {
       // TODO - Handle this error
       console.log(error);
