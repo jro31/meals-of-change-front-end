@@ -1,6 +1,4 @@
-import FormLine from '../../../../ui/form/FormLine';
 import Input from '../../../../ui/form/Input';
-import InputContainer from '../../../../ui/form/InputContainer';
 import useInput from '../../../../../hooks/use-input';
 
 const EmailInput = props => {
@@ -25,21 +23,17 @@ const EmailInput = props => {
   };
 
   return (
-    <FormLine>
-      <InputContainer>
-        <Input
-          type='email'
-          required
-          id='email'
-          value={props.enteredEmail}
-          onChange={inputChangeHandler}
-          onBlur={inputBlurHandler}
-          showError={props.inputIsTouched && !props.enteredEmailIsValid}
-          errorMessage='Enter a valid email address'
-          placeholder='Email'
-        />
-      </InputContainer>
-    </FormLine>
+    <Input
+      type='email'
+      required
+      id='email'
+      value={props.enteredEmail}
+      onChange={inputChangeHandler}
+      onBlur={inputBlurHandler}
+      showError={props.inputIsTouched && !props.enteredEmailIsValid}
+      errorMessage='Enter a valid email address'
+      label='Email address'
+    />
   );
 };
 

@@ -1,13 +1,14 @@
 import Image from 'next/image';
+import StockPhoto from '../../../../public/images/fork-large.jpg';
 
 const RecipePhoto = props => {
   return (
     <Image
-      src={props.photo}
+      src={props.photo || StockPhoto}
       alt={`${props.recipeName} photo`}
       layout='fill'
       objectFit='cover'
-      objectPosition='50% 50%'
+      objectPosition={props.photo ? '50% 50%' : '50% top'}
       className='rounded-t-2xl'
     />
   );

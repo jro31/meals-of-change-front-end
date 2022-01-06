@@ -2,23 +2,22 @@ import { useSelector } from 'react-redux';
 
 import useInput from '../../../../../../hooks/use-input';
 import Input from '../../../../../ui/form/Input';
-import InputContainer from '../../../../../ui/form/InputContainer';
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
 
-const AmountInput = () => {
+const AmountInput = props => {
   const enteredAmount = useSelector(state => state.newRecipeForm.enteredIngredientAmount);
 
   const { valueChangeHandler } = useInput(newRecipeFormActions.setEnteredIngredientAmount);
 
   return (
-    <InputContainer>
-      <Input
-        id='amount'
-        value={enteredAmount}
-        onChange={valueChangeHandler}
-        placeholder='Amount (optional)'
-      />
-    </InputContainer>
+    <Input
+      id='amount'
+      value={enteredAmount}
+      onChange={valueChangeHandler}
+      onKeyDown={props.keyPressHandler}
+      label='Amount'
+      className='lg:basis-1/4'
+    />
   );
 };
 

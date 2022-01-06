@@ -1,9 +1,8 @@
 import { useSelector } from 'react-redux';
 
 import useInput from '../../../../../../hooks/use-input';
-import Input from '../../../../../ui/form/Input';
-import InputContainer from '../../../../../ui/form/InputContainer';
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
+import Checkbox from '../../../../../ui/form/Checkbox';
 
 const OptionalCheckbox = () => {
   const isOptional = useSelector(state => state.newRecipeForm.ingredientIsOptional);
@@ -17,15 +16,14 @@ const OptionalCheckbox = () => {
   );
 
   return (
-    <InputContainer>
-      <Input
-        type='checkbox'
+    <div className='flex items-center'>
+      <Checkbox
         id='optional'
         checked={isOptional}
         onChange={valueChangeHandler}
         label='This ingredient is optional'
       />
-    </InputContainer>
+    </div>
   );
 };
 

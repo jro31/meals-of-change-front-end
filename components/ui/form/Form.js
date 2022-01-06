@@ -1,6 +1,6 @@
 const Form = props => {
   return (
-    <form className='bg-white rounded' onSubmit={props.onSubmit}>
+    <form onSubmit={props.onSubmit} className={props.className || ''}>
       {props.children}
     </form>
   );

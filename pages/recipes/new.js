@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 
 import NewRecipeForm from '../../components/pages/recipes/new/NewRecipeForm';
 import NewRecipePreview from '../../components/pages/recipes/new/NewRecipePreview';
-import ContentContainer from '../../components/ui/ContentContainer';
-import Title from '../../components/ui/text/Title';
 
 const NewRecipe = () => {
   // TODO - Handle someone who's not logged-in navigating to this page (probably redirect them to the homepage)
@@ -19,27 +17,26 @@ const NewRecipe = () => {
   return (
     <Fragment>
       <Head>
-        <title>TEST TITLE</title>
+        <title>Add your recipe</title>
         {/* TODO - Add Meta data here */}
       </Head>
-      <ContentContainer>
-        <Title>NEW RECIPE PAGE</Title>
-        {activeComponent === 'form' && (
-          <NewRecipeForm
-            setChosenPhoto={setChosenPhoto}
-            chosenPhotoPreviewUrl={chosenPhotoPreviewUrl}
-            setChosenPhotoPreviewUrl={setChosenPhotoPreviewUrl}
-          />
-        )}
-        {activeComponent === 'preview' && (
-          <NewRecipePreview
-            chosenPhoto={chosenPhoto}
-            setChosenPhoto={setChosenPhoto}
-            chosenPhotoPreviewUrl={chosenPhotoPreviewUrl}
-            setChosenPhotoPreviewUrl={setChosenPhotoPreviewUrl}
-          />
-        )}
-      </ContentContainer>
+
+      {activeComponent === 'form' && (
+        <NewRecipeForm
+          chosenPhoto={chosenPhoto}
+          setChosenPhoto={setChosenPhoto}
+          chosenPhotoPreviewUrl={chosenPhotoPreviewUrl}
+          setChosenPhotoPreviewUrl={setChosenPhotoPreviewUrl}
+        />
+      )}
+      {activeComponent === 'preview' && (
+        <NewRecipePreview
+          chosenPhoto={chosenPhoto}
+          setChosenPhoto={setChosenPhoto}
+          chosenPhotoPreviewUrl={chosenPhotoPreviewUrl}
+          setChosenPhotoPreviewUrl={setChosenPhotoPreviewUrl}
+        />
+      )}
     </Fragment>
   );
 };

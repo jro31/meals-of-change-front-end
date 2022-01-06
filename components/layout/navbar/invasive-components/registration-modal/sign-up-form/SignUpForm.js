@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import Form from '../../../../../ui/form/form';
-import FormSection from '../../../../../ui/form/FormSection';
 import EmailInput from '../EmailInput';
 import PasswordInput from '../PasswordInput';
 import { loginStatusActions } from '../../../../../../store/login-status';
@@ -91,43 +90,41 @@ const SignUpForm = () => {
 
   return (
     <Form onSubmit={submitHandler}>
-      <FormSection>
-        <EmailInput
-          enteredEmail={enteredEmail}
-          setEnteredEmailAction={signUpFormActions.setEnteredEmail}
-          setEnteredEmailIsValidAction={signUpFormActions.setEnteredEmailIsValid}
-          setEmailInputIsTouchedAction={signUpFormActions.setEmailInputIsTouched}
-          enteredEmailIsValid={enteredEmailIsValid}
-          inputIsTouched={emailInputIsTouched}
-          formError={error}
-          setFormError={setError}
-        />
-        <PasswordInput
-          enteredPassword={enteredPassword}
-          setEnteredPasswordAction={signUpFormActions.setEnteredPassword}
-          setEnteredPasswordIsValidAction={signUpFormActions.setEnteredPasswordIsValid}
-          setPasswordInputIsTouchedAction={signUpFormActions.setPasswordInputIsTouched}
-          enteredPasswordIsValid={enteredPasswordIsValid}
-          inputIsTouched={passwordInputIsTouched}
-          formError={error}
-          setFormError={setError}
-        />
-        <PasswordInput
-          confirmationInput={true}
-          enteredPassword={enteredPasswordConfirmation}
-          setEnteredPasswordAction={signUpFormActions.setEnteredPasswordConfirmation}
-          setEnteredPasswordIsValidAction={signUpFormActions.setEnteredPasswordConfirmationIsValid}
-          setPasswordInputIsTouchedAction={signUpFormActions.setPasswordConfirmationInputIsTouched}
-          enteredPasswordIsValid={enteredPasswordConfirmationIsValid}
-          inputIsTouched={passwordConfirmationInputIsTouched}
-          formError={error}
-          setFormError={setError}
-          initialPasswordInputValue={enteredPassword}
-        />
-        <DisplayNameInput formError={error} setFormError={setError} />
-        {error && <p className='text-red-500'>{error}</p>}
-      </FormSection>
-      <Button className='w-full' theme='submit' disabled={disableButton()}>
+      <EmailInput
+        enteredEmail={enteredEmail}
+        setEnteredEmailAction={signUpFormActions.setEnteredEmail}
+        setEnteredEmailIsValidAction={signUpFormActions.setEnteredEmailIsValid}
+        setEmailInputIsTouchedAction={signUpFormActions.setEmailInputIsTouched}
+        enteredEmailIsValid={enteredEmailIsValid}
+        inputIsTouched={emailInputIsTouched}
+        formError={error}
+        setFormError={setError}
+      />
+      <PasswordInput
+        enteredPassword={enteredPassword}
+        setEnteredPasswordAction={signUpFormActions.setEnteredPassword}
+        setEnteredPasswordIsValidAction={signUpFormActions.setEnteredPasswordIsValid}
+        setPasswordInputIsTouchedAction={signUpFormActions.setPasswordInputIsTouched}
+        enteredPasswordIsValid={enteredPasswordIsValid}
+        inputIsTouched={passwordInputIsTouched}
+        formError={error}
+        setFormError={setError}
+      />
+      <PasswordInput
+        confirmationInput={true}
+        enteredPassword={enteredPasswordConfirmation}
+        setEnteredPasswordAction={signUpFormActions.setEnteredPasswordConfirmation}
+        setEnteredPasswordIsValidAction={signUpFormActions.setEnteredPasswordConfirmationIsValid}
+        setPasswordInputIsTouchedAction={signUpFormActions.setPasswordConfirmationInputIsTouched}
+        enteredPasswordIsValid={enteredPasswordConfirmationIsValid}
+        inputIsTouched={passwordConfirmationInputIsTouched}
+        formError={error}
+        setFormError={setError}
+        initialPasswordInputValue={enteredPassword}
+      />
+      <DisplayNameInput formError={error} setFormError={setError} />
+      {error && <p className='text-red-500'>{error}</p>}
+      <Button className='w-full mt-6' theme='submit' disabled={disableButton()}>
         {isSubmitting ? (
           <div className='flex justify-center'>
             <TextFreeLogo className='animate-spin' size='30' />

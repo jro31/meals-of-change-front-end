@@ -1,15 +1,16 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import IngredientsList from '../../../components/pages/recipes/[recipeId]/IngredientsList';
-import StepsList from '../../../components/pages/recipes/[recipeId]/StepsList';
-import RecipePhoto from '../../../components/pages/recipes/[recipeId]/RecipePhoto';
-import TitleAndPreface from '../../../components/pages/recipes/[recipeId]/TitleAndPreface';
+import RecipeDisplay from '../../../components/pages/recipes/[recipeId]/RecipeDisplay';
 
 const RecipeDetails = props => {
   const router = useRouter();
 
   const recipeId = router.query.recipeId;
+
+  const tagsArray = () => {
+    return props.tags.map(tag => tag.name);
+  };
 
   return (
     <Fragment>
@@ -18,27 +19,15 @@ const RecipeDetails = props => {
         {/* TODO - Add Meta data here */}
       </Head>
 
-      <div className='flex flex-col lg:flex-row xl:justify-center fixed top-14 inset-x-0 bottom-0 -z-10 bg-black'>
-        <div className='flex xl:block flex-col basis-full lg:basis-2/3 xl:basis-8/12 2xl:basis-3/5 grow xl:grow-0 shrink xl:shrink-0 overflow-scroll border-x border-t border-slate-200 rounded-t-2xl'>
-          {props.large_photo && (
-            <div className='basis-2/3 sm:basis-3/4 md:basis-5/6 lg:basis-3/4 grow-0 shrink-0 sticky top-0 -z-50 xl:h-screen-minus-nav'>
-              <RecipePhoto recipeName={props.name} photo={props.large_photo} />
-            </div>
-          )}
-          <div className='basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/4 grow shrink -mt-36 xl:flex xl:justify-center xl:min-h-screen-minus-nav-minus-13rem xl:mx-px'>
-            <div className='rounded-2xl basis-full'>
-              <TitleAndPreface title={props.name} preface={props.preface} />
-              <div className='bg-slate-800 min-h-screen-minus-nav xl:min-h-0 xl:h-full'>
-                <IngredientsList className='lg:hidden' ingredients={props.ingredients} />
-                <StepsList steps={props.steps} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='hidden lg:block basis-1/3 xl:basis-3/12 2xl:basis-1/5 grow-0 shrink-0 overflow-scroll'>
-          <IngredientsList ingredients={props.ingredients} />
-        </div>
-      </div>
+      <RecipeDisplay
+        photo={props.large_photo}
+        name={props.name}
+        preface={props.preface}
+        tags={tagsArray()}
+        ingredients={props.ingredients}
+        cookingTime={props.timeMinutes}
+        steps={props.steps}
+      />
     </Fragment>
   );
 };

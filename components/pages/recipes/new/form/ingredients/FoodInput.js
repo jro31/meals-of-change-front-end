@@ -2,10 +2,9 @@ import { useSelector } from 'react-redux';
 
 import useInput from '../../../../../../hooks/use-input';
 import Input from '../../../../../ui/form/Input';
-import InputContainer from '../../../../../ui/form/InputContainer';
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
 
-const FoodInput = () => {
+const FoodInput = props => {
   const enteredFood = useSelector(state => state.newRecipeForm.enteredIngredientFood);
 
   const foodInputValidation = value => value.trim().length > 0;
@@ -17,15 +16,15 @@ const FoodInput = () => {
   );
 
   return (
-    <InputContainer>
-      <Input
-        id='food'
-        value={enteredFood}
-        onChange={valueChangeHandler}
-        onBlur={inputBlurHandler}
-        placeholder='Ingredient'
-      />
-    </InputContainer>
+    <Input
+      id='food'
+      value={enteredFood}
+      onChange={valueChangeHandler}
+      onBlur={inputBlurHandler}
+      onKeyDown={props.keyPressHandler}
+      label='Ingredient*'
+      className='lg:basis-1/2'
+    />
   );
 };
 

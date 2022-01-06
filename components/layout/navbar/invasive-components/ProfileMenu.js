@@ -49,8 +49,6 @@ const ProfileMenu = props => {
     exitActive: 'animate-slide-out-right',
   };
 
-  console.log(user);
-
   return (
     <Container
       in={profileMenuIsOpen}

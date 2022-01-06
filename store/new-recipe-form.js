@@ -17,7 +17,7 @@ const initialState = {
     {
       id: 1,
       isEditing: true,
-      text: '',
+      instructions: '',
     },
   ],
   tags: {
@@ -26,6 +26,7 @@ const initialState = {
     other: [],
   },
   enteredPreface: '',
+  confirmedIsPlantBased: false,
 };
 
 const notEditingSteps = steps => steps.map(step => ({ ...step, isEditing: false }));
@@ -84,13 +85,19 @@ const newRecipeFormSlice = createSlice({
     },
     setSteps(state, action) {
       state.steps = state.steps.map(step =>
-        step.id === action.payload.id ? { ...step, text: action.payload.text } : step
+        step.id === action.payload.id
+          ? { ...step, instructions: action.payload.instructions }
+          : step
       );
     },
     addNewStep(state) {
       state.steps = [
         ...notEditingSteps(state.steps),
-        { id: Math.max(...state.steps.map(step => step.id)) + 1, isEditing: true, text: '' },
+        {
+          id: Math.max(...state.steps.map(step => step.id)) + 1,
+          isEditing: true,
+          instructions: '',
+        },
       ];
     },
     editStep(state, action) {
@@ -99,7 +106,7 @@ const newRecipeFormSlice = createSlice({
       );
     },
     finishEditingSteps(state) {
-      state.steps = notEditingSteps(state.steps);
+      state.steps = notEditingSteps(state.steps.filter(step => step.instructions || step.id === 1));
     },
     addTag(state, action) {
       state.tags = {
@@ -123,6 +130,9 @@ const newRecipeFormSlice = createSlice({
     },
     setEnteredPreface(state, action) {
       state.enteredPreface = action.payload;
+    },
+    setConfirmedIsPlantBased(state, action) {
+      state.confirmedIsPlantBased = action.payload;
     },
     resetForm: () => initialState,
   },

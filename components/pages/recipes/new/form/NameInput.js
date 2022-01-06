@@ -1,12 +1,10 @@
 import { useSelector } from 'react-redux';
 
 import useInput from '../../../../../hooks/use-input';
-import FormLine from '../../../../ui/form/FormLine';
 import Input from '../../../../ui/form/Input';
-import InputContainer from '../../../../ui/form/InputContainer';
 import { newRecipeFormActions } from '../../../../../store/new-recipe-form';
 
-const NameInput = () => {
+const NameInput = props => {
   const enteredName = useSelector(state => state.newRecipeForm.enteredName);
   const enteredNameIsValid = useSelector(state => state.newRecipeForm.enteredNameIsValid);
   const inputIsTouched = useSelector(state => state.newRecipeForm.nameInputIsTouched);
@@ -21,20 +19,17 @@ const NameInput = () => {
   );
 
   return (
-    <FormLine>
-      <InputContainer>
-        <Input
-          required
-          id='name'
-          value={enteredName}
-          onChange={valueChangeHandler}
-          onBlur={inputBlurHandler}
-          label='What is the name of your recipe?'
-          showError={inputIsTouched && !enteredNameIsValid}
-          errorMessage='Please enter a name for your recipe'
-        />
-      </InputContainer>
-    </FormLine>
+    <Input
+      required
+      id='name'
+      value={enteredName}
+      onChange={valueChangeHandler}
+      onBlur={inputBlurHandler}
+      label='What is the name of your recipe?*'
+      showError={inputIsTouched && !enteredNameIsValid}
+      errorMessage='Enter a name for your recipe'
+      className={props.className || ''}
+    />
   );
 };
 

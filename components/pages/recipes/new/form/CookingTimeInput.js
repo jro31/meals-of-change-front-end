@@ -2,11 +2,9 @@ import { useSelector } from 'react-redux';
 
 import useInput from '../../../../../hooks/use-input';
 import Input from '../../../../ui/form/Input';
-import InputContainer from '../../../../ui/form/InputContainer';
 import { newRecipeFormActions } from '../../../../../store/new-recipe-form';
-import FormLine from '../../../../ui/form/FormLine';
 
-const CookingTimeInput = () => {
+const CookingTimeInput = props => {
   const enteredCookingTime = useSelector(state => state.newRecipeForm.enteredCookingTime);
   const enteredCookingTimeIsValid = useSelector(
     state => state.newRecipeForm.enteredCookingTimeIsValid
@@ -23,21 +21,19 @@ const CookingTimeInput = () => {
   );
 
   return (
-    <FormLine>
-      <InputContainer>
-        <Input
-          type='number'
-          required
-          id='cooking_time'
-          value={enteredCookingTime}
-          onChange={valueChangeHandler}
-          onBlur={inputBlurHandler}
-          label='From start to finish, how many minutes does this recipe take?'
-          showError={inputIsTouched && !enteredCookingTimeIsValid}
-          errorMessage='Please enter the number of minutes this recipe takes to cook'
-        />
-      </InputContainer>
-    </FormLine>
+    <Input
+      type='number'
+      required
+      id='cooking-time'
+      value={enteredCookingTime}
+      onChange={valueChangeHandler}
+      onBlur={inputBlurHandler}
+      label='Cooking time (minutes)*'
+      showError={inputIsTouched && !enteredCookingTimeIsValid}
+      errorMessage='Enter a cooking time'
+      className={props.className || ''}
+      min={1}
+    />
   );
 };
 
