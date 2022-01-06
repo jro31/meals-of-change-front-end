@@ -58,6 +58,7 @@ module.exports = {
       },
       maxHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
+        none: 'none',
       },
       maxWidth: {
         'screen-minus-40px': 'calc(100vw - 40px)',
