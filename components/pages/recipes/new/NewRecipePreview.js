@@ -85,14 +85,13 @@ const NewRecipePreview = props => {
 
         const data = await response.json();
 
-        router.replace(`/recipes/${data.recipe.id}`);
-
-        // TODO - This stuff shouldn't happen until the recipe is created
-        dispatch(newRecipeFormActions.resetForm());
-        props.setChosenPhoto(null);
-        props.setChosenPhotoPreviewUrl('');
-        dispatch(newRecipePageActions.showForm());
-        setIsSubmitting(false);
+        await router.replace(`/recipes/${data.recipe.id}`).then(() => {
+          dispatch(newRecipeFormActions.resetForm());
+          props.setChosenPhoto(null);
+          props.setChosenPhotoPreviewUrl('');
+          dispatch(newRecipePageActions.showForm());
+          setIsSubmitting(false);
+        });
       } catch (error) {
         setErrorMessage(`Recipe not saved - ${error || 'please try again'}`);
         setIsSubmitting(false);
