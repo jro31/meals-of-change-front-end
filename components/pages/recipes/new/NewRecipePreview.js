@@ -36,7 +36,6 @@ const NewRecipePreview = props => {
       });
   };
 
-  // TODO - Handle 'isSubmitting' being true
   const submitHandler = async () => {
     // TODO - Add check that user is logged-in. If they're not, display login modal
 
