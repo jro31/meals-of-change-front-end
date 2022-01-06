@@ -47,7 +47,7 @@ const NewRecipePreview = props => {
       try {
         const blobSignedIdArray = await photoUploader(props.chosenPhoto);
 
-        if (props.chosen_photo && blobSignedIdArray.length !== 4) {
+        if (props.chosen_photo && blobSignedIdArray.length !== 2) {
           throw new Error('Unable to save photo');
         }
 
@@ -65,10 +65,8 @@ const NewRecipePreview = props => {
               ingredients_attributes: addedIngredients,
               steps_attributes: stepsAttributes(),
               tags: tagsParser(tagsObject),
-              thumbnail_photo_blob_signed_id: blobSignedIdArray[0],
-              small_photo_blob_signed_id: blobSignedIdArray[1],
-              large_photo_blob_signed_id: blobSignedIdArray[2],
-              full_size_photo_blob_signed_id: blobSignedIdArray[3],
+              small_photo_blob_signed_id: blobSignedIdArray[0],
+              large_photo_blob_signed_id: blobSignedIdArray[1],
             },
           }),
           credentials: 'include',
@@ -80,12 +78,13 @@ const NewRecipePreview = props => {
         );
 
         if (!response.status === 201) {
-          throw new Error('Recipe not created');
+          throw new Error('response status not :created');
         }
 
         const data = await response.json();
 
         await router.replace(`/recipes/${data.recipe.id}`).then(() => {
+          // TODO - Because the recipe show page is so similar to the recipe preview page, need some kind of notification that the recipe was created - otherwise not very obvious
           dispatch(newRecipeFormActions.resetForm());
           props.setChosenPhoto(null);
           props.setChosenPhotoPreviewUrl('');

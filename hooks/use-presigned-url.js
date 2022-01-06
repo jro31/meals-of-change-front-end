@@ -1,6 +1,5 @@
 const usePresignedUrl = () => {
   const presignedUrl = async (file, byte_size, checksum, image_size) => {
-    // TODO - Throw an error if 'file.type' isn't 'jpg/jpeg/gif/png'
     const options = {
       method: 'POST',
       headers: {
