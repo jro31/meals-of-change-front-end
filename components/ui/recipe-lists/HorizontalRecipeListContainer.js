@@ -7,15 +7,14 @@ const HorizontalRecipeListContainer = props => {
   const listContainerRef = useRef();
   const [isHovering, setIsHovering] = useState(false);
 
-  // TODO - These should scroll through all displaying recipes, not just one recipe at a time
   const scrollLeftHandler = () => {
     listContainerRef.current.scrollLeft =
-      listContainerRef.current.scrollLeft - props.cardContainerWidth;
+      listContainerRef.current.scrollLeft - window.innerWidth * 0.7;
   };
 
   const scrollRightHandler = () => {
     listContainerRef.current.scrollLeft =
-      listContainerRef.current.scrollLeft + props.cardContainerWidth;
+      listContainerRef.current.scrollLeft + window.innerWidth * 0.7;
   };
 
   const onHover = () => {
