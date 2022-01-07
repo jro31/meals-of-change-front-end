@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 import Pointer from '../Pointer';
 import Title from '../text/Title';
@@ -24,6 +24,10 @@ const HorizontalRecipeListContainer = props => {
   const onLeaveHover = () => {
     setIsHovering(false);
   };
+
+  useEffect(() => {
+    listContainerRef.current.scrollLeft = 0;
+  }, [props.title]);
 
   return (
     <Fragment>
