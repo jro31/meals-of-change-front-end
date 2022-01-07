@@ -1,33 +1,20 @@
-import { useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 
 import Pointer from '../Pointer';
+import Title from '../text/Title';
 
 const HorizontalRecipeListContainer = props => {
   const listContainerRef = useRef();
   const [isHovering, setIsHovering] = useState(false);
 
-  const tiersClass = () => {
-    switch (props.tiers) {
-      case 1:
-        return 'min-h-[375px]';
-      case 2:
-        return 'min-h-[750px]';
-      case 3:
-        return 'min-h-[1125px]';
-      default:
-        return 'min-h-[375px]';
-    }
-  };
-
-  // TODO - These should scroll through all displaying recipes, not just one recipe at a time
   const scrollLeftHandler = () => {
     listContainerRef.current.scrollLeft =
-      listContainerRef.current.scrollLeft - props.cardContainerWidth;
+      listContainerRef.current.scrollLeft - window.innerWidth * 0.7;
   };
 
   const scrollRightHandler = () => {
     listContainerRef.current.scrollLeft =
-      listContainerRef.current.scrollLeft + props.cardContainerWidth;
+      listContainerRef.current.scrollLeft + window.innerWidth * 0.7;
   };
 
   const onHover = () => {
@@ -38,26 +25,40 @@ const HorizontalRecipeListContainer = props => {
     setIsHovering(false);
   };
 
+  useEffect(() => {
+    listContainerRef.current.scrollLeft = 0;
+  }, [props.title]);
+
   return (
-    <div onMouseEnter={onHover} onMouseLeave={onLeaveHover} className='relative'>
-      <Pointer
-        onClick={scrollLeftHandler}
-        direction='left'
-        className={`left-0 ${isHovering ? 'block' : 'hidden'}`}
-      />
-      <Pointer
-        onClick={scrollRightHandler}
-        direction='right'
-        className={`right-0 ${isHovering ? 'block' : 'hidden'}`}
-      />
-      <div
-        className={`flex flex-col flex-wrap overflow-x-scroll snap-mandatory snap-x scroll-smooth ${tiersClass()}`}
-        ref={listContainerRef}
-        style={{ height: props.containerHeight || '50vh' }}
-      >
-        {props.children}
+    <Fragment>
+      <div className='h-full relative flex flex-col'>
+        <div className='pl-1/12 my-6 flex-initial'>
+          <Title>{props.title || 'Recipes'}</Title>
+        </div>
+        <div
+          onMouseEnter={onHover}
+          onMouseLeave={onLeaveHover}
+          className='relative flex max-h-full-minus-88px sm:max-h-full-minus-96px'
+        >
+          <Pointer
+            onClick={scrollLeftHandler}
+            direction='left'
+            className={`left-0 ${isHovering ? 'block' : 'hidden'}`}
+          />
+          <Pointer
+            onClick={scrollRightHandler}
+            direction='right'
+            className={`right-0 ${isHovering ? 'block' : 'hidden'}`}
+          />
+          <div
+            className={`flex flex-col flex-wrap justify-center content-start overflow-x-scroll snap-mandatory snap-x scroll-smooth pl-1/12 basis-full`}
+            ref={listContainerRef}
+          >
+            {props.children}
+          </div>
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
