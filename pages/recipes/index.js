@@ -1,14 +1,11 @@
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import HorizontalRecipeList from '../../components/ui/recipe-lists/HorizontalRecipeList';
-import Title from '../../components/ui/text/Title';
 
 const RecipeIndex = props => {
   const router = useRouter();
-  const recipeListContainerRef = useRef();
-  const [tiers, setTiers] = useState(1);
   const [recipes, setRecipes] = useState(props.recipes);
   const [title, setTitle] = useState('');
 
@@ -42,27 +39,8 @@ const RecipeIndex = props => {
     }
   }, [router.query, props.recipes, router.asPath]);
 
-  const setListTiers = () => {
-    const recipeListHeight = recipeListContainerRef.current.offsetHeight;
-
-    switch (true) {
-      case recipeListHeight <= 750: // Translates to screen height of less than 915px
-        setTiers(1);
-        return;
-      case recipeListHeight < 1125: // Translates to screen height of 915px - 1288px
-        setTiers(2);
-        return;
-      case recipeListHeight >= 1125: // Translates to screen height of more than 1288px
-        setTiers(3);
-        return;
-      default:
-        setTiers(1);
-    }
-  };
-
   useEffect(() => {
     fetchRecipes();
-    setListTiers();
   }, [fetchRecipes]);
 
   // TODO - Handle no recipes being returned
@@ -74,17 +52,8 @@ const RecipeIndex = props => {
         {/* TODO - Add Meta data here */}
       </Head>
 
-      <div className='flex flex-col fixed top-14 inset-x-0 bottom-0 bg-black min-h-screen-minus-nav -z-10'>
-        <div className='pl-1/12 my-6 grow-0 shrink'>
-          <Title>{title || 'Recipes'}</Title>
-        </div>
-        <div className='grow shrink-0' ref={recipeListContainerRef}>
-          <HorizontalRecipeList
-            height='calc(100vh - 3.5rem - 108px)'
-            recipes={recipes}
-            tiers={tiers}
-          />
-        </div>
+      <div className='flex flex-col fixed top-14 inset-x-0 bottom-0 bg-black min-h-screen-minus-nav -z-10 overflow-scroll'>
+        <HorizontalRecipeList title={title || 'Recipes'} recipes={recipes} />
       </div>
     </Fragment>
   );
