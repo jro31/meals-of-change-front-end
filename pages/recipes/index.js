@@ -49,7 +49,11 @@ const RecipeIndex = props => {
     <Fragment>
       <Head>
         <title>{title || 'Recipes'}</title>
-        {/* TODO - Add Meta data here */}
+        <meta name='description' content='Plant-based recipes for everyone, by everyone.' />
+        <meta
+          name='keywords'
+          content={`plant-based, vegan, recipes ${recipes.map(recipe => recipe.name).join(', ')}`}
+        />
       </Head>
 
       <div className='flex flex-col fixed top-14 inset-x-0 bottom-0 bg-black min-h-screen-minus-nav -z-10 overflow-scroll'>

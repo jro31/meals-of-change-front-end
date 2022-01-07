@@ -18,7 +18,8 @@ const NewRecipe = () => {
     <Fragment>
       <Head>
         <title>Add your recipe</title>
-        {/* TODO - Add Meta data here */}
+        <meta name='description' content='Share your plant-based recipes with the community.' />
+        <meta name='keywords' content='vegan, plant-based, recipes, add a recipe' />
       </Head>
 
       {activeComponent === 'form' && (

@@ -12,7 +12,11 @@ const HomePage = props => {
     <Fragment>
       <Head>
         <title>Meals of Change</title>
-        {/* TODO - Add Meta data here */}
+        <meta
+          name='description'
+          content='Plant-based recipes for all abilities. Add your own vegan creations, see what others have created. Eating for the good of the planet.'
+        />
+        <meta name='keywords' content='vegan, plant-based, recipes, sustainable diet' />
       </Head>
       <div className='flex flex-col fixed overflow-scroll top-0 inset-x-0 bottom-0 bg-slate-600 text-gray-300 -z-10'>
         <div className='w-full h-screen-minus-nav fixed -z-20'>

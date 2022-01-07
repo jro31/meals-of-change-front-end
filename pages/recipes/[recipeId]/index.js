@@ -15,8 +15,14 @@ const RecipeDetails = props => {
   return (
     <Fragment>
       <Head>
-        <title>{props.name}</title>
-        {/* TODO - Add Meta data here */}
+        <title>{`${props.name} recipe`}</title>
+        <meta name='description' content={props.steps.map(step => step.instructions).join(', ')} />
+        <meta
+          name='keywords'
+          content={`${props.name}, vegan, plant-based, recipe, ${props.tags
+            .map(tag => tag.name)
+            .join(', ')}`}
+        />
       </Head>
 
       <RecipeDisplay
