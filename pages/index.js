@@ -36,8 +36,8 @@ const HomePage = props => {
               <Subheading>Plant-based recipes by you</Subheading>
             </div>
           </div>
-          <div className='bg-black -mt-1 pt-10 pb-10'>
-            <HorizontalRecipeList recipes={props.recipes} tiers={1} height='50vh' />
+          <div className='bg-black -mt-1 pt-10 pb-4 h-[468px] w-full'>
+            <HorizontalRecipeList recipes={props.recipes} page='homepage' />
           </div>
         </div>
       </div>

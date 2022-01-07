@@ -3,7 +3,7 @@ import HorizontalRecipeListContainer from './HorizontalRecipeListContainer';
 
 const HorizontalRecipeList = props => {
   return (
-    <HorizontalRecipeListContainer title={props.title}>
+    <HorizontalRecipeListContainer title={props.title} page={props.page}>
       {/* TODO - Only load recipes as a user scrolls (save loading too many unnecessary photos) */}
       {/* TODO - Handle 'props.recipes' being an empty array */}
       {props.recipes.map(recipe => {

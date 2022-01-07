@@ -32,13 +32,17 @@ const HorizontalRecipeListContainer = props => {
   return (
     <Fragment>
       <div className='h-full relative flex flex-col'>
-        <div className='pl-1/12 my-6 flex-initial'>
-          <Title>{props.title || 'Recipes'}</Title>
-        </div>
+        {props.title && (
+          <div className='pl-1/12 my-6 flex-initial'>
+            <Title>{props.title}</Title>
+          </div>
+        )}
         <div
           onMouseEnter={onHover}
           onMouseLeave={onLeaveHover}
-          className='relative flex max-h-full-minus-88px sm:max-h-full-minus-96px'
+          className={`relative flex ${
+            props.page === 'homepage' ? 'h-full' : 'max-h-full-minus-88px sm:max-h-full-minus-96px'
+          }`}
         >
           <Pointer
             onClick={scrollLeftHandler}
