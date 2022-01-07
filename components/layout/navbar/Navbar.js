@@ -6,6 +6,7 @@ import Logo from '../../ui/Logo';
 import RegistrationModal from './invasive-components/registration-modal/RegistrationModal';
 import MainMenu from './invasive-components/MainMenu';
 import ProfileMenu from './invasive-components/ProfileMenu';
+import Button from '../../ui/Button';
 
 import { loginFormActions } from '../../../store/login-form';
 import { mainMenuActions } from '../../../store/main-menu';
@@ -14,7 +15,7 @@ import { registrationModalActions } from '../../../store/registration-modal';
 import { signUpFormActions } from '../../../store/sign-up-form';
 
 import profileIcon from '../../../public/icons/profile.svg';
-import Button from '../../ui/Button';
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -61,8 +62,10 @@ const Navbar = () => {
         <div className='flex items-center'>
           <Logo className='cursor-pointer' onClick={showMainMenuHandler} size='50' />
         </div>
-        <div className='flex items-center'>
-          <div>Search bar</div>
+        <div className='flex items-center gap-3'>
+          <div className='max-w-half-screen'>
+            <SearchBar />
+          </div>
           {!isLoggedIn && (
             <Button theme='cancel' onClick={showRegistrationModalHandler}>
               Login
@@ -76,7 +79,6 @@ const Navbar = () => {
                   src={profileIcon}
                   alt='Profile icon'
                   layout='fill'
-                  className=''
                 />
               </div>
             </div>

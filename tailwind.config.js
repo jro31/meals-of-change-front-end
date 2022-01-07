@@ -62,6 +62,7 @@ module.exports = {
       },
       maxWidth: {
         'screen-minus-40px': 'calc(100vw - 40px)',
+        'half-screen': '50vw',
       },
       minHeight: {
         'screen-minus-nav': 'calc(100vh - 3.5rem)',
@@ -88,6 +89,7 @@ module.exports = {
         108: '27rem',
         '40px': '40px',
         '50px': '50px',
+        'full-minus-2.5rem': 'calc(100% - 2.5rem)',
       },
     },
   },

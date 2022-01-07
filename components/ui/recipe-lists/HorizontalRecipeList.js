@@ -34,6 +34,7 @@ const HorizontalRecipeList = props => {
       tiers={props.tiers}
     >
       {/* TODO - Only load recipes as a user scrolls (save loading too many unnecessary photos) */}
+      {/* TODO - Handle 'props.recipes' being an empty array */}
       {props.recipes.map((recipe, index) => {
         return (
           <div
