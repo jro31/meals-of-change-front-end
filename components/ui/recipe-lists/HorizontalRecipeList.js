@@ -59,7 +59,7 @@ const HorizontalRecipeList = props => {
               className={`right-0 ${isHovering ? 'block' : 'hidden'}`}
             />
             <div
-              className={`flex flex-col flex-wrap justify-center content-start overflow-x-scroll snap-mandatory snap-x scroll-smooth pl-1/12 basis-full`}
+              className={`flex flex-col flex-wrap justify-center content-start overflow-x-scroll snap-mandatory snap-x scroll-smooth px-1/12 basis-full`}
               ref={listContainerRef}
             >
               {/* TODO - Only load recipes as a user scrolls (save loading too many unnecessary photos) */}

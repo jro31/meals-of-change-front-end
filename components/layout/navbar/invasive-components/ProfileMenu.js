@@ -19,6 +19,7 @@ const ProfileMenu = props => {
   };
 
   const logoutHandler = async () => {
+    // TODO - Add a warning that unsaved changes will be lost if they get here on the recipes/new page
     setError('');
 
     try {

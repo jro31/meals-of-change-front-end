@@ -28,7 +28,6 @@ const RecipeIndex = props => {
         setTitle(data.filter_title || '');
       } catch (error) {
         // TODO - Display this error somehow
-        console.log('😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇');
         console.log(error.message);
         setRecipes(props.recipes);
         setTitle('');
@@ -43,8 +42,6 @@ const RecipeIndex = props => {
     fetchRecipes();
   }, [fetchRecipes]);
 
-  // TODO - Handle no recipes being returned
-  // TODO - Handle user scrolling to the last recipe
   return (
     <Fragment>
       <Head>
