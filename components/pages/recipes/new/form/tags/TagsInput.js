@@ -1,6 +1,5 @@
 import { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useTagsParser from '../../../../../../hooks/use-tags-parser';
 
 import { newRecipeFormActions } from '../../../../../../store/new-recipe-form';
 import Tag from '../../../[recipeId]/Tag';
@@ -12,9 +11,6 @@ const TagsInput = props => {
   const [enteredInput, setEnteredInput] = useState('');
   const [backspaceIsPressed, setBackspaceIsPressed] = useState(false);
   const [inputIsFocussed, setInputIsFocussed] = useState(false);
-
-  const tagsObject = useSelector(state => state.newRecipeForm.tags);
-  const tagsParser = useTagsParser;
 
   const camelCaseType = props.type
     .split('-')
@@ -96,7 +92,8 @@ const TagsInput = props => {
 
   const addTag = trimmedInput => {
     if (
-      trimmedInput.length &&
+      trimmedInput.length >= 3 &&
+      trimmedInput.length <= 30 &&
       !tags.map(tag => tag.toLowerCase()).includes(trimmedInput.toLowerCase()) &&
       tags.length < maxTags
     ) {
@@ -158,6 +155,7 @@ const TagsInput = props => {
             className={`${tags.length >= maxTags ? 'sm:hidden' : ''} ${
               tags.length ? 'basis-full sm:basis-auto' : 'basis-full'
             } border-0 text-slate-400 peer border-slate-300 bg-slate-100 p-1.5 sm:p-2 text-lg rounded-lg focus:outline-none placeholder-transparent focus:ring-0 focus:border-slate-400 focus:bg-slate-200`}
+            maxLength={30}
           />
           <label
             htmlFor={`${props.type}-tags`}

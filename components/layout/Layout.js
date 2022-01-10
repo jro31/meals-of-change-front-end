@@ -31,7 +31,7 @@ const Layout = props => {
 
       dispatch(mainMenuActions.setTags(data.tags));
     } catch (error) {
-      // TODO - Handle this
+      console.log('Unable to load tags');
     }
   }, [dispatch]);
 

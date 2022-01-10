@@ -37,7 +37,7 @@ const IngredientInputSection = props => {
   };
 
   const deleteIngredientHandler = tempId => {
-    dispatch(newRecipeFormActions.deleteAddedIngredient(tempId)); // TODO - Use the array index, rather than tempId
+    dispatch(newRecipeFormActions.deleteAddedIngredient(tempId));
   };
 
   return (
