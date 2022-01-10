@@ -67,7 +67,7 @@ const Navbar = () => {
             <SearchBar />
           </div>
           {!isLoggedIn && (
-            <Button theme='cancel' onClick={showRegistrationModalHandler}>
+            <Button theme='plain' onClick={showRegistrationModalHandler}>
               Login
             </Button>
           )}

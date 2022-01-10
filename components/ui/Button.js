@@ -6,7 +6,7 @@ const Button = props => {
     switch (props.theme) {
       case 'submit':
         return submitClases;
-      case 'cancel':
+      case 'subtle':
         return 'bg-transparent border-2 border-slate-500';
       case 'plain':
         return 'bg-slate-800 hover:bg-slate-900';

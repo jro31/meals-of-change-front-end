@@ -60,7 +60,7 @@ const ProfileMenu = props => {
           {/* TODO - <div>Account</div> */}
           {user && user.id && (
             <div
-              className='cursor-pointer'
+              className='font-bold cursor-pointer'
               onClick={() => navigateTo(`/recipes?user_id=${user.id}`)}
             >
               My recipes

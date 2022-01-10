@@ -72,7 +72,7 @@ const IngredientInputSection = props => {
                   )}
                 </div>
                 <Button
-                  theme='cancel'
+                  theme='subtle'
                   size='small'
                   onClick={deleteIngredientHandler.bind(null, ingredient.tempId)}
                   className='ml-1'
@@ -92,7 +92,7 @@ const IngredientInputSection = props => {
       <div className='flex justify-between mt-2'>
         <OptionalCheckbox />
         <Button
-          theme='cancel'
+          theme='subtle'
           size='small'
           disabled={!enteredIngredientFoodIsValid}
           onClick={addIngredientButtonClicked}

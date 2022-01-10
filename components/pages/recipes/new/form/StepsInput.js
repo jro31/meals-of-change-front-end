@@ -86,10 +86,10 @@ const StepsInput = () => {
         );
       })}
       <div className='flex justify-end gap-1 mt-2'>
-        <Button theme='cancel' size='small' disabled={!canAddNewStep()} onClick={addNewStepHandler}>
+        <Button theme='subtle' size='small' disabled={!canAddNewStep()} onClick={addNewStepHandler}>
           Add another step
         </Button>
-        <Button theme='cancel' size='small' onClick={finishEditingHandler}>
+        <Button theme='subtle' size='small' onClick={finishEditingHandler}>
           Finish
         </Button>
       </div>
