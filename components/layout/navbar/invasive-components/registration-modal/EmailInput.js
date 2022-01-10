@@ -3,8 +3,8 @@ import useInput from '../../../../../hooks/use-input';
 
 const EmailInput = props => {
   const emailInputValidation = value => {
-    // TODO - Should use the same regex being used in the API
-    return value.trim().length > 0;
+    // prettier-ignore
+    return /^\S+@\S+\.\S+$/.test(value.trim())
   };
 
   const { valueChangeHandler, inputBlurHandler } = useInput(
