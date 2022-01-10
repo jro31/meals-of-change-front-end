@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -10,6 +11,7 @@ const ProfileMenu = props => {
   const dispatch = useDispatch();
   const profileMenuIsOpen = useSelector(state => state.profileMenu.profileMenuIsOpen);
   const user = useSelector(state => state.loginStatus.user);
+  const [error, setError] = useState('');
 
   const navigateTo = path => {
     router.push(path);
@@ -17,6 +19,8 @@ const ProfileMenu = props => {
   };
 
   const logoutHandler = async () => {
+    setError('');
+
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/logout`, {
         method: 'DELETE',
@@ -24,21 +28,20 @@ const ProfileMenu = props => {
       });
 
       if (!response.ok) {
-        throw new Error('Something went wrong');
+        throw new Error('Unable to logout');
       }
 
       const data = await response.json();
 
       if (data.logged_out) {
-        // TODO - If on a protected page (for example, the recipes new page or the account page (when it exists), should also redirect to the homepage
-        // (Could also do that for all logouts if only doing it for specific pages is a pain)
         dispatch(loginStatusActions.logout());
         dispatch(profileMenuActions.closeMenu());
+        router.replace(`/`);
       } else {
-        throw new Error('Something went wrong');
+        throw new Error('Unable to logout');
       }
     } catch (error) {
-      // TODO - Handle this error
+      setError(error);
     }
   };
 
@@ -55,7 +58,11 @@ const ProfileMenu = props => {
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
-      <div className='flex flex-col justify-between fixed top-14 right-0 bg-slate-800 z-30 p-10 h-screen-minus-nav w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4'>
+      <div
+        className={`flex flex-col justify-between fixed top-14 right-0 bg-slate-800 z-30 px-10 pt-10 ${
+          error ? 'pb-0' : 'pb-10'
+        } h-screen-minus-nav w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4`}
+      >
         <div className='flex flex-col gap-6'>
           {/* TODO - <div>Account</div> */}
           {user && user.id && (
@@ -72,6 +79,7 @@ const ProfileMenu = props => {
           <div className='cursor-pointer' onClick={logoutHandler}>
             Logout
           </div>
+          {error && <div className='text-rose-300 w-full mt-2 mb-2'>{error}</div>}
         </div>
       </div>
     </Container>
