@@ -1,13 +1,8 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import RecipeDisplay from '../../../components/pages/recipes/[recipeId]/RecipeDisplay';
 
 const RecipeDetails = props => {
-  const router = useRouter();
-
-  const recipeId = router.query.recipeId;
-
   const tagsArray = () => {
     return props.tags.map(tag => tag.name);
   };
@@ -79,7 +74,7 @@ export const getStaticProps = async context => {
       small_photo: recipe.small_photo,
       large_photo: recipe.large_photo,
     },
-    revalidate: false, // TODO - Update this to a time (in seconds, e.g 60) if the data ever needs to be reloaded, for example if it's possible to add comments to a recipe
+    revalidate: false, // Update this to a time (in seconds, e.g 60) if the data ever needs to be reloaded, for example if it's possible to add comments to a recipe
   };
 };
 
