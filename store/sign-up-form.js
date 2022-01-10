@@ -55,21 +55,7 @@ const signUpFormSlice = createSlice({
     setDisplayNameInputIsTouched(state) {
       state.displayNameInputIsTouched = true;
     },
-    resetForm(state) {
-      // TODO - Refactor this (see 'new-recipe-form' 'resetForm' action)
-      state.enteredEmail = initialState.enteredEmail;
-      state.enteredEmailIsValid = initialState.enteredEmailIsValid;
-      state.emailInputIsTouched = initialState.emailInputIsTouched;
-      state.enteredPassword = initialState.enteredPassword;
-      state.enteredPasswordIsValid = initialState.enteredPasswordIsValid;
-      state.passwordInputIsTouched = initialState.passwordInputIsTouched;
-      state.enteredPasswordConfirmation = initialState.enteredPasswordConfirmation;
-      state.enteredPasswordConfirmationIsValid = initialState.enteredPasswordConfirmationIsValid;
-      state.passwordConfirmationInputIsTouched = initialState.passwordConfirmationInputIsTouched;
-      state.enteredDisplayName = initialState.enteredDisplayName;
-      state.enteredDisplayNameIsValid = initialState.enteredDisplayNameIsValid;
-      state.displayNameInputIsTouched = initialState.displayNameInputIsTouched;
-    },
+    resetForm: () => initialState,
   },
 });
 
