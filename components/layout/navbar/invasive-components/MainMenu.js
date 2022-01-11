@@ -35,7 +35,6 @@ const MainMenu = props => {
     }
   };
 
-  // TODO - The transition in doesn't work on mobile (the transition out works fine)
   return (
     <Container
       in={mainMenuIsOpen}

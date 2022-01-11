@@ -30,26 +30,34 @@ module.exports = {
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
         fadeOut: {
+          '0%': { opacity: '1' },
           '100%': { opacity: '0' },
         },
         slideInDown: {
           '0%': { transform: 'translateY(-100vh)' },
+          '100%': { transform: 'translateY(0)' },
         },
         slideInLeft: {
           '0%': { transform: 'translateX(100vw)' },
+          '100%': { transform: 'translateX(0)' },
         },
         slideInRight: {
           '0%': { transform: 'translateX(-100vw)' },
+          '100%': { transform: 'translateX(0)' },
         },
         slideOutLeft: {
+          '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-100vw)' },
         },
         slideOutRight: {
+          '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(100vw)' },
         },
         slideOutUp: {
+          '0%': { transform: 'translateY(0)' },
           '100%': { transform: 'translateY(-100vh)' },
         },
       },
