@@ -8,7 +8,7 @@ const StepsInput = () => {
   const dispatch = useDispatch();
   const steps = useSelector(state => state.newRecipeForm.steps);
 
-  const canAddNewStep = () => steps.at(-1).instructions.trim().length;
+  const canAddNewStep = () => steps[steps.length - 1].instructions.trim().length;
 
   const stepInputChangeHandler = (id, event) => {
     dispatch(newRecipeFormActions.setSteps({ id, instructions: event.target.value }));
