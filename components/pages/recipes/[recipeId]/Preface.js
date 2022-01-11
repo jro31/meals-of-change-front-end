@@ -28,10 +28,11 @@ const Preface = props => {
           className={`flex items-end ${prefaceOverflows ? 'cursor-pointer' : ''}`}
           onClick={prefaceClick}
         >
-          {/* TODO - Fix this on mobile (the top of the second line of the preface overflows when closed) */}
           <div
             className={`${
-              prefaceOverflowIsOpen ? '' : `${props.preface ? 'h-10' : 'h-12'} overflow-hidden`
+              prefaceOverflowIsOpen
+                ? ''
+                : `${props.preface ? 'h-8 sm:h-9' : 'h-10 sm:h-12'} overflow-hidden`
             } basis-11/12 grow shrink-0`}
             ref={prefaceRef}
           >
