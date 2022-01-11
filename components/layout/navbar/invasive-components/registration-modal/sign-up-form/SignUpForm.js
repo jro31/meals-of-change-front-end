@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import Form from '../../../../../ui/form/form';
+import Form from '../../../../../ui/form/Form';
 import EmailInput from '../EmailInput';
 import PasswordInput from '../PasswordInput';
 import { loginStatusActions } from '../../../../../../store/login-status';

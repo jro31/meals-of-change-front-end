@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 
-import Form from '../../../ui/form/form';
+import Form from '../../../ui/form/Form';
 import CookingTimeInput from './form/CookingTimeInput';
 import IngredientInputSection from './form/ingredients/IngredientInputSection';
 import NameInput from './form/NameInput';
