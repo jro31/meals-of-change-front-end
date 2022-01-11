@@ -35,13 +35,14 @@ const MainMenu = props => {
     }
   };
 
+  // TODO - The transition in doesn't work on mobile (the transition out works fine)
   return (
     <Container
       in={mainMenuIsOpen}
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
     >
-      <div className='flex flex-col lg:flex-row fixed top-14 left-0 bg-slate-800 z-30 p-10 h-screen-minus-nav lg:h-auto lg:min-h-33 lg:max-h-screen-minus-nav w-3/4 lg:w-full max-w-full text-white'>
+      <div className='flex flex-col lg:flex-row fixed top-14 left-0 bottom-0 lg:bottom-auto bg-slate-800 z-30 p-10 lg:min-h-33 lg:max-h-screen-minus-nav w-3/4 sm:w-1/2 lg:w-full max-w-full text-white'>
         <div className='flex-initial lg:pr-16'>
           <div onClick={() => navigateTo('/')} className='font-bold cursor-pointer'>
             Home

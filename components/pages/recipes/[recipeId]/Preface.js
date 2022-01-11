@@ -28,6 +28,7 @@ const Preface = props => {
           className={`flex items-end ${prefaceOverflows ? 'cursor-pointer' : ''}`}
           onClick={prefaceClick}
         >
+          {/* TODO - Fix this on mobile (the top of the second line of the preface overflows when closed) */}
           <div
             className={`${
               prefaceOverflowIsOpen ? '' : `${props.preface ? 'h-10' : 'h-12'} overflow-hidden`
