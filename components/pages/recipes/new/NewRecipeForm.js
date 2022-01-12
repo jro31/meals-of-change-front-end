@@ -89,7 +89,7 @@ const NewRecipeForm = props => {
     <div className='flex justify-center fixed top-14 inset-x-0 bottom-0 -z-10 bg-black'>
       <div className='basis-full xl:basis-11/12 2xl:basis-4/5 bg-slate-800 rounded-2xl px-3 md:px-8 lg:px-10'>
         <div className='flex justify-between gap-4'>
-          <div className='basis-full lg:basis-3/5 xl:basis-1/2 overflow-scroll h-screen-minus-nav pt-2 lg:pr-6'>
+          <div className='basis-full lg:basis-3/5 xl:basis-1/2 overflow-scroll h-screen-minus-nav pt-2 lg:pr-6 pb-20'>
             <Title>Add your recipe</Title>
             <Form onSubmit={previewHandler}>
               {props.chosenPhotoPreviewUrl && (
@@ -162,6 +162,7 @@ const NewRecipeForm = props => {
                 </div>
               </div>
             )}
+            {/* FIXME - The bottoms of long letters in the title (p, g) get hidden on Safari on desktop (although note that they get displayed once elements below (ingredients) are displayed, so not a huge issue) */}
             {enteredName && <Title>{enteredName}</Title>}
             {enteredPreface && <Subheading>{enteredPreface}</Subheading>}
             {tagsParser(tagsObject)[0] && <TagsList tagsArray={tagsParser(tagsObject)} />}

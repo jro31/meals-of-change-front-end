@@ -7,7 +7,7 @@ import NewRecipePreview from '../../components/pages/recipes/new/NewRecipePrevie
 
 const NewRecipe = () => {
   // TODO - Handle someone who's not logged-in navigating to this page (probably redirect them to the homepage)
-  // TODO - Add a warning when refreshing/navigating away from this page that unsaved data will be lost
+  // TODO - Add a warning when refreshing/navigating away from this page that unsaved data will be lost - This is essential for mobile. I managed to accidentally refresh on Chrome and lost an entire recipe.
 
   const activeComponent = useSelector(state => state.newRecipePage.activeComponent);
 
