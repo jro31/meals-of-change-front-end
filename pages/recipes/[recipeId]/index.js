@@ -74,7 +74,7 @@ export const getStaticProps = async context => {
       small_photo: recipe.small_photo,
       large_photo: recipe.large_photo,
     },
-    revalidate: false, // Update this to a time (in seconds, e.g 60) if the data ever needs to be reloaded, for example if it's possible to add comments to a recipe
+    revalidate: 300,
   };
 };
 

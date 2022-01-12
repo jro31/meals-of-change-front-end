@@ -27,7 +27,7 @@ const RecipeIndex = props => {
         setRecipes(data.recipes);
         setTitle(data.filter_title || '');
       } catch (error) {
-        // TODO - Display this error somehow
+        // TODO - Display this error somehow (perhaps update/redden the title to something like 'Unable to filter recipes')
         console.log(error.message);
         setRecipes(props.recipes);
         setTitle('');
