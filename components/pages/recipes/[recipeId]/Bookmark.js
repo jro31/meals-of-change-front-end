@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
+
+import { registrationModalActions } from '../../../../store/registration-modal';
 
 import BookmarkEmptyIcon from '../../../../public/icons/bookmark-empty.svg';
 import BookmarkFullIcon from '../../../../public/icons/bookmark-full.svg';
 
 const Bookmark = props => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.loginStatus.loggedInStatus === 'LOGGED_IN');
   const [bookmarkIsLoading, setBookmarkIsLoading] = useState(false);
   const [bookmarkId, setBookmarkId] = useState(null);
@@ -19,7 +22,8 @@ const Bookmark = props => {
         addBookmark();
       }
     } else {
-      // TODO - Show login modal
+      dispatch(registrationModalActions.setModalTitle('You must login to bookmark a recipe'));
+      dispatch(registrationModalActions.openModal());
     }
   };
 
