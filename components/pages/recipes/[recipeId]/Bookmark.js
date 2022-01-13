@@ -13,7 +13,9 @@ const Bookmark = props => {
   const [bookmarkIsLoading, setBookmarkIsLoading] = useState(false);
   const [bookmarkId, setBookmarkId] = useState(null);
 
-  const handleBookmarkClick = () => {
+  const handleBookmarkClick = event => {
+    event.preventDefault();
+
     if (isLoggedIn) {
       setBookmarkIsLoading(true);
       if (bookmarkId) {
@@ -109,11 +111,12 @@ const Bookmark = props => {
     <button
       disabled={bookmarkIsLoading}
       onClick={handleBookmarkClick}
-      className={`flex justify-center items-center w-10 h-10 rounded-full bg-slate-500 ${
+      className={`flex justify-center items-center w-12 h-10 bg-slate-500/50 rounded-md ${
         props.className || ''
       }`}
+      id='bookmark'
     >
-      <div className='relative w-7 h-7'>
+      <div className='relative w-full h-8'>
         <Image
           src={bookmarkId ? BookmarkFullIcon : BookmarkEmptyIcon}
           alt=''

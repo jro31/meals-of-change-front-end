@@ -1,5 +1,6 @@
 import { Fragment, useRef, useState, useEffect } from 'react';
 import Subheading from '../../../ui/text/Subheading';
+import Bookmark from './Bookmark';
 import TagsList from './TagsList';
 
 const Preface = props => {
@@ -7,8 +8,9 @@ const Preface = props => {
   const [prefaceOverflows, setPrefaceOverflows] = useState(false);
   const [prefaceOverflowIsOpen, setPrefaceOverflowIsOpen] = useState(false);
 
-  const prefaceClick = () => {
+  const prefaceClick = event => {
     if (!prefaceOverflows) return;
+    if (event.target.closest('#bookmark')) return;
 
     setPrefaceOverflowIsOpen(!prefaceOverflowIsOpen);
   };
@@ -37,7 +39,10 @@ const Preface = props => {
             ref={prefaceRef}
           >
             {props.preface && <Subheading className='h-full'>{props.preface}</Subheading>}
-            {props.tags[0] && <TagsList tagsArray={props.tags} />}
+            <div className='flex flex-wrap gap-1 sm:gap-3 mt-2'>
+              <Bookmark recipeId={props.recipeId} />
+              {props.tags[0] && <TagsList tagsArray={props.tags} />}
+            </div>
           </div>
           {prefaceOverflows && !prefaceOverflowIsOpen && (
             <div className='basis-1/12 grow-0 shrink'>...</div>

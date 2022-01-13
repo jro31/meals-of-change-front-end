@@ -20,14 +20,13 @@ const RecipeDisplay = props => {
         >
           <RecipePhoto recipeName={props.name} photo={props.photo} />
         </div>
-        <div className='basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/4 grow shrink -mt-36 xl:flex xl:justify-center xl:min-h-screen-minus-nav-minus-13rem xl:mx-px'>
+        <div className='basis-1/3 sm:basis-1/4 md:basis-1/6 lg:basis-1/4 grow shrink -mt-36 xl:flex xl:justify-center xl:min-h-screen-minus-nav-minus-13rem xl:mx-px z-10'>
           <div className='rounded-2xl basis-full'>
-            <div className='flex items-end pt-4 pb-2 px-2 lg:pl-1/12 bg-gradient-to-b from-transparent to-slate-800 rounded-t-2xl'>
-              <Title className='basis-11/12'>{props.name}</Title>
-              {!props.isPreview && <Bookmark recipeId={props.recipeId} />}
+            <div className='pt-4 pb-2 px-2 lg:pl-1/12 bg-gradient-to-b from-transparent to-slate-800 rounded-t-2xl'>
+              <Title>{props.name}</Title>
             </div>
             <div className='pt-2 pb-4 px-2 lg:pl-1/12 bg-slate-800 -my-px'>
-              <Preface preface={props.preface} tags={props.tags} />
+              <Preface preface={props.preface} tags={props.tags} recipeId={props.recipeId} />
             </div>
             <div className='bg-slate-800 min-h-screen-minus-nav xl:min-h-0 xl:h-full'>
               <IngredientsList
