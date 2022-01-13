@@ -10,14 +10,55 @@ const Bookmark = props => {
   const [bookmarkIsLoading, setBookmarkIsLoading] = useState(false);
   const [bookmarkId, setBookmarkId] = useState(null);
 
-  const addBookmark = () => {
-    setBookmarkIsLoading(true);
-    // TODO
+  const handleBookmarkClick = () => {
+    if (isLoggedIn) {
+      setBookmarkIsLoading(true);
+      if (bookmarkId) {
+        deleteBookmark();
+      } else {
+        addBookmark();
+      }
+    } else {
+      // TODO - Show login modal
+    }
+  };
+
+  const addBookmark = async () => {
+    try {
+      const bookmarkOptions = {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_recipe_bookmark: {
+            recipe_id: props.recipeId,
+          },
+        }),
+        credentials: 'include',
+      };
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user_recipe_bookmarks`,
+        bookmarkOptions
+      );
+
+      if (response.status !== 201) {
+        throw new Error('response status not :created');
+      }
+
+      const data = await response.json();
+
+      setBookmarkId(data.user_recipe_bookmark.id);
+    } catch (error) {
+      console.log(error);
+    }
+
     setBookmarkIsLoading(false);
   };
 
   const deleteBookmark = () => {
-    setBookmarkIsLoading(true);
     // TODO
     setBookmarkIsLoading(false);
   };
@@ -49,20 +90,22 @@ const Bookmark = props => {
   }, [fetchBookmarkId, isLoggedIn]);
 
   return (
-    <div
+    <button
+      disabled={bookmarkIsLoading}
+      onClick={handleBookmarkClick}
       className={`flex justify-center items-center w-10 h-10 rounded-full bg-slate-500 ${
         props.className || ''
       }`}
     >
-      <button disabled={bookmarkIsLoading} className='relative w-7 h-7'>
+      <div className='relative w-7 h-7'>
         <Image
           src={bookmarkId ? BookmarkFullIcon : BookmarkEmptyIcon}
           alt=''
           layout='fill'
           className='fill-white stroke-white'
         />
-      </button>
-    </div>
+      </div>
+    </button>
   );
 };
 
