@@ -54,12 +54,24 @@ const Bookmark = props => {
     } catch (error) {
       console.log(error);
     }
-
     setBookmarkIsLoading(false);
   };
 
-  const deleteBookmark = () => {
-    // TODO
+  const deleteBookmark = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user_recipe_bookmarks/${bookmarkId}`,
+        { method: 'DELETE', credentials: 'include' }
+      );
+
+      if (response.status !== 204) {
+        throw new Error('response status not :no_content');
+      }
+
+      setBookmarkId(null);
+    } catch (error) {
+      console.log(error);
+    }
     setBookmarkIsLoading(false);
   };
 
