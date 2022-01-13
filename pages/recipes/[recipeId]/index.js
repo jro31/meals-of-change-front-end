@@ -21,13 +21,15 @@ const RecipeDetails = props => {
       </Head>
 
       <RecipeDisplay
-        photo={props.large_photo}
+        recipeId={props.recipeId}
         name={props.name}
         preface={props.preface}
         tags={tagsArray()}
         ingredients={props.ingredients}
         cookingTime={props.timeMinutes}
         steps={props.steps}
+        photo={props.largePhoto}
+        isPreview={false}
       />
     </Fragment>
   );
@@ -64,6 +66,7 @@ export const getStaticProps = async context => {
 
   return {
     props: {
+      recipeId: recipe.id,
       name: recipe.name,
       author: recipe.user,
       timeMinutes: recipe.time_minutes,
@@ -71,10 +74,9 @@ export const getStaticProps = async context => {
       ingredients: recipe.ingredients,
       steps: recipe.steps,
       tags: recipe.tags,
-      small_photo: recipe.small_photo,
-      large_photo: recipe.large_photo,
+      largePhoto: recipe.large_photo,
     },
-    revalidate: 300,
+    revalidate: 60,
   };
 };
 

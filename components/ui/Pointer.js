@@ -1,17 +1,17 @@
 import Image from 'next/image';
 
-import leftPointer from '../../public/icons/left-pointer.svg';
-import rightPointer from '../../public/icons/right-pointer.svg';
+import LeftPointer from '../../public/icons/left-pointer.svg';
+import RightPointer from '../../public/icons/right-pointer.svg';
 
 const Pointer = props => {
   const source = () => {
     switch (props.direction) {
       case 'left':
-        return leftPointer;
+        return LeftPointer;
       case 'right':
-        return rightPointer;
+        return RightPointer;
       default:
-        return leftPointer;
+        return LeftPointer;
     }
   };
 
