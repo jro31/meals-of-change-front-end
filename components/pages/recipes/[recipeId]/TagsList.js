@@ -1,13 +1,12 @@
-import { Fragment } from 'react';
 import Tag from './Tag';
 
 const TagsList = props => {
   return (
-    <Fragment>
+    <div className='flex flex-wrap gap-1 sm:gap-3 mt-2'>
       {props.tagsArray.map(tag => (
         <Tag key={tag} tagName={tag} />
       ))}
-    </Fragment>
+    </div>
   );
 };
 
