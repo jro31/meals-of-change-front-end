@@ -16,7 +16,7 @@ const RecipeIndex = props => {
           `${process.env.NEXT_PUBLIC_API_URL}/api/v1/recipes?${
             router.asPath.split('?')[1]
           }&limit=50`,
-          {}
+          { credentials: 'include' }
         );
         const data = await response.json();
 

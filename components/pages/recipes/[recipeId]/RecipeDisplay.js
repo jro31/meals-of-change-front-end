@@ -24,6 +24,9 @@ const RecipeDisplay = props => {
             <div className='pt-4 pb-2 px-2 lg:pl-1/12 bg-gradient-to-b from-transparent to-slate-800 rounded-t-2xl'>
               <Title>{props.name}</Title>
             </div>
+            <div className='px-2 lg:pl-1/12 bg-slate-800'>
+              {props.cookingTime && <div>{props.cookingTime} minutes</div>}
+            </div>
             <div className='pt-2 pb-4 px-2 lg:pl-1/12 bg-slate-800 -my-px'>
               <Preface preface={props.preface} tags={props.tags} />
             </div>
@@ -31,7 +34,7 @@ const RecipeDisplay = props => {
               <IngredientsList
                 className='lg:hidden'
                 ingredients={props.ingredients}
-                cookingTime={props.timeMinutes}
+                recipeId={props.recipeId}
               />
               <StepsList steps={props.steps} />
             </div>
@@ -39,7 +42,7 @@ const RecipeDisplay = props => {
         </div>
       </div>
       <div className='hidden lg:block basis-1/3 xl:basis-3/12 2xl:basis-1/5 grow-0 shrink-0 overflow-scroll'>
-        <IngredientsList ingredients={props.ingredients} cookingTime={props.timeMinutes} />
+        <IngredientsList ingredients={props.ingredients} recipeId={props.recipeId} />
       </div>
     </div>
   );

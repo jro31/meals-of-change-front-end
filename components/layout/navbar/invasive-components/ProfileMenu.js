@@ -74,7 +74,12 @@ const ProfileMenu = props => {
               My recipes
             </div>
           )}
-          {/* TODO - <div>Bookmarked recipes</div> */}
+          <div
+            className='font-bold cursor-pointer'
+            onClick={() => navigateTo(`/recipes?bookmarked=true`)}
+          >
+            Bookmarked recipes
+          </div>
         </div>
         <div>
           <div className='cursor-pointer' onClick={logoutHandler}>
