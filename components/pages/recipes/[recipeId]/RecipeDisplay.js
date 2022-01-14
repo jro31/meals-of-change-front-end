@@ -1,4 +1,5 @@
 import Title from '../../../ui/text/Title';
+import CookingTime from './CookingTime';
 import IngredientsList from './IngredientsList';
 import Preface from './Preface';
 import RecipePhoto from './RecipePhoto';
@@ -25,7 +26,7 @@ const RecipeDisplay = props => {
               <Title>{props.name}</Title>
             </div>
             <div className='px-2 lg:pl-1/12 bg-slate-800'>
-              {props.cookingTime && <div>{props.cookingTime} minutes</div>}
+              <CookingTime cookingTime={props.cookingTime} />
             </div>
             <div className='pt-2 pb-4 px-2 lg:pl-1/12 bg-slate-800 -my-px'>
               <Preface preface={props.preface} tags={props.tags} />
@@ -35,6 +36,7 @@ const RecipeDisplay = props => {
                 className='lg:hidden'
                 ingredients={props.ingredients}
                 recipeId={props.recipeId}
+                isPreview={props.isPreview}
               />
               <StepsList steps={props.steps} />
             </div>
@@ -42,7 +44,11 @@ const RecipeDisplay = props => {
         </div>
       </div>
       <div className='hidden lg:block basis-1/3 xl:basis-3/12 2xl:basis-1/5 grow-0 shrink-0 overflow-scroll'>
-        <IngredientsList ingredients={props.ingredients} recipeId={props.recipeId} />
+        <IngredientsList
+          ingredients={props.ingredients}
+          recipeId={props.recipeId}
+          isPreview={props.isPreview}
+        />
       </div>
     </div>
   );

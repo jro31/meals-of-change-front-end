@@ -12,6 +12,7 @@ const RecipeIndex = props => {
   const fetchRecipes = useCallback(async () => {
     if (Object.keys(router.query).length) {
       try {
+        // TODO - This limit of 50 recipes needs to be removed, or at least paginated so that further recipes are loaded as the user scrolls
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/api/v1/recipes?${
             router.asPath.split('?')[1]

@@ -19,6 +19,7 @@ import TagsList from '../[recipeId]/TagsList';
 import useTagsParser from '../../../../hooks/use-tags-parser';
 import IngredientsList from '../[recipeId]/IngredientsList';
 import Checkbox from '../../../ui/form/Checkbox';
+import CookingTime from '../[recipeId]/CookingTime';
 
 let ingredientIterator = 0;
 
@@ -88,9 +89,8 @@ const NewRecipeForm = props => {
   return (
     <div className='flex justify-center fixed top-14 inset-x-0 bottom-0 -z-10 bg-black'>
       <div className='basis-full xl:basis-11/12 2xl:basis-4/5 bg-slate-800 rounded-2xl px-3 md:px-8 lg:px-10'>
-        <div className='flex justify-between gap-4'>
-          {/* TODO - This pb-28 is to make the bottom of the form visible under the address bar on mobile. Is there a better fix? (perhaps remove the h-screen-minus-nav) */}
-          <div className='basis-full lg:basis-3/5 xl:basis-1/2 overflow-scroll h-screen-minus-nav pt-2 lg:pr-6 pb-28'>
+        <div className='flex justify-between gap-4 h-full'>
+          <div className='basis-full lg:basis-3/5 xl:basis-1/2 overflow-scroll h-full pt-2 lg:pr-6'>
             <Title>Add your recipe</Title>
             <Form onSubmit={previewHandler}>
               {props.chosenPhotoPreviewUrl && (
@@ -165,6 +165,7 @@ const NewRecipeForm = props => {
             )}
             {/* FIXME - The bottoms of long letters in the title (p, g) get hidden on Safari on desktop (although note that they get displayed once elements below (ingredients) are displayed, so not a huge issue) */}
             {enteredName && <Title>{enteredName}</Title>}
+            {enteredCookingTime && <CookingTime cookingTime={enteredCookingTime} />}
             {enteredPreface && <Subheading>{enteredPreface}</Subheading>}
             {tagsParser(tagsObject)[0] && <TagsList tagsArray={tagsParser(tagsObject)} />}
             {((enteredCookingTime && enteredCookingTimeIsValid) ||
