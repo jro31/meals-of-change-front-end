@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 import Pointer from '../Pointer';
 import Title from '../text/Title';
@@ -19,11 +20,15 @@ const HorizontalRecipeList = props => {
   };
 
   const onHover = () => {
-    setIsHovering(true);
+    if (!isMobile) {
+      setIsHovering(true);
+    }
   };
 
   const onLeaveHover = () => {
-    setIsHovering(false);
+    if (!isMobile) {
+      setIsHovering(false);
+    }
   };
 
   useEffect(() => {
