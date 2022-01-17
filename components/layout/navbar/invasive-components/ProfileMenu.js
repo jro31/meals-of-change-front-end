@@ -66,6 +66,8 @@ const ProfileMenu = props => {
       >
         <div className='flex flex-col gap-6'>
           {/* TODO - <div>Account</div> */}
+          {/* This should allow users to change their password, and possibly their display name */}
+          {/* Should also give them the option of adding their Twitter and IG handles */}
           {user && user.id && (
             <div
               className='font-bold cursor-pointer'
@@ -78,7 +80,7 @@ const ProfileMenu = props => {
             className='font-bold cursor-pointer'
             onClick={() => navigateTo(`/recipes?bookmarked=true`)}
           >
-            Bookmarked recipes
+            Bookmarks
           </div>
         </div>
         <div>

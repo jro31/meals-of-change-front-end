@@ -25,6 +25,9 @@ const RecipeDisplay = props => {
             <div className='pt-4 pb-2 px-2 lg:pl-1/12 bg-gradient-to-b from-transparent to-slate-800 rounded-t-2xl'>
               <Title>{props.name}</Title>
             </div>
+            {/* TODO - The recipe author isn't mentioned anywhere on the page - add it somewhere (probably here, next to the cooking time) */}
+            {/* Could also add user's social media next to their name (Twitter/IG icons that link to their profiles) */}
+            {/* Their name should also link to all of their recipes */}
             <div className='px-2 lg:pl-1/12 bg-slate-800'>
               <CookingTime cookingTime={props.cookingTime} />
             </div>
