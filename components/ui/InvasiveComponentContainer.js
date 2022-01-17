@@ -12,6 +12,7 @@ const InvasiveComponentContainer = props => {
         in={props.in}
         timeout={400}
         classNames={props.transitionClassNames}
+        onExited={props.onExited || null}
       >
         {props.children}
       </CSSTransition>

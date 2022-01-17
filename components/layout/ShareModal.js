@@ -15,11 +15,15 @@ import FacebookIcon from '../../public/icons/facebook.svg';
 import TwitterIcon from '../../public/icons/twitter.svg';
 import WhatsAppIcon from '../../public/icons/whatsapp.svg';
 
-const ShareModal = props => {
+const ShareModal = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const showShareHandler = useShowShareHandler();
   const shareModalIsOpen = useSelector(state => state.shareModal.shareModalIsOpen);
+  const title = useSelector(state => state.shareModal.title);
+  const twitterUrlText = useSelector(state => state.shareModal.twitterUrlText);
+  const twitterHashtags = useSelector(state => state.shareModal.twitterHashtags);
+  const whatsAppUrlText = useSelector(state => state.shareModal.whatsAppUrlText);
   const linkCopiedToClipboard = useSelector(state => state.shareModal.linkCopiedToClipboard);
 
   const transitionClassNames = {
@@ -40,8 +44,10 @@ const ShareModal = props => {
 
   const twitterUrl = () => {
     return `https://twitter.com/intent/tweet?${
-      props.twitterUrlText ? `text=${props.twitterUrlText}` : ''
-    }&url=${fullPageUrl()}&via=mealsofchange${props.hashtags ? `&hashtags=${props.hashtags}` : ''}`;
+      twitterUrlText ? `text=${twitterUrlText}` : ''
+    }&url=${fullPageUrl()}&via=mealsofchange${
+      twitterHashtags ? `&hashtags=${twitterHashtags}` : ''
+    }`;
   };
 
   const facebookUrl = () => {
@@ -49,9 +55,7 @@ const ShareModal = props => {
   };
 
   const whatsAppUrl = () => {
-    return `whatsapp://send?text=${
-      props.whatsAppUrlText ? `${props.whatsAppUrlText}%20` : ''
-    }${fullPageUrl()}`;
+    return `whatsapp://send?text=${whatsAppUrlText ? `${whatsAppUrlText}%20` : ''}${fullPageUrl()}`;
   };
 
   return (
@@ -59,9 +63,10 @@ const ShareModal = props => {
       in={shareModalIsOpen}
       showHandler={showShareHandler}
       transitionClassNames={transitionClassNames}
+      onExited={() => dispatch(shareModalActions.resetModal())}
     >
       <div className='flex-col justify-between items-center fixed inset-x-1/24 sm:inset-x-1/12 md:inset-x-1/6 lg:inset-x-1/4 xl:inset-x-1/3 top-1/4 h-fit w-11/12 sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-slate-800 z-30 rounded-2xl p-4 lg:p-6 overflow-scroll'>
-        {props.title && <Heading className='text-center mb-5'>{props.title}</Heading>}
+        {title && <Heading className='text-center mb-5'>{title}</Heading>}
         <div className='flex justify-between items-center'>
           <div onClick={copyUrlToClipboard} className='cursor-pointer'>
             <div className='flex justify-center items-center w-10 h-10'>

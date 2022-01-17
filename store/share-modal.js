@@ -2,6 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   shareModalIsOpen: false,
+  title: '',
+  twitterUrlText: '',
+  twitterHashtags: '',
+  whatsAppUrlText: '',
   linkCopiedToClipboard: false,
 };
 
@@ -14,11 +18,23 @@ const shareModalSlice = createSlice({
     },
     closeModal(state) {
       state.shareModalIsOpen = false;
-      state.linkCopiedToClipboard = false;
+    },
+    setTitle(state, action) {
+      state.title = action.payload;
+    },
+    setTwitterUrlText(state, action) {
+      state.twitterUrlText = action.payload;
+    },
+    setTwitterHashtags(state, action) {
+      state.twitterHashtags = action.payload;
+    },
+    setWhatsAppUrlText(state, action) {
+      state.whatsAppUrlText = action.payload;
     },
     setLinkCopiedToClipboard(state) {
       state.linkCopiedToClipboard = true;
     },
+    resetModal: () => initialState,
   },
 });
 
