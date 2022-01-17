@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
-import Overlay from '../../../ui/Overlay';
+import Overlay from './Overlay';
 
-const MenuContainer = props => {
+const InvasiveComponentContainer = props => {
   return (
     <Fragment>
       <CSSTransition
@@ -20,4 +20,4 @@ const MenuContainer = props => {
   );
 };
 
-export default MenuContainer;
+export default InvasiveComponentContainer;

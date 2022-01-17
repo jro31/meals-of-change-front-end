@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { loginStatusActions } from '../../../../store/login-status';
 import { profileMenuActions } from '../../../../store/profile-menu';
-import Container from './Container';
+import InvasiveComponentContainer from '../../../ui/InvasiveComponentContainer';
 
 const ProfileMenu = props => {
   const router = useRouter();
@@ -54,7 +54,7 @@ const ProfileMenu = props => {
   };
 
   return (
-    <Container
+    <InvasiveComponentContainer
       in={profileMenuIsOpen}
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
@@ -90,7 +90,7 @@ const ProfileMenu = props => {
           {error && <div className='text-rose-300 w-full mt-2 mb-2'>{error}</div>}
         </div>
       </div>
-    </Container>
+    </InvasiveComponentContainer>
   );
 };
 

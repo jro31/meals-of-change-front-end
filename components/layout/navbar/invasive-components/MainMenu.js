@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import Container from './Container';
+import InvasiveComponentContainer from '../../../ui/InvasiveComponentContainer';
 import { mainMenuActions } from '../../../../store/main-menu';
 import { registrationModalActions } from '../../../../store/registration-modal';
 
@@ -36,7 +36,7 @@ const MainMenu = props => {
   };
 
   return (
-    <Container
+    <InvasiveComponentContainer
       in={mainMenuIsOpen}
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
@@ -77,7 +77,7 @@ const MainMenu = props => {
         {/* TODO - Add a 'Social' (or 'Social media') link */}
         {/* This opens a modal which has links to the meals of change Twitter/Instagram/Facebook pages */}
       </div>
-    </Container>
+    </InvasiveComponentContainer>
   );
 };
 
