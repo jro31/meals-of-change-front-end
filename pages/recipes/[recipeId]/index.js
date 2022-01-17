@@ -18,6 +18,20 @@ const RecipeDetails = props => {
             .map(tag => tag.name)
             .join(', ')}`}
         />
+
+        {/* Facebook */}
+        <meta property='og:title' content={props.name} />
+        <meta property='og:type' content='website' />
+        <meta property='og:url' content={`https://mealsofchange.com/recipes/${props.recipeId}`} />
+        <meta property='og:image' content={props.largePhoto} />
+        <meta property='og:site_name' content='Meals of Change'></meta>
+
+        {/* Twitter */}
+        <meta name='twitter:title' content={props.name} />
+        <meta name='twitter:description' content={props.preface || props.steps[0].instructions} />
+        <meta name='twitter:image' content={props.smallPhoto} />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:image:alt' content={`${props.name} photo`}></meta>
       </Head>
 
       <RecipeDisplay
@@ -74,6 +88,7 @@ export const getStaticProps = async context => {
       ingredients: recipe.ingredients,
       steps: recipe.steps,
       tags: recipe.tags,
+      smallPhoto: recipe.small_photo,
       largePhoto: recipe.large_photo,
     },
     revalidate: 60,
