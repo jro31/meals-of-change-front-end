@@ -28,6 +28,8 @@ const RecipeDetails = props => {
 
         {/* Twitter */}
         <meta name='twitter:title' content={props.name} />
+        <meta name='twitter:site' content='@mealsofchange' />
+        {/* TODO - Once storing user twitter handles, add '<meta name="twitter:creator" content="@SarahMaslinNir">' tag - see https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image */}
         <meta name='twitter:description' content={props.preface || props.steps[0].instructions} />
         <meta name='twitter:image' content={props.smallPhoto} />
         <meta name='twitter:card' content='summary_large_image' />

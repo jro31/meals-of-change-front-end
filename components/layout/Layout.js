@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { loginStatusActions } from '../../store/login-status';
 import { mainMenuActions } from '../../store/main-menu';
 import Navbar from './navbar/Navbar';
-import ShareModal from './ShareModal';
 
 const Layout = props => {
   const dispatch = useDispatch();
@@ -46,7 +45,6 @@ const Layout = props => {
     <div className='text-slate-200 bg-slate-800 min-h-screen min-w-screen -z-50 fixed top-0'>
       <Navbar />
       <main className='mt-14'>{props.children}</main>
-      <ShareModal />
     </div>
   );
 };

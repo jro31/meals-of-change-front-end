@@ -36,6 +36,7 @@ const RecipeDisplay = props => {
             </div>
             <div className='bg-slate-800 min-h-screen-minus-nav xl:min-h-0 xl:h-full'>
               <IngredientsList
+                name={props.name}
                 className='lg:hidden'
                 ingredients={props.ingredients}
                 recipeId={props.recipeId}
@@ -48,6 +49,7 @@ const RecipeDisplay = props => {
       </div>
       <div className='hidden lg:block basis-1/3 xl:basis-3/12 2xl:basis-1/5 grow-0 shrink-0 overflow-scroll'>
         <IngredientsList
+          name={props.name}
           ingredients={props.ingredients}
           recipeId={props.recipeId}
           isPreview={props.isPreview}

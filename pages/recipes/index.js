@@ -52,6 +52,7 @@ const RecipeIndex = props => {
           name='keywords'
           content={`plant-based, vegan, recipes ${recipes.map(recipe => recipe.name).join(', ')}`}
         />
+        {/* TODO - Add Twitter and Facebook meta tags */}
       </Head>
 
       <div className='flex flex-col fixed top-14 inset-x-0 bottom-0 bg-black min-h-screen-minus-nav -z-10 overflow-scroll'>
