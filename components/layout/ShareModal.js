@@ -4,9 +4,12 @@
 
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import useShowShareHandler from '../../hooks/use-show-share-handler';
 import InvasiveComponentContainer from '../ui/InvasiveComponentContainer';
+import FacebookIcon from '../../public/icons/facebook.svg';
+import TwitterIcon from '../../public/icons/twitter.svg';
 
 const ShareModal = props => {
   const router = useRouter();
@@ -40,12 +43,20 @@ const ShareModal = props => {
       showHandler={showShareHandler}
       transitionClassNames={transitionClassNames}
     >
-      <div className='flex flex-col fixed inset-x-1/24 sm:inset-x-1/12 md:inset-x-1/6 lg:inset-x-1/4 xl:inset-x-1/3 top-1/4 h-fit w-11/12 sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-slate-800 z-30 rounded-2xl p-4 lg:p-6 overflow-scroll'>
+      <div className='flex justify-between items-center fixed inset-x-1/24 sm:inset-x-1/12 md:inset-x-1/6 lg:inset-x-1/4 xl:inset-x-1/3 top-1/4 h-fit w-11/12 sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-slate-800 z-30 rounded-2xl p-4 lg:p-6 overflow-scroll'>
         <a href={twitterUrl()} target='_blank' rel='noreferrer'>
-          <div>TWITTER LOGO</div>
+          <div className='flex justify-center items-center w-10 h-10'>
+            <div className='relative w-full h-11/12'>
+              <Image src={TwitterIcon} alt='Twitter icon' layout='fill' />
+            </div>
+          </div>
         </a>
         <a href={facebookUrl()} target='_blank' rel='noreferrer'>
-          <div>FACEBOOK LOGO</div>
+          <div className='flex justify-center items-center w-10 h-10'>
+            <div className='relative w-1/2 h-full'>
+              <Image src={FacebookIcon} alt='Facebook icon' layout='fill' />
+            </div>
+          </div>
         </a>
       </div>
     </InvasiveComponentContainer>
