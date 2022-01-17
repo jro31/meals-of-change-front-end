@@ -2,20 +2,24 @@
 // Could have the share icon in the Navbar to allow all pages to be shared
 // Could also have the share icon next to the titles on the homepage and recipes index page to share each one
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import useShowShareHandler from '../../hooks/use-show-share-handler';
 import InvasiveComponentContainer from '../ui/InvasiveComponentContainer';
+import { shareModalActions } from '../../store/share-modal';
+import LinkIcon from '../../public/icons/link.svg';
 import FacebookIcon from '../../public/icons/facebook.svg';
 import TwitterIcon from '../../public/icons/twitter.svg';
 import WhatsAppIcon from '../../public/icons/whatsapp.svg';
 
 const ShareModal = props => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const showShareHandler = useShowShareHandler();
   const shareModalIsOpen = useSelector(state => state.shareModal.shareModalIsOpen);
+  const linkCopiedToClipboard = useSelector(state => state.shareModal.linkCopiedToClipboard);
 
   const transitionClassNames = {
     enter: '',
@@ -26,6 +30,11 @@ const ShareModal = props => {
 
   const fullPageUrl = () => {
     return `https://mealsofchange.com${router.asPath}`;
+  };
+
+  const copyUrlToClipboard = () => {
+    navigator.clipboard.writeText(fullPageUrl());
+    dispatch(shareModalActions.setLinkCopiedToClipboard());
   };
 
   const twitterUrl = () => {
@@ -51,6 +60,16 @@ const ShareModal = props => {
       transitionClassNames={transitionClassNames}
     >
       <div className='flex justify-between items-center fixed inset-x-1/24 sm:inset-x-1/12 md:inset-x-1/6 lg:inset-x-1/4 xl:inset-x-1/3 top-1/4 h-fit w-11/12 sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-slate-800 z-30 rounded-2xl p-4 lg:p-6 overflow-scroll'>
+        <div onClick={copyUrlToClipboard} className='cursor-pointer'>
+          <div className='flex justify-center items-center w-10 h-10'>
+            {!linkCopiedToClipboard && (
+              <div className='relative w-full h-full'>
+                <Image src={LinkIcon} alt='Link icon' layout='fill' />
+              </div>
+            )}
+            {linkCopiedToClipboard && <div className='text-center'>Link copied</div>}
+          </div>
+        </div>
         <a href={twitterUrl()} target='_blank' rel='noreferrer'>
           <div className='flex justify-center items-center w-10 h-10'>
             <div className='relative w-full h-11/12'>

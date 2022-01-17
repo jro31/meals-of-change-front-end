@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   shareModalIsOpen: false,
+  linkCopiedToClipboard: false,
 };
 
 const shareModalSlice = createSlice({
@@ -13,6 +14,10 @@ const shareModalSlice = createSlice({
     },
     closeModal(state) {
       state.shareModalIsOpen = false;
+      state.linkCopiedToClipboard = false;
+    },
+    setLinkCopiedToClipboard(state) {
+      state.linkCopiedToClipboard = true;
     },
   },
 });
