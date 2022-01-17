@@ -10,6 +10,7 @@ import useShowShareHandler from '../../hooks/use-show-share-handler';
 import InvasiveComponentContainer from '../ui/InvasiveComponentContainer';
 import FacebookIcon from '../../public/icons/facebook.svg';
 import TwitterIcon from '../../public/icons/twitter.svg';
+import WhatsAppIcon from '../../public/icons/whatsapp.svg';
 
 const ShareModal = props => {
   const router = useRouter();
@@ -28,13 +29,19 @@ const ShareModal = props => {
   };
 
   const twitterUrl = () => {
-    return `https://twitter.com/intent/tweet?text=${
-      props.twitterUrlText
-    }&url=${fullPageUrl()}&via=mealsofchange&hashtags=${props.hashtags}`;
+    return `https://twitter.com/intent/tweet?${
+      props.twitterUrlText ? `text=${props.twitterUrlText}` : ''
+    }&url=${fullPageUrl()}&via=mealsofchange${props.hashtags ? `&hashtags=${props.hashtags}` : ''}`;
   };
 
   const facebookUrl = () => {
     return `http://www.facebook.com/share.php?u=${fullPageUrl()}`;
+  };
+
+  const whatsAppUrl = () => {
+    return `whatsapp://send?text=${
+      props.whatsAppUrlText ? `${props.whatsAppUrlText}%20` : ''
+    }${fullPageUrl()}`;
   };
 
   return (
@@ -55,6 +62,13 @@ const ShareModal = props => {
           <div className='flex justify-center items-center w-10 h-10'>
             <div className='relative w-1/2 h-full'>
               <Image src={FacebookIcon} alt='Facebook icon' layout='fill' />
+            </div>
+          </div>
+        </a>
+        <a href={whatsAppUrl()} target='_blank' rel='noreferrer'>
+          <div className='flex justify-center items-center w-10 h-10'>
+            <div className='relative w-full h-full'>
+              <Image src={WhatsAppIcon} alt='Whatsapp icon' layout='fill' />
             </div>
           </div>
         </a>

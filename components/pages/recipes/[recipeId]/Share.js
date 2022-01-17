@@ -8,8 +8,8 @@ import ShareModal from '../../../layout/ShareModal';
 const Share = props => {
   const showShareHandler = useShowShareHandler();
 
-  const tweetTextAsUrl = () => {
-    return props.tweetText.replace(/ /g, '%20');
+  const textAsUrl = text => {
+    return text ? text.replace(/ /g, '%20') : '';
   };
 
   return (
@@ -22,7 +22,11 @@ const Share = props => {
           <Image src={ShareIcon} alt='Share icon' layout='fill' />
         </div>
       </div>
-      <ShareModal twitterUrlText={tweetTextAsUrl()} hashtags={props.hashtags} />
+      <ShareModal
+        twitterUrlText={textAsUrl(props.tweetText)}
+        hashtags={props.hashtags}
+        whatsAppUrlText={textAsUrl(props.whatsAppText)}
+      />
     </Fragment>
   );
 };
