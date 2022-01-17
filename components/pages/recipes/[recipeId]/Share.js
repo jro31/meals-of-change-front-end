@@ -19,10 +19,11 @@ const Share = props => {
         className='flex justify-center items-center w-12 h-10 bg-slate-500/50 rounded-md cursor-pointer'
       >
         <div className='relative w-5/12 h-8'>
-          <Image src={ShareIcon} alt='Share icon' layout='fill' />
+          <Image src={ShareIcon} alt='' layout='fill' />
         </div>
       </div>
       <ShareModal
+        title={props.title}
         twitterUrlText={textAsUrl(props.tweetText)}
         hashtags={props.hashtags}
         whatsAppUrlText={textAsUrl(props.whatsAppText)}

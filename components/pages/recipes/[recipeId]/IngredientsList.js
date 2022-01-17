@@ -47,6 +47,7 @@ const IngredientsList = props => {
           {!props.isPreview && (
             <div className='flex gap-2'>
               <Share
+                title='Share this recipe'
                 tweetText={props.name}
                 hashtags={'vegan,plantbased'}
                 whatsAppText={props.name}
