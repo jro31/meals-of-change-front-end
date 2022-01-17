@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
 import Image from 'next/image';
 
-import useShowShareHandler from '../../../../hooks/use-show-share-handler';
+import useShareModal from '../../../../hooks/use-share-modal';
 import ShareIcon from '../../../../public/icons/share.svg';
 
 const Share = props => {
-  const showShareHandler = useShowShareHandler();
+  const toggleShareModalHandler = useShareModal();
 
   const textAsUrl = text => {
     return text ? text.replace(/ /g, '%20') : '';
@@ -15,7 +15,7 @@ const Share = props => {
     <Fragment>
       <div
         onClick={() =>
-          showShareHandler(
+          toggleShareModalHandler(
             props.title,
             textAsUrl(props.tweetText),
             props.hashtags,

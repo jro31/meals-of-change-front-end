@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-import useShowShareHandler from '../../hooks/use-show-share-handler';
+import useShareModal from '../../hooks/use-share-modal';
 import InvasiveComponentContainer from '../ui/InvasiveComponentContainer';
 import Heading from '../ui/text/Heading';
 import { shareModalActions } from '../../store/share-modal';
@@ -18,7 +18,7 @@ import WhatsAppIcon from '../../public/icons/whatsapp.svg';
 const ShareModal = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const showShareHandler = useShowShareHandler();
+  const toggleShareModalHandler = useShareModal();
   const shareModalIsOpen = useSelector(state => state.shareModal.shareModalIsOpen);
   const title = useSelector(state => state.shareModal.title);
   const twitterUrlText = useSelector(state => state.shareModal.twitterUrlText);
@@ -61,7 +61,7 @@ const ShareModal = () => {
   return (
     <InvasiveComponentContainer
       in={shareModalIsOpen}
-      showHandler={showShareHandler}
+      showHandler={toggleShareModalHandler}
       transitionClassNames={transitionClassNames}
       onExited={() => dispatch(shareModalActions.resetModal())}
     >

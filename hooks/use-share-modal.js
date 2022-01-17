@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { shareModalActions } from '../store/share-modal';
 
-const useShowShareHandler = () => {
+const useShareModal = () => {
   const dispatch = useDispatch();
   const shareModalIsOpen = useSelector(state => state.shareModal.shareModalIsOpen);
 
@@ -21,4 +21,4 @@ const useShowShareHandler = () => {
   return showShareModalHandler;
 };
 
-export default useShowShareHandler;
+export default useShareModal;
