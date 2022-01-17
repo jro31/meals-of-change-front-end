@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 
 import Subheading from '../../../ui/text/Subheading';
 import Bookmark from './Bookmark';
+import Share from './Share';
 
 const IngredientsList = props => {
   const enteredIngredientAmount = useSelector(state => state.newRecipeForm.enteredIngredientAmount);
@@ -42,7 +43,14 @@ const IngredientsList = props => {
     >
       <div className='flex justify-between items-center px-4 pb-4'>
         <Subheading className='font-bold'>Ingredients</Subheading>
-        {!props.isPreview && <Bookmark recipeId={props.recipeId} />}
+        <div>
+          {!props.isPreview && (
+            <div className='flex gap-2'>
+              <Share />
+              <Bookmark recipeId={props.recipeId} />
+            </div>
+          )}
+        </div>
       </div>
       {ingredients() && (
         <div className='pb-2'>

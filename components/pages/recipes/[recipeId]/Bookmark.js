@@ -114,15 +114,9 @@ const Bookmark = props => {
       className={`flex justify-center items-center w-12 h-10 bg-slate-500/50 rounded-md ${
         props.className || ''
       }`}
-      id='bookmark'
     >
       <div className='relative w-full h-8'>
-        <Image
-          src={bookmarkId ? BookmarkFullIcon : BookmarkEmptyIcon}
-          alt=''
-          layout='fill'
-          className='fill-white stroke-white'
-        />
+        <Image src={bookmarkId ? BookmarkFullIcon : BookmarkEmptyIcon} alt='' layout='fill' />
       </div>
     </button>
   );

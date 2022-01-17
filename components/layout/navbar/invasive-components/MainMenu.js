@@ -55,6 +55,7 @@ const MainMenu = props => {
             Recipes
           </div>
           <div className='flex-grow-only columns-2 lg:columns-3 xl:columns-2xs'>
+            {/* FIXME - Tags that don't fit onto a single line (for example 'Middle-eastern' on mobile wrap) wrap onto mutlple lines with large line-height. Looks a bit shit. */}
             {tags.map(tag => {
               return (
                 <div
