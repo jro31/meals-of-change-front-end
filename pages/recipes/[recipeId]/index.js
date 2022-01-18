@@ -24,6 +24,7 @@ const RecipeDetails = props => {
         <meta property='og:type' content='website' />
         <meta property='og:url' content={`https://mealsofchange.com/recipes/${props.recipeId}`} />
         <meta property='og:image' content={props.largePhoto} />
+        {/* FIXME - This photo isn't displaying either */}
         <meta property='og:site_name' content='Meals of Change'></meta>
 
         {/* Twitter */}

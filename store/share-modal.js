@@ -6,6 +6,8 @@ const initialState = {
   twitterUrlText: '',
   twitterHashtags: '',
   whatsAppUrlText: '',
+  mailToSubject: '',
+  mailToBody: '',
   linkCopiedToClipboard: false,
 };
 
@@ -30,6 +32,12 @@ const shareModalSlice = createSlice({
     },
     setWhatsAppUrlText(state, action) {
       state.whatsAppUrlText = action.payload;
+    },
+    setMailToSubject(state, action) {
+      state.mailToSubject = action.payload;
+    },
+    setMailToBody(state, action) {
+      state.mailToBody = action.payload;
     },
     setLinkCopiedToClipboard(state) {
       state.linkCopiedToClipboard = true;

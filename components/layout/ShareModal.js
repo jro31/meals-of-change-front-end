@@ -14,6 +14,7 @@ import LinkIcon from '../../public/icons/link.svg';
 import FacebookIcon from '../../public/icons/facebook.svg';
 import TwitterIcon from '../../public/icons/twitter.svg';
 import WhatsAppIcon from '../../public/icons/whatsapp.svg';
+import EmailIcon from '../../public/icons/email.svg';
 
 const ShareModal = () => {
   const router = useRouter();
@@ -24,6 +25,8 @@ const ShareModal = () => {
   const twitterUrlText = useSelector(state => state.shareModal.twitterUrlText);
   const twitterHashtags = useSelector(state => state.shareModal.twitterHashtags);
   const whatsAppUrlText = useSelector(state => state.shareModal.whatsAppUrlText);
+  const mailToSubject = useSelector(state => state.shareModal.mailToSubject);
+  const mailToBody = useSelector(state => state.shareModal.mailToBody);
   const linkCopiedToClipboard = useSelector(state => state.shareModal.linkCopiedToClipboard);
 
   const transitionClassNames = {
@@ -56,6 +59,10 @@ const ShareModal = () => {
 
   const whatsAppUrl = () => {
     return `whatsapp://send?text=${whatsAppUrlText ? `${whatsAppUrlText}%20` : ''}${fullPageUrl()}`;
+  };
+
+  const emailUrl = () => {
+    return `mailto:?&subject=${mailToSubject}&body=${mailToBody}${fullPageUrl()}`;
   };
 
   return (
@@ -96,6 +103,13 @@ const ShareModal = () => {
             <div className='flex justify-center items-center w-10 h-10'>
               <div className='relative w-full h-full'>
                 <Image src={WhatsAppIcon} alt='Whatsapp icon' layout='fill' />
+              </div>
+            </div>
+          </a>
+          <a href={emailUrl()} target='_blank' rel='noreferrer'>
+            <div className='flex justify-center items-center w-11 h-9'>
+              <div className='relative w-full h-full'>
+                <Image src={EmailIcon} alt='Email icon' layout='fill' />
               </div>
             </div>
           </a>

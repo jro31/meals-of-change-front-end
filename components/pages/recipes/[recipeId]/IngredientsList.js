@@ -51,6 +51,8 @@ const IngredientsList = props => {
                 tweetText={props.name}
                 hashtags={'vegan,plantbased'}
                 whatsAppText={props.name}
+                mailToSubject={`${props.name} - plant-based recipe`}
+                mailToBody={`Check-out this plant-based '${props.name}' recipe - `}
               />
               <Bookmark recipeId={props.recipeId} />
             </div>

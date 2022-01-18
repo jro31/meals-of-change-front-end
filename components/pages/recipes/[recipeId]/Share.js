@@ -19,7 +19,9 @@ const Share = props => {
             props.title,
             textAsUrl(props.tweetText),
             props.hashtags,
-            textAsUrl(props.whatsAppText)
+            textAsUrl(props.whatsAppText),
+            props.mailToSubject,
+            props.mailToBody
           )
         }
         className='flex justify-center items-center w-12 h-10 bg-slate-500/50 rounded-md cursor-pointer'
