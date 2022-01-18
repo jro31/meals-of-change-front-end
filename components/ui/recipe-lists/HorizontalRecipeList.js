@@ -44,7 +44,6 @@ const HorizontalRecipeList = props => {
           </div>
         )}
         {props.recipes[0] && (
-          // FIXME - The pointers are displaying on mobile on the first tap, meaning that recipes have to be tapped on twice to open them
           <div
             onMouseEnter={onHover}
             onMouseLeave={onLeaveHover}

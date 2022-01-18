@@ -21,6 +21,7 @@ module.exports = {
         'full-minus-5rem': 'calc(100% - 5rem)',
         '40px': '40px',
         '50px': '50px',
+        '11/12': '91.666667%',
       },
       inset: {
         '1/6': '16.666667%',

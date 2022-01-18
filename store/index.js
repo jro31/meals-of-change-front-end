@@ -7,6 +7,7 @@ import newRecipeFormReducer from './new-recipe-form';
 import newRecipePageReducer from './new-recipe-page';
 import profileMenuReducer from './profile-menu';
 import registrationModalReducer from './registration-modal';
+import shareModalReducer from './share-modal';
 import signUpFormReducer from './sign-up-form';
 
 const store = configureStore({
@@ -18,6 +19,7 @@ const store = configureStore({
     newRecipePage: newRecipePageReducer,
     profileMenu: profileMenuReducer,
     registrationModal: registrationModalReducer,
+    shareModal: shareModalReducer,
     signUpForm: signUpFormReducer,
   },
 });

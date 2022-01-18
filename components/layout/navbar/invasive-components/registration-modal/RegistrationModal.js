@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Container from '../Container';
+import InvasiveComponentContainer from '../../../../ui/InvasiveComponentContainer';
 import LoginForm from './login-form/LoginForm';
 import SignUpForm from './sign-up-form/SignUpForm';
 import Subheading from '../../../../ui/text/Subheading';
@@ -36,7 +36,7 @@ const RegistrationModal = props => {
   };
 
   return (
-    <Container
+    <InvasiveComponentContainer
       in={registrationModalIsOpen}
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
@@ -76,7 +76,7 @@ const RegistrationModal = props => {
           )}
         </div>
       </div>
-    </Container>
+    </InvasiveComponentContainer>
   );
 };
 

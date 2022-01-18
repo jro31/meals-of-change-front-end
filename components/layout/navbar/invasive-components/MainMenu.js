@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import Container from './Container';
+import InvasiveComponentContainer from '../../../ui/InvasiveComponentContainer';
 import { mainMenuActions } from '../../../../store/main-menu';
 import { registrationModalActions } from '../../../../store/registration-modal';
 
@@ -36,7 +36,7 @@ const MainMenu = props => {
   };
 
   return (
-    <Container
+    <InvasiveComponentContainer
       in={mainMenuIsOpen}
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
@@ -55,6 +55,7 @@ const MainMenu = props => {
             Recipes
           </div>
           <div className='flex-grow-only columns-2 lg:columns-3 xl:columns-2xs'>
+            {/* FIXME - Tags that don't fit onto a single line (for example 'Middle-eastern' on mobile wrap) wrap onto mutlple lines with large line-height. Looks a bit shit. */}
             {tags.map(tag => {
               return (
                 <div
@@ -73,8 +74,10 @@ const MainMenu = props => {
             Add a recipe
           </div>
         </div>
+        {/* TODO - Add a 'Social' (or 'Social media') link */}
+        {/* This opens a modal which has links to the meals of change Twitter/Instagram/Facebook pages */}
       </div>
-    </Container>
+    </InvasiveComponentContainer>
   );
 };
 

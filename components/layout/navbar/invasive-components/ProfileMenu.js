@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { loginStatusActions } from '../../../../store/login-status';
 import { profileMenuActions } from '../../../../store/profile-menu';
-import Container from './Container';
+import InvasiveComponentContainer from '../../../ui/InvasiveComponentContainer';
 
 const ProfileMenu = props => {
   const router = useRouter();
@@ -54,7 +54,7 @@ const ProfileMenu = props => {
   };
 
   return (
-    <Container
+    <InvasiveComponentContainer
       in={profileMenuIsOpen}
       showHandler={props.showHandler}
       transitionClassNames={transitionClassNames}
@@ -66,6 +66,8 @@ const ProfileMenu = props => {
       >
         <div className='flex flex-col gap-6'>
           {/* TODO - <div>Account</div> */}
+          {/* This should allow users to change their password, and possibly their display name */}
+          {/* Should also give them the option of adding their Twitter and IG handles */}
           {user && user.id && (
             <div
               className='font-bold cursor-pointer'
@@ -78,7 +80,7 @@ const ProfileMenu = props => {
             className='font-bold cursor-pointer'
             onClick={() => navigateTo(`/recipes?bookmarked=true`)}
           >
-            Bookmarked recipes
+            Bookmarks
           </div>
         </div>
         <div>
@@ -88,7 +90,7 @@ const ProfileMenu = props => {
           {error && <div className='text-rose-300 w-full mt-2 mb-2'>{error}</div>}
         </div>
       </div>
-    </Container>
+    </InvasiveComponentContainer>
   );
 };
 
