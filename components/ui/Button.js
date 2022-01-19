@@ -33,6 +33,7 @@ const Button = props => {
       disabled={props.disabled || false}
       className={`${themeClasses()} ${sizeClasses()} rounded-lg ${props.className || ''}`}
       onClick={props.onClick || null}
+      form={props.form || null}
     >
       {props.children}
     </button>
