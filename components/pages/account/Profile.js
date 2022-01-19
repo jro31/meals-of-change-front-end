@@ -41,6 +41,19 @@ const Profile = () => {
 
     try {
       if (formIsValid() && inputsHaveChanged() && enteredExistingPasswordIsValid) {
+        const userObject = () => {
+          let baseObject = { existing_password: enteredExistingPassword.trim() };
+          if (enteredDisplayName.trim() !== user.display_name) {
+            baseObject.display_name = enteredDisplayName.trim();
+          }
+          if (enteredNewPassword.trim() || enteredNewPasswordConfirmation.trim()) {
+            baseObject.password = enteredNewPassword.trim();
+            baseObject.password_confirmation = enteredNewPasswordConfirmation.trim();
+          }
+
+          return baseObject;
+        };
+
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/api/v1/accounts/${user.id}`,
           {
@@ -49,12 +62,7 @@ const Profile = () => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              user: {
-                existing_password: enteredExistingPassword.trim(),
-                display_name: enteredDisplayName.trim(), // TODO - Should only be submitted if updated
-                password: enteredNewPassword.trim() || null,
-                password_confirmation: enteredNewPasswordConfirmation.trim() || null,
-              },
+              user: userObject(),
             }),
             credentials: 'include',
           }
@@ -66,10 +74,9 @@ const Profile = () => {
 
         const data = await response.json();
 
+        dispatch(accountFormActions.resetForm());
         dispatch(loginStatusActions.setUser(data.user));
-        dispatch(accountFormActions.setEnteredExistingPassword(''));
         setIsSubmitting(false);
-        // TODO - Clear the 'new password' fields
         // TODO - Add an 'Updated!' message for the user?
       } else {
         throw new Error('Something went wrong');
@@ -98,7 +105,6 @@ const Profile = () => {
     );
   };
 
-  // TODO - This should also return true if no inputs have been changed
   const disableButton = () =>
     isSubmitting || !formIsValid() || !enteredExistingPasswordIsValid || !inputsHaveChanged();
 
