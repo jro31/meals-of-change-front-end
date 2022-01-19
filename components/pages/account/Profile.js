@@ -1,27 +1,74 @@
 import { Fragment, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 
 import Heading from '../../ui/text/Heading';
 import AccountForm from './AccountForm';
 import ExistingPasswordInput from './form/ExistingPasswordInput';
+import { loginStatusActions } from '../../../store/login-status';
+import { accountFormActions } from '../../../store/account-form';
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const user = useSelector(state => state.loginStatus.user);
+  const enteredDisplayName = useSelector(state => state.accountForm.enteredDisplayName);
   const enteredDisplayNameIsValid = useSelector(
     state => state.accountForm.enteredDisplayNameIsValid
   );
+  const enteredExistingPassword = useSelector(state => state.accountForm.enteredExistingPassword);
   const enteredExistingPasswordIsValid = useSelector(
     state => state.accountForm.enteredExistingPasswordIsValid
   );
 
-  const formSubmitHandler = event => {
+  const formSubmitHandler = async event => {
     event.preventDefault();
     setIsSubmitting(true);
 
-    console.log('🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳');
+    try {
+      if (formIsValid() && inputsHaveChanged() && enteredExistingPasswordIsValid) {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/accounts/${user.id}`,
+          {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              user: {
+                existing_password: enteredExistingPassword.trim(),
+                display_name: enteredDisplayName.trim(),
+              },
+            }),
+            credentials: 'include',
+          }
+        );
+
+        if (response.status !== 200) {
+          throw new Error('response status not :ok');
+        }
+
+        const data = await response.json();
+
+        dispatch(loginStatusActions.setUser(data.user));
+        dispatch(accountFormActions.setEnteredExistingPassword(''));
+        setIsSubmitting(false);
+        // TODO - Clear the 'new password' fields
+        // TODO - Add an 'Updated!' message for the user?
+      } else {
+        throw new Error('Something went wrong');
+      }
+    } catch (error) {
+      setError(error.message);
+      setIsSubmitting(false);
+    }
+  };
+
+  const inputsHaveChanged = () => {
+    return enteredDisplayName !== user.display_name;
+    // TODO - Finish this
   };
 
   const formIsValid = () => {
@@ -30,7 +77,8 @@ const Profile = () => {
   };
 
   // TODO - This should also return true if no inputs have been changed
-  const disableButton = () => isSubmitting || !formIsValid() || !enteredExistingPasswordIsValid;
+  const disableButton = () =>
+    isSubmitting || !formIsValid() || !enteredExistingPasswordIsValid || !inputsHaveChanged();
 
   return (
     <Fragment>
@@ -45,6 +93,7 @@ const Profile = () => {
         </div>
       </div>
       <div className='flex justify-center items-center fixed bottom-0 w-screen bg-slate-500 h-14 sm:h-16'>
+        {/* TODO - Display 'error' (as per the recipe preview page) */}
         <div className='flex justify-end items-center basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 px-2 sm:px-4'>
           <ExistingPasswordInput error={error} setError={setError} />
           {/* TODO - Handle isSubmitting being true */}

@@ -17,6 +17,9 @@ const loginStatusSlice = createSlice({
       state.loggedInStatus = 'NOT_LOGGED_IN';
       state.user = initialState.user;
     },
+    setUser(state, action) {
+      state.user = action.payload;
+    },
   },
 });
 

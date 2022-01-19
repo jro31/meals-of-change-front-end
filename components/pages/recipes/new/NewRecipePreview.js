@@ -77,7 +77,7 @@ const NewRecipePreview = props => {
           recipeOptions
         );
 
-        if (!response.status === 201) {
+        if (response.status !== 201) {
           throw new Error('response status not :created');
         }
 

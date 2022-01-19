@@ -2,24 +2,10 @@
 
 import { Fragment } from 'react';
 import Head from 'next/head';
-import { useSelector } from 'react-redux';
 
-import { accountFormActions } from '../../store/account-form';
-import useInput from '../../hooks/use-input';
 import Profile from '../../components/pages/account/Profile';
 
 const AccountPage = () => {
-  const enteredDisplayName = useSelector(state => state.accountForm.enteredDisplayName);
-
-  const displayNameInputValidation = value => value.trim().length >= 4 && value.trim().length <= 20;
-
-  const { valueChangeHandler, inputBlurHandler } = useInput(
-    accountFormActions.setEnteredDisplayName,
-    displayNameInputValidation,
-    accountFormActions.setEnteredDisplayNameIsValid,
-    accountFormActions.setDisplayNameInputIsTouched
-  );
-
   return (
     <Fragment>
       <Head>
