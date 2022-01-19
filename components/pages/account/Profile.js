@@ -1,12 +1,13 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 
 import Heading from '../../ui/text/Heading';
-import AccountForm from './AccountForm';
 import ExistingPasswordInput from './form/ExistingPasswordInput';
 import { loginStatusActions } from '../../../store/login-status';
 import { accountFormActions } from '../../../store/account-form';
+import Form from '../../ui/form/Form';
+import DisplayNameInput from './form/DisplayNameInput';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -80,17 +81,35 @@ const Profile = () => {
   const disableButton = () =>
     isSubmitting || !formIsValid() || !enteredExistingPasswordIsValid || !inputsHaveChanged();
 
+  useEffect(() => {
+    if (Object.keys(user).length !== 0) {
+      dispatch(accountFormActions.setEnteredDisplayName(user.display_name));
+    }
+  }, [dispatch, user]);
+
   return (
     <Fragment>
       <div className='flex justify-center fixed top-14 inset-x-0 bottom-14 sm:bottom-16 bg-black -z-10'>
-        <div className='flex basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 bg-slate-800 rounded-2xl px-3 md:px-8 lg:px-10 pt-10'>
-          <div className='flex justify-center basis-2/5'>
-            <Heading>Edit profile</Heading>
+        <Form
+          id='account-form'
+          onSubmit={formSubmitHandler}
+          className='flex flex-col basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 bg-slate-800 rounded-2xl px-3 md:px-8 lg:px-10 pt-10'
+        >
+          <div className='flex'>
+            <div className='flex justify-center basis-2/5'>
+              <Heading>Edit profile</Heading>
+            </div>
+            <div className='basis-3/5'>
+              <DisplayNameInput error={error} setError={setError} />
+            </div>
           </div>
-          <div className='basis-3/5'>
-            <AccountForm onSubmit={formSubmitHandler} error={error} setError={setError} />
+          <div className='flex'>
+            <div className='flex justify-center basis-2/5'>
+              <Heading>Change password</Heading>
+            </div>
+            <div className='basis-3/5'>PASSWORD INPUT</div>
           </div>
-        </div>
+        </Form>
       </div>
       <div className='flex justify-center items-center fixed bottom-0 w-screen bg-slate-500 h-14 sm:h-16'>
         {/* TODO - Display 'error' (as per the recipe preview page) */}
@@ -98,7 +117,7 @@ const Profile = () => {
           <ExistingPasswordInput error={error} setError={setError} />
           {/* TODO - Handle isSubmitting being true */}
           <Button form='account-form' disabled={disableButton()}>
-            SUBMIT
+            Save changes
           </Button>
         </div>
       </div>
