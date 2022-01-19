@@ -24,6 +24,7 @@ const ExistingPasswordInput = props => {
 
   return (
     <Input
+      type='password'
       required
       id='existing-password'
       value={enteredValue}

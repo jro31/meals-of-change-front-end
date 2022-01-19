@@ -109,6 +109,8 @@ const SignUpForm = () => {
         inputIsTouched={passwordInputIsTouched}
         formError={error}
         setFormError={setError}
+        enteredConfirmationInput={enteredPasswordConfirmation}
+        setConfirmationInputIsValidAction={signUpFormActions.setEnteredPasswordConfirmationIsValid}
       />
       <PasswordInput
         confirmationInput={true}

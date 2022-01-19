@@ -1,7 +1,10 @@
 import Input from '../../../../ui/form/Input';
 import useInput from '../../../../../hooks/use-input';
+import { useDispatch } from 'react-redux';
 
 const PasswordInput = props => {
+  const dispatch = useDispatch();
+
   const passwordInputValidation = value => {
     if (props.confirmationInput) {
       return value.trim() === props.initialPasswordInputValue.trim();
@@ -34,6 +37,13 @@ const PasswordInput = props => {
     }
     if (props.confirmationInput && !props.inputIsTouched) {
       inputBlurHandler();
+    }
+    if (!props.confirmationInput && !props.loginForm) {
+      dispatch(
+        props.setConfirmationInputIsValidAction(
+          event.target.value === props.enteredConfirmationInput
+        )
+      );
     }
     valueChangeHandler(event);
   };

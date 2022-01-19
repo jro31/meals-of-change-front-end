@@ -8,6 +8,7 @@ import { loginStatusActions } from '../../../store/login-status';
 import { accountFormActions } from '../../../store/account-form';
 import Form from '../../ui/form/Form';
 import DisplayNameInput from './form/DisplayNameInput';
+import PasswordInputs from './form/PasswordInputs';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,16 @@ const Profile = () => {
   const enteredDisplayName = useSelector(state => state.accountForm.enteredDisplayName);
   const enteredDisplayNameIsValid = useSelector(
     state => state.accountForm.enteredDisplayNameIsValid
+  );
+  const enteredNewPassword = useSelector(state => state.accountForm.enteredNewPassword);
+  const enteredNewPasswordIsValid = useSelector(
+    state => state.accountForm.enteredNewPasswordIsValid
+  );
+  const enteredNewPasswordConfirmation = useSelector(
+    state => state.accountForm.enteredNewPasswordConfirmation
+  );
+  const enteredNewPasswordConfirmationIsValid = useSelector(
+    state => state.accountForm.enteredNewPasswordConfirmationIsValid
   );
   const enteredExistingPassword = useSelector(state => state.accountForm.enteredExistingPassword);
   const enteredExistingPasswordIsValid = useSelector(
@@ -40,7 +51,9 @@ const Profile = () => {
             body: JSON.stringify({
               user: {
                 existing_password: enteredExistingPassword.trim(),
-                display_name: enteredDisplayName.trim(),
+                display_name: enteredDisplayName.trim(), // TODO - Should only be submitted if updated
+                password: enteredNewPassword.trim() || null,
+                password_confirmation: enteredNewPasswordConfirmation.trim() || null,
               },
             }),
             credentials: 'include',
@@ -68,13 +81,21 @@ const Profile = () => {
   };
 
   const inputsHaveChanged = () => {
-    return enteredDisplayName !== user.display_name;
     // TODO - Finish this
+    return (
+      enteredDisplayName !== user.display_name ||
+      enteredNewPassword !== '' ||
+      enteredNewPasswordConfirmation !== ''
+    );
   };
 
   const formIsValid = () => {
-    return enteredDisplayNameIsValid;
     // TODO - Complete this
+    return (
+      enteredDisplayNameIsValid &&
+      enteredNewPasswordIsValid &&
+      enteredNewPasswordConfirmationIsValid
+    );
   };
 
   // TODO - This should also return true if no inputs have been changed
@@ -107,7 +128,9 @@ const Profile = () => {
             <div className='flex justify-center basis-2/5'>
               <Heading>Change password</Heading>
             </div>
-            <div className='basis-3/5'>PASSWORD INPUT</div>
+            <div className='basis-3/5'>
+              <PasswordInputs error={error} setError={setError} />
+            </div>
           </div>
         </Form>
       </div>

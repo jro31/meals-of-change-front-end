@@ -2,8 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   enteredDisplayName: '',
-  enteredDisplayNameIsValid: false,
+  enteredDisplayNameIsValid: true,
   displayNameInputIsTouched: false,
+
+  enteredNewPassword: '',
+  enteredNewPasswordIsValid: true,
+  newPasswordInputIsTouched: false,
+  enteredNewPasswordConfirmation: '',
+  enteredNewPasswordConfirmationIsValid: true,
+  newPasswordConfirmationInputIsTouched: false,
+
   enteredExistingPassword: '',
   enteredExistingPasswordIsValid: false,
 };
@@ -21,6 +29,26 @@ const accountFormSlice = createSlice({
     setDisplayNameInputIsTouched(state) {
       state.displayNameInputIsTouched = true;
     },
+
+    setEnteredNewPassword(state, action) {
+      state.enteredNewPassword = action.payload;
+    },
+    setEnteredNewPasswordIsValid(state, action) {
+      state.enteredNewPasswordIsValid = action.payload;
+    },
+    setNewPasswordInputIsTouched(state) {
+      state.newPasswordInputIsTouched = true;
+    },
+    setEnteredNewPasswordConfirmation(state, action) {
+      state.enteredNewPasswordConfirmation = action.payload;
+    },
+    setEnteredNewPasswordConfirmationIsValid(state, action) {
+      state.enteredNewPasswordConfirmationIsValid = action.payload;
+    },
+    setNewPasswordConfirmationInputIsTouched(state) {
+      state.newPasswordConfirmationInputIsTouched = true;
+    },
+
     setEnteredExistingPassword(state, action) {
       state.enteredExistingPassword = action.payload;
     },
