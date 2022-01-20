@@ -173,11 +173,11 @@ const Profile = () => {
         <Form
           id='account-form'
           onSubmit={formSubmitHandler}
-          className='flex flex-col basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 bg-slate-800 rounded-2xl px-3 md:px-8 lg:px-10 pt-10 overflow-scroll'
+          className='flex flex-col gap-8 md:gap-10 basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 bg-slate-800 rounded-2xl px-3 md:px-8 lg:px-10 pt-6 pb-6 overflow-scroll'
         >
-          <div className='flex'>
-            <div className='flex justify-center basis-2/5'>
-              <Heading>Edit profile</Heading>
+          <div className='flex flex-col sm:flex-row'>
+            <div className='flex justify-start sm:justify-center basis-2/5'>
+              <Heading className='sm:mt-6'>Edit profile</Heading>
             </div>
             <div className='basis-3/5'>
               <DisplayNameInput masterInputChangeHandler={masterInputChangeHandler} />
@@ -191,9 +191,9 @@ const Profile = () => {
               />
             </div>
           </div>
-          <div className='flex'>
-            <div className='flex justify-center basis-2/5'>
-              <Heading>Change password</Heading>
+          <div className='flex flex-col sm:flex-row'>
+            <div className='flex justify-start sm:justify-center basis-2/5'>
+              <Heading className='sm:mt-6'>Change password</Heading>
             </div>
             <div className='basis-3/5'>
               <PasswordInputs masterInputChangeHandler={masterInputChangeHandler} />
@@ -214,7 +214,7 @@ const Profile = () => {
         <div
           className={`flex ${
             message() ? 'justify-end' : 'justify-between'
-          } items-end basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 px-2 sm:px-4`}
+          } items-end basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 px-3 md:px-8 lg:px-10`}
         >
           {message() && (
             <div
