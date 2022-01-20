@@ -28,6 +28,11 @@ const Profile = () => {
     state => state.accountForm.enteredTwitterHandleIsValid
   );
 
+  const enteredInstagramUsername = useSelector(state => state.accountForm.enteredInstagramUsername);
+  const enteredInstagramUsernameIsValid = useSelector(
+    state => state.accountForm.enteredInstagramUsernameIsValid
+  );
+
   const enteredNewPassword = useSelector(state => state.accountForm.enteredNewPassword);
   const enteredNewPasswordIsValid = useSelector(
     state => state.accountForm.enteredNewPasswordIsValid
@@ -59,6 +64,10 @@ const Profile = () => {
           }
           if (twitterHandleHasChanged()) {
             baseObject.twitter_handle = parsedSocialMediaInput(enteredTwitterHandle) || null;
+          }
+          if (instagramUsernameHasChanged()) {
+            baseObject.instagram_username =
+              parsedSocialMediaInput(enteredInstagramUsername) || null;
           }
           if (enteredNewPassword.trim() || enteredNewPasswordConfirmation.trim()) {
             baseObject.password = enteredNewPassword.trim();
@@ -107,21 +116,27 @@ const Profile = () => {
     return parsedSocialMediaInput(enteredTwitterHandle) !== user.twitter_handle;
   };
 
+  const instagramUsernameHasChanged = () => {
+    if (parsedSocialMediaInput(enteredInstagramUsername) === '' && user.instagram_username === null)
+      return false;
+    return parsedSocialMediaInput(enteredInstagramUsername) !== user.instagram_username;
+  };
+
   const inputsHaveChanged = () => {
-    // TODO - Finish this
     return (
       enteredDisplayName.trim() !== user.display_name ||
       twitterHandleHasChanged() ||
+      instagramUsernameHasChanged() ||
       enteredNewPassword.trim() !== '' ||
       enteredNewPasswordConfirmation.trim() !== ''
     );
   };
 
   const formIsValid = () => {
-    // TODO - Complete this
     return (
       enteredDisplayNameIsValid &&
       enteredTwitterHandleIsValid &&
+      enteredInstagramUsernameIsValid &&
       enteredNewPasswordIsValid &&
       enteredNewPasswordConfirmationIsValid
     );
@@ -135,6 +150,7 @@ const Profile = () => {
     if (Object.keys(user).length !== 0) {
       dispatch(accountFormActions.setEnteredDisplayName(user.display_name));
       dispatch(accountFormActions.setEnteredTwitterHandle(user.twitter_handle || ''));
+      dispatch(accountFormActions.setEnteredInstagramUsername(user.instagram_username || ''));
     }
   }, [dispatch, user]);
 
@@ -144,7 +160,7 @@ const Profile = () => {
         <Form
           id='account-form'
           onSubmit={formSubmitHandler}
-          className='flex flex-col basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 bg-slate-800 rounded-2xl px-3 md:px-8 lg:px-10 pt-10'
+          className='flex flex-col basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 bg-slate-800 rounded-2xl px-3 md:px-8 lg:px-10 pt-10 overflow-scroll'
         >
           <div className='flex'>
             <div className='flex justify-center basis-2/5'>
@@ -157,7 +173,11 @@ const Profile = () => {
                 setError={setError}
                 parsedInput={parsedSocialMediaInput}
               />
-              {/* <InstagramUsernameInput error={error} setError={setError} parsedInput={parsedSocialMediaInput} /> */}
+              <InstagramUsernameInput
+                error={error}
+                setError={setError}
+                parsedInput={parsedSocialMediaInput}
+              />
             </div>
           </div>
           <div className='flex'>
