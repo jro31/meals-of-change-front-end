@@ -4,14 +4,18 @@ const initialState = {
   enteredDisplayName: '',
   enteredDisplayNameIsValid: true,
   displayNameInputIsTouched: false,
-
+  enteredTwitterHandle: '',
+  enteredTwitterHandleIsValid: true,
+  twitterHandleInputIsTouched: false,
+  enteredInstagramUsername: '',
+  enteredInstagramUsernameIsValid: true,
+  instagramUsernameInputIsTouched: false,
   enteredNewPassword: '',
   enteredNewPasswordIsValid: true,
   newPasswordInputIsTouched: false,
   enteredNewPasswordConfirmation: '',
   enteredNewPasswordConfirmationIsValid: true,
   newPasswordConfirmationInputIsTouched: false,
-
   enteredExistingPassword: '',
   enteredExistingPasswordIsValid: false,
 };
@@ -29,7 +33,24 @@ const accountFormSlice = createSlice({
     setDisplayNameInputIsTouched(state) {
       state.displayNameInputIsTouched = true;
     },
-
+    setEnteredTwitterHandle(state, action) {
+      state.enteredTwitterHandle = action.payload;
+    },
+    setEnteredTwitterHandleIsValid(state, action) {
+      state.enteredTwitterHandleIsValid = action.payload;
+    },
+    setTwitterHandleInputIsTouched(state) {
+      state.twitterHandleInputIsTouched = true;
+    },
+    setEnteredInstagramUsername(state, action) {
+      state.enteredInstagramUsername = action.payload;
+    },
+    setEnteredInstagramUsernameIsValid(state, action) {
+      state.enteredInstagramUsernameIsValid = action.payload;
+    },
+    setInstagramUsernameInputIsTouched(state) {
+      state.instagramUsernameInputIsTouched = true;
+    },
     setEnteredNewPassword(state, action) {
       state.enteredNewPassword = action.payload;
     },
@@ -55,7 +76,7 @@ const accountFormSlice = createSlice({
     setEnteredExistingPasswordIsValid(state, action) {
       state.enteredExistingPasswordIsValid = action.payload;
     },
-    resetForm: () => initialState, // TODO - Need this?
+    resetForm: () => initialState,
   },
 });
 

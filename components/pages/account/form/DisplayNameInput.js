@@ -27,7 +27,7 @@ const DisplayNameInput = props => {
 
   return (
     <Input
-      // required
+      required
       id='display-name'
       value={enteredValue}
       onChange={inputChangeHandler}

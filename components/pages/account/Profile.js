@@ -9,6 +9,8 @@ import { accountFormActions } from '../../../store/account-form';
 import Form from '../../ui/form/Form';
 import DisplayNameInput from './form/DisplayNameInput';
 import PasswordInputs from './form/PasswordInputs';
+import TwitterHandleInput from './form/TwitterHandleInput';
+import InstagramUsernameInput from './form/InstagramUsernameInput';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,12 @@ const Profile = () => {
   const enteredDisplayNameIsValid = useSelector(
     state => state.accountForm.enteredDisplayNameIsValid
   );
+
+  const enteredTwitterHandle = useSelector(state => state.accountForm.enteredTwitterHandle);
+  const enteredTwitterHandleIsValid = useSelector(
+    state => state.accountForm.enteredTwitterHandleIsValid
+  );
+
   const enteredNewPassword = useSelector(state => state.accountForm.enteredNewPassword);
   const enteredNewPasswordIsValid = useSelector(
     state => state.accountForm.enteredNewPasswordIsValid
@@ -35,6 +43,9 @@ const Profile = () => {
     state => state.accountForm.enteredExistingPasswordIsValid
   );
 
+  const parsedSocialMediaInput = value =>
+    value.trim()[0] === '@' ? value.trim().substring(1) : value.trim();
+
   const formSubmitHandler = async event => {
     event.preventDefault();
     setIsSubmitting(true);
@@ -45,6 +56,9 @@ const Profile = () => {
           let baseObject = { existing_password: enteredExistingPassword.trim() };
           if (enteredDisplayName.trim() !== user.display_name) {
             baseObject.display_name = enteredDisplayName.trim();
+          }
+          if (twitterHandleHasChanged()) {
+            baseObject.twitter_handle = parsedSocialMediaInput(enteredTwitterHandle) || null;
           }
           if (enteredNewPassword.trim() || enteredNewPasswordConfirmation.trim()) {
             baseObject.password = enteredNewPassword.trim();
@@ -87,12 +101,19 @@ const Profile = () => {
     }
   };
 
+  const twitterHandleHasChanged = () => {
+    if (parsedSocialMediaInput(enteredTwitterHandle) === '' && user.twitter_handle === null)
+      return false;
+    return parsedSocialMediaInput(enteredTwitterHandle) !== user.twitter_handle;
+  };
+
   const inputsHaveChanged = () => {
     // TODO - Finish this
     return (
-      enteredDisplayName !== user.display_name ||
-      enteredNewPassword !== '' ||
-      enteredNewPasswordConfirmation !== ''
+      enteredDisplayName.trim() !== user.display_name ||
+      twitterHandleHasChanged() ||
+      enteredNewPassword.trim() !== '' ||
+      enteredNewPasswordConfirmation.trim() !== ''
     );
   };
 
@@ -100,6 +121,7 @@ const Profile = () => {
     // TODO - Complete this
     return (
       enteredDisplayNameIsValid &&
+      enteredTwitterHandleIsValid &&
       enteredNewPasswordIsValid &&
       enteredNewPasswordConfirmationIsValid
     );
@@ -109,8 +131,10 @@ const Profile = () => {
     isSubmitting || !formIsValid() || !enteredExistingPasswordIsValid || !inputsHaveChanged();
 
   useEffect(() => {
+    dispatch(accountFormActions.resetForm());
     if (Object.keys(user).length !== 0) {
       dispatch(accountFormActions.setEnteredDisplayName(user.display_name));
+      dispatch(accountFormActions.setEnteredTwitterHandle(user.twitter_handle || ''));
     }
   }, [dispatch, user]);
 
@@ -128,6 +152,12 @@ const Profile = () => {
             </div>
             <div className='basis-3/5'>
               <DisplayNameInput error={error} setError={setError} />
+              <TwitterHandleInput
+                error={error}
+                setError={setError}
+                parsedInput={parsedSocialMediaInput}
+              />
+              {/* <InstagramUsernameInput error={error} setError={setError} parsedInput={parsedSocialMediaInput} /> */}
             </div>
           </div>
           <div className='flex'>
