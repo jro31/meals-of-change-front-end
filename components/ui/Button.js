@@ -9,7 +9,7 @@ const Button = props => {
       case 'subtle':
         return 'bg-transparent border-2 border-slate-500';
       case 'plain':
-        return 'bg-slate-800 hover:bg-slate-900';
+        return 'bg-slate-800 hover:bg-slate-900 disabled:bg-slate-200 disabled:text-white';
       default:
         return submitClases;
     }

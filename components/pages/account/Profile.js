@@ -156,7 +156,7 @@ const Profile = () => {
 
   return (
     <Fragment>
-      <div className='flex justify-center fixed top-14 inset-x-0 bottom-14 sm:bottom-16 bg-black -z-10'>
+      <div className='flex justify-center fixed top-14 inset-x-0 bottom-20 sm:bottom-22 bg-black -z-10'>
         <Form
           id='account-form'
           onSubmit={formSubmitHandler}
@@ -190,14 +190,36 @@ const Profile = () => {
           </div>
         </Form>
       </div>
-      <div className='flex justify-center items-center fixed bottom-0 w-screen bg-slate-500 h-14 sm:h-16'>
-        {/* TODO - Display 'error' (as per the recipe preview page) */}
-        <div className='flex justify-end items-center basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 px-2 sm:px-4'>
-          <ExistingPasswordInput error={error} setError={setError} />
-          {/* TODO - Handle isSubmitting being true */}
-          <Button form='account-form' disabled={disableButton()}>
-            Save changes
-          </Button>
+      <div className='flex justify-center items-start fixed bottom-0 w-screen bg-slate-500 h-20 sm:h-22'>
+        {error && (
+          <div className='absolute top-0 left-0 sm:hidden px-2 mt-1.5 text-xs text-rose-300'>
+            {error}
+          </div>
+        )}
+        <div
+          className={`flex ${
+            error ? 'justify-end' : 'justify-between'
+          } items-end basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 px-2 sm:px-4`}
+        >
+          {error && (
+            <div className='hidden sm:block basis-1/3 md:basis-1/2 text-rose-300'>{error}</div>
+          )}
+          <div
+            className={`${
+              error ? 'basis-full sm:basis-2/3 md:basis-1/2' : 'basis-full'
+            } flex justify-end items-end gap-2`}
+          >
+            <ExistingPasswordInput error={error} setError={setError} />
+            {/* TODO - Handle isSubmitting being true */}
+            <Button
+              className='min-w-[117px] sm:min-w-[125px]'
+              theme='plain'
+              form='account-form'
+              disabled={disableButton()}
+            >
+              Save changes
+            </Button>
+          </div>
         </div>
       </div>
     </Fragment>

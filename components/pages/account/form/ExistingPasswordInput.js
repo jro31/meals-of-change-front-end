@@ -30,6 +30,8 @@ const ExistingPasswordInput = props => {
       value={enteredValue}
       onChange={inputChangeHandler}
       label='Existing password'
+      className='basis-full sm:basis-auto shrink'
+      labelClassName={props.error ? 'hidden sm:block' : ''}
     />
   );
 };
