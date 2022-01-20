@@ -12,6 +12,9 @@ module.exports = {
         'slide-out-right': 'slideOutRight 0.4s ease-in forwards',
         'slide-out-up': 'slideOutUp 0.4s ease-in forwards',
       },
+      colors: {
+        'logo-green': 'rgb(113, 200 55)',
+      },
       flex: {
         'grow-only': '1 0 auto',
       },

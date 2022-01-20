@@ -31,8 +31,7 @@ const PasswordInputs = props => {
         setNewPasswordInputIsTouchedAction={accountFormActions.setNewPasswordInputIsTouched}
         enteredNewPasswordIsValid={enteredNewPasswordIsValid}
         inputIsTouched={newPasswordInputIsTouched}
-        error={props.error}
-        setError={props.setError}
+        masterInputChangeHandler={props.masterInputChangeHandler}
         enteredConfirmationInput={enteredNewPasswordConfirmation}
         setConfirmationInputIsValidAction={
           accountFormActions.setEnteredNewPasswordConfirmationIsValid
@@ -50,8 +49,7 @@ const PasswordInputs = props => {
         }
         enteredNewPasswordIsValid={enteredNewPasswordConfirmationIsValid}
         inputIsTouched={newPasswordConfirmationInputIsTouched}
-        error={props.error}
-        setError={props.setError}
+        masterInputChangeHandler={props.masterInputChangeHandler}
         initialNewPasswordInputValue={enteredNewPassword}
       />
     </Fragment>

@@ -24,10 +24,7 @@ const InstagramUsernameInput = props => {
   );
 
   const inputChangeHandler = event => {
-    if (props.error) {
-      props.setError(null);
-    }
-    valueChangeHandler(event);
+    props.masterInputChangeHandler(event, valueChangeHandler);
   };
 
   const errorMessage = () => {

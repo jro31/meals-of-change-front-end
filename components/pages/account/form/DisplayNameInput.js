@@ -19,10 +19,7 @@ const DisplayNameInput = props => {
   );
 
   const inputChangeHandler = event => {
-    if (props.error) {
-      props.setError(null);
-    }
-    valueChangeHandler(event);
+    props.masterInputChangeHandler(event, valueChangeHandler);
   };
 
   return (

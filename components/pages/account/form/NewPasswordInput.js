@@ -30,9 +30,6 @@ const NewPasswordInput = props => {
   );
 
   const inputChangeHandler = event => {
-    if (props.error) {
-      props.setError(null);
-    }
     if (props.confirmationInput && !props.inputIsTouched) {
       inputBlurHandler();
     }
@@ -43,7 +40,7 @@ const NewPasswordInput = props => {
         )
       );
     }
-    valueChangeHandler(event);
+    props.masterInputChangeHandler(event, valueChangeHandler);
   };
 
   return (

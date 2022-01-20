@@ -15,6 +15,7 @@ import InstagramUsernameInput from './form/InstagramUsernameInput';
 const Profile = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
+  const [updated, setUpdated] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const user = useSelector(state => state.loginStatus.user);
@@ -73,7 +74,6 @@ const Profile = () => {
             baseObject.password = enteredNewPassword.trim();
             baseObject.password_confirmation = enteredNewPasswordConfirmation.trim();
           }
-
           return baseObject;
         };
 
@@ -94,6 +94,8 @@ const Profile = () => {
         if (response.status !== 200) {
           throw new Error('response status not :ok');
         }
+
+        setUpdated(true);
 
         const data = await response.json();
 
@@ -145,6 +147,17 @@ const Profile = () => {
   const disableButton = () =>
     isSubmitting || !formIsValid() || !enteredExistingPasswordIsValid || !inputsHaveChanged();
 
+  const message = () => {
+    if (error) return error;
+    if (updated) return 'Profile updated';
+  };
+
+  const masterInputChangeHandler = (event, valueChangeHandler) => {
+    if (error) setError(null);
+    if (updated) setUpdated(false);
+    valueChangeHandler(event);
+  };
+
   useEffect(() => {
     dispatch(accountFormActions.resetForm());
     if (Object.keys(user).length !== 0) {
@@ -167,16 +180,14 @@ const Profile = () => {
               <Heading>Edit profile</Heading>
             </div>
             <div className='basis-3/5'>
-              <DisplayNameInput error={error} setError={setError} />
+              <DisplayNameInput masterInputChangeHandler={masterInputChangeHandler} />
               <TwitterHandleInput
-                error={error}
-                setError={setError}
                 parsedInput={parsedSocialMediaInput}
+                masterInputChangeHandler={masterInputChangeHandler}
               />
               <InstagramUsernameInput
-                error={error}
-                setError={setError}
                 parsedInput={parsedSocialMediaInput}
+                masterInputChangeHandler={masterInputChangeHandler}
               />
             </div>
           </div>
@@ -185,31 +196,44 @@ const Profile = () => {
               <Heading>Change password</Heading>
             </div>
             <div className='basis-3/5'>
-              <PasswordInputs error={error} setError={setError} />
+              <PasswordInputs masterInputChangeHandler={masterInputChangeHandler} />
             </div>
           </div>
         </Form>
       </div>
       <div className='flex justify-center items-start fixed bottom-0 w-screen bg-slate-500 h-20 sm:h-22'>
-        {error && (
-          <div className='absolute top-0 left-0 sm:hidden px-2 mt-1.5 text-xs text-rose-300'>
-            {error}
+        {message() && (
+          <div
+            className={`absolute top-0 left-0 sm:hidden px-2 mt-1.5 text-xs ${
+              error ? 'text-rose-300' : 'text-logo-green'
+            }`}
+          >
+            {message()}
           </div>
         )}
         <div
           className={`flex ${
-            error ? 'justify-end' : 'justify-between'
+            message() ? 'justify-end' : 'justify-between'
           } items-end basis-full md:basis-11/12 lg:basis-5/6 xl:basis-3/4 2xl:basis-2/3 px-2 sm:px-4`}
         >
-          {error && (
-            <div className='hidden sm:block basis-1/3 md:basis-1/2 text-rose-300'>{error}</div>
+          {message() && (
+            <div
+              className={`hidden sm:block basis-1/3 md:basis-1/2 ${
+                error ? 'text-rose-300' : 'text-logo-green'
+              }`}
+            >
+              {message()}
+            </div>
           )}
           <div
             className={`${
-              error ? 'basis-full sm:basis-2/3 md:basis-1/2' : 'basis-full'
+              message() ? 'basis-full sm:basis-2/3 md:basis-1/2' : 'basis-full'
             } flex justify-end items-end gap-2`}
           >
-            <ExistingPasswordInput error={error} setError={setError} />
+            <ExistingPasswordInput
+              message={message()}
+              masterInputChangeHandler={masterInputChangeHandler}
+            />
             {/* TODO - Handle isSubmitting being true */}
             <Button
               className='min-w-[117px] sm:min-w-[125px]'

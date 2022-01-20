@@ -16,10 +16,7 @@ const ExistingPasswordInput = props => {
   );
 
   const inputChangeHandler = event => {
-    if (props.error) {
-      props.setError(null);
-    }
-    valueChangeHandler(event);
+    props.masterInputChangeHandler(event, valueChangeHandler);
   };
 
   return (
@@ -31,7 +28,7 @@ const ExistingPasswordInput = props => {
       onChange={inputChangeHandler}
       label='Existing password'
       className='basis-full sm:basis-auto shrink'
-      labelClassName={props.error ? 'hidden sm:block' : ''}
+      labelClassName={props.message ? 'hidden sm:block' : ''}
     />
   );
 };
