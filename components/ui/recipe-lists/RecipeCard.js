@@ -1,15 +1,16 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import StockPhoto from '../../../public/images/fork-large.jpg';
 import TwitterIcon from '../../../public/icons/twitter.svg';
+import InstagramIcon from '../../../public/icons/instagram.svg';
 
 const RecipeCard = props => {
   const router = useRouter();
 
   const cardClickHandler = event => {
     if (event.target.closest('.twitter-icon')) return;
+    if (event.target.closest('.instagram-icon')) return;
 
     router.push(`/recipes/${props.recipe.id}`);
   };
@@ -33,7 +34,7 @@ const RecipeCard = props => {
         <div className='flex flex-col h-1/4 pt-2'>
           <div className='text-lg font-light text-white'>{props.recipe.name}</div>
           <div className='flex w-full justify-between font-light'>
-            <div className='flex justify-start gap-2'>
+            <div className='flex justify-start gap-2.5'>
               <div>By {props.recipe.author}</div>
               {props.recipe.author_twitter_handle && (
                 <a
@@ -45,6 +46,20 @@ const RecipeCard = props => {
                   <div className='flex justify-center items-center h-6 w-6'>
                     <div className='relative w-full h-11/12'>
                       <Image src={TwitterIcon} alt='' layout='fill' />
+                    </div>
+                  </div>
+                </a>
+              )}
+              {props.recipe.author_instagram_username && (
+                <a
+                  href={`https://www.instagram.com/${props.recipe.author_instagram_username}`}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='instagram-icon'
+                >
+                  <div className='flex justify-center items-center h-6 w-6'>
+                    <div className='relative w-full h-full'>
+                      <Image src={InstagramIcon} alt='' layout='fill' />
                     </div>
                   </div>
                 </a>
