@@ -34,35 +34,39 @@ const RecipeCard = props => {
         <div className='flex flex-col h-1/4 pt-2'>
           <div className='text-lg font-light text-white'>{props.recipe.name}</div>
           <div className='flex w-full justify-between font-light'>
-            <div className='flex justify-start gap-2.5'>
+            <div className='flex justify-start gap-2.5 flex-wrap'>
               <div>By {props.recipe.author}</div>
-              {props.recipe.author_twitter_handle && (
-                <a
-                  href={`https://twitter.com/${props.recipe.author_twitter_handle}`}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='twitter-icon'
-                >
-                  <div className='flex justify-center items-center h-6 w-6'>
-                    <div className='relative w-full h-11/12'>
-                      <Image src={TwitterIcon} alt='' layout='fill' />
-                    </div>
-                  </div>
-                </a>
-              )}
-              {props.recipe.author_instagram_username && (
-                <a
-                  href={`https://www.instagram.com/${props.recipe.author_instagram_username}`}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='instagram-icon'
-                >
-                  <div className='flex justify-center items-center h-6 w-6'>
-                    <div className='relative w-full h-full'>
-                      <Image src={InstagramIcon} alt='' layout='fill' />
-                    </div>
-                  </div>
-                </a>
+              {(props.recipe.author_twitter_handle || props.recipe.author_instagram_username) && (
+                <div className='flex justify-start gap-2.5'>
+                  {props.recipe.author_twitter_handle && (
+                    <a
+                      href={`https://twitter.com/${props.recipe.author_twitter_handle}`}
+                      target='_blank'
+                      rel='noreferrer'
+                      className='twitter-icon'
+                    >
+                      <div className='flex justify-center items-center h-6 w-6'>
+                        <div className='relative w-full h-11/12'>
+                          <Image src={TwitterIcon} alt='' layout='fill' />
+                        </div>
+                      </div>
+                    </a>
+                  )}
+                  {props.recipe.author_instagram_username && (
+                    <a
+                      href={`https://www.instagram.com/${props.recipe.author_instagram_username}`}
+                      target='_blank'
+                      rel='noreferrer'
+                      className='instagram-icon'
+                    >
+                      <div className='flex justify-center items-center h-6 w-6'>
+                        <div className='relative w-full h-full'>
+                          <Image src={InstagramIcon} alt='' layout='fill' />
+                        </div>
+                      </div>
+                    </a>
+                  )}
+                </div>
               )}
             </div>
             <div>{`${props.recipe.time_minutes} minutes`}</div>
