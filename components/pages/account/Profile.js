@@ -11,6 +11,7 @@ import DisplayNameInput from './form/DisplayNameInput';
 import PasswordInputs from './form/PasswordInputs';
 import TwitterHandleInput from './form/TwitterHandleInput';
 import InstagramUsernameInput from './form/InstagramUsernameInput';
+import TextFreeLogo from '../../ui/TextFreeLogo';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -102,7 +103,6 @@ const Profile = () => {
         dispatch(accountFormActions.resetForm());
         dispatch(loginStatusActions.setUser(data.user));
         setIsSubmitting(false);
-        // TODO - Add an 'Updated!' message for the user?
       } else {
         throw new Error('Something went wrong');
       }
@@ -234,14 +234,19 @@ const Profile = () => {
               message={message()}
               masterInputChangeHandler={masterInputChangeHandler}
             />
-            {/* TODO - Handle isSubmitting being true */}
             <Button
               className='min-w-[117px] sm:min-w-[125px]'
               theme='plain'
               form='account-form'
               disabled={disableButton()}
             >
-              Save changes
+              {isSubmitting ? (
+                <div className='flex justify-center'>
+                  <TextFreeLogo className='animate-spin' size='30' />
+                </div>
+              ) : (
+                'Save changes'
+              )}
             </Button>
           </div>
         </div>
