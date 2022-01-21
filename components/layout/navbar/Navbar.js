@@ -2,18 +2,20 @@ import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 
-import Logo from '../../ui/Logo';
 import RegistrationModal from './invasive-components/registration-modal/RegistrationModal';
 import MainMenu from './invasive-components/MainMenu';
 import ProfileMenu from './invasive-components/ProfileMenu';
-import Button from '../../ui/Button';
+import ContactModal from './invasive-components/ContactModal';
 
 import { loginFormActions } from '../../../store/login-form';
 import { mainMenuActions } from '../../../store/main-menu';
 import { profileMenuActions } from '../../../store/profile-menu';
 import { registrationModalActions } from '../../../store/registration-modal';
 import { signUpFormActions } from '../../../store/sign-up-form';
+import { contactModalActions } from '../../../store/contact-modal';
 
+import Logo from '../../ui/Logo';
+import Button from '../../ui/Button';
 import profileIcon from '../../../public/icons/profile.svg';
 import SearchBar from './SearchBar';
 
@@ -24,6 +26,7 @@ const Navbar = () => {
   );
   const mainMenuIsOpen = useSelector(state => state.mainMenu.mainMenuIsOpen);
   const profileMenuIsOpen = useSelector(state => state.profileMenu.profileMenuIsOpen);
+  const contactModalIsOpen = useSelector(state => state.contactModal.contactModalIsOpen);
   const isLoggedIn = useSelector(state => state.loginStatus.loggedInStatus === 'LOGGED_IN');
 
   const showMainMenuHandler = () => {
@@ -49,6 +52,15 @@ const Navbar = () => {
       dispatch(signUpFormActions.resetForm());
     } else {
       dispatch(registrationModalActions.openModal());
+    }
+  };
+
+  const showContactModalHandler = () => {
+    if (contactModalIsOpen) {
+      dispatch(contactModalActions.closeModal());
+    } else {
+      dispatch(mainMenuActions.closeMenu());
+      dispatch(contactModalActions.openModal());
     }
   };
 
@@ -87,8 +99,12 @@ const Navbar = () => {
         </div>
       </div>
       <RegistrationModal showHandler={showRegistrationModalHandler} />
-      <MainMenu showHandler={showMainMenuHandler} />
+      <MainMenu
+        showHandler={showMainMenuHandler}
+        showContactModalHandler={showContactModalHandler}
+      />
       <ProfileMenu showHandler={showProfileMenuHandler} />
+      <ContactModal showHandler={showContactModalHandler} />
     </Fragment>
   );
 };

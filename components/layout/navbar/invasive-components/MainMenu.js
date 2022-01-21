@@ -35,10 +35,6 @@ const MainMenu = props => {
     }
   };
 
-  const getInTouchClickHandler = () => {
-    // TODO
-  };
-
   return (
     <InvasiveComponentContainer
       in={mainMenuIsOpen}
@@ -73,10 +69,10 @@ const MainMenu = props => {
           </div>
         </div>
         <div className='flex flex-col gap-8 flex-initial lg:pr-16'>
-          <div onClick={addRecipeClickHandler} className='font-bold cursor-pointer'>
+          <div onClick={props.showContactModalHandler} className='font-bold cursor-pointer'>
             Get in touch
           </div>
-          <div onClick={getInTouchClickHandler} className='font-bold cursor-pointer lg:order-first'>
+          <div onClick={addRecipeClickHandler} className='font-bold cursor-pointer lg:order-first'>
             Add a recipe
           </div>
         </div>
