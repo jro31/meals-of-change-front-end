@@ -52,7 +52,7 @@ const Profile = () => {
   );
 
   const parsedSocialMediaInput = value =>
-    value.trim()[0] === '@' ? value.trim().substring(1) : value.trim();
+    value.trim()[0] === '@' ? value.trim().substring(1).toLowerCase() : value.trim().toLowerCase();
 
   const formSubmitHandler = async event => {
     event.preventDefault();
