@@ -44,8 +44,7 @@ const IngredientsList = props => {
       <div className='flex justify-between items-center px-4 pb-4'>
         <Subheading className='font-bold'>Ingredients</Subheading>
         <div>
-          {/* FIXME - These shouldn't display on new recipe form preview */}
-          {!props.isPreview && (
+          {!props.isPreview && !props.newRecipeFormPreview && (
             <div className='flex gap-2'>
               <Share
                 title={`Share ${props.userIsAuthor ? 'your' : 'this'} recipe`}
