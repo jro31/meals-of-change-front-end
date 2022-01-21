@@ -18,6 +18,7 @@ const Layout = props => {
     if (data.logged_in) {
       dispatch(loginStatusActions.login(data.user));
     }
+    dispatch(loginStatusActions.setStatusChecked());
   }, [dispatch]);
 
   const loadTags = useCallback(async () => {

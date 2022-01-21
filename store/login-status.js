@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   loggedInStatus: 'NOT_LOGGED_IN',
   user: {},
+  statusChecked: false,
 };
 
 const loginStatusSlice = createSlice({
@@ -19,6 +20,9 @@ const loginStatusSlice = createSlice({
     },
     setUser(state, action) {
       state.user = action.payload;
+    },
+    setStatusChecked(state) {
+      state.statusChecked = true;
     },
   },
 });
