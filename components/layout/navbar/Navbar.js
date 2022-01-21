@@ -72,8 +72,7 @@ const Navbar = () => {
             </Button>
           )}
           {isLoggedIn && (
-            // TODO - Can the background colour be more angelic? (perhaps a 1px x 1px element behind the image, with a wide box shadow)
-            <div className='flex justify-center items-center rounded-full w-50px h-50px bg-white/40 '>
+            <div className='relative flex justify-center items-center rounded-full w-50px h-50px'>
               <div className='relative w-40px h-40px'>
                 <Image
                   onClick={showProfileMenuHandler}
@@ -82,6 +81,7 @@ const Navbar = () => {
                   layout='fill'
                 />
               </div>
+              <div className='absolute inset-1/4 rounded-full bg-white blur-[10px] -z-10' />
             </div>
           )}
         </div>
