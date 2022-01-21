@@ -1,3 +1,4 @@
+import RecipeAuthor from '../../../ui/recipe-lists/RecipeAuthor';
 import Title from '../../../ui/text/Title';
 import CookingTime from './CookingTime';
 import IngredientsList from './IngredientsList';
@@ -28,7 +29,13 @@ const RecipeDisplay = props => {
             {/* TODO - The recipe author isn't mentioned anywhere on the page - add it somewhere (probably here, next to the cooking time) */}
             {/* Could also add user's social media next to their name (Twitter/IG icons that link to their profiles) */}
             {/* Their name should also link to all of their recipes */}
-            <div className='px-2 lg:pl-1/12 bg-slate-800'>
+            <div className='flex gap-8 px-2 lg:pl-1/12 bg-slate-800'>
+              <RecipeAuthor
+                authorId={props.isPreview ? null : props.author.id}
+                name={props.author.display_name}
+                twitterHandle={props.author.twitter_handle}
+                instagramUsername={props.author.instagram_username}
+              />
               <CookingTime cookingTime={props.cookingTime} />
             </div>
             <div className='pt-2 pb-4 px-2 lg:pl-1/12 bg-slate-800 -my-px'>

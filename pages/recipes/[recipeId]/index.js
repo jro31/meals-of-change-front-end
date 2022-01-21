@@ -41,6 +41,7 @@ const RecipeDetails = props => {
       <RecipeDisplay
         recipeId={props.recipeId}
         name={props.name}
+        author={props.author}
         preface={props.preface}
         tags={tagsArray()}
         ingredients={props.ingredients}
