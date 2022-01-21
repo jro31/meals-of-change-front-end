@@ -12,6 +12,7 @@ import PasswordInputs from './form/PasswordInputs';
 import TwitterHandleInput from './form/TwitterHandleInput';
 import InstagramUsernameInput from './form/InstagramUsernameInput';
 import TextFreeLogo from '../../ui/TextFreeLogo';
+import EmailInput from './form/EmailInput';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -180,6 +181,7 @@ const Profile = () => {
               <Heading className='sm:mt-6'>Edit profile</Heading>
             </div>
             <div className='basis-3/5'>
+              <EmailInput value={user.email} />
               <DisplayNameInput masterInputChangeHandler={masterInputChangeHandler} />
               <TwitterHandleInput
                 parsedInput={parsedSocialMediaInput}
