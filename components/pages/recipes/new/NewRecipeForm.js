@@ -165,9 +165,11 @@ const NewRecipeForm = props => {
             )}
             {/* FIXME - The bottoms of long letters in the title (p, g) get hidden on Safari on desktop (although note that they get displayed once elements below (ingredients) are displayed, so not a huge issue) */}
             {enteredName && <Title>{enteredName}</Title>}
+            {/* FIXME - Need to display 'by author' here */}
             {enteredCookingTime && <CookingTime cookingTime={enteredCookingTime} />}
             {enteredPreface && <Subheading>{enteredPreface}</Subheading>}
             {tagsParser(tagsObject)[0] && <TagsList tagsArray={tagsParser(tagsObject)} />}
+            {/* FIXME - Ingredient list shouldn't display because of cooking time */}
             {((enteredCookingTime && enteredCookingTimeIsValid) ||
               addedIngredients[0] ||
               enteredIngredientAmount ||

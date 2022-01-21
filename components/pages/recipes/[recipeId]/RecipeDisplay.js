@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 import RecipeAuthor from '../../../ui/recipe-lists/RecipeAuthor';
 import Title from '../../../ui/text/Title';
 import CookingTime from './CookingTime';
@@ -7,6 +9,8 @@ import RecipePhoto from './RecipePhoto';
 import StepsList from './StepsList';
 
 const RecipeDisplay = props => {
+  const user = useSelector(state => state.loginStatus.user);
+
   return (
     <div
       className={`flex flex-col lg:flex-row xl:justify-center fixed top-14 inset-x-0 ${
@@ -26,15 +30,12 @@ const RecipeDisplay = props => {
             <div className='pt-4 pb-2 px-2 lg:pl-1/12 bg-gradient-to-b from-transparent to-slate-800 rounded-t-2xl'>
               <Title>{props.name}</Title>
             </div>
-            {/* TODO - The recipe author isn't mentioned anywhere on the page - add it somewhere (probably here, next to the cooking time) */}
-            {/* Could also add user's social media next to their name (Twitter/IG icons that link to their profiles) */}
-            {/* Their name should also link to all of their recipes */}
             <div className='flex gap-8 px-2 lg:pl-1/12 bg-slate-800'>
               <RecipeAuthor
                 authorId={props.isPreview ? null : props.author.id}
                 name={props.author.display_name}
-                twitterHandle={props.author.twitter_handle}
-                instagramUsername={props.author.instagram_username}
+                twitterHandle={props.isPreview ? null : props.author.twitter_handle}
+                instagramUsername={props.isPreview ? null : props.author.instagram_username}
               />
               <CookingTime cookingTime={props.cookingTime} />
             </div>
@@ -48,6 +49,7 @@ const RecipeDisplay = props => {
                 ingredients={props.ingredients}
                 recipeId={props.recipeId}
                 isPreview={props.isPreview}
+                userIsAuthor={props.author.id === user.id}
               />
               <StepsList steps={props.steps} />
             </div>
@@ -60,6 +62,7 @@ const RecipeDisplay = props => {
           ingredients={props.ingredients}
           recipeId={props.recipeId}
           isPreview={props.isPreview}
+          userIsAuthor={props.author.id === user.id}
         />
       </div>
     </div>
