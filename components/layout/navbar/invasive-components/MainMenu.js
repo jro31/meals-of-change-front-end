@@ -35,6 +35,10 @@ const MainMenu = props => {
     }
   };
 
+  const getInTouchClickHandler = () => {
+    // TODO
+  };
+
   return (
     <InvasiveComponentContainer
       in={mainMenuIsOpen}
@@ -47,21 +51,20 @@ const MainMenu = props => {
             Home
           </div>
         </div>
-        <div className='flex flex-col flex-grow-only my-8 lg:my-0 lg:px-16'>
+        <div className='flex flex-col grow shrink my-8 lg:my-0 lg:px-16 overflow-hidden'>
           <div
             onClick={() => navigateTo('/recipes')}
             className='flex-initial mb-4 font-bold cursor-pointer'
           >
             Recipes
           </div>
-          <div className='flex-grow-only columns-2 lg:columns-3 xl:columns-2xs'>
-            {/* FIXME - Tags that don't fit onto a single line (for example 'Middle-eastern' on mobile wrap) wrap onto mutlple lines with large line-height. Looks a bit shit. */}
+          <div className='flex-grow-only columns-2 xl:columns-3 2xl:columns-4'>
             {tags.map(tag => {
               return (
                 <div
                   key={tag}
                   onClick={() => navigateTo(`/recipes?tag_name=${tag.toLowerCase()}`)}
-                  className='cursor-pointer leading-10'
+                  className='cursor-pointer h-10 overflow-hidden leading-10'
                 >
                   {tag}
                 </div>
@@ -69,8 +72,11 @@ const MainMenu = props => {
             })}
           </div>
         </div>
-        <div className='flex-initial lg:pr-16'>
+        <div className='flex flex-col gap-8 flex-initial lg:pr-16'>
           <div onClick={addRecipeClickHandler} className='font-bold cursor-pointer'>
+            Get in touch
+          </div>
+          <div onClick={getInTouchClickHandler} className='font-bold cursor-pointer lg:order-first'>
             Add a recipe
           </div>
         </div>
