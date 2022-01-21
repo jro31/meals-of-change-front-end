@@ -1,18 +1,27 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 import NewRecipeForm from '../../components/pages/recipes/new/NewRecipeForm';
 import NewRecipePreview from '../../components/pages/recipes/new/NewRecipePreview';
 
 const NewRecipe = () => {
-  // TODO - Handle someone who's not logged-in navigating to this page (probably redirect them to the homepage)
   // TODO - Add a warning when refreshing/navigating away from this page that unsaved data will be lost - This is essential for mobile. I managed to accidentally refresh on Chrome and lost an entire recipe.
 
+  const router = useRouter();
+  const isLoggedIn = useSelector(state => state.loginStatus.loggedInStatus === 'LOGGED_IN');
+  const loginStatusChecked = useSelector(state => state.loginStatus.statusChecked);
   const activeComponent = useSelector(state => state.newRecipePage.activeComponent);
 
   const [chosenPhoto, setChosenPhoto] = useState(null);
   const [chosenPhotoPreviewUrl, setChosenPhotoPreviewUrl] = useState('');
+
+  useEffect(() => {
+    if (loginStatusChecked && !isLoggedIn) {
+      router.replace(`/`);
+    }
+  }, [loginStatusChecked, isLoggedIn, router]);
 
   return (
     <Fragment>

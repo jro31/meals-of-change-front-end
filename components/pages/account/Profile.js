@@ -92,14 +92,13 @@ const Profile = () => {
             credentials: 'include',
           }
         );
+        const data = await response.json();
 
         if (response.status !== 200) {
-          throw new Error('response status not :ok');
+          throw new Error(data.error_message || 'response status not :ok');
         }
 
         setUpdated(true);
-
-        const data = await response.json();
 
         dispatch(accountFormActions.resetForm());
         dispatch(loginStatusActions.setUser(data.user));

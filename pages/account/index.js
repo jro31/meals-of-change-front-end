@@ -11,8 +11,6 @@ const AccountPage = () => {
   const loginStatusChecked = useSelector(state => state.loginStatus.statusChecked);
 
   useEffect(() => {
-    console.log(isLoggedIn);
-
     if (loginStatusChecked && !isLoggedIn) {
       router.replace(`/`);
     }
