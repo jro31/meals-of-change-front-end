@@ -65,9 +65,9 @@ const ProfileMenu = props => {
         } w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4`}
       >
         <div className='flex flex-col gap-6'>
-          {/* TODO - <div>Account</div> */}
-          {/* This should allow users to change their password, and possibly their display name */}
-          {/* Should also give them the option of adding their Twitter and IG handles */}
+          <div className='font-bold cursor-pointer' onClick={() => navigateTo(`/account`)}>
+            Account
+          </div>
           {user && user.id && (
             <div
               className='font-bold cursor-pointer'

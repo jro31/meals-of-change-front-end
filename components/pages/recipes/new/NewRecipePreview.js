@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 
 import usePhotoUploader from '../../../../hooks/use-photo-uploader';
 import useTagsParser from '../../../../hooks/use-tags-parser';
+import useShareModal from '../../../../hooks/use-share-modal';
+import useTextAsUrl from '../../../../hooks/use-text-as-url';
 import { newRecipeFormActions } from '../../../../store/new-recipe-form';
 import { newRecipePageActions } from '../../../../store/new-recipe-page';
 import { registrationModalActions } from '../../../../store/registration-modal';
@@ -21,9 +23,12 @@ const NewRecipePreview = props => {
   const steps = useSelector(state => state.newRecipeForm.steps);
   const tagsObject = useSelector(state => state.newRecipeForm.tags);
   const isLoggedIn = useSelector(state => state.loginStatus.loggedInStatus === 'LOGGED_IN');
+  const user = useSelector(state => state.loginStatus.user);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const tagsParser = useTagsParser();
+  const toggleShareModalHandler = useShareModal();
+  const textAsUrl = useTextAsUrl();
 
   const photoUploader = usePhotoUploader();
 
@@ -77,14 +82,21 @@ const NewRecipePreview = props => {
           recipeOptions
         );
 
-        if (!response.status === 201) {
+        if (response.status !== 201) {
           throw new Error('response status not :created');
         }
 
         const data = await response.json();
 
         await router.replace(`/recipes/${data.recipe.id}`).then(() => {
-          // TODO - Because the recipe show page is so similar to the recipe preview page, need some kind of notification that the recipe was created - otherwise not very obvious
+          toggleShareModalHandler(
+            'Share your recipe',
+            textAsUrl(enteredName.trim()),
+            'vegan,plantbased',
+            textAsUrl(enteredName.trim()),
+            `${enteredName.trim()} - plant-based recipe`,
+            `Check-out this plant-based '${enteredName.trim()}' recipe - `
+          );
           dispatch(newRecipeFormActions.resetForm());
           props.setChosenPhoto(null);
           props.setChosenPhotoPreviewUrl('');
@@ -106,6 +118,7 @@ const NewRecipePreview = props => {
       <RecipeDisplay
         photo={props.chosenPhotoPreviewUrl}
         name={enteredName}
+        author={user}
         preface={enteredPreface}
         tags={tagsParser(tagsObject)}
         ingredients={addedIngredients}

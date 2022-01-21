@@ -12,6 +12,9 @@ module.exports = {
         'slide-out-right': 'slideOutRight 0.4s ease-in forwards',
         'slide-out-up': 'slideOutUp 0.4s ease-in forwards',
       },
+      colors: {
+        'logo-green': 'rgb(113, 200 55)',
+      },
       flex: {
         'grow-only': '1 0 auto',
       },
@@ -22,11 +25,13 @@ module.exports = {
         '40px': '40px',
         '50px': '50px',
         '11/12': '91.666667%',
+        22: '5.5rem',
       },
       inset: {
         '1/6': '16.666667%',
         '1/12': '8.333333%',
         '1/24': '4.166667%',
+        22: '5.5rem',
       },
       keyframes: {
         fadeIn: {

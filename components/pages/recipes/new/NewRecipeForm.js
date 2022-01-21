@@ -20,6 +20,7 @@ import useTagsParser from '../../../../hooks/use-tags-parser';
 import IngredientsList from '../[recipeId]/IngredientsList';
 import Checkbox from '../../../ui/form/Checkbox';
 import CookingTime from '../[recipeId]/CookingTime';
+import RecipeAuthor from '../../../ui/recipe-lists/RecipeAuthor';
 
 let ingredientIterator = 0;
 
@@ -45,6 +46,7 @@ const NewRecipeForm = props => {
   const steps = useSelector(state => state.newRecipeForm.steps);
   const tagsObject = useSelector(state => state.newRecipeForm.tags);
   const confirmedIsPlantBased = useSelector(state => state.newRecipeForm.confirmedIsPlantBased);
+  const user = useSelector(state => state.loginStatus.user);
   const tagsParser = useTagsParser();
 
   const formIsValid = () =>
@@ -165,11 +167,15 @@ const NewRecipeForm = props => {
             )}
             {/* FIXME - The bottoms of long letters in the title (p, g) get hidden on Safari on desktop (although note that they get displayed once elements below (ingredients) are displayed, so not a huge issue) */}
             {enteredName && <Title>{enteredName}</Title>}
-            {enteredCookingTime && <CookingTime cookingTime={enteredCookingTime} />}
+            {enteredCookingTime && (
+              <div className='flex gap-8'>
+                <RecipeAuthor name={user.display_name} />
+                <CookingTime cookingTime={enteredCookingTime} />
+              </div>
+            )}
             {enteredPreface && <Subheading>{enteredPreface}</Subheading>}
             {tagsParser(tagsObject)[0] && <TagsList tagsArray={tagsParser(tagsObject)} />}
-            {((enteredCookingTime && enteredCookingTimeIsValid) ||
-              addedIngredients[0] ||
+            {(addedIngredients[0] ||
               enteredIngredientAmount ||
               (enteredIngredientFood && enteredIngredientFoodIsValid) ||
               enteredIngredientPreparation) && (

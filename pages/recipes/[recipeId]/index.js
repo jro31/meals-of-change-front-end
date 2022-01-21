@@ -24,16 +24,16 @@ const RecipeDetails = props => {
         <meta property='og:type' content='website' />
         <meta property='og:url' content={`https://mealsofchange.com/recipes/${props.recipeId}`} />
         <meta property='og:image' content={props.largePhoto} />
-        {/* FIXME - This photo isn't displaying either */}
         <meta property='og:site_name' content='Meals of Change'></meta>
 
         {/* Twitter */}
         <meta name='twitter:title' content={props.name} />
         <meta name='twitter:site' content='@mealsofchange' />
-        {/* TODO - Once storing user twitter handles, add '<meta name="twitter:creator" content="@SarahMaslinNir">' tag - see https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image */}
+        {props.author.twitter_handle && (
+          <meta name='twitter:creator' content={`@${props.author.twitter_handle}`} />
+        )}
         <meta name='twitter:description' content={props.preface || props.steps[0].instructions} />
         <meta name='twitter:image' content={props.smallPhoto} />
-        {/* FIXME - This image isn't dislaying */}
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:image:alt' content={`${props.name} photo`}></meta>
       </Head>
@@ -41,6 +41,7 @@ const RecipeDetails = props => {
       <RecipeDisplay
         recipeId={props.recipeId}
         name={props.name}
+        author={props.author}
         preface={props.preface}
         tags={tagsArray()}
         ingredients={props.ingredients}

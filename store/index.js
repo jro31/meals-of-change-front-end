@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import accountFormReducer from './account-form';
 import loginFormReducer from './login-form';
 import loginStatusReducer from './login-status';
 import mainMenuReducer from './main-menu';
@@ -12,6 +13,7 @@ import signUpFormReducer from './sign-up-form';
 
 const store = configureStore({
   reducer: {
+    accountForm: accountFormReducer,
     loginForm: loginFormReducer,
     loginStatus: loginStatusReducer,
     mainMenu: mainMenuReducer,

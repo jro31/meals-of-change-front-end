@@ -44,7 +44,7 @@ const SignUpForm = () => {
     setIsSubmitting(true);
 
     try {
-      if (formIsValid) {
+      if (formIsValid()) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/registrations`, {
           method: 'POST',
           headers: {
@@ -109,6 +109,8 @@ const SignUpForm = () => {
         inputIsTouched={passwordInputIsTouched}
         formError={error}
         setFormError={setError}
+        enteredConfirmationInput={enteredPasswordConfirmation}
+        setConfirmationInputIsValidAction={signUpFormActions.setEnteredPasswordConfirmationIsValid}
       />
       <PasswordInput
         confirmationInput={true}

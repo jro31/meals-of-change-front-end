@@ -44,10 +44,10 @@ const IngredientsList = props => {
       <div className='flex justify-between items-center px-4 pb-4'>
         <Subheading className='font-bold'>Ingredients</Subheading>
         <div>
-          {!props.isPreview && (
+          {!props.isPreview && !props.newRecipeFormPreview && (
             <div className='flex gap-2'>
               <Share
-                title='Share this recipe'
+                title={`Share ${props.userIsAuthor ? 'your' : 'this'} recipe`}
                 tweetText={props.name}
                 hashtags={'vegan,plantbased'}
                 whatsAppText={props.name}
