@@ -12,9 +12,9 @@ import Heading from '../ui/text/Heading';
 import { shareModalActions } from '../../store/share-modal';
 import LinkIcon from '../../public/icons/link.svg';
 import FacebookIcon from '../../public/icons/facebook.svg';
-import TwitterIcon from '../../public/icons/twitter.svg';
+import TwitterIcon from '../ui/icons/TwitterIcon';
 import WhatsAppIcon from '../../public/icons/whatsapp.svg';
-import EmailIcon from '../../public/icons/email.svg';
+import EmailIcon from '../ui/icons/EmailIcon';
 
 const ShareModal = () => {
   const router = useRouter();
@@ -86,11 +86,7 @@ const ShareModal = () => {
             </div>
           </div>
           <a href={twitterUrl()} target='_blank' rel='noreferrer'>
-            <div className='flex justify-center items-center w-10 h-10'>
-              <div className='relative w-full h-11/12'>
-                <Image src={TwitterIcon} alt='Twitter icon' layout='fill' />
-              </div>
-            </div>
+            <TwitterIcon size='10' />
           </a>
           <a href={facebookUrl()} target='_blank' rel='noreferrer'>
             <div className='flex justify-center items-center w-10 h-10'>
@@ -107,11 +103,7 @@ const ShareModal = () => {
             </div>
           </a>
           <a href={emailUrl()} target='_blank' rel='noreferrer'>
-            <div className='flex justify-center items-center w-11 h-9'>
-              <div className='relative w-full h-full'>
-                <Image src={EmailIcon} alt='Email icon' layout='fill' />
-              </div>
-            </div>
+            <EmailIcon />
           </a>
         </div>
       </div>

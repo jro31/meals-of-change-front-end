@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
-import TwitterIcon from '../../../public/icons/twitter.svg';
-import InstagramIcon from '../../../public/icons/instagram.svg';
+import InstagramIcon from '../icons/InstagramIcon';
+import TwitterIcon from '../icons/TwitterIcon';
 
 const RecipeAuthor = props => {
   return (
@@ -24,11 +23,7 @@ const RecipeAuthor = props => {
               rel='noreferrer'
               className='twitter-icon'
             >
-              <div className='flex justify-center items-center h-6 w-6'>
-                <div className='relative w-full h-11/12'>
-                  <Image src={TwitterIcon} alt='' layout='fill' />
-                </div>
-              </div>
+              <TwitterIcon size='6' />
             </a>
           )}
           {props.instagramUsername && (
@@ -38,11 +33,7 @@ const RecipeAuthor = props => {
               rel='noreferrer'
               className='instagram-icon'
             >
-              <div className='flex justify-center items-center h-6 w-6'>
-                <div className='relative w-full h-full'>
-                  <Image src={InstagramIcon} alt='' layout='fill' />
-                </div>
-              </div>
+              <InstagramIcon size='6' />
             </a>
           )}
         </div>
