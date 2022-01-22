@@ -71,7 +71,6 @@ const IngredientInputSection = props => {
                     </div>
                   )}
                 </div>
-                {/* FIXME - Deleting an ingredient, it doesn't get removed from the recipe preview (Firefox desktop) */}
                 <Button
                   theme='subtle'
                   size='small'

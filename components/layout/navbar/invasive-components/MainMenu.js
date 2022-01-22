@@ -76,8 +76,6 @@ const MainMenu = props => {
             Add a recipe
           </div>
         </div>
-        {/* TODO - Add a 'Social' (or 'Social media') link */}
-        {/* This opens a modal which has links to the meals of change Twitter/Instagram/Facebook pages */}
       </div>
     </InvasiveComponentContainer>
   );

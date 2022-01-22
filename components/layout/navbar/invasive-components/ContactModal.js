@@ -35,6 +35,7 @@ const ContactModal = props => {
               <div className='text-lg sm:text-xl'>&#64;mealsofchange</div>
             </div>
           </a>
+          {/* TODO - Add a Facebook page? */}
           <a href='mailto:contact@mealsofchange.com' target='_blank' rel='noreferrer'>
             <div className='flex flex-col sm:flex-row items-center gap-1 sm:gap-4'>
               <EmailIcon />
