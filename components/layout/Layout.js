@@ -23,7 +23,7 @@ const Layout = props => {
 
   const loadTags = useCallback(async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/tags?limit=10`, {});
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/tags?limit=12`, {});
 
       if (!response.ok) {
         throw new Error('Unable to fetch tags');
