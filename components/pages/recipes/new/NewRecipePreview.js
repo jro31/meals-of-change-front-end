@@ -146,6 +146,7 @@ const NewRecipePreview = props => {
               disabled={isSubmitting}
               onClick={submitHandler}
             >
+              {/* TODO - Why does the button have a white background when submitting? (happens on other pages as well) */}
               {isSubmitting ? (
                 <div className='flex justify-center'>
                   <TextFreeLogo className='animate-spin' size='30' />

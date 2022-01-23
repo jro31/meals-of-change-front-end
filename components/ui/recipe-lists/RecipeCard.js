@@ -26,7 +26,7 @@ const RecipeCard = props => {
             alt={`${props.recipe.name} photo`}
             layout='fill'
             objectFit='cover'
-            objectPosition={props.photo ? '50% 50%' : '50% top'}
+            objectPosition={props.recipe.small_photo ? '50% 50%' : '50% top'}
             className='rounded-2xl'
           />
         </div>
