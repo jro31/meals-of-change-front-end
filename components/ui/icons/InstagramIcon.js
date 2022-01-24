@@ -17,7 +17,8 @@ const InstagramIcon = props => {
   return (
     <div className={`flex justify-center items-center ${sizeClassNames()}`}>
       <div className='relative w-full h-full'>
-        <Image src={InstagramLogo} alt='IG' layout='fill' />
+        {/* <Image src={InstagramLogo} alt='IG' layout='fill' /> */}
+        <img src='/icons/instagram.svg' alt='IG' className='w-full h-full' />
       </div>
     </div>
   );

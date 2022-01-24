@@ -18,7 +18,7 @@ const Pointer = props => {
   return (
     <div className={`w-10 h-full absolute pt-4 pb-8 ${props.className || ''}`}>
       <div onClick={props.onClick} className='h-full w-full bg-black opacity-40 relative z-10'>
-        <Image
+        {/* <Image
           src={source()}
           alt={
             props.direction
@@ -26,6 +26,11 @@ const Pointer = props => {
               : 'Pointer'
           }
           layout='fill'
+        /> */}
+        <img
+          src={props.direction === 'right' ? '/icons/right-pointer.svg' : '/icons/left-pointer.svg'}
+          alt='Pointer'
+          className='w-full h-full'
         />
       </div>
     </div>

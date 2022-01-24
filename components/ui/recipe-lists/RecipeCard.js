@@ -21,13 +21,20 @@ const RecipeCard = props => {
         className={`flex flex-col h-full justify-center cursor-pointer ${props.className || ''}`}
       >
         <div className='h-3/4 relative border border-slate-200 rounded-2xl shadow-sm shadow-slate-200 max-h-[350px]'>
-          <Image
+          {/* <Image
             src={props.recipe.small_photo || StockPhoto}
             alt={`${props.recipe.name} photo`}
             layout='fill'
             objectFit='cover'
             objectPosition={props.recipe.small_photo ? '50% 50%' : '50% top'}
             className='rounded-2xl'
+          /> */}
+          <img
+            src={props.recipe.small_photo || '/images/fork-large.jpg'}
+            alt={`${props.recipe.name} photo`}
+            className={`w-full h-full object-cover rounded-2xl ${
+              props.recipe.small_photo ? 'object-center' : 'object-top'
+            }`}
           />
         </div>
         <div className='flex flex-col h-1/4 pt-2'>

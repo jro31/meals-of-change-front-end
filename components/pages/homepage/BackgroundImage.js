@@ -12,57 +12,87 @@ const BackgroundImage = () => {
   return (
     <Fragment>
       <div className='block sm:hidden w-full h-screen-minus-nav fixed -z-20'>
-        <Image
+        {/* <Image
           src={BuddahBowlXs}
           alt='Vegan Buddah bowl'
           layout='fill'
           objectFit='cover'
           objectPosition='right 50%'
+        /> */}
+        <img
+          src='/images/homepage-buddah-bowl-xs.jpg'
+          alt=''
+          className='w-full h-full object-cover object-right'
         />
       </div>
       <div className='hidden sm:block md:hidden w-full h-screen-minus-nav fixed -z-20'>
-        <Image
+        {/* <Image
           src={BuddahBowlSm}
           alt='Vegan Buddah bowl'
           layout='fill'
           objectFit='cover'
           objectPosition='right 50%'
+        /> */}
+        <img
+          src='/images/homepage-buddah-bowl-sm.jpg'
+          alt=''
+          className='w-full h-full object-cover object-right'
         />
       </div>
       <div className='hidden md:block lg:hidden w-full h-screen-minus-nav fixed -z-20'>
-        <Image
+        {/* <Image
           src={BuddahBowlMd}
           alt='Vegan Buddah bowl'
           layout='fill'
           objectFit='cover'
           objectPosition='right 50%'
+        /> */}
+        <img
+          src='/images/homepage-buddah-bowl-md.jpg'
+          alt=''
+          className='w-full h-full object-cover object-right'
         />
       </div>
       <div className='hidden lg:block xl:hidden w-full h-screen-minus-nav fixed -z-20'>
-        <Image
+        {/* <Image
           src={BuddahBowlLg}
           alt='Vegan Buddah bowl'
           layout='fill'
           objectFit='cover'
           objectPosition='right 50%'
+        /> */}
+        <img
+          src='/images/homepage-buddah-bowl-lg.jpg'
+          alt=''
+          className='w-full h-full object-cover object-right'
         />
       </div>
       <div className='hidden xl:block 2xl:hidden w-full h-screen-minus-nav fixed -z-20'>
-        <Image
+        {/* <Image
           src={BuddahBowlXl}
           alt='Vegan Buddah bowl'
           layout='fill'
           objectFit='cover'
           objectPosition='right 50%'
+        /> */}
+        <img
+          src='/images/homepage-buddah-bowl-xl.jpg'
+          alt=''
+          className='w-full h-full object-cover object-right'
         />
       </div>
       <div className='hidden 2xl:block w-full h-screen-minus-nav fixed -z-20'>
-        <Image
+        {/* <Image
           src={BuddahBowl2xl}
           alt='Vegan Buddah bowl'
           layout='fill'
           objectFit='cover'
           objectPosition='right 50%'
+        /> */}
+        <img
+          src='/images/homepage-buddah-bowl-2xl.jpg'
+          alt=''
+          className='w-full h-full object-cover object-right'
         />
       </div>
     </Fragment>

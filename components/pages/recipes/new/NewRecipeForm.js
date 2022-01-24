@@ -98,13 +98,19 @@ const NewRecipeForm = props => {
               {props.chosenPhotoPreviewUrl && (
                 <div className='flex lg:hidden justify-center w-full h-[275px] mt-4'>
                   <div className='relative w-full'>
-                    <Image
+                    {/* <Image
                       src={props.chosenPhotoPreviewUrl}
                       alt='Preview photo'
                       layout='fill'
                       objectFit='cover'
                       objectPosition='50% 50%'
                       className='rounded-2xl'
+                    /> */}
+                    {/* FIXME - The dimensions of this image are a bit funky on certain screen widths */}
+                    <img
+                      src={props.chosenPhotoPreviewUrl}
+                      alt='Preview photo'
+                      className='w-full h-full object-cover object-center rounded-2xl'
                     />
                   </div>
                 </div>
@@ -154,13 +160,19 @@ const NewRecipeForm = props => {
             {props.chosenPhotoPreviewUrl && (
               <div className='flex justify-center w-full h-1/3 min-h-[275px]'>
                 <div className='relative h-full basis-1/2'>
-                  <Image
+                  {/* <Image
                     src={props.chosenPhotoPreviewUrl}
                     alt='Preview photo'
                     layout='fill'
                     objectFit='cover'
                     objectPosition='50% 50%'
                     className='rounded-2xl'
+                  /> */}
+                  {/* FIXME - The dimensions of this image are a bit funky on certain screen widths */}
+                  <img
+                    src={props.chosenPhotoPreviewUrl}
+                    alt='Preview photo'
+                    className='w-full h-full object-cover object-center rounded-2xl'
                   />
                 </div>
               </div>

@@ -116,7 +116,12 @@ const Bookmark = props => {
       }`}
     >
       <div className='relative w-full h-8'>
-        <Image src={bookmarkId ? BookmarkFullIcon : BookmarkEmptyIcon} alt='' layout='fill' />
+        {/* <Image src={bookmarkId ? BookmarkFullIcon : BookmarkEmptyIcon} alt='' layout='fill' /> */}
+        <img
+          src={bookmarkId ? `/icons/bookmark-full.svg` : `/icons/bookmark-empty.svg`}
+          alt=''
+          className='w-full h-full'
+        />
       </div>
     </button>
   );

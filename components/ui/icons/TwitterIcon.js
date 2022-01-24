@@ -17,7 +17,8 @@ const TwitterIcon = props => {
   return (
     <div className={`flex justify-center items-center ${sizeClassNames()}`}>
       <div className='relative w-full h-11/12'>
-        <Image src={TwitterLogo} alt='Twitter' layout='fill' />
+        {/* <Image src={TwitterLogo} alt='Twitter' layout='fill' /> */}
+        <img src='/icons/twitter.svg' alt='Twitter' className='w-full h-full' />
       </div>
     </div>
   );
