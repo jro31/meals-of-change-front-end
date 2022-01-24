@@ -32,7 +32,8 @@ const SearchBar = () => {
       />
       <div className='flex flex-col justify-center h-full w-10 bg-slate-500 rounded-r border-r border-y border-slate-800'>
         <button type='submit' className='relative basis-2/3'>
-          <Image src={searchIcon} alt='Search icon' layout='fill' />
+          {/* <Image src={searchIcon} alt='Search' layout='fill' /> */}
+          <img src='/icons/search.svg' alt='Search' className='w-full h-2/3' />
         </button>
       </div>
     </form>

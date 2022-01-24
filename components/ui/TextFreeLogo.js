@@ -8,7 +8,8 @@ const TextFreeLogo = props => {
       onClick={props.onClick || null}
       style={{ height: `${props.size}px`, width: `${props.size}px` }}
     >
-      <Image src={logo} alt='Meals of Change' layout='fill' />
+      {/* <Image src={logo} alt='Meals of Change' layout='fill' /> */}
+      <img src='/logos/text-free-logo.svg' alt='Meals of Change' className='w-full h-full' />
     </div>
   );
 };

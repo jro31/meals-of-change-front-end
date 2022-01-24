@@ -79,7 +79,8 @@ const ShareModal = () => {
             <div className='flex justify-center items-center w-10 h-10'>
               {!linkCopiedToClipboard && (
                 <div className='relative w-full h-full'>
-                  <Image src={LinkIcon} alt='Link icon' layout='fill' />
+                  {/* <Image src={LinkIcon} alt='Link' layout='fill' /> */}
+                  <img src='/icons/link.svg' alt='Link' className='w-full h-full' />
                 </div>
               )}
               {linkCopiedToClipboard && <div className='text-center'>URL copied</div>}
@@ -91,14 +92,16 @@ const ShareModal = () => {
           <a href={facebookUrl()} target='_blank' rel='noreferrer'>
             <div className='flex justify-center items-center w-10 h-10'>
               <div className='relative w-1/2 h-full'>
-                <Image src={FacebookIcon} alt='Facebook icon' layout='fill' />
+                {/* <Image src={FacebookIcon} alt='Facebook' layout='fill' /> */}
+                <img src='/icons/facebook.svg' alt='Facebook' className='w-full h-full' />
               </div>
             </div>
           </a>
           <a href={whatsAppUrl()} target='_blank' rel='noreferrer'>
             <div className='flex justify-center items-center w-10 h-10'>
               <div className='relative w-full h-full'>
-                <Image src={WhatsAppIcon} alt='Whatsapp icon' layout='fill' />
+                {/* <Image src={WhatsAppIcon} alt='WhatsApp' layout='fill' /> */}
+                <img src='/icons/whatsapp.svg' alt='WhatsApp' className='w-full h-full' />
               </div>
             </div>
           </a>

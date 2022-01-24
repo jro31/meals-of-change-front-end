@@ -86,11 +86,17 @@ const Navbar = () => {
           {isLoggedIn && (
             <div className='relative flex justify-center items-center rounded-full w-50px h-50px'>
               <div className='relative w-40px h-40px'>
-                <Image
+                {/* <Image
                   onClick={showProfileMenuHandler}
                   src={profileIcon}
-                  alt='Profile icon'
+                  alt='Profile'
                   layout='fill'
+                /> */}
+                <img
+                  onClick={showProfileMenuHandler}
+                  src='/icons/profile.svg'
+                  alt='Profile'
+                  className='w-full h-full cursor-pointer'
                 />
               </div>
               <div className='absolute inset-1/4 rounded-full bg-white blur-[10px] -z-10' />
