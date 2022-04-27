@@ -6,3 +6,5 @@ A Next JS app hosted at [mealsofchange.com](https://mealsofchange.com/) where us
 - Tailwind CSS 3
 
 Works with [meals-of-change-api](https://github.com/jro31/meals-of-change-api).
+
+Take a deep-dive into how I built this app at [jethro.codes/projects/meals-of-change](https://jethro.codes/projects/meals-of-change).
