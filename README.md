@@ -7,4 +7,4 @@ A Next JS app where users can view and upload their own plant-based recipes.
 
 Works with [meals-of-change-api](https://github.com/jro31/meals-of-change-api).
 
-Take a deep-dive into how I built this app at [jethro.codes/projects/meals-of-change](https://jethro.codes/projects/meals-of-change).
+Take a deep-dive into how I built this app at [code.jethrowilliams.com/projects/meals-of-change](https://code.jethrowilliams.com/projects/meals-of-change).
